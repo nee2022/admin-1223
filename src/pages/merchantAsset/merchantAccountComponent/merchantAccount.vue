@@ -133,7 +133,6 @@
 
 <script>
 import myhead from "../../../components/myhead";
-import Myhead from "../../../components/myhead.vue";
 export default {
   components: {
     myhead
