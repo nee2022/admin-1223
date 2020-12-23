@@ -11,6 +11,7 @@
           <el-input
             placeholder="请输入账号、手机号、昵称进行查找"
             class="inputBlank"
+            v-model="input"
             clearable
           ></el-input>
         </div>
@@ -18,7 +19,7 @@
           <el-button
             type="primary"
             icon="el-icon-search"
-            @click.native="getMerchantAccountMes"
+            @click.native="searchHandler"
           >
             搜索
           </el-button>
@@ -70,8 +71,7 @@
                 <div @click="merchantAccountDeleted(scope.row.id)">
                   <img src="../../../assets/images/delete.png" title="删除" />
                 </div>
-
-                <div>
+                <div @click="modifyDialogPop(scope.row)">
                   <img src="../../../assets/images/compile.png" title="修改" />
                 </div>
                 <div>
@@ -122,9 +122,33 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="addDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="merchantAccountAdded"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="merchantAccountAdded">
+            确 定
+          </el-button>
+        </span>
+      </el-dialog>
+      <!-- 修改商户账号 -->
+      <el-dialog
+        title="修改商户账号"
+        :visible.sync="modifyDialogVisible"
+        width="30%"
+      >
+        <el-form :model="modifyForm" ref="modifyFormRef" label-width="80px">
+          <el-form-item label="用户" prop="username">
+            <el-input v-model="addForm.username"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号" prop="telephone">
+            <el-input v-model="addForm.telephone"></el-input>
+          </el-form-item>
+          <el-form-item label="状态" prop="type">
+            <el-input v-model="addForm.type"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="modifyDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="merchantAccoutModified">
+            确 定
+          </el-button>
         </span>
       </el-dialog>
     </template>
@@ -133,6 +157,7 @@
 
 <script>
 import myhead from "../../../components/myhead";
+import Vue from "vue";
 export default {
   components: {
     myhead
@@ -143,7 +168,6 @@ export default {
       option: "",
       total: 1,
       isActive: true,
-      dialogVisible: false,
       selected: "所有",
       pagenum: 1,
       token: "",
@@ -154,7 +178,16 @@ export default {
         username: "",
         telephone: "",
         type: ""
-      }
+      },
+      modifyDialogVisible: false,
+      modifyId: "",
+      modifyForm: {
+        token: localStorage.getItem("token").replace(/\"/g, ""),
+        username: "",
+        telephone: "",
+        type: ""
+      },
+      input: ""
     };
   },
 
@@ -176,12 +209,9 @@ export default {
             "&row=12"
         )
         .then(res => {
-          console.log("responseData");
-          console.log(res.data.agents);
           if (res.status == 200) {
             this.tableData = res.data.agentss || res.data.agents;
             this.total = res.data.total || 0;
-            var pn = this.pagenum;
           }
         });
     },
@@ -215,7 +245,7 @@ export default {
     },
     //删除商户账号
     merchantAccountDeleted(id) {
-      let xxx = false;
+      let enterState = true;
       let url = "http://www.api.sqjtjt.com/admin/api/agent/" + id;
       this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -223,7 +253,6 @@ export default {
         type: "warning"
       })
         .then(() => {
-          xxx = true;
           this.$axios.delete(url, {
             params: {
               token: this.token
@@ -242,7 +271,7 @@ export default {
           });
         })
         .catch(() => {
-          if (!xxx) {
+          if (enterState || false) {
             this.$message({
               type: "info",
               message: "已取消删除"
@@ -252,6 +281,55 @@ export default {
               type: "info",
               message: "删除失败"
             });
+          }
+        });
+    },
+    //弹出商户账号修改对话框
+    modifyDialogPop(row) {
+      Vue.set(this.modifyForm, "username", row.username);
+      Vue.set(this.modifyForm, "telephone", row.telephone);
+      Vue.set(this.modifyForm, "type", row.type);
+      this.modifyId = row.id;
+      this.modifyDialogVisible = true;
+    },
+    //修改商户账号
+    merchantAccoutModified() {
+      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.modifyId;
+      this.$axios
+        .put(url, this.modifyForm)
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("修改用户失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message.success("修改用户成功!");
+          this.addDialogVisible = false;
+        });
+    },
+
+    //查找商户账号
+    searchHandler() {
+      this.$axios
+        .get(
+          "http://www.api.sqjtjt.com/admin/api/agents" +
+            this.$route.params.pathMatch.slice(20) +
+            "/?token=" +
+            this.token +
+            "&page=" +
+            this.pagenum +
+            "&row=12&keyword=" +
+            this.input
+        )
+        .then(res => {
+          if (res.status == 200) {
+            this.tableData = res.data.agentss || res.data.agents;
+            this.total = res.data.total || 0;
           }
         });
     }
