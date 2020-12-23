@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import UserAssets from "../pages/UserAssets";
+import refresh from "../pages/refresh";
 
 import merchantAccount from "../pages/merchantAsset/merchantAccountComponent/merchantAccount";
 import orderRecord from "../pages/merchantAsset/financialManagementComponent/orderRecord";
@@ -19,7 +19,7 @@ import companyInformation from "../pages/merchantAsset/companyInformationCompone
 Vue.use(Router);
 
 const routes = [
-  { path: "/UserAssets", component: UserAssets },
+  { path: "/refresh", component: refresh },
 
   { path: "/merchantAsset/orderRecord", component: orderRecord },
   { path: "/merchantAsset/shareRecord", component: shareRecord },

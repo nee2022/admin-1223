@@ -196,14 +196,22 @@ export default {
     },
     //增加商户账号
     merchantAccountAdded() {
-      this.$axios.post("/admin/api/agent", this.addForm).then(res => {
-        if (res.status !== 200) {
-          return this.$message.error("添加用户失败!");
-        }
-        this.$message.success("添加用户成功!");
-        this.addDialogVisible = false;
-        this.getMerchantAccountMes();
-      });
+      this.$axios
+        .post("/admin/api/agent", this.addForm)
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("添加用户失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message.success("添加用户成功!");
+          this.addDialogVisible = false;
+        });
     },
     //删除商户账号
     merchantAccountDeleted(id) {
@@ -221,6 +229,11 @@ export default {
               token: this.token
             }
           });
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
         })
         .then(() => {
           this.$message({
