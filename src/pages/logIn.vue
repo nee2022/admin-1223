@@ -7,15 +7,14 @@
       </div>
     </div>
     <div class="login_formwrap">
-      <div class="font">OAKBOSS物联网平台</div>
-
+      <div class="font">{{loginConfig.systemName}}</div>
       <div class="login_menu tabmenu">
         <li class="lk cur" @click="clear">密码登录</li>
         <li class="lk" @click="clear">验证码登录</li>
         <li class="lk" @click="clear">扫码登录</li>
       </div>
       <div v-if="numberMsg.errmsg" class="text">
-        <img v-if="numberMsg.errmsg" src="../assets/images/gan.png" />
+        <img v-if="numberMsg.errmsg" src="../assets/images/gantanhao2.png" />
         <img v-else />
         {{ numberMsg.errmsg }}
       </div>
@@ -42,6 +41,7 @@
                 auto-complete="off"
                 prop="mobile"
                 placeholder="请输入您的密码"
+				@keyup.enter='huiche'
               />
             </li>
             <li class="item clearfix">
@@ -123,16 +123,21 @@
 </template>
 
 <script>
+
 // import CryptoJS from 'crypto-js' //加密js
 import md5 from "js-md5";
 import axios from "axios";
 import $ from "jquery";
 import "../assets/layui/layui";
 import "../assets/js/common";
+import { loginConfig } from "../config.js"; 
+
 let Base64 = require("js-base64").Base64;
 export default {
+  
   data() {
     return {
+loginConfig,
       login: "登录",
       cod: "",
       a: 2,
@@ -147,9 +152,13 @@ export default {
       phoneMsg: [],
       value: "管理员",
       checked: true,
+      systemName : ''
     };
   },
   methods: {
+	  huiche(){
+		  this.number()
+	  },
     clear: function () {
       if (this.numberMsg.errmsg) {
         this.numberMsg.errmsg = "";
@@ -198,7 +207,7 @@ export default {
         })
         .then((res) => {
           this.login = "登录";
-          console.log(res.data);
+         
           this.numberMsg = res.data;
           if (res.data.error == 0) {
             if (this.checked == true) {
@@ -270,10 +279,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped="scoped">
 @import url("../assets/css/style.css");
 .font {
-  width: 293px;
+  width: 100%;
+  text-align: center;
   height: 28px;
   font-size: 30px;
   font-family: "PingFang SC";
@@ -373,7 +383,7 @@ option {
   font-weight: 400;
   color: #000000;
   width: 351px;
-  border: 2px #ff0000 solid;
+  border: 1px #ff0000 solid;
   margin: 0 auto;
   margin-bottom: 20px;
   background-color: #fef2f2;

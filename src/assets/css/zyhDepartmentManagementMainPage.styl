@@ -1,0 +1,328 @@
+.zyhDepartmentManagementMainPage {
+  // 初始化样式开始
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  li {
+    list-style-position: inside;
+    list-style-type: none;
+  }
+
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  height: 100vh;
+  width: calc(100vw - 200px);
+
+  // display: flex;
+  // flex-flow: column;
+  header {
+    height: 96px;
+
+    // border: 1px solid green;
+    .infoArea {
+      display: flex;
+      flex-direction: row;
+
+      .pageName {
+        flex-grow: 1;
+        line-height: 102px;
+        text-indent: 38px;
+        font-size: 24px;
+        letter-spacing: 1px;
+        font-family: PingFangSC-Regular;
+        color: #0000 0;
+      }
+
+      .profile {
+        margin-top: 40px;
+        margin-right: 37px;
+      }
+    }
+  }
+
+  section {
+    // border: 1px solid red;
+    height: calc(100vh - 96px);
+    display: flex;
+
+    .asidePart {
+      width: calc((100vw - 200px) * 0.278);
+
+      .wrapper {
+        box-shadow: 1px 1px 20px 10px #edf1f5;
+        margin-left: 49px;
+        display: flex;
+        flex-direction: column;
+
+        .searchArea {
+          height: 60px;
+          line-height: 60px;
+          // border: 1px solid red;
+          display: flex;
+          position: relative;
+
+          img {
+            position: absolute;
+            top: calc(13px + 10px);
+            left: calc(16px + 21px);
+            height: 16px;
+          }
+
+          .el-input {
+            margin-left: 19px;
+
+            .el-input__inner {
+              height: 44px;
+              border: solid 1px #1e69fe;
+              text-indent: 50px;
+              border-radius: 10px;
+            }
+          }
+
+          .el-button {
+            padding: 0 15px 0;
+            margin: 8px 18px 8px 16px;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #1e69fe;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        .departmentListArea::-webkit-scrollbar {
+          display: none;
+        }
+
+        .departmentListArea {
+          min-height: calc(100vh - 96px - 60px - 39px);
+          // border: 1px solid red;
+          max-height: calc(100vh - 96px - 60px - 39px);
+          overflow-y: scroll;
+
+          .el-tree {
+            margin-top: 40px;
+            margin-left: 30px;
+
+            .el-tree-node {
+              .el-icon-caret-right:before {
+                content: '\E6E0' !important;
+                color: #747474;
+                // 修改所有icon为 '\E6E0'
+              }
+            }
+
+            .el-tree-node {
+              .el-tree-node__content {
+                height: 53px;
+
+                .el-tree-node__expand-icon {
+                }
+
+                .el-tree-node__label {
+                  font-size: 24px;
+                  font-family: PingFang SC;
+                  font-weight: 400;
+                  color: #000000;
+                }
+              }
+
+              .el-tree-node__children {
+                .el-tree-node {
+                  .el-tree-node__content {
+                    height: 46px;
+
+                    .el-tree-node__expand-icon {
+                    }
+
+                    .el-tree-node__label {
+                      font-size: 20px;
+                      font-family: PingFang SC;
+                      font-weight: 400;
+                      color: #000000;
+                    }
+                  }
+
+                  .el-tree-node__children {
+                    .el-tree-node {
+                      .el-tree-node__content {
+                        .el-tree-node__expand-icon {
+                        }
+
+                        .el-tree-node__label {
+                        }
+                      }
+
+                      .el-tree-node__children {
+                        .el-tree-node {
+                          .el-tree-node__content {
+                            .el-tree-node__expand-icon {
+                            }
+
+                            .el-tree-node__label {
+                            }
+                          }
+
+                          .el-tree-node__children {
+                            .el-tree-node {
+                              .el-tree-node__content {
+                                .el-tree-node__expand-icon {
+                                }
+
+                                .el-tree-node__label {
+                                }
+                              }
+
+                              .el-tree-node__children {
+                                .el-tree-node {
+                                  .el-tree-node__content {
+                                    .el-tree-node__expand-icon {
+                                    }
+
+                                    .el-tree-node__label {
+                                      font-size: 16px;
+                                      font-family: PingFang SC;
+                                      font-weight: 400;
+                                      color: #000000;
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .mainPart {
+      // border: 1px solid black;
+      width: calc((100vw - 200px) * 0.722);
+      padding: 0 29px;
+
+      .wrapper {
+        // border: 1px solid red;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+
+        .searchArea {
+          height: 60px;
+          line-height: 60px;
+          display: flex;
+          // border: 1px solid red;
+          position: relative;
+
+          img {
+            position: absolute;
+            top: calc(13px + 10px);
+            left: calc(16px + 2px);
+            height: 16px;
+          }
+
+          .el-input {
+            max-width: 318px;
+
+            .el-input__inner {
+              height: 44px;
+              border: solid 1px #1e69fe;
+              text-indent: 50px;
+              border-radius: 10px;
+            }
+          }
+
+          .el-button {
+            padding: 0 15px 0;
+            margin: 8px 0 8px 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #1e69fe;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .el-button:nth-of-type(4) {
+            padding: 0 15px 0;
+          }
+        }
+
+        .el-table {
+          // border: 1px solid green;
+          flex-grow: 1;
+
+          .el-table__header {
+            tr {
+              height: 60;
+
+              .cell {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+                color: black;
+              }
+            }
+          }
+
+          .el-table__body {
+            tr {
+              height: calc(((100vh - 300px) / 12));
+
+              .cell {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+                color: #908e8e;
+
+                .operation {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  width: 70px;
+                  margin: 0 auto;
+                }
+              }
+            }
+          }
+        }
+
+        .pageNumArea {
+          // border: 1px solid blue;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-height: 98px;
+          min-height: 90px;
+
+          .total {
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333333;
+          }
+        }
+      }
+    }
+  }
+}

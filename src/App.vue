@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <router-view/>
   </div>
 </template>
@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style>
-
+/* 		body{
+			height: 100vh;
+		}
+		.container,.UserAssets-bgcolor{
+			height: 100%;
+		} */
 </style>

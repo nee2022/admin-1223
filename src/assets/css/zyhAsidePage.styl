@@ -1,0 +1,96 @@
+.zyhAsidePage {
+  // 初始化样式开始
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  li {
+    list-style-position: inside;
+    list-style-type: none;
+  }
+
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  height: 100vh;
+  background: #1e69fe;
+  display: flex;
+
+  aside {
+    overflow: hidden;
+    width: 200px;
+    background: #1e69fe;
+
+    .logo {
+      margin: 35px 0px;
+      font-family: MyriadPro-Regular;
+      font-size: 24px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    nav {
+      margin-top: 35px;
+    }
+
+    .el-col {
+      .el-menu {
+        width: 200px;
+
+        .el-submenu {
+          // text-indent: 18px;
+          text-align: left !important;
+
+          .el-submenu__title {
+            padding-left: 38px !important;
+
+            i {
+              color: #fff;
+            }
+
+            span {
+              font-size: 15px;
+              margin-left: 15px;
+            }
+          }
+
+          .el-menu--inline {
+            .el-menu-item {
+              padding-left: 58px !important;
+
+              span {
+                font-size: 13px;
+                color: #fff;
+                margin-left: 15px;
+              }
+            }
+          }
+        }
+
+        .el-submenu.arrowIconHidden {
+          .el-submenu__title {
+            i {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    width: calc(100vw - 200px);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background: #fff;
+  }
+}
