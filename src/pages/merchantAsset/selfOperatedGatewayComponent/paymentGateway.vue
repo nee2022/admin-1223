@@ -91,7 +91,7 @@
       </el-pagination>
     </footer>
     <template>
-      <!-- 添加支付网关 -->
+      <!-- 添加网关 -->
       <el-dialog
         title="添加支付网关"
         :visible.sync="addDialogVisible"
@@ -116,7 +116,7 @@
           </el-button>
         </span>
       </el-dialog>
-      <!-- 修改支付网关 -->
+      <!-- 修改网关 -->
       <el-dialog
         title="修改支付网关"
         :visible.sync="modifyDialogVisible"
