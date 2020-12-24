@@ -134,14 +134,11 @@
         width="30%"
       >
         <el-form :model="modifyForm" ref="modifyFormRef" label-width="80px">
-          <el-form-item label="用户" prop="username">
-            <el-input v-model="addForm.username"></el-input>
-          </el-form-item>
           <el-form-item label="手机号" prop="telephone">
-            <el-input v-model="addForm.telephone"></el-input>
+            <el-input v-model="modifyForm.telephone"></el-input>
           </el-form-item>
           <el-form-item label="状态" prop="type">
-            <el-input v-model="addForm.type"></el-input>
+            <el-input v-model="modifyForm.type"></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -286,13 +283,9 @@ export default {
     },
     //弹出商户账号修改对话框
     modifyDialogPop(row) {
-      Vue.set(this.modifyForm, "username", row.username);
-      Vue.set(this.modifyForm, "telephone", row.telephone);
-      Vue.set(this.modifyForm, "type", row.type);
       this.modifyId = row.id;
       this.modifyDialogVisible = true;
     },
-    //修改商户账号
     merchantAccoutModified() {
       let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.modifyId;
       this.$axios
