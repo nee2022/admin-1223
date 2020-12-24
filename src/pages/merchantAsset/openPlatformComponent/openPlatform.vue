@@ -9,16 +9,22 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入账号、手机号、昵称进行查找"
+            placeholder="请输入合作方ID进行查找"
             class="inputBlank"
             clearable
+            v-model="input"
           ></el-input>
         </div>
         <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="searchHandler"
+            >搜索</el-button
+          >
         </div>
         <div class="addButton">
-          <el-button type="primary" icon="el-icon-circle-plus-outline"
+          <el-button
+            type="primary"
+            icon="el-icon-circle-plus-outline"
+            @click="addDialogVisible = true"
             >添加</el-button
           >
         </div>
@@ -56,21 +62,23 @@
             label="操作"
             width="200"
           >
-            <div class="operation">
-              <div>
-                <img src="../../../assets/images/delete.png" title="删除" />
+            <template slot-scope="scope">
+              <div class="operation">
+                <div @click="openPlatformDeleted(scope.row.id)">
+                  <img src="../../../assets/images/delete.png" title="删除" />
+                </div>
+                <div @click="modifyDialogPop(scope.row)">
+                  <img src="../../../assets/images/compile.png" title="修改" />
+                </div>
+                <div>
+                  <img
+                    src="../../../assets/images/see.png"
+                    title="详情"
+                    height="11px"
+                  />
+                </div>
               </div>
-              <div>
-                <img src="../../../assets/images/compile.png" title="修改" />
-              </div>
-              <div>
-                <img
-                  src="../../../assets/images/see.png"
-                  title="详情"
-                  height="11px"
-                />
-              </div>
-            </div>
+            </template>
           </el-table-column>
         </el-table>
       </template>
@@ -89,6 +97,57 @@
       >
       </el-pagination>
     </footer>
+    <template>
+      <!-- 添加网关 -->
+      <el-dialog
+        title="添加平台"
+        :visible.sync="addDialogVisible"
+        width="30%"
+        @close="addDialogClosed"
+      >
+        <el-form :model="addForm" ref="addFormRef" label-width="80px">
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="addForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="合作方ID" prop="partner">
+            <el-input v-model="addForm.partner"></el-input>
+          </el-form-item>
+          <el-form-item label="是否激活" prop="valid">
+            <el-input v-model="addForm.valid"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="addDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="openPlatformAdded">
+            确 定
+          </el-button>
+        </span>
+      </el-dialog>
+      <!-- 修改网关 -->
+      <el-dialog
+        title="修改支付网关"
+        :visible.sync="modifyDialogVisible"
+        width="30%"
+      >
+        <el-form :model="modifyForm" ref="modifyFormRef" label-width="80px">
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="modifyForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="合作方ID" prop="partner">
+            <el-input v-model="modifyForm.partner"></el-input>
+          </el-form-item>
+          <el-form-item label="是否激活" prop="valid">
+            <el-input v-model="modifyForm.valid"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="modifyDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="openPlatformModified">
+            确 定
+          </el-button>
+        </span>
+      </el-dialog>
+    </template>
   </div>
 </template>
 
@@ -106,12 +165,28 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12
+      pagesize: 12,
+      addDialogVisible: false,
+      addForm: {
+        token: localStorage.getItem("token").replace(/\"/g, ""),
+        name: "",
+        partner: "",
+        valid: ""
+      },
+      modifyDialogVisible: false,
+      modifyId: "",
+      modifyForm: {
+        token: localStorage.getItem("token").replace(/\"/g, ""),
+        name: "",
+        partner: "",
+        valid: ""
+      },
+      input: ""
     };
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getOpenPlatformMes();
   },
   methods: {
@@ -120,7 +195,7 @@ export default {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/partners/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.pagenum +
             "&row=12"
@@ -147,6 +222,113 @@ export default {
         ret = "否";
       }
       return ret;
+    },
+    //添加对话框关闭事件
+    addDialogClosed() {
+      this.$refs.addFormRef.resetFields();
+    },
+    //增加平台
+    openPlatformAdded() {
+      this.$axios
+        .post("/admin/api/partner", this.addForm)
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("添加平台失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message.success("添加平台成功!");
+          this.addDialogVisible = false;
+        });
+    },
+    //删除平台
+    openPlatformDeleted(id) {
+      let enterState = true;
+      let url = "http://www.api.sqjtjt.com/admin/api/partner/" + id;
+      this.$confirm("此操作将永久删除该平台, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$axios.delete(url, {
+            params: {
+              token: this.token
+            }
+          });
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          if (enterState || false) {
+            this.$message({
+              type: "info",
+              message: "已取消删除"
+            });
+          } else {
+            this.$message({
+              type: "info",
+              message: "删除失败"
+            });
+          }
+        });
+    },
+    //修改平台对话框
+    modifyDialogPop(row) {
+      this.modifyId = row.id;
+      this.modifyDialogVisible = true;
+    },
+    openPlatformModified() {
+      let url = "http://www.api.sqjtjt.com/admin/api/partner/" + this.modifyId;
+      this.$axios
+        .put(url, this.modifyForm)
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("修改网关失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message.success("修改网关成功!");
+          this.addDialogVisible = false;
+        });
+    },
+
+    //查找网关
+    searchHandler() {
+      this.$axios
+        .get(
+          "http://www.api.sqjtjt.com/admin/api/partners/?token=" +
+            this.token +
+            "&page=" +
+            this.pagenum +
+            "&row=12&keyword=" +
+            this.input
+        )
+        .then(res => {
+          if (res.status == 200) {
+            this.tableData = res.data.partners;
+            this.total = res.data.total || 0;
+          }
+        });
     }
   }
 };
