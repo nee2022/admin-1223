@@ -9,7 +9,7 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入账号、手机号进行查找"
+            placeholder="请输入账号、手机号在所有账号中进行查找"
             class="inputBlank"
             v-model="input"
             clearable
@@ -310,15 +310,12 @@ export default {
     searchHandler() {
       let url =
         "http://www.api.sqjtjt.com/admin/api/agents" +
-        this.$router.currentRoute.fullPath.slice(20) +
         "/?token=" +
         this.token +
         "&page=" +
         this.pagenum +
         "&row=12&keyword=" +
         this.input;
-      console.log("url");
-      console.log(url);
       this.$axios.get(url).then(res => {
         if (res.status == 200) {
           this.tableData = res.data.agentss || res.data.agents;
