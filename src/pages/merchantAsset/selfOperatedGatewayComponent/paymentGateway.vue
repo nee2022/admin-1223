@@ -9,13 +9,16 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入账号、手机号、昵称进行查找"
+            placeholder="请输入网关名称、appid进行查找"
+            v-model="input"
             class="inputBlank"
             clearable
           ></el-input>
         </div>
         <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="searchHandler"
+            >搜索</el-button
+          >
         </div>
         <div class="addButton">
           <el-button
@@ -52,21 +55,23 @@
             label="操作"
             width="200"
           >
-            <div class="operation">
-              <div>
-                <img src="../../../assets/images/delete.png" title="删除" />
+            <template slot-scope="scope">
+              <div class="operation">
+                <div @click="paymentGatewayDeleted(scope.row.id)">
+                  <img src="../../../assets/images/delete.png" title="删除" />
+                </div>
+                <div @click="modifyDialogPop(scope.row)">
+                  <img src="../../../assets/images/compile.png" title="修改" />
+                </div>
+                <div>
+                  <img
+                    src="../../../assets/images/see.png"
+                    title="详情"
+                    height="11px"
+                  />
+                </div>
               </div>
-              <div>
-                <img src="../../../assets/images/compile.png" title="修改" />
-              </div>
-              <div>
-                <img
-                  src="../../../assets/images/see.png"
-                  title="详情"
-                  height="11px"
-                />
-              </div>
-            </div>
+            </template>
           </el-table-column>
         </el-table>
       </template>
@@ -88,46 +93,49 @@
     <template>
       <!-- 添加支付网关 -->
       <el-dialog
-        title="添加商户账号"
+        title="添加支付网关"
         :visible.sync="addDialogVisible"
         width="30%"
         @close="addDialogClosed"
       >
         <el-form :model="addForm" ref="addFormRef" label-width="80px">
-          <el-form-item label="用户" prop="username">
-            <el-input v-model="addForm.username"></el-input>
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="addForm.name"></el-input>
           </el-form-item>
-          <el-form-item label="手机号" prop="telephone">
-            <el-input v-model="addForm.telephone"></el-input>
+          <el-form-item label="appid" prop="appid">
+            <el-input v-model="addForm.appid"></el-input>
           </el-form-item>
-          <el-form-item label="状态" prop="type">
-            <el-input v-model="addForm.type"></el-input>
+          <el-form-item label="网关" prop="gateway">
+            <el-input v-model="addForm.gateway"></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="addDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="merchantAccountAdded">
+          <el-button type="primary" @click="paymentGatewayAdded">
             确 定
           </el-button>
         </span>
       </el-dialog>
       <!-- 修改支付网关 -->
       <el-dialog
-        title="修改商户账号"
+        title="修改支付网关"
         :visible.sync="modifyDialogVisible"
         width="30%"
       >
         <el-form :model="modifyForm" ref="modifyFormRef" label-width="80px">
-          <el-form-item label="手机号" prop="telephone">
-            <el-input v-model="modifyForm.telephone"></el-input>
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="modifyForm.name"></el-input>
           </el-form-item>
-          <el-form-item label="状态" prop="type">
-            <el-input v-model="modifyForm.type"></el-input>
+          <el-form-item label="appid" prop="appid">
+            <el-input v-model="modifyForm.appid"></el-input>
+          </el-form-item>
+          <el-form-item label="网关" prop="gateway">
+            <el-input v-model="modifyForm.gateway"></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="modifyDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="merchantAccoutModified">
+          <el-button type="primary" @click="paymentGatewayModified">
             确 定
           </el-button>
         </span>
@@ -171,7 +179,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getPaymentGatewayMes();
   },
   methods: {
@@ -180,7 +188,7 @@ export default {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/paygws/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.pagenum +
             "&row=12"
@@ -213,12 +221,12 @@ export default {
       this.$refs.addFormRef.resetFields();
     },
     //增加网关
-    gatewayAdded() {
+    paymentGatewayAdded() {
       this.$axios
-        .post("/admin/api/agent", this.addForm)
+        .post("/admin/api/paygw", this.addForm)
         .then(res => {
           if (res.status !== 200) {
-            return this.$message.error("添加用户失败!");
+            return this.$message.error("添加网关失败!");
           }
         })
         .then(() => {
@@ -227,15 +235,15 @@ export default {
           }, 500);
         })
         .then(() => {
-          this.$message.success("添加用户成功!");
+          this.$message.success("添加网关成功!");
           this.addDialogVisible = false;
         });
     },
     //删除网关
-    merchantAccountDeleted(id) {
+    paymentGatewayDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + id;
-      this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {
+      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + id;
+      this.$confirm("此操作将永久删除该网关, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
@@ -277,13 +285,13 @@ export default {
       this.modifyId = row.id;
       this.modifyDialogVisible = true;
     },
-    merchantAccoutModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.modifyId;
+    paymentGatewayModified() {
+      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
           if (res.status !== 200) {
-            return this.$message.error("修改用户失败!");
+            return this.$message.error("修改网关失败!");
           }
         })
         .then(() => {
@@ -292,27 +300,28 @@ export default {
           }, 500);
         })
         .then(() => {
-          this.$message.success("修改用户成功!");
+          this.$message.success("修改网关成功!");
           this.addDialogVisible = false;
         });
     },
 
     //查找网关
     searchHandler() {
-      let url =
-        "http://www.api.sqjtjt.com/admin/api/agents" +
-        "/?token=" +
-        this.token +
-        "&page=" +
-        this.pagenum +
-        "&row=12&keyword=" +
-        this.input;
-      this.$axios.get(url).then(res => {
-        if (res.status == 200) {
-          this.tableData = res.data.agentss || res.data.agents;
-          this.total = res.data.total || 0;
-        }
-      });
+      this.$axios
+        .get(
+          "http://www.api.sqjtjt.com/admin/api/paygws/?token=" +
+            this.token +
+            "&page=" +
+            this.pagenum +
+            "&row=12&keyword=" +
+            this.input
+        )
+        .then(res => {
+          if (res.status == 200) {
+            this.tableData = res.data.paygws;
+            this.total = res.data.total || 0;
+          }
+        });
     }
   }
 };
