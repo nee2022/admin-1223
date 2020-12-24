@@ -9,7 +9,7 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入账号、手机号、昵称进行查找"
+            placeholder="请输入账号、手机号进行查找"
             class="inputBlank"
             v-model="input"
             clearable
@@ -308,23 +308,23 @@ export default {
 
     //查找商户账号
     searchHandler() {
-      this.$axios
-        .get(
-          "http://www.api.sqjtjt.com/admin/api/agents" +
-            this.$route.params.pathMatch.slice(20) +
-            "/?token=" +
-            this.token +
-            "&page=" +
-            this.pagenum +
-            "&row=12&keyword=" +
-            this.input
-        )
-        .then(res => {
-          if (res.status == 200) {
-            this.tableData = res.data.agentss || res.data.agents;
-            this.total = res.data.total || 0;
-          }
-        });
+      let url =
+        "http://www.api.sqjtjt.com/admin/api/agents" +
+        this.$router.currentRoute.fullPath.slice(20) +
+        "/?token=" +
+        this.token +
+        "&page=" +
+        this.pagenum +
+        "&row=12&keyword=" +
+        this.input;
+      console.log("url");
+      console.log(url);
+      this.$axios.get(url).then(res => {
+        if (res.status == 200) {
+          this.tableData = res.data.agentss || res.data.agents;
+          this.total = res.data.total || 0;
+        }
+      });
     }
   },
   watch: {
