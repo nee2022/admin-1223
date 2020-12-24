@@ -9,13 +9,19 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入账号、手机号、昵称进行查找"
+            placeholder="请输入账单号、账号进行查找"
             class="inputBlank"
+            v-model="input"
             clearable
           ></el-input>
         </div>
         <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button
+            type="primary"
+            icon="el-icon-search"
+            @click.native="searchHandler"
+            >搜索</el-button
+          >
         </div>
       </div>
     </header>
@@ -91,7 +97,8 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12
+      pagesize: 12,
+      input: ""
     };
   },
 
@@ -122,6 +129,24 @@ export default {
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
       this.getShareRecordMes();
+    },
+    //查找商户账号
+    searchHandler() {
+      this.$axios
+        .get(
+          "http://www.api.sqjtjt.com/admin/api/transfers/?token=" +
+            JSON.parse(this.token) +
+            "&page=" +
+            this.pagenum +
+            "&row=12&keyword=" +
+            this.input
+        )
+        .then(res => {
+          if (res.status == 200) {
+            this.tableData = res.data.transfer_logs;
+            this.total = res.data.total || 0;
+          }
+        });
     }
   }
 };
