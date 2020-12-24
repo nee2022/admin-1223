@@ -160,17 +160,17 @@ export default {
       addDialogVisible: false,
       addForm: {
         token: localStorage.getItem("token").replace(/\"/g, ""),
-        username: "",
-        telephone: "",
-        type: ""
+        name: "",
+        appid: "",
+        gateway: ""
       },
       modifyDialogVisible: false,
       modifyId: "",
       modifyForm: {
         token: localStorage.getItem("token").replace(/\"/g, ""),
-        username: "",
-        telephone: "",
-        type: ""
+        name: "",
+        appid: "",
+        gateway: ""
       },
       input: ""
     };

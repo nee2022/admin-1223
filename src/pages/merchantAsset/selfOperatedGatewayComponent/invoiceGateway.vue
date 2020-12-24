@@ -18,7 +18,10 @@
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
         <div class="addButton">
-          <el-button type="primary" icon="el-icon-circle-plus-outline"
+          <el-button
+            type="primary"
+            icon="el-icon-circle-plus-outline"
+            @click="addDialogVisible = true"
             >添加</el-button
           >
         </div>
@@ -81,6 +84,57 @@
       >
       </el-pagination>
     </footer>
+    <template>
+      <!-- 添加网关 -->
+      <el-dialog
+        title="添加支付网关"
+        :visible.sync="addDialogVisible"
+        width="30%"
+        @close="addDialogClosed"
+      >
+        <el-form :model="addForm" ref="addFormRef" label-width="80px">
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="addForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="appid" prop="appid">
+            <el-input v-model="addForm.appid"></el-input>
+          </el-form-item>
+          <el-form-item label="网关" prop="gateway">
+            <el-input v-model="addForm.gateway"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="addDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="invoiceGatewayAdded">
+            确 定
+          </el-button>
+        </span>
+      </el-dialog>
+      <!-- 修改网关 -->
+      <el-dialog
+        title="修改支付网关"
+        :visible.sync="modifyDialogVisible"
+        width="30%"
+      >
+        <el-form :model="modifyForm" ref="modifyFormRef" label-width="80px">
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="modifyForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="appid" prop="appid">
+            <el-input v-model="modifyForm.appid"></el-input>
+          </el-form-item>
+          <el-form-item label="网关" prop="gateway">
+            <el-input v-model="modifyForm.gateway"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="modifyDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="paymentGatewayModified">
+            确 定
+          </el-button>
+        </span>
+      </el-dialog>
+    </template>
   </div>
 </template>
 
@@ -98,12 +152,28 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12
+      pagesize: 12,
+      addForm: {
+        token: localStorage.getItem("token").replace(/\"/g, ""),
+        name: "",
+        appid: "",
+        gateway: ""
+      },
+      addDialogVisible: false,
+      modifyDialogVisible: false,
+      modifyId: "",
+      modifyForm: {
+        token: localStorage.getItem("token").replace(/\"/g, ""),
+        name: "",
+        appid: "",
+        gateway: ""
+      },
+      input: ""
     };
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getInvoiceGatewayMes();
   },
   methods: {
@@ -112,7 +182,7 @@ export default {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/receipt_gws/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.pagenum +
             "&row=12"
@@ -139,6 +209,114 @@ export default {
         ret = "否";
       }
       return ret;
+    },
+    //添加对话框关闭事件
+    addDialogClosed() {
+      this.$refs.addFormRef.resetFields();
+    },
+    //增加网关
+    invoiceGatewayAdded() {
+      this.$axios
+        .post("/admin/api/receipt_gw", this.addForm)
+        .then(res => {
+          console.log(res);
+          if (res.status !== 200) {
+            return this.$message.error("添加网关失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message.success("添加网关成功!");
+          this.addDialogVisible = false;
+        });
+    },
+    //删除网关
+    paymentGatewayDeleted(id) {
+      let enterState = true;
+      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + id;
+      this.$confirm("此操作将永久删除该网关, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$axios.delete(url, {
+            params: {
+              token: this.token
+            }
+          });
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          if (enterState || false) {
+            this.$message({
+              type: "info",
+              message: "已取消删除"
+            });
+          } else {
+            this.$message({
+              type: "info",
+              message: "删除失败"
+            });
+          }
+        });
+    },
+    //修改网关对话框
+    modifyDialogPop(row) {
+      this.modifyId = row.id;
+      this.modifyDialogVisible = true;
+    },
+    paymentGatewayModified() {
+      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + this.modifyId;
+      this.$axios
+        .put(url, this.modifyForm)
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("修改网关失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 500);
+        })
+        .then(() => {
+          this.$message.success("修改网关成功!");
+          this.addDialogVisible = false;
+        });
+    },
+
+    //查找网关
+    searchHandler() {
+      this.$axios
+        .get(
+          "http://www.api.sqjtjt.com/admin/api/paygws/?token=" +
+            this.token +
+            "&page=" +
+            this.pagenum +
+            "&row=12&keyword=" +
+            this.input
+        )
+        .then(res => {
+          if (res.status == 200) {
+            this.tableData = res.data.paygws;
+            this.total = res.data.total || 0;
+          }
+        });
     }
   }
 };
