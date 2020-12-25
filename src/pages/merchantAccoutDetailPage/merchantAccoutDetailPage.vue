@@ -6,9 +6,11 @@
           <span><img :src="loginConfig.imgs"/></span>
         </a>
       </div>
-      <div class="back">
-        <img src="../../assets/images/left.png" />
-      </div>
+      <a href="/#/merchantAsset/agent">
+        <div class="back">
+          <img src="../../assets/images/left.png" />
+        </div>
+      </a>
       <nav>
         <el-row>
           <el-col :span="12">
