@@ -26,31 +26,73 @@
   flex-flow: column;
 
   header {
+    // border: 1px solid black;
     .infoArea {
-      height: 102px;
+      height: calc(102px + 55px);
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
 
-      .pageName {
-        flex-grow: 1;
-        font-family: PingFangSC-Regular;
-        font-size: 24px;
-        font-weight: normal;
-        font-stretch: normal;
-        letter-spacing: 1px;
-        color: #000000;
-        line-height: 102px;
-        text-indent: 38px;
+      .selfProfile {
+        padding-top: 40px;
+        padding-right: 37px;
+        // border: 1px solid red;
       }
 
-      .profile {
-        margin-top: 40px;
-        margin-right: 37px;
+      .merchantAccoutScan {
+        flex-grow: 1;
+        // border: 1px solid blue;
+        font-family: PingFangSC-Regular;
+        display: flex;
+        align-items: center;
+
+        .picture {
+          height: 53px;
+          width: 53px;
+          margin-left: 60px;
+          background: green;
+        }
+
+        p:nth-of-type(1) {
+          // border: 1px solid red;
+          font-size: 20px;
+          font-family: PingFang SC;
+          color: #000000;
+          font-weight: 400;
+          margin: 0 12px;
+        }
+
+        p:nth-of-type(2) {
+          font-size: 14px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          color: #4EA805;
+        }
+
+        .el-button:nth-of-type(1) {
+          margin-left: 30px;
+          background: #1e69fe;
+          border-radius: 10px;
+          border: none;
+          padding: 11px 15px;
+        }
+
+        .blank {
+          flex-grow: 1;
+        }
+
+        .el-button:nth-of-type(2), .el-button:nth-of-type(3) {
+          margin-right: 15px;
+          border-radius: 10px;
+          padding: 11px 15px;
+        }
       }
     }
 
     .searchArea {
-      height: 36px;
+      flex-grow: 1;
+      border-top: 1px solid #ccc;
+      padding-top: 25px;
+      height: calc(36px + 55px);
       display: flex;
       flex-direction: row;
       margin-left: 38px;
@@ -139,7 +181,7 @@
 
       .el-table__body {
         tr {
-          height: calc(((100vh - 288px) / 12));
+          height: calc(((100vh - 288px - 55px - 55px) / 10));
 
           .cell {
             text-align: center;

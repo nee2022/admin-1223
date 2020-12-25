@@ -2,9 +2,17 @@
   <div class="zyhSingleLineListMainDetailPage">
     <header>
       <div class="infoArea">
-        <div class="pageName">财务管理</div>
-        <div class="profile">
+        <div class="selfProfile">
           <myhead></myhead>
+        </div>
+        <div class="merchantAccoutScan">
+          <div class="picture"></div>
+          <p>用户名</p>
+          <p>(运行中)</p>
+          <el-button type="primary">返回上一级页面</el-button>
+          <div class="blank"></div>
+          <el-button>注销按钮</el-button>
+          <el-button>刷新</el-button>
         </div>
       </div>
       <div class="searchArea">
@@ -105,7 +113,7 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12
+      pagesize: 10
     };
   },
 
@@ -122,7 +130,7 @@ export default {
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +
-            "&row=12"
+            "&row=10"
         )
         .then(res => {
           if (res.status == 200) {
