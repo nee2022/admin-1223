@@ -68,7 +68,7 @@
                     <span>分成明细</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/merchantAccoutDetailPage/shareRecord">
+                <router-link to="/merchantAccoutDetailPage/transferDetail">
                   <el-menu-item index="1-2">
                     <!-- <img src="../../assets/images/fenchengjilu.png" /> -->
                     <span>转账明细</span>

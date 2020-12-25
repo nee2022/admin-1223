@@ -44,35 +44,25 @@
     <section>
       <template>
         <el-table :data="tableData" stripe style="width: 100%">
-          <el-table-column show-overflow-tooltip prop="id" label="用户ID">
+          <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="deal_no" label="订单号">
+          <el-table-column show-overflow-tooltip prop="dealno" label="订单号">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="receipt" label="发票ID">
+          <el-table-column show-overflow-tooltip prop="account" label="账号">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
             prop="amount"
-            label="订单金额"
+            label="转账金额"
           ></el-table-column>
-          <el-table-column
-            show-overflow-tooltip
-            prop="share_state"
-            label="分成状态"
-          >
+          <el-table-column show-overflow-tooltip prop="state" label="审核状态">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
             prop="paid_time"
-            label="支付时间"
+            label="转账时间"
           ></el-table-column>
-          <el-table-column show-overflow-tooltip prop="amount" label="金额">
-          </el-table-column>
-          <el-table-column
-            show-overflow-tooltip
-            prop="gateway"
-            label="支付网关"
-          >
+          <el-table-column show-overflow-tooltip prop="dev_name" label="设备名">
           </el-table-column>
           <!-- <el-table-column
             show-overflow-tooltip
@@ -136,12 +126,12 @@ export default {
   },
   methods: {
     //获取用户信息列表
-    getShareRecordMes() {
+    getShareRecordMes(id = 239) {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +
             this.id +
-            "/payments/?token=" +
+            "/transfers/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -149,7 +139,7 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-            this.tableData = res.data.payments;
+            this.tableData = res.data.transfer_logs;
             this.total = res.data.total || 0;
             var pn = this.pagenum;
           }
@@ -166,7 +156,7 @@ export default {
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +
             this.id +
-            "/payments/?token=" +
+            "/transfers/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -174,8 +164,9 @@ export default {
             this.input
         )
         .then(res => {
+          console.log(res);
           if (res.status == 200) {
-            this.tableData = res.data.payments;
+            this.tableData = res.data.transfer_logs;
             this.total = res.data.total || 0;
           }
         });

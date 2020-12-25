@@ -5,7 +5,7 @@ import refresh from "../pages/refresh";
 
 import basicInformation from "../pages/merchantAccoutDetailPage/basicInformationComponent/basicInformation";
 import shareRecord from "../pages/merchantAccoutDetailPage/settlementRecordComponent/shareDetail";
-Vue.use(Router);
+import transferDetail from "../pages/merchantAccoutDetailPage/settlementRecordComponent/transferDetail";
 
 const routes = [
   { path: "/refresh", component: refresh },
@@ -17,6 +17,10 @@ const routes = [
   {
     path: "/merchantAccoutDetailPage/shareRecord",
     component: shareRecord
+  },
+  {
+    path: "/merchantAccoutDetailPage/transferDetail",
+    component: transferDetail
   },
 
   { path: "*", component: basicInformation }
