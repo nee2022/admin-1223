@@ -44,24 +44,36 @@
     <section>
       <template>
         <el-table :data="tableData" stripe style="width: 100%">
-          <el-table-column show-overflow-tooltip prop="id" label="ID">
+          <el-table-column show-overflow-tooltip prop="id" label="用户ID">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="dealno" label="订单号">
+          <el-table-column show-overflow-tooltip prop="deal_no" label="订单号">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="name" label="用户名">
+          <el-table-column show-overflow-tooltip prop="receipt" label="发票ID">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
             prop="amount"
-            label="提现金额"
+            label="订单金额"
           ></el-table-column>
-          <el-table-column show-overflow-tooltip prop="state" label="审核状态">
+          <el-table-column
+            show-overflow-tooltip
+            prop="share_state"
+            label="分成状态"
+          >
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
             prop="paid_time"
-            label="转账时间"
+            label="支付时间"
           ></el-table-column>
+          <el-table-column show-overflow-tooltip prop="amount" label="金额">
+          </el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="gateway"
+            label="支付网关"
+          >
+          </el-table-column>
           <!-- <el-table-column
             show-overflow-tooltip
             prop="address"
@@ -124,12 +136,12 @@ export default {
   },
   methods: {
     //获取用户信息列表
-    getShareRecordMes(id = 239) {
+    getShareRecordMes() {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +
             this.id +
-            "/withdraws/?token=" +
+            "/payments/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -137,7 +149,7 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-            this.tableData = res.data.withdraw_logs;
+            this.tableData = res.data.payments;
             this.total = res.data.total || 0;
             var pn = this.pagenum;
           }
@@ -154,7 +166,7 @@ export default {
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +
             this.id +
-            "/withdraws/?token=" +
+            "/payments/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -162,9 +174,8 @@ export default {
             this.input
         )
         .then(res => {
-          console.log(res);
           if (res.status == 200) {
-            this.tableData = res.data.withdraw_logs;
+            this.tableData = res.data.payments;
             this.total = res.data.total || 0;
           }
         });

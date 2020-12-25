@@ -38,19 +38,19 @@
                   <!-- <img src="../../assets/images/Application gateways.png" /> -->
                   <span>应用网关</span>
                 </template>
-                <router-link to="/merchantAsset/paymentGateway">
+                <router-link to="/merchantAccoutDetailPage/paymentGateway">
                   <el-menu-item index="1-1">
                     <!-- <img src="../../assets/images/Payment gateway.png" /> -->
                     <span>支付网关</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/merchantAsset/invoiceGateway">
+                <router-link to="/merchantAccoutDetailPage/invoiceGateway">
                   <el-menu-item index="1-2">
                     <!-- <img src="../../assets/images/Invoice gateway.png" /> -->
                     <span>发票网关</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/merchantAsset/smsGateway">
+                <router-link to="/merchantAccoutDetailPage/smsGateway">
                   <el-menu-item index="1-3">
                     <!-- <img src="../../assets/images/SMS gateway.png" /> -->
                     <span>短信网关</span>
@@ -74,7 +74,7 @@
                     <span>转账明细</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/merchantAsset/withdrawalRecord">
+                <router-link to="/merchantAccoutDetailPage/withdrawDetail ">
                   <el-menu-item index="1-3">
                     <!-- <img src="../../assets/images/tixianjilu.png" /> -->
                     <span>提现记录</span>
