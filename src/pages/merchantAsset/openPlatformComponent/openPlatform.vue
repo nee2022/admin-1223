@@ -230,7 +230,7 @@ export default {
     //增加平台
     openPlatformAdded() {
       this.$axios
-        .post("/admin/api/partner", this.addForm)
+        .post("http://www.api.sqjtjt.com/admin/api/partner", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加平台失败!");

@@ -223,7 +223,7 @@ export default {
     //增加网关
     paymentGatewayAdded() {
       this.$axios
-        .post("/admin/api/paygw", this.addForm)
+        .post("http://www.api.sqjtjt.com/admin/api/paygw", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加网关失败!");

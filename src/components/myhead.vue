@@ -88,7 +88,7 @@
               <a href="/#/financialManagement/allOrder">
                 <span>财务管理</span>
               </a>
-              <a href="/#/departmentManagement/departmentManagement">
+              <a href="/#/departmentAndRoleManagement/departmentManagement">
                 <span>人力资源</span>
               </a>
               <a href="/#/Pcoupon">

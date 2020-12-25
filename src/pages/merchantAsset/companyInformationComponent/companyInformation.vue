@@ -243,7 +243,7 @@ export default {
     //增加公司
     companyAdded() {
       this.$axios
-        .post("/admin/api/company", this.addForm)
+        .post("http://www.api.sqjtjt.com/admin/api/company", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加公司失败!");

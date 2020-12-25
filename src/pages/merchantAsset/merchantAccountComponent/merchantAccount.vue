@@ -75,11 +75,15 @@
                   <img src="../../../assets/images/compile.png" title="修改" />
                 </div>
                 <div>
-                  <img
-                    src="../../../assets/images/see.png"
-                    title="详情"
-                    height="11px"
-                  />
+                  <a href="/#/merchantAccoutDetailPage/basicInformation">
+                    <div class="wrapper">
+                      <img
+                        src="../../../assets/images/see.png"
+                        title="详情"
+                        height="11px"
+                      />
+                    </div>
+                  </a>
                 </div>
               </div>
             </template>
@@ -224,7 +228,7 @@ export default {
     //增加商户账号
     merchantAccountAdded() {
       this.$axios
-        .post("/admin/api/agent", this.addForm)
+        .post("http://www.api.sqjtjt.com/admin/api/agent", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加用户失败!");

@@ -221,7 +221,7 @@ export default {
     //增加网关
     smsGatewayAdded() {
       this.$axios
-        .post("/admin/api/smsgw", this.addForm)
+        .post("http://www.api.sqjtjt.com/admin/api/smsgw", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加网关失败!");

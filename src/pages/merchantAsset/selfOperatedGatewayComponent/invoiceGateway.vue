@@ -188,6 +188,8 @@ export default {
             "&row=12"
         )
         .then(res => {
+          console.log("res");
+          console.log(res);
           if (res.status == 200) {
             this.tableData = res.data.receipt_gws;
             this.total = res.data.total || 0;
@@ -217,7 +219,7 @@ export default {
     //增加网关
     invoiceGatewayAdded() {
       this.$axios
-        .post("/admin/api/receipt_gw", this.addForm)
+        .post("http://www.api.sqjtjt.com/admin/api/receipt_gw", this.addForm)
         .then(res => {
           console.log(res);
           if (res.status !== 200) {
