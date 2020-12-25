@@ -19,7 +19,7 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请订单号进行查找"
+            placeholder="请输入订单号进行查找"
             class="inputBlank"
             v-model="input"
             clearable
@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     //获取用户信息列表
-    getShareRecordMes(id = 239) {
+    getShareRecordMes() {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +

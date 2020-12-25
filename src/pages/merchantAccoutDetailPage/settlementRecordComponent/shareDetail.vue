@@ -19,7 +19,7 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请订单号进行查找"
+            placeholder="请输入订单号进行查找"
             class="inputBlank"
             v-model="input"
             clearable
