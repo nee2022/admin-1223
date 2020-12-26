@@ -74,7 +74,10 @@
                 <div @click="modifyDialogPop(scope.row)">
                   <img src="../../../assets/images/compile.png" title="修改" />
                 </div>
-                <div @click="merchantMessage(scope.row.id, scope.row.username)">
+                <div
+                  @click="merchantMessage(scope.row.id, scope.row.username)"
+                  @contextmenu.prevent
+                >
                   <a href="/#/merchantAccoutDetailPage/basicInformation">
                     <div class="wrapper">
                       <img
@@ -199,10 +202,21 @@ export default {
   methods: {
     //获取用户信息列表
     getMerchantAccountMes() {
+      let url =
+        "http://www.api.sqjtjt.com/admin/api/agents/" +
+        this.$route.params.pathMatch.slice(21) +
+        "/?token=" +
+        this.token +
+        "&page=" +
+        this.pagenum +
+        "&row=12";
+      console.log("url");
+      console.log(url);
+      console.log("url");
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agents" +
-            this.$route.params.pathMatch.slice(20) +
+          "http://www.api.sqjtjt.com/admin/api/agents/" +
+            this.$route.params.pathMatch.slice(21) +
             "/?token=" +
             this.token +
             "&page=" +

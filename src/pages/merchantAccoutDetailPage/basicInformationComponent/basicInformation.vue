@@ -74,20 +74,17 @@ export default {
       token: "",
       pagesize: 10,
       input: "",
-      id: 239,
       labelPosition: "left",
-      formLabelAlign: {}
+      formLabelAlign: {},
+      merchantName: "",
+      merchantId: ""
     };
   },
-
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getBasicInformation();
-    this.id = sessionStorage.getItem("merchantId");
+    this.merchantId = sessionStorage.getItem("merchantId");
     this.merchantName = sessionStorage.getItem("merchantName");
-    console.log("111");
-    console.log(this.id);
-    console.log(this.merchantName);
+    this.getBasicInformation();
   },
   methods: {
     //获取用户信息列表
@@ -95,7 +92,7 @@ export default {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +
-            this.id +
+            this.merchantId +
             "/?token=" +
             this.token +
             "&page=" +
