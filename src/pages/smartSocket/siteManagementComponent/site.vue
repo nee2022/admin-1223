@@ -25,7 +25,7 @@
             </div>
           </div>
           <el-table :data="siteTableData" stripe style="width: 100%">
-            <el-table-column show-overflow-tooltip align="center">
+            <el-table-column align="center">
               <template slot-scope="scope">
                 <div
                   class="wrapper"

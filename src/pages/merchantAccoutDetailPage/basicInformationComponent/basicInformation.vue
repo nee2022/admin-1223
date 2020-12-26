@@ -9,7 +9,7 @@
           <div class="picture">
             <img src="../../../assets/images/merchantAvatar.svg" alt="" />
           </div>
-          <p>商户名</p>
+          <p>{{ this.merchantName }}</p>
           <p>(运行中)</p>
           <!-- <el-button type="primary">返回上一级页面</el-button>
           <div class="blank"></div>
@@ -83,6 +83,11 @@ export default {
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getBasicInformation();
+    this.id = sessionStorage.getItem("merchantId");
+    this.merchantName = sessionStorage.getItem("merchantName");
+    console.log("111");
+    console.log(this.id);
+    console.log(this.merchantName);
   },
   methods: {
     //获取用户信息列表
