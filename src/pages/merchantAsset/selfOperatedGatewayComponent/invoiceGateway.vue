@@ -9,7 +9,7 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入账号、手机号、昵称进行查找"
+            placeholder="请输入进行查找"
             class="inputBlank"
             v-model="input"
             clearable
