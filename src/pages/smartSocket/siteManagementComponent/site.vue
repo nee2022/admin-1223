@@ -9,33 +9,35 @@
     <section>
       <div class="asidePart">
         <div class="wrapper">
-          <template>
-            <el-table :data="siteTableData" stripe style="width: 100%">
-              <el-table-column show-overflow-tooltip align="center">
-                <template slot="header">
-                  <div class="searchArea">
-                    <div class="inputFrame">
-                      <img src="../../../assets/images/search.png" />
-                      <el-input
-                        placeholder="请输入站名"
-                        class="inputBlank"
-                        clearable
-                      ></el-input>
-                    </div>
-                    <div class="addButton">
-                      <el-button
-                        type="primary"
-                        icon="el-icon-circle-plus-outline"
-                        >添加</el-button
-                      >
-                    </div>
-                  </div>
-                </template>
-                <template slot-scope="scope">
-                  <div class="siteIcon" @click="getSiteInfoMes(scope.row.id)">
+          <div class="searchArea">
+            <div class="inputFrame">
+              <img src="../../../assets/images/search.png" />
+              <el-input
+                placeholder="请输入站名"
+                class="inputBlank"
+                clearable
+              ></el-input>
+            </div>
+            <div class="addButton">
+              <el-button type="primary" icon="el-icon-circle-plus-outline"
+                >添加</el-button
+              >
+            </div>
+          </div>
+          <el-table :data="siteTableData" stripe style="width: 100%">
+            <el-table-column show-overflow-tooltip align="center">
+              <template slot-scope="scope">
+                <div
+                  class="wrapper"
+                  @click="getSiteInfoMes(scope.row.id)"
+                  v-bind:class="{
+                    toggleBackgroundcolor: currentStationId === scope.row.id
+                  }"
+                >
+                  <div class="siteIcon">
                     <img :src="img[0]" alt="" />
                   </div>
-                  <div class="siteInfo" @click="getSiteInfoMes(scope.row.id)">
+                  <div class="siteInfo">
                     <div class="name">{{ scope.row.name }}</div>
                     <div class="address">{{ scope.row.address }}</div>
                     <div class="usageDetail">
@@ -44,10 +46,25 @@
                       <span>金额</span>
                     </div>
                   </div>
-                </template>
-              </el-table-column>
-            </el-table>
-          </template>
+                  <div class="operation">
+                    <template v-if="scope.row.id === currentStationId">
+                      <div @click="xiugai(scope.row.id)">
+                        <img src="../../../assets/images/xiu.png" />
+                      </div>
+                      <div @click="removeUserByID1(scope.row.id)">
+                        <img src="../../../assets/images/shan2.png" />
+                      </div>
+                    </template>
+                    <template v-else>
+                      <span>
+                        ...
+                      </span>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </el-table-column>
+          </el-table>
           <div class="pageNumArea">
             <div class="total" :data="siteTableData">
               <span>共{{ siteTotal }}个站点</span>
@@ -80,9 +97,9 @@
               <el-button type="primary" icon="el-icon-search">搜索</el-button>
             </div>
             <div class="addButton">
-              <el-button type="primary" icon="el-icon-circle-plus-outline"
-                >添加</el-button
-              >
+              <el-button type="primary" icon="el-icon-circle-plus-outline">
+                添加
+              </el-button>
             </div>
           </div>
           <template>
@@ -199,7 +216,6 @@ export default {
             this.siteTableData = res.data.stations;
             this.siteTotal = res.data.total;
             this.currentStationId = res.data.stations[0].id || "";
-            var pn = this.sitePagenum;
           }
         })
         .then(res => {
@@ -207,10 +223,12 @@ export default {
         });
     },
     getSiteInfoMes(stationId) {
+      this.currentStationId = stationId;
+
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/station/" +
-            stationId +
+            this.currentStationId +
             "/chargers?token=" +
             JSON.parse(this.token) +
             "&page=" +
@@ -225,7 +243,6 @@ export default {
           }
         });
     },
-
     // 监听页码值改变
     handleCurrentChange(newPage) {
       this.sitePagenum = newPage;

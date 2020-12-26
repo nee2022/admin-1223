@@ -10,7 +10,6 @@
             <img src="../../../assets/images/merchantAvatar.svg" alt="" />
           </div>
           <p>商户名</p>
-          <p>商户名</p>
           <p>(运行中)</p>
           <!-- <el-button type="primary">返回上一级页面</el-button>
           <div class="blank"></div>
