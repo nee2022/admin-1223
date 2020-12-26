@@ -127,7 +127,7 @@ export default {
   components: { myhead },
   data() {
     return {
-      msgss:'',
+      msgss: "",
       total: 1,
       parkTotal: 0,
       token: "",
@@ -155,18 +155,12 @@ export default {
     cha() {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
-        .get(
-          "/admin/api/sims" +
-            "?token=" +
-            toKen +
-            "&keyword=" +
-            this.msgss
-        )
+        .get("/admin/api/sims" + "?token=" + toKen + "&keyword=" + this.msgss)
         .then((res) => {
           console.log(res);
           this.parkList = res.data.sims;
           this.parkTotal = res.data.total;
-        }); 
+        });
     },
     async removeUserByID(id) {
       console.log(id);
@@ -221,14 +215,17 @@ export default {
           .then((res) => {
             console.log(res);
             if (res.data.error == 0) {
-                          this.$message.success("修改成功");
+              this.$message.success("修改成功");
 
               this.getParksMes();
             } else {
-                          this.$message.success("修改失败");
-
+              this.$message.error("修改失败");
             }
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       } else {
         this.name = "添加SIM卡";
         console.log(this.name);
@@ -247,15 +244,18 @@ export default {
           .then((res) => {
             console.log(res);
             if (res.data.error == 0) {
-                          this.$message.success("添加成功");
+              this.$message.success("添加成功");
 
               this.getParksMes();
             } else {
-                          this.$message.success("修改失败");
-
+              this.$message.error("修改失败");
             }
             console.log(res.data.error);
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       }
     },
     names() {
@@ -296,13 +296,12 @@ export default {
 </script>
 
 <style scoped="scoped">
-.UserAssets-bgcolor .el-button--primary{
+.UserAssets-bgcolor .el-button--primary {
   background: #1e69fe;
 }
-.el-select{
- border: 1px solid #1e69fe
- !important;
- width: 33%;
+.el-select {
+  border: 1px solid #1e69fe !important;
+  width: 33%;
 }
 .el-table td div {
   overflow: hidden;

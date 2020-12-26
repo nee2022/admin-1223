@@ -63,7 +63,7 @@
             v-model="msgss"
             @keyup.enter.native="cha"
               class=""
-              placeholder="请输入SIM卡信息"
+              placeholder="请输入信息查询"
               clearable
             ></el-input>
           </div>
@@ -213,7 +213,7 @@ export default {
       console.log(id);
       let toKen = this.token.replace(/\"/g, "");
       const confirmRes = await this.$confirm(
-        "此操作将永久删除该用户, 是否继续?",
+        "此操作将永久删除该信息, 是否继续?",
         "提示",
         {
           confirmButtonText: "确定",
@@ -230,11 +230,11 @@ export default {
         .then((res) => {
           console.log(res.status);
           if (res.status == 200) {
-            this.$message.success("删除设备成功");
+            this.$message.success("删除成功");
             this.getParksMes();
             //刷新用户数据
           } else {
-            this.$message.error("删除设备用户失败");
+            this.$message.error("删除失败");
           }
         });
 

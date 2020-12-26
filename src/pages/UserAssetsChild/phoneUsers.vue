@@ -11,7 +11,7 @@
 		<div class="UserAssets-right-text">
 			<div class="textBox">
 				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入账号、手机号、昵称进行查找" class="textWord" clearable></el-input>
+				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
 			</div>
 			<div>
 				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
@@ -56,9 +56,10 @@
 						<template slot-scope="scope">
 							<div class="operation">
 								<div>
-									<img src="../../assets/images/top-up.png"  @click="(addDialogVisible = true),getID(scope.row.id)" alt="充值" title="充值">
+									<img src="../../assets/images/top-up.png" @click="(addDialogVisible = true),getID(scope.row.id)" alt="充值"
+									 title="充值">
 								</div>
-								<div>
+								<div @click="userMssage(scope.row.id,scope.row.username)">
 									<img src="../../assets/images/see.png" style="width: 15px;height: 11px;" title="详情">
 								</div>
 							</div>
@@ -102,7 +103,7 @@
 <script>
 	import myhead from '../../components/myhead.vue'
 	export default {
-		components:{
+		components: {
 			myhead
 		},
 		data() {
@@ -131,12 +132,12 @@
 				addDialogVisible: false, //添加用户对话框显示隐藏
 				input: '',
 				disabled: 'false',
-				recharID:'',
+				recharID: '',
 				addForm: {
 					token: localStorage.getItem('token').replace(/\"/g, ""),
-					amount:'',
-					pay:'',
-					memo:'',
+					amount: '',
+					pay: '',
+					memo: '',
 				}, //添加用户表单数据
 				//添加表单的验证规则
 				addFormRules: {
@@ -192,12 +193,21 @@
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
 			},
+			userMssage(id, username) {
+				console.log(id)
+				sessionStorage.setItem('id', id)
+				sessionStorage.setItem('username', username)
+				this.$router.push({
+					path: '/essentialInformation',
+				})
+			},
 			//获取用户信息列表
 			getUserMes() {
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
 				// console.log(toKen)
-				this.$axios.get("http://www.api.sqjtjt.com/admin/api/users/1?token=" + toKen + "&page=" + this.pagenum + "&row=14&keyword=" + this.input)
+				this.$axios.get("http://www.api.sqjtjt.com/admin/api/users/1?token=" + toKen + "&page=" + this.pagenum +
+						"&row=14&keyword=" + this.input)
 					.then(res => {
 						// console.log(res.data)
 						console.log(res.data.users)
@@ -210,20 +220,20 @@
 						}
 					})
 			},
-			
+
 			//获取用户充值ID
-			getID(id){
+			getID(id) {
 				this.recharID = id
 				console.log(this.recharID)
 			},
 			//充值
-			Recharge(){
+			Recharge() {
 				let toKen = this.token.replace(/\"/g, "")
 				this.$refs.addFormRef.validate(valid => {
 					if (!valid) {
 						return this.$message.error("请输入正确的信息")
 					} else {
-						this.$axios.post("admin/api/user/"+ this.recharID +"/charge", this.addForm)
+						this.$axios.post("admin/api/user/" + this.recharID + "/charge", this.addForm)
 							.then(res => {
 								if (res.status !== 200) {
 									return this.$message.error('充值失败!')
@@ -234,15 +244,15 @@
 								//刷新用户列表
 								this.getUserMes()
 							})
-					} 
+					}
 				})
 			},
 			//添加用户对话框关闭事件
 			addDialogClosed() {
 				this.$refs.addFormRef.resetFields()
 			},
-			
-			
+
+
 
 			//监听页码值改变
 			handleCurrentChange(newPage) {
@@ -259,7 +269,7 @@
 	.el-table td {
 		padding: 0 0;
 	}
-	
+
 	.el-input__inner {
 		height: 30px;
 		border: none;
@@ -291,12 +301,12 @@
 	.el-dialog {
 		margin-top: 30vh !important;
 	}
-	
-	.stateColor-red{
+
+	.stateColor-red {
 		color: red;
 	}
-	
-	.stateColor-green{
+
+	.stateColor-green {
 		color: #2ec23c;
 	}
 
@@ -435,7 +445,7 @@
 		width: 40px;
 	}
 
-	
+
 
 	.user-word {
 		width: 47px;
@@ -450,16 +460,16 @@
 	}
 
 	.el-button--primary {
-    color: #FFF;
-    background-color:#1e69fe;
-    border-color: #1e69fe;
-}
+		color: #FFF;
+		background-color: #1e69fe;
+		border-color: #1e69fe;
+	}
 
 	.el-button--success {
-    color: #1e69fe;
-    background-color:#fff;
-    border-color: #1e69fe;
-}
+		color: #1e69fe;
+		background-color: #fff;
+		border-color: #1e69fe;
+	}
 
 
 
@@ -467,7 +477,7 @@
 		width: 50%;
 	}
 
-	.users-right-w{
+	.users-right-w {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -576,8 +586,4 @@
 	.el-table thead {
 		color: black;
 	}
-	
-	
-	
-	
 </style>

@@ -3,7 +3,7 @@
     <div class="tem-right-top">
       <div class="top-left">
         <div class="top-left-word">
-          未绑定
+          一码通
         </div>
       </div>
 
@@ -18,7 +18,7 @@
             <img src="../../assets/images/search.png" class="sear-img" />
             <el-input
               class=""
-              placeholder="请输入一码通卡信息"
+              placeholder="请输入一码通信息"
               clearable
             ></el-input>
           </div>

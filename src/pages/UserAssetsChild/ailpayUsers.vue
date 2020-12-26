@@ -11,7 +11,7 @@
 		<div class="UserAssets-right-text">
 			<div class="textBox">
 				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入账号、手机号、昵称进行查找" class="textWord" clearable></el-input>
+				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
 			</div>
 			<div>
 				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
@@ -58,7 +58,7 @@
 								<div>
 									<img src="../../assets/images/top-up.png"  @click="(addDialogVisible = true),getID(scope.row.id)" alt="充值" title="充值">
 								</div>
-								<div>
+								<div @click="userMssage(scope.row.id,scope.row.username)">
 									<img src="../../assets/images/see.png" style="width: 15px;height: 11px;" title="详情">
 								</div>
 							</div>
@@ -191,6 +191,14 @@
 			},
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
+			},
+			userMssage(id, username) {
+				console.log(id)
+				sessionStorage.setItem('id', id)
+				sessionStorage.setItem('username', username)
+				this.$router.push({
+					path: '/essentialInformation',
+				})
 			},
 			//获取用户信息列表
 			getUserMes() {

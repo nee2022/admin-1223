@@ -11,7 +11,7 @@
 		<div class="UserAssets-right-text">
 			<div class="textBox">
 				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入卡号进行查找" class="textWord" clearable></el-input>
+				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
 			</div>
 			<div>
 				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
@@ -23,11 +23,23 @@
 		<div>
 			<template>
 				<el-table :data="cardList" stripe style="width: 100%">
-					<el-table-column prop="id" label="用户ID" width="130">
+					<el-table-column prop="id" label="ID">
 					</el-table-column>
-					<el-table-column prop="number" label="卡号" width="180">
+					<el-table-column prop="uid" label="用户ID">
 					</el-table-column>
 					<el-table-column prop="operator_name" label="用户名">
+					</el-table-column>
+					<el-table-column prop="number" label="卡号">
+					</el-table-column>
+					<el-table-column prop="valid" label="状态">
+						<template slot-scope="scope">
+							<div v-if="scope.row.valid == true">
+								已激活
+							</div>
+							<div v-else>
+								未激活
+							</div>
+						</template>
 					</el-table-column>
 					<el-table-column prop="amount" label="余额">
 					</el-table-column>

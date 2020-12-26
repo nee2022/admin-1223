@@ -64,7 +64,7 @@
 						<el-input placeholder="请输入站点名" class="textWord" v-model="input1" clearable @keyup.enter.native="getInputMes"></el-input>
 					</div>
 					<div class="but-weizhi1">
-						<el-button type="primary" icon="el-icon-plus" @click="addDialogVisible1 = true">添加</el-button>
+						<el-button type="primary" icon="el-icon-plus" @click="(addDialogVisible1 = true),zhandiantianjia()">添加</el-button>
 					</div>
 				</div>
 				<template>
@@ -103,6 +103,11 @@
 											<div @click="removeUserByID1(scope.row.id)">
 												<img src="../../assets/images/shan2.png">
 											</div>
+                                           <router-link to="/stations">
+                      <div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group)">
+												<img src="../../assets/images/lan.png">
+											</div>
+                      </router-link>
 										</div>
 									</template>
 									<template v-else>
@@ -130,7 +135,7 @@
 				<div class="sousuo">
 					<div class="textBox-right">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入卡号进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
+						<el-input placeholder="请输入信息进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
 						 clearable></el-input>
 					</div>
 					<div class="but-weizhi">
@@ -170,6 +175,11 @@
 									<div>
 										<el-button type="text"  @click="(dialogVisible = true), id(scope.row.id)"><img src="../../assets/images/compile.png" /></el-button>
 									</div>
+                                                         <router-link to="/chargersXi">
+                      <div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group,kong)">
+												<img style="height:14px;width:19px" src="../../assets/images/see.png">
+											</div>
+                      </router-link>
 								</div>
 							</template>
 						</el-table-column>
@@ -268,7 +278,7 @@ export default {
   },
   data() {
     return {
-            img: [
+      img: [
         require("../../assets/images/comprehensive.png"),
         require("../../assets/images/Charging pile.png"),
         require("../../assets/images/parking.png"),
@@ -280,8 +290,9 @@ export default {
         require("../../assets/images/comprehensive.png"),
         require("../../assets/images/comprehensive.png"),
       ],
-      addD:false,
-      typeres: ["sdf", "直流桩", "交流桩","电摩快充桩","电摩慢充桩"],
+      addD: false,
+      typeres: ["sdf", "直流桩", "交流桩", "电摩快充桩", "电摩慢充桩"],
+      kong:1,
       a: "",
       b: "",
       c: "",
@@ -486,36 +497,60 @@ export default {
     }, 1000);
   },
   methods: {
-    
-    sends(){
-       let toKen = this.token.replace(/\"/g, "");
-        this.$axios
-          .put(
-            "/admin/api/station/" +
-              this.station_ids +
-              "?token=" +
-              toKen +
-              "&name=" +
-              this.a +
-              "&address=" +
-              this.b +
-              "&type=4"
-          )
-          .then((res) => {
-            console.log(res);
-            if (res.data.error == 0) {
-              this.addD =false
-              this.$message.success("修改站点成功");
-              setTimeout(() => {
-                this.getRoadMes();
-              }, 1000);
-            } else {
-              this.$message.error("修改站点失败");
-            }
-          });
+        huodeid(id, name, type, address, memo, lot_rate_group, rate_group,kong) {
+      if(kong == 1){
+        console.log('you');
+        console.log(kong);
+      }if (!kong ==1){
+        console.log('zuo');
+        console.log(kong);
+      }
+      this.$store.commit("changeId", { 
+        chanId: id,
+        name: name,
+        type: type,
+        address: address,
+        memo: memo,
+        lot_rate_group: lot_rate_group,
+        rate_group: rate_group,
+        kong:kong,
+      });
+    },
+    zhandiantianjia() {
+      this.a = "";
+      this.b = "";
+      this.c = "";
+      this.d = "";
+    },
+    sends() {
+      let toKen = this.token.replace(/\"/g, "");
+      this.$axios
+        .put(
+          "/admin/api/station/" +
+            this.station_ids +
+            "?token=" +
+            toKen +
+            "&name=" +
+            this.a +
+            "&address=" +
+            this.b +
+            "&type=4"
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.data.error == 0) {
+            this.addD = false;
+            this.$message.success("修改站点成功");
+            setTimeout(() => {
+              this.getRoadMes();
+            }, 1000);
+          } else {
+            this.$message.error("修改站点失败");
+          }
+        });
     },
     xiugai(station_id) {
-      this.addD = true
+      this.addD = true;
       this.station_ids = station_id;
       this.name = "修改站点";
     },
@@ -643,9 +678,9 @@ export default {
             )
             .then((res) => {
               if (res.status !== 200) {
-                return this.$message.error("添加用户失败!");
+                return this.$message.error("添加失败!");
               }
-              this.$message.success("添加用户成功!");
+              this.$message.success("添加成功!");
               this.addDialogVisible = false;
               console.log(this.addForm);
               console.log(res);
@@ -666,9 +701,9 @@ export default {
         } else {
           this.$axios.post("/admin/api/station", this.addForm1).then((res) => {
             if (res.status !== 200) {
-              return this.$message.error("添加用户失败!");
+              return this.$message.error("添加失败!");
             }
-            this.$message.success("添加用户成功!");
+            this.$message.success("添加成功!");
             this.addDialogVisible1 = false;
             setTimeout(() => {
               this.getRoadMes();
@@ -696,7 +731,7 @@ export default {
       console.log(id);
       let toKen = this.token.replace(/\"/g, "");
       const confirmRes = await this.$confirm(
-        "此操作将永久删除该用户, 是否继续?",
+        "此操作将永久删除该信息, 是否继续?",
         "提示",
         {
           confirmButtonText: "确定",
@@ -727,7 +762,7 @@ export default {
       console.log(id);
       let toKen = this.token.replace(/\"/g, "");
       const confirmRes1 = await this.$confirm(
-        "此操作将永久删除该用户, 是否继续?",
+        "此操作将永久删除该信息, 是否继续?",
         "提示",
         {
           confirmButtonText: "确定",
@@ -773,7 +808,7 @@ export default {
         });
     },
     showEditDialog1(id) {
-      this.editDialogVisible1 = true
+      this.editDialogVisible1 = true;
       //token去掉引号
       let toKen = this.token.replace(/\"/g, "");
       // console.log(toKen)
@@ -906,10 +941,15 @@ export default {
               this.$message.success("修改设备成功");
               this.getRoadChargers();
             } else {
-              this.$message.success("修改设备失败");
+              this.$message.error("修改设备失败");
             }
           });
-          this.lest_id = ''
+        this.lest_id = "";
+        this.value = "电摩慢充桩";
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       } else {
         this.name = "添加设备";
         console.log(this.name);
@@ -1010,8 +1050,6 @@ export default {
   right: 14px;
   top: 0;
 }
-
-
 
 .leftBox-right div {
   margin-left: 8px;

@@ -63,7 +63,6 @@
 					</el-submenu>
 					<el-submenu index="2">
 						<template slot="title">
-							<router-link to="/oneCard">
 								<div class="menu-op">
 									<div>
 										<img src="../assets/images/One cartoon.png">
@@ -72,7 +71,6 @@
 								</div>
 							</router-link>
 						</template>
-						</router-link>
 						<el-menu-item-group>
 							<router-link to="/oneCard">
 								<el-menu-item index="2-1">
@@ -435,7 +433,6 @@
 		},
 		created() {
 			this.token = localStorage.getItem('token')
-			this.getUserMes()
 		},
 		methods: {
 			handleOpen(key, keyPath) {
@@ -445,29 +442,9 @@
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
 			},
-			//获取用户信息列表
-			getUserMes() {
-				//token去掉引号
-				let toKen = this.token.replace(/\"/g, "")
-				// console.log(toKen)
-				this.$axios.get("http://www.api.sqjtjt.com/admin/api/users/?token=" + toKen + "&page=" + this.pagenum + "&row=14")
-					.then(res => {
-						// console.log(res.data)
-						// console.log(res.data.users)
-						// console.log(res.status)//打印状态码
-						if (res.status == 200) {
-							this.tableData = res.data.users //用户列表数据
-							this.total = res.data.total
-							// console.log(this.tableData)
-							var pn = this.pagenum
-
-						}
-					})
-			},
 			handleCurrentChange(newPage) {
 				//console.log(newPage)
 				this.pagenum = newPage
-				this.getUserMes()
 			},
 		}
 	}
@@ -591,7 +568,6 @@
 		display: flex;
 		flex-direction: column;
 		min-width: 200px;
-		height: 935px;
 		background-color: #1e69fe;
 	}
 

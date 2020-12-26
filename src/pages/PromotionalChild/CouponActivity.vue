@@ -15,7 +15,7 @@
 				<div class="right-con-top">
 					<div class="textBox">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入站点名" class="textWord" clearable v-model="input1" clearable @keyup.enter.native="getRoadMes"></el-input>
+						<el-input placeholder="请输入关键字" class="textWord" clearable v-model="input1" clearable @keyup.enter.native="getRoadMes"></el-input>
 					</div>
 					<div>
 						<el-button type="primary" icon="el-icon-plus" class="but"  @click="addDialogVisible1 = true">添加</el-button>

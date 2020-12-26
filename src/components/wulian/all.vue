@@ -166,7 +166,7 @@ export default {
       console.log(id);
       let toKen = this.token.replace(/\"/g, "");
       const confirmRes = await this.$confirm(
-        "此操作将永久删除该用户, 是否继续?",
+        "此操作将永久删除该信息, 是否继续?",
         "提示",
         {
           confirmButtonText: "确定",
@@ -183,11 +183,11 @@ export default {
         .then((res) => {
           console.log(res.status);
           if (res.status == 200) {
-            this.$message.success("删除站点成功");
+            this.$message.success("删除信息成功");
             this.getParksMes();
             //刷新用户数据
           } else {
-            this.$message.error("删除站点失败");
+            this.$message.error("删除信息失败");
           }
         });
       //删除用户提示
@@ -218,9 +218,13 @@ export default {
               this.$message.success("修改成功");
               this.getParksMes();
             } else {
-              this.$message.success("修改失败");
+              this.$message.error("修改失败");
             }
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       } else {
         this.name = "添加SIM卡";
         console.log(this.name);
@@ -242,10 +246,14 @@ export default {
               this.$message.success("添加成功");
               this.getParksMes();
             } else {
-              this.$message.success("添加失败");
+              this.$message.error("添加失败");
             }
             console.log(res.data.error);
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       }
     },
     names() {

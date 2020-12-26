@@ -53,15 +53,15 @@
             <el-table-column prop="pay" label="支付金额">
             </el-table-column>
             <el-table-column prop="refund" label="退款金额"> </el-table-column>
-            <!-- <el-table-column prop="address" label="操作" width="200">
+            <el-table-column prop="address" label="操作" width="200">
               <div class="operation">
                 <div>
                   <el-button type="text ou"
                     ><img src="../../assets/images/see.png"
                   /></el-button>
                 </div>
-              </div>
-            </el-table-column> -->
+              </div> 
+            </el-table-column>
           </el-table>
         </template>
         <div class="UserAssets-bottom aa">

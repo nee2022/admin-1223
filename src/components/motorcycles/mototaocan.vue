@@ -313,7 +313,7 @@ export default {
                 this.getParksMe();
               }, 1000);
             } else {
-              this.$message.success("修改套餐失败");
+              this.$message.error("修改套餐失败");
             }
           });
         this.lest_id = "";
@@ -344,7 +344,7 @@ export default {
               this.$message.success("添加套餐成功");
               this.getParksMe();
             } else {
-              this.$message.success("添加套餐失败");
+              this.$message.error("添加套餐失败");
             }
             console.log(res.data.error);
           });
@@ -393,13 +393,13 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status == 200) {
-            this.$message.success("删除设备成功");
+            this.$message.success("删除成功");
             setTimeout(() => {
               this.getParksMe();
             }, 1000);
             //刷新用户数据
           } else {
-            this.$message.error("删除设备用户失败");
+            this.$message.error("删除失败");
           }
         });
 
@@ -425,14 +425,13 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status == 200) {
-            
-            this.$message.success("删除设备成功");
+            this.$message.success("删除成功");
             setTimeout(() => {
               this.getRoadMes();
             }, 1000);
             //刷新用户数据
           } else {
-            this.$message.error("删除设备用户失败");
+            this.$message.error("删除失败");
           }
         });
 
@@ -472,9 +471,14 @@ export default {
                 this.getRoadMes();
               }, 1000);
             } else {
-              this.$message.success("修改活动失败");
+              this.$message.error("修改活动失败");
             }
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
+        this.value = "时间";
       } else {
         this.name = "添加设备";
         console.log("输出的是添加");
@@ -491,7 +495,7 @@ export default {
             if (res.data.error == 0) {
               this.$message.success("添加活动成功");
             } else {
-              this.$message.success("添加活动失败");
+              this.$message.error("添加活动失败");
             }
             setTimeout(() => {
               this.getRoadMes();
@@ -501,6 +505,7 @@ export default {
         this.b = "";
         this.c = "";
         this.d = "";
+        this.value = "时间";
       }
     },
     getRoadMes() {

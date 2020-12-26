@@ -12,7 +12,7 @@
 			<div class="textBox">
 				<img src="../../assets/images/search.png" class="sear-img">
 				<!-- <el-input v-model="input" placeholder="请输入卡号进行查找" class="textWord" clearable></el-input> -->
-				<input type="text" v-model="input" placeholder="请输入卡号进行查找" class="textWord" />
+				<input type="text" v-model="input" placeholder="请输入关键字进行查找" class="textWord" />
 			</div>
 			<template>
 				<div class="block">
@@ -104,6 +104,12 @@
 		},
 		created() {
 			this.token = localStorage.getItem('token')
+			let date = new Date
+			let getYear = date.getFullYear()
+			let getMonth = date.getMonth() + 1
+			let getDate = date.getDate()
+			let tiemr = getYear + '' + getMonth + getDate
+			this.value1 = tiemr
 			this.getUserMes()
 		},
 		methods: {

@@ -6,12 +6,17 @@
 					<img :src="loginConfig.imgs" />
 				</router-link>
 			</div>
+			<div class="backImg">
+				<router-link to="/usersNum">
+					<img src="../assets/images/left1.png" alt="">
+				</router-link>
+			</div>
 			<el-col :span="12">
 				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1e69fe"
 				 text-color="#fff" active-text-color="white" unique-opened v-model="option">
 					<el-menu-item index="1">
 						<template slot="title">
-							<router-link to="/czjilu">
+							<router-link to="/essentialInformation">
 								<div class="menu-op">
 									<div>
 										<img src="../assets/images/user account.png">
@@ -33,7 +38,7 @@
 						<el-menu-item-group>
 							<template v-for="values in item.list">
 								<el-menu-item>
-									<router-link to="/usersNum">
+									<router-link :to="values.router">
 										<div class="menu-op">
 											<div>
 												<img :src="values.img">
@@ -70,19 +75,23 @@
 					list: [{
 						id: 1,
 						text: '车辆',
-						img:require('../assets/images/Vehicle certification.png')
+						img:require('../assets/images/Vehicle certification.png'),
+						router:'/userCar'
 					}, {
 						id: 2,
 						text: '一卡通',
-						img:require('../assets/images/One cartoon.png')
+						img:require('../assets/images/One cartoon.png'),
+						router:'/userCard'
 					}, {
 						id: 3,
 						text: '套餐',
-						img:require('../assets/images/The user package.png')
+						img:require('../assets/images/The user package.png'),
+						router:'/userTaocans'
 					}, {
 						id: 4,
 						text: '优惠券',
-						img:require('../assets/images/coupons.png')
+						img:require('../assets/images/coupons.png'),
+						router:'/userCoupon'
 					}]
 				}, {
 					name: '用户账单',
@@ -91,19 +100,23 @@
 					list: [{
 						id: 1,
 						text: '所有',
-						img:require('../assets/images/all.png')
+						img:require('../assets/images/all.png'),
+						router:'/userBill'
 					}, {
 						id: 2,
 						text: '充值',
-						img:require('../assets/images/Prepaid phone records.png')
+						img:require('../assets/images/Prepaid phone records.png'),
+						router:'/userChongzhi'
 					}, {
 						id: 3,
 						text: '消费',
-						img:require('../assets/images/Has been used.png')
+						img:require('../assets/images/Has been used.png'),
+						router:'/userXiaofei'
 					}, {
 						id: 4,
 						text: '退款',
-						img:require('../assets/images/The event log.png')
+						img:require('../assets/images/The event log.png'),
+						router:'/userTuikuan'
 					}]
 				}, {
 					name: '停车订单',
@@ -112,11 +125,13 @@
 					list: [{
 						id: 1,
 						text: '所有',
-						img:require('../assets/images/all.png')
+						img:require('../assets/images/all.png'),
+						router:'/stopOrderAll'
 					}, {
 						id: 2,
-						text: '历史',
-						img:require('../assets/images/shu.png')
+						text: '实时',
+						img:require('../assets/images/shu.png'),
+						router:'/stopOrderParking'
 					}]
 				}, {
 					name: '发票',
@@ -125,15 +140,18 @@
 					list: [{
 						id: 1,
 						text: '所有',
-						img:require('../assets/images/all.png')
+						img:require('../assets/images/all.png'),
+						router:'/invoiceAll'
 					}, {
 						id: 2,
 						text: '已开票',
-						img:require('../assets/images/site.png')
+						img:require('../assets/images/site.png'),
+						router:'/invoiced'
 					}, {
 						id: 3,
 						text: '待审核',
-						img:require('../assets/images/To audit.png')
+						img:require('../assets/images/To audit.png'),
+						router:'/invoicing'
 					}]
 				}]
 			}
@@ -158,12 +176,13 @@
 </script>
 
 <style>
-	body {
-		background-color: #1e69fe;
-	}
-
 	.UserAssets-bgcolor .el-table td {
 		padding: 0 0;
+	}
+
+	.backImg{
+		text-align: center;
+		margin-bottom: 47px;
 	}
 
 	.UserAssets-bgcolor .el-input__inner {
@@ -275,7 +294,6 @@
 		display: flex;
 		flex-direction: column;
 		min-width: 200px;
-		height: 935px;
 		background-color: #1e69fe;
 	}
 

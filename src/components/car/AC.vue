@@ -267,7 +267,7 @@ export default {
               this.$message.success("添加成功");
               this.getParksMes();
             } else {
-                            this.$message.success("添加失败");
+                            this.$message.error("添加失败");
 
             }
             console.log(res.data.error);

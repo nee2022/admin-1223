@@ -219,9 +219,13 @@ export default {
 
               this.getParksMes();
             } else {
-              this.$message.success("修改失败");
+              this.$message.error("修改失败");
             }
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       } else {
         this.name = "添加SIM卡";
         console.log(this.name);
@@ -244,10 +248,14 @@ export default {
 
               this.getParksMes();
             } else {
-              this.$message.success("添加失败");
+              this.$message.error("添加失败");
             }
             console.log(res.data.error);
           });
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
       }
     },
     names() {

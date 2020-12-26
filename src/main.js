@@ -9,21 +9,22 @@ import "layui-src/dist/layui.all.js";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import "../src/assets/css/index.css";
-import "../src/assets/css/zyhSingleLineListPage.css";
-import "../src/assets/css/zyhSingleLineListPageMain.css";
 import "../src/assets/css/index.styl";
+import store from "./store/index";
+
 import { Loading, Message } from "element-ui";
 Vue.use(ElementUI);
 Vue.use(less);
 Vue.prototype.$http = axios;
 // Vue.use(VueAxios, axios);
-axios.defaults.baseURL = "http://www.api.sqjtjt.com";
+axios.defaults.baseURL = "https://www.api.sqjtjt.com";
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
 new Vue({
   el: "#app",
   router,
+  store,
   $,
   components: {
     App
@@ -37,10 +38,10 @@ router.beforeEach((to, from, next) => {
   if (token) {
     next();
   } else {
-    if (to.path === "/") {
+    if (to.path === "/logIn") {
       next();
     } else {
-      next("/");
+      next("/logIn");
     }
   }
 });
@@ -65,39 +66,39 @@ router.beforeEach((to, from, next) => {
 
 var loading = null;
 
-// axios.interceptors.request.use(
-//   function(config) {
-//     loading = Loading.service({
-//       lock: true,
-//       text: "Loading",
-//       spinner: "el-icon-loading",
-//       background: "rgba(0,0,0,0.7)"
-//     });
-//     return config;
-//   },
-//   function(error) {
-//     Message(error);
-//     console.log("========", error);
-//     return Promise.reject(error);
-//   }
-// );
+axios.interceptors.request.use(
+  function(config) {
+    loading = Loading.service({
+      lock: true,
+      text: "Loading",
+      spinner: "el-icon-loading",
+      background: "rgba(0,0,0,0.7)"
+    });
+    return config;
+  },
+  function(error) {
+    Message(error);
+    console.log("========", error);
+    return Promise.reject(error);
+  }
+);
 
-// axios.interceptors.response.use(
-//   response => {
-//     loading.close();
-//     if (response.data.error == 257) {
-//       alert("请重新登录");
-//       router.push({
-//         path: "/"
-//       });
-//     }
-//     return response;
-//   },
-//   function(error) {
-//     Message(error);
-//     loading.close();
-//     Message.error("获取数据失败");
-//     console.log("========", error);
-//     return Promise.reject(error);
-//   }
-// );
+axios.interceptors.response.use(
+  response => {
+    loading.close();
+    // if (response.data.error == 257) {
+    // 	alert("请重新登录")
+    // 	router.push({
+    // 		path: "/logIn"
+    // 	});
+    // }
+    return response;
+  },
+  function(error) {
+    Message(error);
+    loading.close();
+    Message.error("获取数据失败");
+    console.log("========", error);
+    return Promise.reject(error);
+  }
+);

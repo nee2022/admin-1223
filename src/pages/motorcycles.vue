@@ -179,7 +179,7 @@ export default {
   },
 };
 </script>
-<style lang="stylus">
+<style lang="stylus" >
 body {
   background-color: #1e69fe;
   height: 100%;

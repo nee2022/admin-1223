@@ -11,7 +11,7 @@
 		<div class="UserAssets-right-text">
 			<div class="textBox">
 				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入ID进行查找" class="textWord" clearable></el-input>
+				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
 			</div>
 			<div>
 				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>

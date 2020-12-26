@@ -15,7 +15,7 @@
 				<div class="right-con-top">
 					<div class="textBox">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入站点名" class="textWord" v-model="input1" clearable @keyup.enter.native="getInputMes"></el-input>
+						<el-input placeholder="请输入关键字" class="textWord" v-model="input1" clearable @keyup.enter.native="getInputMes"></el-input>
 					</div>
 					<div class="but-weizhi1">
 						<el-button type="primary" icon="el-icon-plus" @click="addDialogVisible1 = true">添加</el-button>
@@ -49,7 +49,7 @@
 												<span class="parkIcon-word">金额</span>
 											</div>
 										</div>
-									</div>
+									</div> 
 									<template v-if="scope.row.id == isActive">
 										<div class="leftBox-right">
 											<div @click="showEditDialog1(scope.row.id)">
@@ -58,6 +58,11 @@
 											<div @click="removeUserByID1(scope.row.id)">
 												<img src="../../assets/images/shan2.png">
 											</div>
+											<router-link to="/stations">
+											 <div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group)">
+																							<img src="../../assets/images/lan.png">
+																						</div>
+											 </router-link>
 										</div>
 									</template>
 									<template v-else>
@@ -86,7 +91,7 @@
 				<div class="sousuo">
 					<div class="textBox-right">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入卡号进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
+						<el-input placeholder="请输入关键字进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
 						 ></el-input>
 					</div>
 					<div class="but-weizhi">
@@ -116,6 +121,11 @@
 									<div>
 										<el-button type="text" @click="showEditDialog(scope.row.id)"><img src="../../assets/images/compile.png" /></el-button>
 									</div>
+									<router-link to="/chargersXi">
+									<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group,kong)">
+										<img style="height:14px;width:19px" src="../../assets/images/see.png">
+									</div>
+									</router-link>
 								</div>
 							</template>
 						</el-table-column>
@@ -228,6 +238,7 @@
 				getFristID: '',
 				input1: '',
 				input2: '',
+				kong:1,
 				newpark2: 1,
 				editForm: {},
 				editForm1: {},
@@ -376,6 +387,25 @@
 			}, 500);
 		},
 		methods: {
+			huodeid(id, name, type, address, memo, lot_rate_group, rate_group,kong) {
+			  if(kong == 1){
+			    console.log('you');
+			    console.log(kong);
+			  }if (!kong ==1){
+			    console.log('zuo');
+			    console.log(kong);
+			  }
+			  this.$store.commit("changeId", { 
+			    chanId: id,
+			    name: name,
+			    type: type,
+			    address: address,
+			    memo: memo,
+			    lot_rate_group: lot_rate_group,
+			    rate_group: rate_group,
+			    kong:kong,
+			  });
+			},
 			getRoadMes() {
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
@@ -455,7 +485,7 @@
 						return this.$message.error("请输入正确的信息")
 					} else {
 						this.$axios.post("/admin/api/charger?token=" + this.addForm.token + "&dev_id=" + this.addForm.dev_id + "&name=" +
-								this.addForm.name + "&mac=" + this.addForm.mac + "&station=" + this.getFristID)
+								this.addForm.name + "&mac=" + this.addForm.mac + "&type=7&station=" + this.getFristID)
 							.then(res => {
 								if (res.status !== 200) {
 									return this.$message.error('添加失败!')

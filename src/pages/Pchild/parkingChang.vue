@@ -15,7 +15,7 @@
 				<div class="right-con-top">
 					<div class="textBox">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入站点名" class="textWord" v-model="input1" clearable @keyup.enter.native="getInputMes"></el-input>
+						<el-input placeholder="请输入关键字查找" class="textWord" v-model="input1" clearable @keyup.enter.native="getInputMes"></el-input>
 					</div>
 					<div class="but-weizhi1">
 						<el-button type="primary" icon="el-icon-plus" @click="addDialogVisible1 = true">添加</el-button>
@@ -57,6 +57,11 @@
 											<div @click="removeUserByID1(scope.row.id)">
 												<img src="../../assets/images/shan2.png">
 											</div>
+											<router-link to="/stations">
+												<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group)">
+													<img src="../../assets/images/lan.png">
+												</div>
+											</router-link>
 										</div>
 									</template>
 									<template v-else>
@@ -84,7 +89,7 @@
 				<div class="sousuo">
 					<div class="textBox-right">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入卡号进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
+						<el-input placeholder="请输入关键字进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
 						 clearable></el-input>
 					</div>
 					<div class="but-weizhi">
@@ -100,7 +105,17 @@
 						</el-table-column>
 						<el-table-column prop="dev_id" label="设备编号">
 						</el-table-column>
-						<el-table-column prop="name" label="泊位">
+						<el-table-column prop="type" label="设备类型">
+							<template slot-scope="scope">
+								<div v-if="scope.row.type == 5 ">
+									入口道闸
+								</div>
+								<div v-if="scope.row.type == 6 ">
+									出口道闸
+								</div>
+							</template>
+						</el-table-column>
+						<el-table-column prop="name" label="名称">
 						</el-table-column>
 						<el-table-column prop="mac" label="机号">
 						</el-table-column>
@@ -113,6 +128,11 @@
 									<div>
 										<el-button type="text" @click="showEditDialog(scope.row.id)"><img src="../../assets/images/compile.png" /></el-button>
 									</div>
+									<router-link to="/chargersXi">
+										<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group,kong)">
+											<img style="height:14px;width:19px" src="../../assets/images/see.png">
+										</div>
+									</router-link>
 								</div>
 							</template>
 						</el-table-column>
@@ -136,11 +156,17 @@
 				<el-form-item label="设备编号" prop="dev_id">
 					<el-input v-model="addForm.dev_id" class="addinput"></el-input>
 				</el-form-item>
-				<el-form-item label="泊位" prop="name">
+				<el-form-item label="名称" prop="name">
 					<el-input v-model="addForm.name" class="addinput"></el-input>
 				</el-form-item>
 				<el-form-item label="机号" prop="mac">
 					<el-input v-model="addForm.mac" class="addinput"></el-input>
+				</el-form-item>
+				<el-form-item label="类型" prop="">
+					<el-select v-model="value" placeholder="请选择" class="sel">
+						<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+						</el-option>
+					</el-select>
 				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
@@ -154,7 +180,7 @@
 				<el-form-item label="设备编号" prop="dev_id">
 					<el-input v-model="editForm.dev_id" class="addinput"></el-input>
 				</el-form-item>
-				<el-form-item label="泊位" prop="name">
+				<el-form-item label="名称" prop="name">
 					<el-input v-model="editForm.name" class="addinput"></el-input>
 				</el-form-item>
 				</el-form-item>
@@ -172,6 +198,9 @@
 			<el-form :model="addForm1" :rules="addFormRules1" ref="addFormRef1" label-width="80px">
 				<el-form-item label="站点名" prop="name">
 					<el-input v-model="addForm1.name" class="addinput"></el-input>
+				</el-form-item>
+				<el-form-item label="地址" prop="address">
+					<el-input v-model="addForm1.address" class="addinput"></el-input>
 				</el-form-item>
 				<el-form-item label="地址" prop="address">
 					<el-input v-model="addForm1.address" class="addinput"></el-input>
@@ -208,10 +237,12 @@
 		},
 		data() {
 			return {
+				kong: 1,
 				arr: [],
 				total: 1,
 				parkTotal: 0,
 				isActive: 0,
+				value:'',
 				token: '',
 				pagenum: 1, //分页
 				pagesize: 6,
@@ -244,7 +275,7 @@
 					token: localStorage.getItem('token').replace(/\"/g, ""),
 					name: '',
 					address: '',
-					type: 3
+					type: 2
 				}, //添加设备添加数据
 				//修改设备表单数据
 				editFormRules: {
@@ -351,14 +382,11 @@
 					}]
 				},
 				options: [{
-					value: '7',
-					label: '道路'
+					value: '5',
+					label: '入口道闸'
 				}, {
-					value: '10',
-					label: '高位视频'
-				}, {
-					value: '11',
-					label: '低位视频'
+					value: '6',
+					label: '出口道闸'
 				}],
 				selType: '',
 			}
@@ -372,6 +400,26 @@
 			}, 500);
 		},
 		methods: {
+			huodeid(id, name, type, address, memo, lot_rate_group, rate_group, kong) {
+				if (kong == 1) {
+					console.log('you');
+					console.log(kong);
+				}
+				if (!kong == 1) {
+					console.log('zuo');
+					console.log(kong);
+				}
+				this.$store.commit("changeId", {
+					chanId: id,
+					name: name,
+					type: type,
+					address: address,
+					memo: memo,
+					lot_rate_group: lot_rate_group,
+					rate_group: rate_group,
+					kong: kong,
+				});
+			},
 			getRoadMes() {
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
@@ -451,7 +499,7 @@
 						return this.$message.error("请输入正确的信息")
 					} else {
 						this.$axios.post("/admin/api/charger?token=" + this.addForm.token + "&dev_id=" + this.addForm.dev_id + "&name=" +
-								this.addForm.name + "&mac=" + this.addForm.mac + "&station=" + this.getFristID)
+								this.addForm.name + "&mac=" + this.addForm.mac + "&type=" + this.value + "&station=" + this.getFristID)
 							.then(res => {
 								if (res.status !== 200) {
 									return this.$message.error('添加用户失败!')
@@ -682,6 +730,11 @@
 		background-color: white;
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
+	}
+	
+	.sel{
+		 border: 1px solid #1e69fe !important;
+		 width: 33%;
 	}
 
 	.parkIcon-word {

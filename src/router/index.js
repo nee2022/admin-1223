@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import logIn from "../pages/logIn";
 import summary from "../pages/summary";
-import map from "../pages/map";
+// import map from '../pages/map'
 import ito from "../pages/ito";
 import code from "../components/code";
 import fault from "../components/wulian/fault";
@@ -44,11 +44,29 @@ import equipment from "../components/motorcycles/equipment";
 import union from "../components/union.vue";
 import cartaocan from "../components/car/cartaocan.vue";
 import merchantAsset from "../pages/merchantAsset/merchantAsset";
+import merchantAccoutDetailPage from "../pages/merchantAccoutDetailPage/merchantAccoutDetailPage";
 import financialManagement from "../pages/financialManagement/financialManagement";
 import smartSocket from "../pages/smartSocket/smartSocket";
 import prepaidMeter from "../pages/prepaidMeter/prepaidMeter";
 import departmentAndRoleManagement from "../pages/departmentAndRoleManagement/departmentAndRoleManagement";
-import merchantAccoutDetailPage from "../pages/merchantAccoutDetailPage/merchantAccoutDetailPage";
+import carBlac from "../components/zhandianAll/carBlac.vue";
+import carsWhite from "../components/zhandianAll/carsWhite.vue";
+import basic from "../components/zhandianAll/basic.vue";
+import chargingRate from "../components/zhandianAll/chargingRate.vue";
+import stopRate from "../components/zhandianAll/stopRate.vue";
+import parkingRecords from "../components/zhandianAll/parkingRecords.vue";
+import chargingRecord from "../components/zhandianAll/chargingRecord.vue";
+import xiangqiMeal from "../components/zhandianAll/xiangqiMeal.vue";
+import zhanTime from "../components/zhandianAll/zhanTime.vue";
+import zhanhistory from "../components/zhandianAll/history.vue";
+import chargersXi from "../pages/chargersXi";
+import shebeiBasic from "../components/shebeiXinxi/shebeiBasic.vue";
+import shebeimeal from "../components/shebeiXinxi/shebeimeal.vue";
+import shebeiChargingRate from "../components/shebeiXinxi/shebeiChargingRate.vue";
+import shebeiChargingRecord from "../components/shebeiXinxi/shebeiChargingRecord.vue";
+import shebeiParkingRecords from "../components/shebeiXinxi/shebeiParkingRecords.vue";
+import shebeiHistory from "../components/shebeiXinxi/shebeiHistory.vue";
+import stations from "../pages/stations";
 
 const HAS_LOGINED = true;
 
@@ -60,10 +78,10 @@ export default new Router({
       path: "/",
       component: logIn
     },
-    {
-      path: "/map",
-      component: map
-    },
+    // {
+    // 	path: '/map',
+    // 	component: map
+    // },
     {
       path: "/summary",
       component: summary
@@ -75,6 +93,10 @@ export default new Router({
     {
       path: "/merchantAsset/agent",
       component: merchantAsset
+    },
+    {
+      path: "/merchantAccoutDetailPage/basicInformation",
+      component: merchantAccoutDetailPage
     },
     {
       path: "/financialManagement/allOrder",
@@ -92,10 +114,6 @@ export default new Router({
       path: "/departmentAndRoleManagement/departmentManagement",
       component: departmentAndRoleManagement
     },
-    {
-      path: "/merchantAccoutDetailPage/basicInformation",
-      component: merchantAccoutDetailPage
-    },
 
     // { path: "/orderForm/allOrder", component: financialManagement },
     {
@@ -108,11 +126,7 @@ export default new Router({
           name: "Logging",
           component: () => import("../pages/SystemChild/Logging.vue")
         },
-        {
-          path: "/shopLog",
-          name: "shopLog",
-          component: () => import("../pages/SystemChild/shopLog.vue")
-        },
+
         {
           path: "/userLog",
           name: "userLog",
@@ -679,6 +693,85 @@ export default new Router({
       redirect: "union"
     },
 
+    {
+      path: "/chargersXi",
+      component: chargersXi,
+      children: [
+        {
+          path: "/shebeiBasic",
+          component: shebeiBasic
+        },
+        {
+          path: "/shebeiHistory",
+          component: shebeiHistory
+        },
+        {
+          path: "/shebeimeal",
+          component: shebeimeal
+        },
+        {
+          path: "/shebeiChargingRate",
+          component: shebeiChargingRate
+        },
+        {
+          path: "/shebeiChargingRecord",
+          component: shebeiChargingRecord
+        },
+        {
+          path: "/shebeiParkingRecords",
+          component: shebeiParkingRecords
+        }
+      ],
+      redirect: "/shebeiBasic"
+    },
+    {
+      path: "/stations",
+      component: stations,
+      children: [
+        {
+          path: "/carBlac",
+          component: carBlac
+        },
+        {
+          path: "/zhanTime",
+          component: zhanTime
+        },
+        {
+          path: "/zhanhistory",
+          component: zhanhistory
+        },
+        {
+          path: "/carsWhite",
+          component: carsWhite
+        },
+        {
+          path: "/basic",
+          component: basic
+        },
+        {
+          path: "/chargingRate",
+          component: chargingRate
+        },
+        {
+          path: "/stopRate",
+          component: stopRate
+        },
+        {
+          path: "/parkingRecords",
+          component: parkingRecords
+        },
+        {
+          path: "/chargingRecord",
+          component: chargingRecord
+        },
+        {
+          path: "/xiangqiMeal",
+          component: xiangqiMeal
+        }
+      ],
+      redirect: "/basic"
+    },
+
     //个人中心
     {
       path: "/centre",
@@ -704,9 +797,117 @@ export default new Router({
           name: "essentialInformation",
           component: () =>
             import("../pages/MembershipDetailsChild/essentialInformation.vue")
+        },
+        {
+          path: "/userCar",
+          name: "userCar",
+          component: () => import("../pages/MembershipDetailsChild/userCar.vue")
+        },
+        {
+          path: "/userCard",
+          name: "userCard",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userCard.vue")
+        },
+        {
+          path: "/userTaocans",
+          name: "userTaocans",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userTaocans.vue")
+        },
+        {
+          path: "/invoiceAll",
+          name: "invoiceAll",
+          component: () =>
+            import("../pages/MembershipDetailsChild/invoiceAll.vue")
+        },
+        {
+          path: "/userBill",
+          name: "userBill",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userBill.vue")
+        },
+        {
+          path: "/userCoupon",
+          name: "userCoupon",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userCoupon.vue")
+        },
+        {
+          path: "/invoiced",
+          name: "invoiced",
+          component: () =>
+            import("../pages/MembershipDetailsChild/invoiced.vue")
+        },
+        {
+          path: "/invoicing",
+          name: "invoicing",
+          component: () =>
+            import("../pages/MembershipDetailsChild/invoicing.vue")
+        },
+        {
+          path: "/stopOrderAll",
+          name: "stopOrderAll",
+          component: () =>
+            import("../pages/MembershipDetailsChild/stopOrderAll.vue")
+        },
+        {
+          path: "/stopOrderHistroy",
+          name: "stopOrderHistroy",
+          component: () =>
+            import("../pages/MembershipDetailsChild/stopOrderHistroy.vue")
+        },
+        {
+          path: "/userChongzhi",
+          name: "userChongzhi",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userChongzhi.vue")
+        },
+        {
+          path: "/userTuikuan",
+          name: "userTuikuan",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userTuikuan.vue")
+        },
+        {
+          path: "/userXiaofei",
+          name: "userXiaofei",
+          component: () =>
+            import("../pages/MembershipDetailsChild/userXiaofei.vue")
+        },
+        {
+          path: "/stopOrderParking",
+          name: "stopOrderParking",
+          component: () =>
+            import("../pages/MembershipDetailsChild/stopOrderParking.vue")
         }
       ],
       redirect: "essentialInformation"
+    },
+    {
+      path: "/oneCardDetails",
+      name: "oneCardDetails",
+      component: () => import("../pages/oneCardDetails.vue"),
+      children: [
+        {
+          path: "/oneCardjiben",
+          name: "oneCardjiben",
+          component: () =>
+            import("../pages/oneCardDetailsChild/oneCardjiben.vue")
+        },
+        {
+          path: "/oneCardjiben",
+          name: "oneCardjiben",
+          component: () =>
+            import("../pages/oneCardDetailsChild/oneCardjiben.vue")
+        },
+        {
+          path: "/oneCardjiben",
+          name: "oneCardjiben",
+          component: () =>
+            import("../pages/oneCardDetailsChild/oneCardjiben.vue")
+        }
+      ]
     },
     {
       path: "*",
