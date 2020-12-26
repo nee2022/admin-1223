@@ -210,9 +210,6 @@ export default {
         "&page=" +
         this.pagenum +
         "&row=12";
-      console.log("url");
-      console.log(url);
-      console.log("url");
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/agents/" +
@@ -342,13 +339,8 @@ export default {
       });
     },
     merchantMessage(id, username) {
-      console.log(id);
-      console.log(username);
       sessionStorage.setItem("merchantId", id);
       sessionStorage.setItem("merchantName", username);
-      this.$router.push({
-        path: "/essentialInformation"
-      });
     }
   },
   watch: {
