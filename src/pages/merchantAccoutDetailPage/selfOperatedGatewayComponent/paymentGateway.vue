@@ -55,7 +55,7 @@
           <el-table-column show-overflow-tooltip prop="valid" label="是否激活">
           </el-table-column>
 
-          <!-- <el-table-column
+          <el-table-column
             show-overflow-tooltip
             prop="address"
             label="操作"
@@ -70,7 +70,7 @@
                 />
               </div>
             </div>
-          </el-table-column> -->
+          </el-table-column>
         </el-table>
       </template>
     </section>

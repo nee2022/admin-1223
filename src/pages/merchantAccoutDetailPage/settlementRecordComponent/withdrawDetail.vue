@@ -62,7 +62,7 @@
             prop="paid_time"
             label="转账时间"
           ></el-table-column>
-          <!-- <el-table-column
+          <el-table-column
             show-overflow-tooltip
             prop="address"
             label="操作"
@@ -77,7 +77,7 @@
                 />
               </div>
             </div>
-          </el-table-column> -->
+          </el-table-column>
         </el-table>
       </template>
     </section>

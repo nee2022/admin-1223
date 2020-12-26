@@ -64,7 +64,7 @@
           ></el-table-column>
           <el-table-column show-overflow-tooltip prop="dev_name" label="设备名">
           </el-table-column>
-          <!-- <el-table-column
+          <el-table-column
             show-overflow-tooltip
             prop="address"
             label="操作"
@@ -79,7 +79,7 @@
                 />
               </div>
             </div>
-          </el-table-column> -->
+          </el-table-column>
         </el-table>
       </template>
     </section>
