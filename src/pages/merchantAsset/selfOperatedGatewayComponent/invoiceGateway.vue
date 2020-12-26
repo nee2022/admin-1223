@@ -11,11 +11,14 @@
           <el-input
             placeholder="请输入账号、手机号、昵称进行查找"
             class="inputBlank"
+            v-model="input"
             clearable
           ></el-input>
         </div>
         <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="searchHandler"
+            >搜索</el-button
+          >
         </div>
         <div class="addButton">
           <el-button
@@ -51,21 +54,23 @@
             label="操作"
             width="200"
           >
-            <div class="operation">
-              <div>
-                <img src="../../../assets/images/delete.png" title="删除" />
+            <template slot-scope="scope">
+              <div class="operation">
+                <div @click="invoiceGatewayDeleted(scope.row.id)">
+                  <img src="../../../assets/images/delete.png" title="删除" />
+                </div>
+                <div @click="modifyDialogPop(scope.row)">
+                  <img src="../../../assets/images/compile.png" title="修改" />
+                </div>
+                <div>
+                  <img
+                    src="../../../assets/images/see.png"
+                    title="详情"
+                    height="11px"
+                  />
+                </div>
               </div>
-              <div>
-                <img src="../../../assets/images/compile.png" title="修改" />
-              </div>
-              <div>
-                <img
-                  src="../../../assets/images/see.png"
-                  title="详情"
-                  height="11px"
-                />
-              </div>
-            </div>
+            </template>
           </el-table-column>
         </el-table>
       </template>
@@ -129,7 +134,7 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="modifyDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="paymentGatewayModified">
+          <el-button type="primary" @click="invoiceGatewayModified">
             确 定
           </el-button>
         </span>
@@ -188,8 +193,6 @@ export default {
             "&row=12"
         )
         .then(res => {
-          console.log("res");
-          console.log(res);
           if (res.status == 200) {
             this.tableData = res.data.receipt_gws;
             this.total = res.data.total || 0;
@@ -229,7 +232,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message.success("添加网关成功!");
@@ -237,9 +240,9 @@ export default {
         });
     },
     //删除网关
-    paymentGatewayDeleted(id) {
+    invoiceGatewayDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + id;
+      let url = "http://www.api.sqjtjt.com/admin/api/receipt_gw/" + id;
       this.$confirm("此操作将永久删除该网关, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -255,7 +258,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message({
@@ -282,8 +285,9 @@ export default {
       this.modifyId = row.id;
       this.modifyDialogVisible = true;
     },
-    paymentGatewayModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + this.modifyId;
+    invoiceGatewayModified() {
+      let url =
+        "http://www.api.sqjtjt.com/admin/api/receipt_gw/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
@@ -294,7 +298,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message.success("修改网关成功!");
@@ -306,7 +310,7 @@ export default {
     searchHandler() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/paygws/?token=" +
+          "http://www.api.sqjtjt.com/admin/api/receipt_gws/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -315,7 +319,7 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-            this.tableData = res.data.paygws;
+            this.tableData = res.data.receipt_gws;
             this.total = res.data.total || 0;
           }
         });

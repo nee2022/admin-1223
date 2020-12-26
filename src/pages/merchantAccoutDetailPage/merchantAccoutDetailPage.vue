@@ -84,7 +84,7 @@
               <el-submenu
                 index="4"
                 class="arrowIconHidden"
-                @click.native="routerLinkCompanyInformation"
+                @click.native="routerLinkEnterpriseInformation"
               >
                 <template slot="title">
                   <!-- <img src="../../assets/images/Your company information.png" /> -->
@@ -124,8 +124,10 @@ export default {
     routerLinkBasicInformation() {
       this.$router.push({ path: `/merchantAccoutDetailPage/basicInformation` });
     },
-    routerLinkCompanyInformation() {
-      this.$router.push({ path: `/merchantAsset/companyInformation` });
+    routerLinkEnterpriseInformation() {
+      this.$router.push({
+        path: `/merchantAccoutDetailPage/enterpriseInformation`
+      });
     },
     //弹出框
     tcClose(done) {

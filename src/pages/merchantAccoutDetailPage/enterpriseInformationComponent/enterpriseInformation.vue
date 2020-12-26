@@ -87,7 +87,7 @@ export default {
     getShareRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agent/" +
+          "http://www.api.sqjtjt.com/admin/api/company/" +
             this.id +
             "/?token=" +
             this.token +
@@ -96,8 +96,9 @@ export default {
             "&row=10"
         )
         .then(res => {
+          console.log(res);
           if (res.status == 200) {
-            this.formLabelAlign = res.data.agents;
+            this.formLabelAlign = res.data.company;
           }
         });
     }

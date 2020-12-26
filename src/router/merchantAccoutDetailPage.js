@@ -4,6 +4,8 @@ import Router from "vue-router";
 import refresh from "../pages/refresh";
 
 import basicInformation from "../pages/merchantAccoutDetailPage/basicInformationComponent/basicInformation";
+import enterpriseInformation from "../pages/merchantAccoutDetailPage/enterpriseInformationComponent/enterpriseInformation";
+
 import shareRecord from "../pages/merchantAccoutDetailPage/settlementRecordComponent/shareDetail";
 import transferDetail from "../pages/merchantAccoutDetailPage/settlementRecordComponent/transferDetail";
 import withdrawDetail from "../pages/merchantAccoutDetailPage/settlementRecordComponent/withdrawDetail";
@@ -18,6 +20,10 @@ const routes = [
   {
     path: "/merchantAccoutDetailPage/basicInformation",
     component: basicInformation
+  },
+  {
+    path: "/merchantAccoutDetailPage/enterpriseInformation",
+    component: enterpriseInformation
   },
   {
     path: "/merchantAccoutDetailPage/shareRecord",

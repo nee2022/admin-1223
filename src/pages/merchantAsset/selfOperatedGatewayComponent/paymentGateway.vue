@@ -9,7 +9,7 @@
         <div class="inputFrame">
           <img src="../../../assets/images/search.png" />
           <el-input
-            placeholder="请输入网关名称、appid进行查找"
+            placeholder="请输入名称进行查找"
             v-model="input"
             class="inputBlank"
             clearable
@@ -232,7 +232,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message.success("添加网关成功!");
@@ -258,7 +258,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message({
@@ -297,7 +297,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message.success("修改网关成功!");

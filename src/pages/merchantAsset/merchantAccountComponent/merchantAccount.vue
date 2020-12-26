@@ -237,7 +237,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message.success("添加用户成功!");
@@ -263,7 +263,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message({
@@ -302,7 +302,7 @@ export default {
         .then(() => {
           setTimeout(() => {
             this.$router.replace("/refresh");
-          }, 500);
+          }, 888);
         })
         .then(() => {
           this.$message.success("修改用户成功!");
