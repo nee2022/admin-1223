@@ -82,11 +82,11 @@ export default {
 
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getShareRecordMes();
+    this.getBasicInformation();
   },
   methods: {
     //获取用户信息列表
-    getShareRecordMes() {
+    getBasicInformation() {
       this.$axios
         .get(
           "http://www.api.sqjtjt.com/admin/api/agent/" +

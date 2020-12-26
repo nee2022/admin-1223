@@ -74,7 +74,7 @@
                 <div @click="modifyDialogPop(scope.row)">
                   <img src="../../../assets/images/compile.png" title="修改" />
                 </div>
-                <div>
+                <div @click="merchantMessage(scope.row.id, scope.row.username)">
                   <a href="/#/merchantAccoutDetailPage/basicInformation">
                     <div class="wrapper">
                       <img
@@ -325,6 +325,15 @@ export default {
           this.tableData = res.data.agentss || res.data.agents;
           this.total = res.data.total || 0;
         }
+      });
+    },
+    merchantMessage(id, username) {
+      console.log(id);
+      console.log(username);
+      sessionStorage.setItem("merchantId", id);
+      sessionStorage.setItem("merchantName", username);
+      this.$router.push({
+        path: "/essentialInformation"
       });
     }
   },
