@@ -27,11 +27,17 @@
           <el-table :data="siteTableData" stripe style="width: 100%">
             <el-table-column show-overflow-tooltip align="center">
               <template slot-scope="scope">
-                <div class="wrapper">
-                  <div class="siteIcon" @click="getSiteInfoMes(scope.row.id)">
+                <div
+                  class="wrapper"
+                  @click="getSiteInfoMes(scope.row.id)"
+                  v-bind:class="{
+                    toggleBackgroundcolor: currentStationId === scope.row.id
+                  }"
+                >
+                  <div class="siteIcon">
                     <img :src="img[0]" alt="" />
                   </div>
-                  <div class="siteInfo" @click="getSiteInfoMes(scope.row.id)">
+                  <div class="siteInfo">
                     <div class="name">{{ scope.row.name }}</div>
                     <div class="address">{{ scope.row.address }}</div>
                     <div class="usageDetail">
@@ -40,7 +46,7 @@
                       <span>金额</span>
                     </div>
                   </div>
-                  <div class="operation" @click="getSiteInfoMes(scope.row.id)">
+                  <div class="operation">
                     <template v-if="scope.row.id === currentStationId">
                       <div @click="xiugai(scope.row.id)">
                         <img src="../../../assets/images/xiu.png" />
@@ -91,9 +97,9 @@
               <el-button type="primary" icon="el-icon-search">搜索</el-button>
             </div>
             <div class="addButton">
-              <el-button type="primary" icon="el-icon-circle-plus-outline"
-                >添加</el-button
-              >
+              <el-button type="primary" icon="el-icon-circle-plus-outline">
+                添加
+              </el-button>
             </div>
           </div>
           <template>

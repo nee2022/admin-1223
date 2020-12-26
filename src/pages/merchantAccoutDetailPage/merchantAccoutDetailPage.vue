@@ -81,16 +81,15 @@
                   </el-menu-item>
                 </router-link>
               </el-submenu>
-              <el-submenu
+              <!-- <el-submenu
                 index="4"
                 class="arrowIconHidden"
                 @click.native="routerLinkEnterpriseInformation"
               >
                 <template slot="title">
-                  <!-- <img src="../../assets/images/Your company information.png" /> -->
                   <span slot="title">企业资料</span>
                 </template>
-              </el-submenu>
+              </el-submenu> -->
             </el-menu>
           </el-col>
         </el-row>

@@ -6,13 +6,15 @@
           <myhead></myhead>
         </div>
         <div class="merchantAccoutScan">
-          <div class="picture"></div>
+          <div class="picture">
+            <img src="../../../assets/images/merchantAvatar.svg" alt="" />
+          </div>
           <p>商户名</p>
           <p>(运行中)</p>
-          <el-button type="primary">返回上一级页面</el-button>
+          <!-- <el-button type="primary">返回上一级页面</el-button>
           <div class="blank"></div>
           <el-button>注销按钮</el-button>
-          <el-button>刷新</el-button>
+          <el-button>刷新</el-button> -->
         </div>
       </div>
       <div class="searchArea">
