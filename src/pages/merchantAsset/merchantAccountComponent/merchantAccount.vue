@@ -44,7 +44,12 @@
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="telephone" label="手机">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="type" label="状态">
+          <el-table-column
+            show-overflow-tooltip
+            prop="type"
+            label="商户类型"
+            :formatter="formatMerchantType"
+          >
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="income" label="钱包余额">
           </el-table-column>
@@ -129,8 +134,14 @@
           <el-form-item label="手机号" prop="telephone">
             <el-input v-model="addForm.telephone"></el-input>
           </el-form-item>
-          <el-form-item label="状态" prop="type">
-            <el-input v-model="addForm.type"></el-input>
+          <el-form-item label="商户类型">
+            <el-select v-model="addForm.type" placeholder="请设置商户类型">
+              <el-option label="合伙人" :value="1"></el-option>
+              <el-option label="自营型" :value="2"></el-option>
+              <el-option label="托管型" :value="3"></el-option>
+              <el-option label="影子账号" :value="255"></el-option>
+              <el-option label="其他账号" :value="0"></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -150,8 +161,14 @@
           <el-form-item label="手机号" prop="telephone">
             <el-input v-model="modifyForm.telephone"></el-input>
           </el-form-item>
-          <el-form-item label="状态" prop="type">
-            <el-input v-model="modifyForm.type"></el-input>
+          <el-form-item label="商户类型">
+            <el-select v-model="addForm.type" placeholder="请设置商户类型">
+              <el-option label="合伙人" :value="1"></el-option>
+              <el-option label="自营型" :value="2"></el-option>
+              <el-option label="托管型" :value="3"></el-option>
+              <el-option label="影子账号" :value="255"></el-option>
+              <el-option label="其他账号" :value="0"></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -206,6 +223,22 @@ export default {
     this.getMerchantAccountMes();
   },
   methods: {
+    /*商户类型格式化：cellValue为后台返回的值*/
+    formatMerchantType: function(row, column, cellValue) {
+      var ret = ""; //你想在页面展示的值
+      if (cellValue === 1) {
+        ret = "合伙人"; //根据自己的需求设定
+      } else if (cellValue === 2) {
+        ret = "自营型";
+      } else if (cellValue === 3) {
+        ret = "托管型";
+      } else if (cellValue === 255) {
+        ret = "影子账号";
+      } else if (cellValue === 0) {
+        ret = "其他账号";
+      }
+      return ret;
+    },
     //获取用户信息列表
     getMerchantAccountMes() {
       let url =
