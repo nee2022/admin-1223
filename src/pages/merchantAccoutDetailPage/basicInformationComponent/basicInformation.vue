@@ -10,11 +10,18 @@
             <img src="../../../assets/images/merchantAvatar.svg" alt="" />
           </div>
           <p>{{ this.merchantName }}</p>
-          <p>(运行中)</p>
-          <!-- <el-button type="primary">返回上一级页面</el-button>
+
+          <p v-if="merchantValid" class="validAccount">(运行中)</p>
+          <p v-if="!merchantValid" class="invalidAccount">(已停用)</p>
+          <!-- <el-button type="primary">返回上一级页面</el-button> -->
           <div class="blank"></div>
-          <el-button>注销按钮</el-button>
-          <el-button>刷新</el-button> -->
+          <el-button v-if="merchantValid" @click="validDialogVisible = true"
+            >注销按钮</el-button
+          >
+          <el-button v-if="!merchantValid" @click="validDialogVisible = true"
+            >激活按钮</el-button
+          >
+          <el-button icon="el-icon-refresh" @click="refresh">刷新</el-button>
         </div>
       </div>
     </header>
@@ -55,6 +62,25 @@
         </el-form>
       </template>
     </section>
+    <el-dialog
+      title="提示"
+      :visible.sync="validDialogVisible"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <span v-if="merchantValid">
+        注销该商户账号
+      </span>
+      <span v-if="!merchantValid">
+        激活该商户账号
+      </span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="validDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="closeDialogAndPutValid"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -69,6 +95,7 @@ export default {
       total: 1,
       isActive: true,
       dialogVisible: false,
+      validDialogVisible: false,
       selected: "所有",
       pagenum: 1,
       token: "",
@@ -77,13 +104,18 @@ export default {
       labelPosition: "left",
       formLabelAlign: {},
       merchantName: "",
-      merchantId: ""
+      merchantId: 0,
+      merchantValid: false
     };
   },
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.merchantId = sessionStorage.getItem("merchantId");
     this.merchantName = sessionStorage.getItem("merchantName");
+    let storageMerchantValid = sessionStorage.getItem("merchantValid");
+    if (storageMerchantValid === "true") {
+      this.merchantValid = true;
+    }
     this.getBasicInformation();
   },
   methods: {
@@ -103,6 +135,41 @@ export default {
           if (res.status == 200) {
             this.formLabelAlign = res.data.agents;
           }
+        });
+    },
+    //刷新页面
+    refresh() {
+      this.$router.push("/refresh");
+    },
+    handleClose(done) {
+      this.$confirm("确认关闭？")
+        .then(_ => {
+          done();
+        })
+        .catch(_ => {});
+    },
+    closeDialogAndPutValid() {
+      this.validDialogVisible = false;
+      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.merchantId;
+      this.$axios
+        .put(url, {
+          token: this.token,
+          valid: !this.merchantValid
+        })
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("操作失败!");
+          }
+        })
+        .then(() => {
+          sessionStorage.setItem("merchantValid", !this.merchantValid);
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 888);
+        })
+        .then(() => {
+          this.$message.success("操作成功!");
+          this.addDialogVisible = false;
         });
     }
   }

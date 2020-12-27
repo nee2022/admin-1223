@@ -66,39 +66,39 @@ router.beforeEach((to, from, next) => {
 
 var loading = null;
 
-axios.interceptors.request.use(
-  function(config) {
-    loading = Loading.service({
-      lock: true,
-      text: "Loading",
-      spinner: "el-icon-loading",
-      background: "rgba(0,0,0,0.7)"
-    });
-    return config;
-  },
-  function(error) {
-    Message(error);
-    console.log("========", error);
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.request.use(
+//   function(config) {
+//     loading = Loading.service({
+//       lock: true,
+//       text: "Loading",
+//       spinner: "el-icon-loading",
+//       background: "rgba(0,0,0,0.7)"
+//     });
+//     return config;
+//   },
+//   function(error) {
+//     Message(error);
+//     console.log("========", error);
+//     return Promise.reject(error);
+//   }
+// );
 
-axios.interceptors.response.use(
-  response => {
-    loading.close();
-    // if (response.data.error == 257) {
-    // 	alert("请重新登录")
-    // 	router.push({
-    // 		path: "/logIn"
-    // 	});
-    // }
-    return response;
-  },
-  function(error) {
-    Message(error);
-    loading.close();
-    Message.error("获取数据失败");
-    console.log("========", error);
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.response.use(
+//   response => {
+//     loading.close();
+//     // if (response.data.error == 257) {
+//     // 	alert("请重新登录")
+//     // 	router.push({
+//     // 		path: "/logIn"
+//     // 	});
+//     // }
+//     return response;
+//   },
+//   function(error) {
+//     Message(error);
+//     loading.close();
+//     Message.error("获取数据失败");
+//     console.log("========", error);
+//     return Promise.reject(error);
+//   }
+// );

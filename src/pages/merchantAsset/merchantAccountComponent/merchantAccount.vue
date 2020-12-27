@@ -75,7 +75,13 @@
                   <img src="../../../assets/images/compile.png" title="修改" />
                 </div>
                 <div
-                  @click="merchantMessage(scope.row.id, scope.row.username)"
+                  @click="
+                    merchantMessage(
+                      scope.row.id,
+                      scope.row.username,
+                      scope.row.valid
+                    )
+                  "
                   @contextmenu.prevent
                 >
                   <a href="/#/merchantAccoutDetailPage/basicInformation">
@@ -338,9 +344,13 @@ export default {
         }
       });
     },
-    merchantMessage(id, username) {
+    merchantMessage(id, username, valid) {
       sessionStorage.setItem("merchantId", id);
       sessionStorage.setItem("merchantName", username);
+      sessionStorage.setItem("merchantValid", valid);
+      let merchantValid = sessionStorage.getItem("merchantValid");
+      console.log("merchantvalid");
+      console.log(merchantValid);
     }
   },
   watch: {
