@@ -313,7 +313,7 @@ export default {
         .put(url, this.modifyForm)
         .then(res => {
           if (res.status !== 200) {
-            return this.$message.error("修改用户失败!");
+            return this.$message.error("修改商户失败!");
           }
         })
         .then(() => {
@@ -322,7 +322,7 @@ export default {
           }, 888);
         })
         .then(() => {
-          this.$message.success("修改用户成功!");
+          this.$message.success("修改商户成功!");
           this.addDialogVisible = false;
         });
     },

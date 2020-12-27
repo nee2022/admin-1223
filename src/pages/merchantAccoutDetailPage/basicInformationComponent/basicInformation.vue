@@ -26,41 +26,48 @@
       </div>
     </header>
     <section>
-      <template>
-        <el-form
-          :label-position="labelPosition"
-          label-width="200px"
-          :model="formLabelAlign"
-        >
-          <el-form-item label="用户名">
-            <el-input v-model="formLabelAlign.username"></el-input>
-          </el-form-item>
-          <el-form-item label="手机号">
-            <el-input v-model="formLabelAlign.telephone"></el-input>
-          </el-form-item>
-          <el-form-item label="居民身份证">
-            <el-input v-model="formLabelAlign.identity"></el-input>
-          </el-form-item>
-          <el-form-item label="运营商类型">
-            <el-input v-model="formLabelAlign.type"></el-input>
-          </el-form-item>
-          <el-form-item label="提现类型">
-            <el-input v-model="formLabelAlign.withdraw_type"></el-input>
-          </el-form-item>
-          <el-form-item label="提现费率">
-            <el-input v-model="formLabelAlign.withdraw_rate"></el-input>
-          </el-form-item>
-          <el-form-item label="开户银行">
-            <el-input v-model="formLabelAlign.bank_name"></el-input>
-          </el-form-item>
-          <el-form-item label="开户名">
-            <el-input v-model="formLabelAlign.bank_username"></el-input>
-          </el-form-item>
-          <el-form-item label="银行账号">
-            <el-input v-model="formLabelAlign.bank_account"></el-input>
-          </el-form-item>
-        </el-form>
-      </template>
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="用户名">
+          <el-input v-model="form.username" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="手机号">
+          <el-input v-model="form.telephone"></el-input>
+        </el-form-item>
+        <el-form-item label="居民身份证">
+          <el-input v-model="form.identity" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="运营商类型">
+          <el-select v-model="form.type" placeholder="请设置运营商类型">
+            <el-option label="合伙人" :value="1"></el-option>
+            <el-option label="自营型" :value="2"></el-option>
+            <el-option label="托管型" :value="3"></el-option>
+            <el-option label="影子账号" :value="255"></el-option>
+            <el-option label="其他账号" :value="0"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="提现类型">
+          <el-select v-model="form.withdraw_type" placeholder="请设置提现类型">
+            <el-option label="提现类型1" :value="1"></el-option>
+            <el-option label="提现类型2" :value="2"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="提现费率">
+          <el-input v-model="form.withdraw_rate"></el-input>
+        </el-form-item>
+        <el-form-item label="开户银行">
+          <el-input v-model="form.bank_name"></el-input>
+        </el-form-item>
+        <el-form-item label="开户名">
+          <el-input v-model="form.bank_username"></el-input>
+        </el-form-item>
+        <el-form-item label="银行账号">
+          <el-input v-model="form.bank_account" disabled></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">保存</el-button>
+          <el-button>取消</el-button>
+        </el-form-item>
+      </el-form>
     </section>
     <el-dialog
       title="提示"
@@ -105,7 +112,9 @@ export default {
       formLabelAlign: {},
       merchantName: "",
       merchantId: 0,
-      merchantValid: false
+      merchantValid: false,
+      form: {},
+      readonly: true
     };
   },
   mounted() {
@@ -119,7 +128,29 @@ export default {
     this.getBasicInformation();
   },
   methods: {
-    //获取用户信息列表
+    onSubmit() {
+      this.form.token = this.token;
+      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.merchantId;
+      console.log(url);
+      this.$axios
+        .put(url, this.form)
+        .then(res => {
+          console.log(res);
+          if (res.status !== 200) {
+            return this.$message.error("修改商户失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 888);
+        })
+        .then(() => {
+          this.$message.success("修改商户成功!");
+          this.addDialogVisible = false;
+        });
+    },
+    //获取商户信息列表
     getBasicInformation() {
       this.$axios
         .get(
@@ -133,7 +164,8 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-            this.formLabelAlign = res.data.agents;
+            // this.formLabelAlign = res.data.agents;
+            this.form = res.data.agents;
           }
         });
     },
