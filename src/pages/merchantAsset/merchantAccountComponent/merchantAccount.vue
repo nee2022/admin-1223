@@ -162,7 +162,7 @@
             <el-input v-model="modifyForm.telephone"></el-input>
           </el-form-item>
           <el-form-item label="商户类型">
-            <el-select v-model="addForm.type" placeholder="请设置商户类型">
+            <el-select v-model="modifyForm.type" placeholder="请设置商户类型">
               <el-option label="合伙人" :value="1"></el-option>
               <el-option label="自营型" :value="2"></el-option>
               <el-option label="托管型" :value="3"></el-option>
@@ -338,13 +338,36 @@ export default {
     //弹出商户账号修改对话框
     modifyDialogPop(row) {
       this.modifyId = row.id;
+      this.getBasicInformation();
       this.modifyDialogVisible = true;
+    },
+    //获取商户信息列表
+    getBasicInformation(id) {
+      this.$axios
+        .get(
+          "http://www.api.sqjtjt.com/admin/api/agent/" +
+            this.modifyId +
+            "/?token=" +
+            this.token +
+            "&page=" +
+            this.pagenum +
+            "&row=10"
+        )
+        .then(res => {
+          if (res.status == 200) {
+            // this.formLabelAlign = res.data.agents;
+            this.modifyForm = res.data.agents;
+          }
+        });
     },
     merchantAccoutModified() {
       let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.modifyId;
+      this.modifyForm.token = this.token;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
+          console.log("res");
+          console.log(res);
           if (res.status !== 200) {
             return this.$message.error("修改商户失败!");
           }
