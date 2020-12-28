@@ -132,11 +132,9 @@ export default {
     onSubmit() {
       this.form.token = this.token;
       let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.merchantId;
-      console.log(url);
       this.$axios
         .put(url, this.form)
         .then(res => {
-          console.log(res);
           if (res.status !== 200) {
             return this.$message.error("修改商户失败!");
           }

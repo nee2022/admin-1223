@@ -15,12 +15,12 @@
           <p v-if="!merchantValid" class="invalidAccount">(已停用)</p>
           <!-- <el-button type="primary">返回上一级页面</el-button> -->
           <div class="blank"></div>
-          <el-button v-if="merchantValid" @click="validDialogVisible = true"
+          <!-- <el-button v-if="merchantValid" @click="validDialogVisible = true"
             >注销按钮</el-button
           >
           <el-button v-if="!merchantValid" @click="validDialogVisible = true"
             >激活按钮</el-button
-          >
+          > -->
           <el-button icon="el-icon-refresh" @click="refresh">刷新</el-button>
         </div>
       </div>
@@ -153,6 +153,10 @@ export default {
     this.getShareRecordMes();
   },
   methods: {
+    //刷新页面
+    refresh() {
+      this.$router.push("/refresh");
+    },
     //获取用户信息列表
     getShareRecordMes() {
       this.$axios
