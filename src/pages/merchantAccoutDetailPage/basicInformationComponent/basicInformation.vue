@@ -65,7 +65,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">保存</el-button>
-          <el-button>取消</el-button>
+          <el-button @click="refresh">取消</el-button>
         </el-form-item>
       </el-form>
     </section>
@@ -128,6 +128,7 @@ export default {
     this.getBasicInformation();
   },
   methods: {
+    //修改商户信息
     onSubmit() {
       this.form.token = this.token;
       let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.merchantId;
