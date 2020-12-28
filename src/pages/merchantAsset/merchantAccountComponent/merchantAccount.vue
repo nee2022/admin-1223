@@ -242,7 +242,7 @@ export default {
     //获取用户信息列表
     getMerchantAccountMes() {
       let url =
-        "http://www.api.sqjtjt.com/admin/api/agents/" +
+        "/admin/api/agents/" +
         this.$route.params.pathMatch.slice(21) +
         "/?token=" +
         this.token +
@@ -251,7 +251,7 @@ export default {
         "&row=12";
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agents/" +
+          "/admin/api/agents/" +
             this.$route.params.pathMatch.slice(21) +
             "/?token=" +
             this.token +
@@ -278,7 +278,7 @@ export default {
     //增加商户账号
     merchantAccountAdded() {
       this.$axios
-        .post("http://www.api.sqjtjt.com/admin/api/agent", this.addForm)
+        .post("/admin/api/agent", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加用户失败!");
@@ -297,7 +297,7 @@ export default {
     //删除商户账号
     merchantAccountDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + id;
+      let url = "/admin/api/agent/" + id;
       this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -345,7 +345,7 @@ export default {
     getBasicInformation(id) {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agent/" +
+          "/admin/api/agent/" +
             this.modifyId +
             "/?token=" +
             this.token +
@@ -361,7 +361,7 @@ export default {
         });
     },
     merchantAccoutModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.modifyId;
+      let url = "/admin/api/agent/" + this.modifyId;
       this.modifyForm.token = this.token;
       this.$axios
         .put(url, this.modifyForm)
@@ -386,7 +386,7 @@ export default {
     //查找商户账号
     searchHandler() {
       let url =
-        "http://www.api.sqjtjt.com/admin/api/agents" +
+        "/admin/api/agents" +
         "/?token=" +
         this.token +
         "&page=" +

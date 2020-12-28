@@ -205,7 +205,7 @@ export default {
     getSiteMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/stations/1?token=" +
+          "/admin/api/stations/1?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.sitePagenum +
@@ -227,7 +227,7 @@ export default {
 
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/station/" +
+          "/admin/api/station/" +
             this.currentStationId +
             "/chargers?token=" +
             JSON.parse(this.token) +

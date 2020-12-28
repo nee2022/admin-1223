@@ -113,7 +113,7 @@ export default {
     getIssuedInvoiceRecordMesMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/receipts/state/3?token=" +
+          "/admin/api/receipts/state/3?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

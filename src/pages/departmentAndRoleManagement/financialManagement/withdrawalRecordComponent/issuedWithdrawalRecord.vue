@@ -120,7 +120,7 @@ export default {
     getIssuedWithdrawalRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/withdraws/state/1?token=" +
+          "/admin/api/withdraws/state/1?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

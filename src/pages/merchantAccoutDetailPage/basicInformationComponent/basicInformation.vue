@@ -131,7 +131,7 @@ export default {
     //修改商户信息
     onSubmit() {
       this.form.token = this.token;
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.merchantId;
+      let url = "/admin/api/agent/" + this.merchantId;
       this.$axios
         .put(url, this.form)
         .then(res => {
@@ -153,7 +153,7 @@ export default {
     getBasicInformation() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agent/" +
+          "/admin/api/agent/" +
             this.merchantId +
             "/?token=" +
             this.token +
@@ -181,7 +181,7 @@ export default {
     },
     closeDialogAndPutValid() {
       this.validDialogVisible = false;
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.merchantId;
+      let url = "/admin/api/agent/" + this.merchantId;
       this.$axios
         .put(url, {
           token: this.token,

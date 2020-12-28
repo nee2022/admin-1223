@@ -112,7 +112,7 @@ export default {
     getEnterpriseInformationMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agent/" +
+          "/admin/api/agent/" +
             this.id +
             "/companies/?token=" +
             this.token +

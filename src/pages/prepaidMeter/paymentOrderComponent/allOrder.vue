@@ -184,7 +184,7 @@ export default {
     getOrderRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/payments/?token=" +
+          "/admin/api/payments/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -215,12 +215,7 @@ export default {
     //账单退款
     refund(id) {
       this.$axios
-        .post(
-          "http://www.api.sqjtjt.com/admin/api/payment/" +
-            this.refundId +
-            "/refund",
-          this.addForm
-        )
+        .post("/admin/api/payment/" + this.refundId + "/refund", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("退款失败!");
@@ -239,7 +234,7 @@ export default {
     //删除商户账号
     merchantAccountDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + id;
+      let url = "/admin/api/agent/" + id;
       this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -283,7 +278,7 @@ export default {
       this.modifyDialogVisible = true;
     },
     merchantAccoutModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/agent/" + this.modifyId;
+      let url = "/admin/api/agent/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
@@ -305,7 +300,7 @@ export default {
     //查找商户账号
     searchHandler() {
       let url =
-        "http://www.api.sqjtjt.com/admin/api/agents" +
+        "/admin/api/agents" +
         "/?token=" +
         this.token +
         "&page=" +

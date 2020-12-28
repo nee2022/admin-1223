@@ -190,7 +190,7 @@ export default {
     getScanCodePackageMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/package/groups/?token=" +
+          "/admin/api/package/groups/?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.scanCodePackagePagenum +
@@ -216,7 +216,7 @@ export default {
     getScanCodePackageInfoMes(scanCodePackageId) {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/package/group/" +
+          "/admin/api/package/group/" +
             scanCodePackageId +
             "/?token=" +
             JSON.parse(this.token) +

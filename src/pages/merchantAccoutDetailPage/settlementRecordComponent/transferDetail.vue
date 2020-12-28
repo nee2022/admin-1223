@@ -151,7 +151,7 @@ export default {
     getShareRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agent/" +
+          "/admin/api/agent/" +
             this.id +
             "/transfers/?token=" +
             this.token +
@@ -176,7 +176,7 @@ export default {
     searchHandler() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/agent/" +
+          "/admin/api/agent/" +
             this.id +
             "/transfers/?token=" +
             this.token +

@@ -128,7 +128,7 @@ export default {
     getRealTimeOrderMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/parking/pdrs/?token=" +
+          "/admin/api/parking/pdrs/?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

@@ -187,7 +187,7 @@ export default {
     getPaymentGatewayMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/paygws/?token=" +
+          "/admin/api/paygws/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -223,7 +223,7 @@ export default {
     //增加网关
     paymentGatewayAdded() {
       this.$axios
-        .post("http://www.api.sqjtjt.com/admin/api/paygw", this.addForm)
+        .post("/admin/api/paygw", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加网关失败!");
@@ -242,7 +242,7 @@ export default {
     //删除网关
     paymentGatewayDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + id;
+      let url = "/admin/api/paygw/" + id;
       this.$confirm("此操作将永久删除该网关, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -286,7 +286,7 @@ export default {
       this.modifyDialogVisible = true;
     },
     paymentGatewayModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/paygw/" + this.modifyId;
+      let url = "/admin/api/paygw/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
@@ -309,7 +309,7 @@ export default {
     searchHandler() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/paygws/?token=" +
+          "/admin/api/paygws/?token=" +
             this.token +
             "&page=" +
             this.pagenum +

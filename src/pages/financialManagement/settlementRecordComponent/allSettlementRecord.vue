@@ -118,7 +118,7 @@ export default {
     getAllSettlementRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/transfers/?token=" +
+          "/admin/api/transfers/?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

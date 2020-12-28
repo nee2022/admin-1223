@@ -459,11 +459,7 @@ export default {
     //获取用户信息列表
     getRoleManagementMes() {
       this.$axios
-        .get(
-          "http://www.api.sqjtjt.com/admin/api/roles/?token=" +
-            JSON.parse(this.token) +
-            "&page=1"
-        )
+        .get("/admin/api/roles/?token=" + JSON.parse(this.token) + "&page=1")
         .then(res => {
           if (res.status == 200) {
             this.tableData1 = res.data.roles;

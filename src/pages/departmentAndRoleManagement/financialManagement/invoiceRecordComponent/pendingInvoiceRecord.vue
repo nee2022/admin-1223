@@ -123,7 +123,7 @@ export default {
     getPendingInvoiceRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/receipts/state/0?token=" +
+          "/admin/api/receipts/state/0?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

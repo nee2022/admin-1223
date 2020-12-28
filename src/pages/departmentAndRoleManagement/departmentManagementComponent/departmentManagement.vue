@@ -178,10 +178,7 @@ export default {
     // 获取用户信息列表
     getDepartmentManagementMes() {
       this.$axios
-        .get(
-          "http://www.api.sqjtjt.com/admin/api/departments/?token=" +
-            JSON.parse(this.token)
-        )
+        .get("/admin/api/departments/?token=" + JSON.parse(this.token))
         .then(res => {
           if (res.status == 200) {
             this.tableData1 = res.data.departments;
@@ -195,7 +192,7 @@ export default {
     getDepartmentsInfoMes(currentId = this.currentId) {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/department/" +
+          "/admin/api/department/" +
             currentId +
             "/administrators/?token=" +
             JSON.parse(this.token) +

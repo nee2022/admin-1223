@@ -130,7 +130,7 @@ export default {
     getShareRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/transfers/2?token=" +
+          "/admin/api/transfers/2?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

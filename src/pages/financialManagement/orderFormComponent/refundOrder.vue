@@ -120,7 +120,7 @@ export default {
     getRefundOrderMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/refunds/?token=" +
+          "/admin/api/refunds/?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

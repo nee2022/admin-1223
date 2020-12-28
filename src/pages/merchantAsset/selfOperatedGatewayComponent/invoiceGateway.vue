@@ -186,7 +186,7 @@ export default {
     getInvoiceGatewayMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/receipt_gws/?token=" +
+          "/admin/api/receipt_gws/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -222,7 +222,7 @@ export default {
     //增加网关
     invoiceGatewayAdded() {
       this.$axios
-        .post("http://www.api.sqjtjt.com/admin/api/receipt_gw", this.addForm)
+        .post("/admin/api/receipt_gw", this.addForm)
         .then(res => {
           console.log(res);
           if (res.status !== 200) {
@@ -242,7 +242,7 @@ export default {
     //删除网关
     invoiceGatewayDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/receipt_gw/" + id;
+      let url = "/admin/api/receipt_gw/" + id;
       this.$confirm("此操作将永久删除该网关, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -286,8 +286,7 @@ export default {
       this.modifyDialogVisible = true;
     },
     invoiceGatewayModified() {
-      let url =
-        "http://www.api.sqjtjt.com/admin/api/receipt_gw/" + this.modifyId;
+      let url = "/admin/api/receipt_gw/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
@@ -310,7 +309,7 @@ export default {
     searchHandler() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/receipt_gws/?token=" +
+          "/admin/api/receipt_gws/?token=" +
             this.token +
             "&page=" +
             this.pagenum +

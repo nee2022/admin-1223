@@ -106,7 +106,7 @@ export default {
     getPendingWithdrawalRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/withdraws/state/0?token=" +
+          "/admin/api/withdraws/state/0?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +

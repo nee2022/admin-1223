@@ -194,7 +194,7 @@ export default {
     getOpenPlatformMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/partners/?token=" +
+          "/admin/api/partners/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -230,7 +230,7 @@ export default {
     //增加平台
     openPlatformAdded() {
       this.$axios
-        .post("http://www.api.sqjtjt.com/admin/api/partner", this.addForm)
+        .post("/admin/api/partner", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加平台失败!");
@@ -249,7 +249,7 @@ export default {
     //删除平台
     openPlatformDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/partner/" + id;
+      let url = "/admin/api/partner/" + id;
       this.$confirm("此操作将永久删除该平台, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -293,7 +293,7 @@ export default {
       this.modifyDialogVisible = true;
     },
     openPlatformModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/partner/" + this.modifyId;
+      let url = "/admin/api/partner/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
@@ -316,7 +316,7 @@ export default {
     searchHandler() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/partners/?token=" +
+          "/admin/api/partners/?token=" +
             this.token +
             "&page=" +
             this.pagenum +

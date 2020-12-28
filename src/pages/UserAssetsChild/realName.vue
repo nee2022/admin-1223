@@ -130,7 +130,7 @@
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
 				//console.log(toKen)
-				this.$axios.get("http://www.api.sqjtjt.com/admin/api/user/certificates/?token=" + toKen + "&page=" + this.pagenum + "&row=14")
+				this.$axios.get("/admin/api/user/certificates/?token=" + toKen + "&page=" + this.pagenum + "&row=14")
 					.then(res => {
 						console.log(res.data)
 						console.log(res.data.user_certificates)

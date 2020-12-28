@@ -207,7 +207,7 @@ export default {
     getCompanyInformationMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/companies/?token=" +
+          "/admin/api/companies/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
@@ -243,7 +243,7 @@ export default {
     //增加公司
     companyAdded() {
       this.$axios
-        .post("http://www.api.sqjtjt.com/admin/api/company", this.addForm)
+        .post("/admin/api/company", this.addForm)
         .then(res => {
           if (res.status !== 200) {
             return this.$message.error("添加公司失败!");
@@ -262,7 +262,7 @@ export default {
     //删除公司
     companyDeleted(id) {
       let enterState = true;
-      let url = "http://www.api.sqjtjt.com/admin/api/company/" + id;
+      let url = "/admin/api/company/" + id;
       this.$confirm("此操作将永久删除该公司信息, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -306,7 +306,7 @@ export default {
       this.modifyDialogVisible = true;
     },
     companyModified() {
-      let url = "http://www.api.sqjtjt.com/admin/api/company/" + this.modifyId;
+      let url = "/admin/api/company/" + this.modifyId;
       this.$axios
         .put(url, this.modifyForm)
         .then(res => {
@@ -329,7 +329,7 @@ export default {
     searchHandler() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/companies/?token=" +
+          "/admin/api/companies/?token=" +
             this.token +
             "&page=" +
             this.pagenum +

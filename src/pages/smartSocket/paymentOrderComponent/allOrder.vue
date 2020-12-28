@@ -121,7 +121,7 @@ export default {
     getOrderRecordMes() {
       this.$axios
         .get(
-          "http://www.api.sqjtjt.com/admin/api/payments/?token=" +
+          "/admin/api/payments/?token=" +
             JSON.parse(this.token) +
             "&page=" +
             this.pagenum +
