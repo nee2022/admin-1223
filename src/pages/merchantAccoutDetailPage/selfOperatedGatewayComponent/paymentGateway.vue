@@ -9,12 +9,19 @@
           <div class="picture">
             <img src="../../../assets/images/merchantAvatar.svg" alt="" />
           </div>
-          <p>商户名</p>
-          <p>(运行中)</p>
-          <!-- <el-button type="primary">返回上一级页面</el-button>
+          <p>{{ this.merchantName }}</p>
+
+          <p v-if="merchantValid" class="validAccount">(运行中)</p>
+          <p v-if="!merchantValid" class="invalidAccount">(已停用)</p>
+          <!-- <el-button type="primary">返回上一级页面</el-button> -->
           <div class="blank"></div>
-          <el-button>注销按钮</el-button>
-          <el-button>刷新</el-button> -->
+          <el-button v-if="merchantValid" @click="validDialogVisible = true"
+            >注销按钮</el-button
+          >
+          <el-button v-if="!merchantValid" @click="validDialogVisible = true"
+            >激活按钮</el-button
+          >
+          <el-button icon="el-icon-refresh" @click="refresh">刷新</el-button>
         </div>
       </div>
       <div class="searchArea">
@@ -109,12 +116,21 @@ export default {
       token: "",
       pagesize: 10,
       input: "",
-      id: 239
+      id: 239,
+      merchantName: "",
+      merchantId: 0,
+      merchantValid: false
     };
   },
 
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.merchantId = sessionStorage.getItem("merchantId");
+    this.merchantName = sessionStorage.getItem("merchantName");
+    let storageMerchantValid = sessionStorage.getItem("merchantValid");
+    if (storageMerchantValid === "true") {
+      this.merchantValid = true;
+    }
     this.getShareRecordMes();
   },
   methods: {
