@@ -10,7 +10,10 @@
             <img src="../assets/images/set up.png" />
           </div>
           <div class="user-img" @click="change">
-            <img src="../assets/images/Head portrait.png" style="height: 40px;width: 40px;"/>
+            <img
+              src="../assets/images/Head portrait.png"
+              style="height: 40px;width: 40px;"
+            />
           </div>
           <div>
             <span>{{ admin.fullname }}</span>
@@ -29,9 +32,9 @@
         <div :class="{ display: falgs }">
           <div class="zhanghu">
             <span>我的账户</span>
-            <router-link to="/centre">
+            <a href="/#/centre">
               <span class="e" style="color: #1e69fe">个人中心</span>
-            </router-link>
+            </a>
           </div>
           <div class="touxian">
             <img src="../assets/images/timgr.png" alt="" />
@@ -69,34 +72,32 @@
         <div :class="{ display: falgss }">
           <div class="zhanghu">
             <span>常用产品</span>
-            <router-link to="/centre">
+            <a href="/#/centre">
               <span style="color: #1e69fe">用户中心</span>
-            </router-link>
+            </a>
           </div>
           <div>
             <div class="ping">平台管理</div>
             <div class="zi">
-              <router-link to="/usersNum">
+              <a href="/#/usersNum">
                 <span>会员资产</span>
-              </router-link>
-              <router-link to="/merchantAsset/agent">
+              </a>
+              <a href="/#/merchantAsset/agent">
                 <span>商户资产</span>
-              </router-link>
-              <router-link to="/financialManagement/allOrder">
-                <span>财务管理</span></router-link
-              >
-              <router-link to="/departmentManagement/departmentManagement">
+              </a>
+              <a href="/#/financialManagement/allOrder">
+                <span>财务管理</span>
+              </a>
+              <a href="/#/departmentManagement/departmentManagement">
                 <span>人力资源</span>
-              </router-link>
-              <router-link to="/Pcoupon">
+              </a>
+              <a href="/#/Pcoupon">
                 <span>促销优惠</span>
-              </router-link>
-              <router-link to="/Logging"> <span>系统运维</span></router-link
-              >
-              <router-link to="/union">
-              
-              <span>物联中心</span>
-              </router-link>
+              </a>
+              <a href="/#/Logging"> <span>系统运维</span></a>
+              <a href="/#/union">
+                <span>物联中心</span>
+              </a>
 
               <!-- <span>客户服务</span> -->
             </div>
@@ -104,24 +105,35 @@
           <div>
             <div class="ping">智慧充电</div>
             <div class="zi">
-               <router-link to="/carAll">
-              <span>汽车充电</span>
-              </router-link>
-              <router-link to="/motoAll">
-              <span>电单车充电</span>
-               </router-link>
-              </div>
+              <a href="/#/carAll">
+                <span>汽车充电</span>
+              </a>
+              <a href="/#/motoAll">
+                <span>电单车充电</span>
+              </a>
+            </div>
           </div>
           <div>
             <div class="ping">智慧停车</div>
             <div class="zi">
-              <router-link to="/road">
-              <span>道路停车</span>
-               </router-link>
-                <router-link to="/parkingChang">
-              <span>停车场</span>
-               </router-link>
-              </div>
+              <a href="/#/road">
+                <span>道路停车</span>
+              </a>
+              <a href="/#/parkingChang">
+                <span>停车场</span>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="ping">智慧充电</div>
+            <div class="zi">
+              <a href="/#/prepaidMeter/site">
+                <span>预付费电表</span>
+              </a>
+              <a href="/#/smartSocket/site">
+                <span>智能插座</span>
+              </a>
+            </div>
           </div>
           <!-- <div>
             <div class="ping">智慧用电</div>
@@ -152,7 +164,7 @@ export default {
       admin: JSON.parse(localStorage.getItem("admin")),
       msg: [],
       falgss: true,
-      falgs: false,
+      falgs: false
     };
   },
   mounted() {
@@ -176,8 +188,8 @@ export default {
     },
     change() {
       this.falg = !this.falg;
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
