@@ -50,9 +50,9 @@
               </template>
             </el-table-column>
             <el-table-column prop="amount" label="订单金额"> </el-table-column>
-            <el-table-column prop="pay" label="支付金额">
+            <el-table-column prop="pay" label="支付金额"> </el-table-column>
+            <el-table-column prop="paid_time" label="支付时间">
             </el-table-column>
-            <el-table-column prop="paid_time" label="支付时间"> </el-table-column>
             <!-- <el-table-column prop="address" label="操作" width="200">
               <div class="operation">
                 <div>
@@ -116,12 +116,12 @@ export default {
         "退款失败",
         "等待开始",
         "等待结束",
-        "充电完成",
-      ],
+        "充电完成"
+      ]
     };
   },
   created() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getParksMes();
   },
   methods: {
@@ -135,7 +135,7 @@ export default {
             this.newpark +
             "&row=16"
         )
-        .then((res) => {
+        .then(res => {
           console.log(res);
           this.parkList = res.data.payments;
           this.parkTotal = res.data.total;
@@ -149,8 +149,8 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -163,7 +163,7 @@ export default {
 }
 
 .input_right {
-   margin-left: -43px;
+  margin-left: -43px;
 
   width: 65% !important;
 }
@@ -280,7 +280,7 @@ export default {
 }
 
 .right-con-top {
-  width:600px;
+  width: 600px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

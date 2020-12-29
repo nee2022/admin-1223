@@ -10,6 +10,7 @@ import temperatureSensor from "../pages/powerMonitorSystem/resourceAdministratio
 import humiditySensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/humiditySensor";
 
 import meterReadRecord from "../pages/powerMonitorSystem/dataCollectionComponent/meterReadRecord";
+import alarmLog from "../pages/powerMonitorSystem/dataCollectionComponent/alarmLog";
 
 const routes = [
   { path: "/powerMonitorSystem/panorama", component: panorama },
@@ -24,6 +25,8 @@ const routes = [
   },
 
   { path: "/powerMonitorSystem/meterReadRecord", component: meterReadRecord },
+  { path: "/powerMonitorSystem/alarmLog", component: alarmLog },
+
   { path: "*", component: highVoltageRoom }
 ];
 const router = new Router({

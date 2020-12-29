@@ -2,7 +2,7 @@
   <div class="zyhSingleLineListMainPage">
     <header>
       <div class="infoArea">
-        <div class="pageName">财务管理</div>
+        <div class="pageName">告警日志</div>
         <div class="profile">
           <myhead></myhead>
         </div>
@@ -24,36 +24,15 @@
     <section>
       <template>
         <el-table :data="tableData" stripe style="width: 100%">
-          <el-table-column show-overflow-tooltip prop="id" label="用户ID">
+          <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="dealno" label="账单号">
-          </el-table-column>
-          <el-table-column
-            show-overflow-tooltip
-            prop="account"
-            label="账号"
-          ></el-table-column>
-          <el-table-column show-overflow-tooltip prop="amount" label="金额">
+          <el-table-column show-overflow-tooltip prop="errmsg" label="告警信息">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
-            prop="dev_name"
-            label="关联设备"
+            prop="created_time"
+            label="告警时间"
           >
-          </el-table-column>
-          <el-table-column
-            show-overflow-tooltip
-            prop="payee_bank_account"
-            label="收款账号"
-          >
-          </el-table-column>
-          <el-table-column
-            show-overflow-tooltip
-            prop="paid_time"
-            label="分成时间"
-          >
-          </el-table-column>
-          <el-table-column show-overflow-tooltip prop="state" label="状态">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -93,8 +72,11 @@
 
 <script>
 import myhead from "../../../components/myhead";
+
 export default {
-  components: { myhead },
+  components: {
+    myhead
+  },
   data() {
     return {
       tableData: [],
@@ -111,22 +93,22 @@ export default {
 
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getAllSettlementRecordMes();
+    this.getAllInvoiceRecordMes();
   },
   methods: {
     //获取用户信息列表
-    getAllSettlementRecordMes() {
+    getAllInvoiceRecordMes() {
       this.$axios
         .get(
-          "/admin/api/transfers/?token=" +
+          "/admin/api/operator/logs/?token=" +
             this.token +
             "&page=" +
             this.pagenum +
-            "&row=12"
+            "&row=12&dt=20200924"
         )
         .then(res => {
           if (res.status == 200) {
-            this.tableData = res.data.transfer_logs;
+            this.tableData = res.data.logs;
             this.total = res.data.total || 0;
             var pn = this.pagenum;
           }
@@ -135,7 +117,7 @@ export default {
     //监听页码值改变
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
-      this.getAllSettlementRecordMes();
+      this.getAllInvoiceRecordMes();
     }
   }
 };

@@ -100,7 +100,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getIssuedWithdrawalRecordMes();
   },
   methods: {
@@ -109,7 +109,7 @@ export default {
       this.$axios
         .get(
           "/admin/api/withdraws/state/1?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.pagenum +
             "&row=12"

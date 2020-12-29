@@ -122,7 +122,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getTransferRecordMes();
   },
   methods: {
@@ -131,7 +131,7 @@ export default {
       this.$axios
         .get(
           "/admin/api/transfers/2?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.pagenum +
             "&row=12"

@@ -179,7 +179,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getScanCodePackageMes();
   },
   methods: {
@@ -191,7 +191,7 @@ export default {
       this.$axios
         .get(
           "/admin/api/package/groups/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.scanCodePackagePagenum +
             "&row=6"
@@ -219,7 +219,7 @@ export default {
           "/admin/api/package/group/" +
             scanCodePackageId +
             "/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.scanCodePackageInfoPagenum +
             "&row=12"

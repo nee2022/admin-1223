@@ -77,7 +77,7 @@
                     <span>抄表记录</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="">
+                <router-link to="/powerMonitorSystem/alarmLog">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/shishidingdan.png" />
                     <span>告警日志</span>

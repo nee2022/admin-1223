@@ -70,14 +70,16 @@
           <el-table :data="parkList" stripe style="width: 100%">
             <el-table-column prop="id" label="车牌ID"> </el-table-column>
             <el-table-column prop="plate" label="车牌"> </el-table-column>
-                        <el-table-column  label="类型"> 
+            <el-table-column label="类型">
               <template slot-scope="scope">
-                <div style="text-align: center !important;">{{types[scope.row.type]}}</div>
+                <div style="text-align: center !important;">
+                  {{ types[scope.row.type] }}
+                </div>
               </template>
             </el-table-column>
-            <el-table-column prop="station_list" label="生效站点列表"> </el-table-column>
-            <el-table-column prop="memo" label="备注">
+            <el-table-column prop="station_list" label="生效站点列表">
             </el-table-column>
+            <el-table-column prop="memo" label="备注"> </el-table-column>
             <el-table-column prop="address" label="操作" width="200">
               <template>
                 <div class="operation">
@@ -144,40 +146,39 @@ export default {
       tableData: [],
       parkList: [],
       stationsId: "",
-      types:[
-        '',
-        '',
-        '黑名单',
-        '白名单',
-      ]
+      types: ["", "", "黑名单", "白名单"]
     };
   },
   created() {
     this.stationsId = this.$store.state.id;
-    this.stationsName = this.$store.state.name
-    this.token = localStorage.getItem("token");
+    this.stationsName = this.$store.state.name;
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getParksMes();
   },
   methods: {
     add() {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
-        .post(`/admin/api/plate?token=${toKen}&type=2&plate=${this.a}&station=${this.stationsId}`)
-        .then((res) => {
+        .post(
+          `/admin/api/plate?token=${toKen}&type=2&plate=${this.a}&station=${this.stationsId}`
+        )
+        .then(res => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
           if (res.status == 200) {
             this.getParksMes();
           }
-          this.dialogVisible = false
+          this.dialogVisible = false;
         });
     },
     getParksMes() {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
-        .get(`/admin/api/station/${this.stationsId}/plates/2?token=${toKen}&page=${this.newpark}&row=8`)
-        .then((res) => {
+        .get(
+          `/admin/api/station/${this.stationsId}/plates/2?token=${toKen}&page=${this.newpark}&row=8`
+        )
+        .then(res => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -196,8 +197,8 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -250,7 +251,7 @@ export default {
 }
 .el-table td div {
   text-align: left;
-  margin: 0 auto
+  margin: 0 auto;
 }
 .tem-right {
   display: flex;

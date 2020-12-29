@@ -197,7 +197,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getSiteMes();
   },
   methods: {
@@ -206,7 +206,7 @@ export default {
       this.$axios
         .get(
           "/admin/api/stations/1?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.sitePagenum +
             "&row=6"
@@ -230,7 +230,7 @@ export default {
           "/admin/api/station/" +
             this.currentStationId +
             "/chargers?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.siteInfoPagenum +
             "&row=12"

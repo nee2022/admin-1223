@@ -13,9 +13,7 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="(flag = true)"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="flag = true">确 定</el-button>
         </span>
       </el-dialog>
 
@@ -61,7 +59,6 @@
               type="primary"
               icon="el-icon-plus"
               class="but but2"
-             
               >添加</el-button
             >
           </div>
@@ -79,7 +76,8 @@
             </el-table-column>
             <el-table-column prop="enter_time" label="驶入时间">
             </el-table-column>
-            <el-table-column prop="leave_time	" label="驶出时间"> </el-table-column>
+            <el-table-column prop="leave_time	" label="驶出时间">
+            </el-table-column>
             <el-table-column prop="address" label="操作" width="200">
               <template>
                 <div class="operation">
@@ -146,13 +144,25 @@ export default {
       tableData: [],
       parkList: [],
       stationsId: "",
-      types: ["系统", "管理员", "运营商", "用户", "收费员", "抓拍机", "地磁", "高位视频", "低位视频", "巡检车", "合作方"],
+      types: [
+        "系统",
+        "管理员",
+        "运营商",
+        "用户",
+        "收费员",
+        "抓拍机",
+        "地磁",
+        "高位视频",
+        "低位视频",
+        "巡检车",
+        "合作方"
+      ]
     };
   },
   created() {
     this.stationsId = this.$store.state.id;
     this.stationsName = this.$store.state.name;
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getParksMes();
   },
   methods: {
@@ -162,7 +172,7 @@ export default {
         .post(
           `/admin/api/plate?token=${toKen}&type=2&plate=${this.a}&station=${this.stationsId}`
         )
-        .then((res) => {
+        .then(res => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -178,7 +188,7 @@ export default {
         .get(
           `admin/api/charger/${this.stationsId}/pdrs?token=${toKen}&page=${this.newpark}&row=8`
         )
-        .then((res) => {
+        .then(res => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -197,8 +207,8 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    },
-  },
+    }
+  }
 };
 </script>
 

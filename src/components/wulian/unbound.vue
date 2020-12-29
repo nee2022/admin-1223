@@ -46,8 +46,9 @@
             <el-table-column prop="code" label="代码"> </el-table-column>
             <el-table-column prop="station" label="站点ID"> </el-table-column>
             <el-table-column prop="charger" label="设备 ID"> </el-table-column>
-            <el-table-column prop="gun"  label="端口ID"> </el-table-column>
-            <el-table-column prop="url"  label="二维码显示URL"> </el-table-column>
+            <el-table-column prop="gun" label="端口ID"> </el-table-column>
+            <el-table-column prop="url" label="二维码显示URL">
+            </el-table-column>
             <el-table-column prop="address" label="操作" width="200">
               <div class="operation">
                 <div>
@@ -101,11 +102,11 @@ export default {
       pagepark: 16,
       newpark: 1, //分页
       tableData: [],
-      parkList: [],
+      parkList: []
     };
   },
   created() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getParksMes();
   },
   methods: {
@@ -119,14 +120,14 @@ export default {
             this.newpark +
             "&row=16"
         )
-        .then((res) => {
+        .then(res => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
           if (res.status == 200) {
             this.parkList = res.data.qrcodes; //用户列表数据
             this.parkTotal = res.data.total;
-          //   console.log(this.parkList);
+            //   console.log(this.parkList);
           }
         });
     },
@@ -138,8 +139,8 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -269,7 +270,7 @@ export default {
 }
 
 .right-con-top {
-  width:600px;
+  width: 600px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

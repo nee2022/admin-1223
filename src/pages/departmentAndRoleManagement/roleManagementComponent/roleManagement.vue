@@ -412,7 +412,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     console.log("XXXXXX");
     // this.getRoleManagementJSON();
     console.log("YYYYY");
@@ -459,7 +459,7 @@ export default {
     //获取用户信息列表
     getRoleManagementMes() {
       this.$axios
-        .get("/admin/api/roles/?token=" + JSON.parse(this.token) + "&page=1")
+        .get("/admin/api/roles/?token=" + this.token + "&page=1")
         .then(res => {
           if (res.status == 200) {
             this.tableData1 = res.data.roles;

@@ -117,7 +117,7 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getAllInvoiceRecordMes();
   },
   methods: {
@@ -126,7 +126,7 @@ export default {
       this.$axios
         .get(
           "/admin/api/receipts/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.pagenum +
             "&row=12"

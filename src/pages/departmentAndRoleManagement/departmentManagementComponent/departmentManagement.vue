@@ -171,14 +171,14 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getDepartmentManagementMes();
   },
   methods: {
     // 获取用户信息列表
     getDepartmentManagementMes() {
       this.$axios
-        .get("/admin/api/departments/?token=" + JSON.parse(this.token))
+        .get("/admin/api/departments/?token=" + this.token)
         .then(res => {
           if (res.status == 200) {
             this.tableData1 = res.data.departments;
@@ -195,7 +195,7 @@ export default {
           "/admin/api/department/" +
             currentId +
             "/administrators/?token=" +
-            JSON.parse(this.token) +
+            this.token +
             "&page=" +
             this.Pagenum +
             "&row=12"
