@@ -1,5 +1,5 @@
 <template>
-  <div>panorama</div>
+  <div>errorAlarm</div>
 </template>
 
 <script>

@@ -12,6 +12,8 @@ import humiditySensor from "../pages/powerMonitorSystem/resourceAdministrationCo
 import meterReadRecord from "../pages/powerMonitorSystem/dataCollectionComponent/meterReadRecord";
 import alarmLog from "../pages/powerMonitorSystem/dataCollectionComponent/alarmLog";
 
+Vue.use(Router);
+
 const routes = [
   { path: "/powerMonitorSystem/panorama", component: panorama },
   { path: "/powerMonitorSystem/highVoltageRoom", component: highVoltageRoom },

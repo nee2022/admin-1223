@@ -1,5 +1,5 @@
 <template>
-  <div>panorama</div>
+  <div>extremeValueMonitor</div>
 </template>
 
 <script>

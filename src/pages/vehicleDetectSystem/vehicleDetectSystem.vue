@@ -3,7 +3,7 @@
     <aside>
       <div class="logo">
         <a href="/#/summary">
-          <span><img :src="loginConfig.imgs" /></span>
+          <span><img :src="loginConfig.imgs"/></span>
         </a>
       </div>
       <nav>
@@ -21,96 +21,42 @@
               <el-submenu index="1">
                 <template slot="title">
                   <img src="../../assets/images/dingdanjilu.png" />
-                  <span>订单记录</span>
+                  <span>资源管理</span>
                 </template>
-                <router-link to="/financialManagement/allOrder">
+                <router-link to="/vehicleDetectSystem/panorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/all.png" />
-                    <span>所有订单</span>
+                    <span>全景图</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/financialManagement/realTimeOrder">
+                <router-link to="/vehicleDetectSystem/vehicle">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/shishidingdan.png" />
-                    <span>实时订单</span>
-                  </el-menu-item>
-                </router-link>
-                <router-link to="/financialManagement/refundOrder">
-                  <el-menu-item index="1-3">
-                    <img src="../../assets/images/tuikuandingdan.png" />
-                    <span>退款订单</span>
+                    <span>车辆</span>
                   </el-menu-item>
                 </router-link>
               </el-submenu>
               <el-submenu index="2">
                 <template slot="title">
                   <img src="../../assets/images/kaipiaojilu.png" />
-                  <span>开票记录</span>
+                  <span>车辆检测</span>
                 </template>
-                <router-link to="/financialManagement/allInvoiceRecord">
+                <router-link to="/vehicleDetectSystem/trackPlayback">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/all.png" />
-                    <span>所有记录</span>
+                    <span>轨迹回放</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/financialManagement/issuedInvoiceRecord">
+                <router-link to="/vehicleDetectSystem/extremeValueMonitor">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/yichupiao.png" />
-                    <span>已出票</span>
+                    <span>极值监控</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/financialManagement/pendingInvoiceRecord">
+                <router-link to="/vehicleDetectSystem/errorAlarm">
                   <el-menu-item index="1-3">
                     <img src="../../assets/images/daishenhe.png" />
-                    <span>待审核</span>
-                  </el-menu-item>
-                </router-link>
-              </el-submenu>
-              <el-submenu index="3">
-                <template slot="title">
-                  <img src="../../assets/images/jiesuanjilu.png" />
-                  <span>结算记录</span>
-                </template>
-                <router-link to="/financialManagement/allSettlementRecord">
-                  <el-menu-item index="1-1">
-                    <img src="../../assets/images/all.png" />
-                    <span>所有记录</span>
-                  </el-menu-item>
-                </router-link>
-                <router-link to="/financialManagement/shareRecord">
-                  <el-menu-item index="1-2">
-                    <img src="../../assets/images/fenchengjilu.png" />
-                    <span>分成记录</span>
-                  </el-menu-item>
-                </router-link>
-                <router-link to="/financialManagement/transferRecord">
-                  <el-menu-item index="1-3">
-                    <img src="../../assets/images/zhaunzhangjilu.png" />
-                    <span>转账记录</span>
-                  </el-menu-item>
-                </router-link>
-              </el-submenu>
-              <el-submenu index="4">
-                <template slot="title">
-                  <img src="../../assets/images/tixianjilu.png" />
-                  <span>提现记录</span>
-                </template>
-                <router-link to="/financialManagement/allWithdrawalRecord">
-                  <el-menu-item index="1-1">
-                    <img src="../../assets/images/all.png" />
-                    <span>所有记录</span>
-                  </el-menu-item>
-                </router-link>
-                <router-link to="/financialManagement/pendingWithdrawalRecord">
-                  <el-menu-item index="1-2">
-                    <img src="../../assets/images/daitixian.png" />
-                    <span>待提现</span>
-                  </el-menu-item>
-                </router-link>
-                <router-link to="/financialManagement/issuedWithdrawalRecord">
-                  <el-menu-item index="1-3">
-                    <img src="../../assets/images/yitixian.png" />
-                    <span>已提现</span>
+                    <span>故障报警</span>
                   </el-menu-item>
                 </router-link>
               </el-submenu>
@@ -126,14 +72,14 @@
 </template>
 
 <script>
-import router from "../../router/financialManagement";
+import router from "../../router/vehicleDetectSystem";
 import { loginConfig } from "../../config.js";
 export default {
   router,
   data() {
     return {
-			loginConfig,
-		};
+      loginConfig
+    };
   },
   methods: {
     handleOpen(key, keyPath) {

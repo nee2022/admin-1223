@@ -14,6 +14,8 @@ import invoiceGateway from "../pages/merchantAccoutDetailPage/selfOperatedGatewa
 import paymentGateway from "../pages/merchantAccoutDetailPage/selfOperatedGatewayComponent/paymentGateway";
 import smsGateway from "../pages/merchantAccoutDetailPage/selfOperatedGatewayComponent/smsGateway";
 
+Vue.use(Router);
+
 const routes = [
   { path: "/refresh", component: refresh },
 
