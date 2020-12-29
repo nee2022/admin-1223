@@ -47,10 +47,10 @@ import merchantAsset from "../pages/merchantAsset/merchantAsset";
 import merchantAccoutDetailPage from "../pages/merchantAccoutDetailPage/merchantAccoutDetailPage";
 import financialManagement from "../pages/financialManagement/financialManagement";
 import powerMonitorSystem from "../pages/powerMonitorSystem/powerMonitorSystem";
-
 import smartSocket from "../pages/smartSocket/smartSocket";
 import prepaidMeter from "../pages/prepaidMeter/prepaidMeter";
 import departmentAndRoleManagement from "../pages/departmentAndRoleManagement/departmentAndRoleManagement";
+import vehicleDetectSystem from "../pages/vehicleDetectSystem/vehicleDetectSystem";
 import carBlac from "../components/zhandianAll/carBlac.vue";
 import carsWhite from "../components/zhandianAll/carsWhite.vue";
 import basic from "../components/zhandianAll/basic.vue";
@@ -120,6 +120,10 @@ export default new Router({
     {
       path: "/departmentAndRoleManagement/departmentManagement",
       component: departmentAndRoleManagement
+    },
+    {
+      path: "/vehicleDetectSystem/vehicle",
+      component: vehicleDetectSystem
     },
 
     // { path: "/orderForm/allOrder", component: financialManagement },

@@ -151,10 +151,12 @@
           <span class="font">智慧出行</span>
         </div>
         <div class="platform" v-show="change4">
-          <div class="ban">
-            <img src="../assets/images/Vehicle monitoring.png" alt="" />
-            <span>车辆监测</span>
-          </div>
+          <router-link to="/vehicleDetectSystem/vehicle">
+            <div class="platform-money a">
+              <img src="../assets/images/Vehicle monitoring.png" alt="" />
+              <span>车辆监测</span>
+            </div>
+          </router-link>
           <div class="ban">
             <img src="../assets/images/gongxiangqiche.png" alt="" />
             <span>共享汽车</span>
