@@ -46,6 +46,8 @@ import cartaocan from "../components/car/cartaocan.vue";
 import merchantAsset from "../pages/merchantAsset/merchantAsset";
 import merchantAccoutDetailPage from "../pages/merchantAccoutDetailPage/merchantAccoutDetailPage";
 import financialManagement from "../pages/financialManagement/financialManagement";
+import powerMonitorSystem from "../pages/powerMonitorSystem/powerMonitorSystem";
+
 import smartSocket from "../pages/smartSocket/smartSocket";
 import prepaidMeter from "../pages/prepaidMeter/prepaidMeter";
 import departmentAndRoleManagement from "../pages/departmentAndRoleManagement/departmentAndRoleManagement";
@@ -101,6 +103,11 @@ export default new Router({
     {
       path: "/financialManagement/allOrder",
       component: financialManagement
+    },
+
+    {
+      path: "/powerMonitorSystem/highVoltageRoom",
+      component: powerMonitorSystem
     },
     {
       path: "/smartSocket/site",
