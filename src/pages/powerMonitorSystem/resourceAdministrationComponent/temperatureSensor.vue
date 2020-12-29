@@ -2,7 +2,7 @@
   <div class="zyhSingleLineListMainPage">
     <header>
       <div class="infoArea">
-        <div class="pageName">高压房</div>
+        <div class="pageName">温度传感器</div>
         <div class="profile">
           <myhead></myhead>
         </div>

@@ -2,7 +2,7 @@
   <div class="zyhSingleLineListMainPage">
     <header>
       <div class="infoArea">
-        <div class="pageName">高压房</div>
+        <div class="pageName">摄像头</div>
         <div class="profile">
           <myhead></myhead>
         </div>

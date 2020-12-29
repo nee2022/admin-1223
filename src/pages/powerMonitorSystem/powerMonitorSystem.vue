@@ -23,7 +23,7 @@
                   <img src="../../assets/images/ziyuanguanli.png" />
                   <span>资源管理</span>
                 </template>
-                <router-link to="">
+                <router-link to="/powerMonitorSystem/panorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/quanjingtu.png" />
                     <span>全景图</span>
@@ -35,31 +35,31 @@
                     <span>高压房</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/powerMonitorSystem/highVoltageRoom">
+                <router-link to="/powerMonitorSystem/ammeter">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/zhandian.png" />
                     <span>电表</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/powerMonitorSystem/highVoltageRoom">
+                <router-link to="/powerMonitorSystem/camera">
                   <el-menu-item index="1-3">
                     <img src="../../assets/images/zhandian.png" />
                     <span>摄像头</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/powerMonitorSystem/highVoltageRoom">
+                <router-link to="/powerMonitorSystem/videoIntercom">
                   <el-menu-item index="1-4">
                     <img src="../../assets/images/zhandian.png" />
                     <span>视频对讲机</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/powerMonitorSystem/highVoltageRoom">
+                <router-link to="/powerMonitorSystem/temperatureSensor">
                   <el-menu-item index="1-5">
                     <img src="../../assets/images/zhandian.png" />
                     <span>温度传感器</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/powerMonitorSystem/highVoltageRoom">
+                <router-link to="/powerMonitorSystem/humiditySensor">
                   <el-menu-item index="1-6">
                     <img src="../../assets/images/zhandian.png" />
                     <span>湿度传感器</span>
