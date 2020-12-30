@@ -1,5 +1,5 @@
 <template>
-  <div>panorama</div>
+  <div>historicalPassingRecord</div>
 </template>
 
 <script>

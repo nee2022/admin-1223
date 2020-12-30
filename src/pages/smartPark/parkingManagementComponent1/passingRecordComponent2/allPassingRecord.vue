@@ -1,5 +1,5 @@
 <template>
-  <div>identification</div>
+  <div>allPassingRecord.vue</div>
 </template>
 
 <script>

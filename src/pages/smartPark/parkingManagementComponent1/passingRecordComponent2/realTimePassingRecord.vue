@@ -1,5 +1,5 @@
 <template>
-  <div>vehicle</div>
+  <div>realTimePassingRecord</div>
 </template>
 
 <script>

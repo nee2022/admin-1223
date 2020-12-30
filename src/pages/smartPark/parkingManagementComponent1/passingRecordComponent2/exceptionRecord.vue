@@ -1,5 +1,5 @@
 <template>
-  <div>identification</div>
+  <div>exceptionRecord.vue</div>
 </template>
 
 <script>

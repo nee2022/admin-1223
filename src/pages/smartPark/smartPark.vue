@@ -23,13 +23,13 @@
                   <img src="../../assets/images/ziyuanguanli.png" />
                   <span>园区管理</span>
                 </template>
-                <router-link to="/smartSocket/panorama">
+                <router-link to="/smartPark/park/panorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/quanjingtu.png" />
                     <span>全景图</span>
                   </el-menu-item>
                 </router-link>
-                <router-link to="/smartSocket/site">
+                <router-link to="/smartPark/park">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/zhandian.png" />
                     <span>园区</span>
@@ -47,16 +47,22 @@
                     <span>资源管理</span>
                   </template>
                   <el-menu-item index="2-1-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>门禁</span>
+                    <router-link to="/smartPark/doorSecurity">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>门禁</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="2-1-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>人行道闸</span>
+                    <router-link to="/smartPark/sidewalkGate">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>人行道闸</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="2-1-3">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>电梯</span>
+                    <router-link to="/smartPark/elevator">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>电梯</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
                 <el-submenu index="2-2">
@@ -65,17 +71,31 @@
                     <span>通行规则</span>
                   </template>
                   <el-menu-item index="2-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>账号</span>
+                    <router-link to="/smartPark/identification">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>账号</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="2-2-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>车牌</span>
+                    <router-link to="/smartPark/registrationNumber">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>车牌</span>
+                    </router-link>
                   </el-menu-item>
-                  <el-menu-item index="2-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>一卡通</span>
+                  <el-menu-item index="2-2-3">
+                    <router-link to="/smartPark/onePass">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>一卡通</span>
+                    </router-link>
                   </el-menu-item>
+                </el-submenu>
+                <el-submenu index="2-3" class="arrowIconHidden">
+                  <template slot="title">
+                    <router-link to="/smartPark/accessRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>出入记录</span>
+                    </router-link>
+                  </template>
                 </el-submenu>
               </el-submenu>
               <el-submenu index="3">
@@ -89,12 +109,16 @@
                     <span>资源管理</span>
                   </template>
                   <el-menu-item index="3-1-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>全景图</span>
+                    <router-link to="/smartPark/resourceAdministrationPanorama">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>全景图</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="3-1-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>停车场</span>
+                    <router-link to="/smartPark/parkingLot">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>停车场</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
                 <el-submenu index="3-2">
@@ -103,20 +127,28 @@
                     <span>过车记录</span>
                   </template>
                   <el-menu-item index="3-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>所有记录</span>
+                    <router-link to="/smartPark/allPassingRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>所有记录</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="3-2-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>实时停车</span>
+                    <router-link to="/smartPark/realTimePassingRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>实时停车</span>
+                    </router-link>
                   </el-menu-item>
-                  <el-menu-item index="3-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>历史记录</span>
+                  <el-menu-item index="3-2-3">
+                    <router-link to="/smartPark/realTimePassingRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>历史记录</span>
+                    </router-link>
                   </el-menu-item>
-                  <el-menu-item index="3-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>异常记录</span>
+                  <el-menu-item index="3-2-4">
+                    <router-link to="/smartPark/exceptionRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>异常记录</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
               </el-submenu>
@@ -268,7 +300,7 @@
 </template>
 
 <script>
-import router from "../../router/smartSocket";
+import router from "../../router/smartPark";
 import { loginConfig } from "../../config.js";
 export default {
   router,

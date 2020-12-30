@@ -1,5 +1,5 @@
 <template>
-  <div>identification</div>
+  <div>parkManagementPanorama.vue</div>
 </template>
 
 <script>

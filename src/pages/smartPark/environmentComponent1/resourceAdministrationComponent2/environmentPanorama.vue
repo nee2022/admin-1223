@@ -1,5 +1,5 @@
 <template>
-  <div>identification</div>
+  <div>environmentPanorama.vue</div>
 </template>
 
 <script>
