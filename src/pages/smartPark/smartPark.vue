@@ -23,7 +23,7 @@
                   <img src="../../assets/images/ziyuanguanli.png" />
                   <span>园区管理</span>
                 </template>
-                <router-link to="/smartPark/park/panorama">
+                <router-link to="/smartPark/park/parkManagementPanorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/quanjingtu.png" />
                     <span>全景图</span>
@@ -139,7 +139,7 @@
                     </router-link>
                   </el-menu-item>
                   <el-menu-item index="3-2-3">
-                    <router-link to="/smartPark/realTimePassingRecord">
+                    <router-link to="/smartPark/historicalPassingRecord">
                       <img src="../../assets/images/zhandian.png" />
                       <span>历史记录</span>
                     </router-link>
@@ -163,18 +163,24 @@
                     <span>资源管理</span>
                   </template>
                   <el-menu-item index="4-1-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>视频监控</span>
+                    <router-link to="/smartPark/videoSurveillance">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>视频监控</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="4-1-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>烟雾传感器</span>
+                    <router-link to="/smartPark/smokeSensor">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>烟雾传感器</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
                 <el-submenu index="4-2" class="arrowIconHidden">
                   <template slot="title">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>告警日志</span>
+                    <router-link to="/smartPark/alarmLog">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>告警日志</span>
+                    </router-link>
                   </template>
                 </el-submenu>
               </el-submenu>
@@ -189,16 +195,22 @@
                     <span>资源管理</span>
                   </template>
                   <el-menu-item index="5-1-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>电表</span>
+                    <router-link to="/smartPark/ammeter">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>电表</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="5-1-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>水表</span>
+                    <router-link to="/smartPark/waterMeter">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>水表</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="5-1-3">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>气表</span>
+                    <router-link to="/smartPark/gasMeter">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>气表</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
                 <el-submenu index="5-2">
@@ -207,12 +219,16 @@
                     <span>告警日志</span>
                   </template>
                   <el-menu-item index="5-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>抄表记录</span>
+                    <router-link to="/smartPark/meterReadingRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>抄表记录</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="5-2-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>告警记录</span>
+                    <router-link to="/smartPark/alarmRecord">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>告警记录</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
               </el-submenu>
@@ -227,12 +243,16 @@
                     <span>资源管理</span>
                   </template>
                   <el-menu-item index="6-1-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>全景图</span>
+                    <router-link to="/smartPark/environmentPanorama">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>全景图</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="6-1-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>AQI传感器</span>
+                    <router-link to="/smartPark/AQIsensor">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>AQI传感器</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
                 <el-submenu index="6-2">
@@ -241,12 +261,16 @@
                     <span>AQI记录</span>
                   </template>
                   <el-menu-item index="6-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>实时AQI</span>
+                    <router-link to="/smartPark/realTimeAQI">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>实时AQI</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="6-2-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>历史AQI</span>
+                    <router-link to="/smartPark/historicalAQI">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>历史AQI</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
               </el-submenu>
@@ -261,12 +285,16 @@
                     <span>收费规则</span>
                   </template>
                   <el-menu-item index="7-1-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>停车费</span>
+                    <router-link to="/smartPark/parkingCharge">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>停车费</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="7-1-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>物业费</span>
+                    <router-link to="/smartPark/propertyCost">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>物业费</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
                 <el-submenu index="7-2">
@@ -275,16 +303,22 @@
                     <span>账单</span>
                   </template>
                   <el-menu-item index="7-2-1">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>所有账单</span>
+                    <router-link to="/smartPark/allBill">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>所有账单</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="7-2-2">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>物业账单</span>
+                    <router-link to="/smartPark/parkingBill">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>物业账单</span>
+                    </router-link>
                   </el-menu-item>
                   <el-menu-item index="7-2-3">
-                    <img src="../../assets/images/zhandian.png" />
-                    <span>停车账单</span>
+                    <router-link to="/smartPark/propertyBill">
+                      <img src="../../assets/images/zhandian.png" />
+                      <span>停车账单</span>
+                    </router-link>
                   </el-menu-item>
                 </el-submenu>
               </el-submenu>
