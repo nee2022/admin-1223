@@ -50,14 +50,32 @@
                     <img src="../../assets/images/zhandian.png" />
                     <span>门禁</span>
                   </el-menu-item>
-                  <el-menu-item index="2-1-2">人行道闸</el-menu-item>
-                  <el-menu-item index="2-1-3">电梯</el-menu-item>
+                  <el-menu-item index="2-1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>人行道闸</span>
+                  </el-menu-item>
+                  <el-menu-item index="2-1-3">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>电梯</span>
+                  </el-menu-item>
                 </el-submenu>
                 <el-submenu index="2-2">
-                  <template slot="title">通行规则</template>
-                  <el-menu-item index="2-2-1">账号</el-menu-item>
-                  <el-menu-item index="2-2-2">车牌</el-menu-item>
-                  <el-menu-item index="2-2-1">一卡通</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>通行规则</span>
+                  </template>
+                  <el-menu-item index="2-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>账号</span>
+                  </el-menu-item>
+                  <el-menu-item index="2-2-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>车牌</span>
+                  </el-menu-item>
+                  <el-menu-item index="2-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>一卡通</span>
+                  </el-menu-item>
                 </el-submenu>
               </el-submenu>
               <el-submenu index="3">
@@ -66,16 +84,40 @@
                   <span>停车管理</span>
                 </template>
                 <el-submenu index="3-1">
-                  <template slot="title">资源管理</template>
-                  <el-menu-item index="3-1-1">全景图</el-menu-item>
-                  <el-menu-item index="3-1-2">停车场</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>资源管理</span>
+                  </template>
+                  <el-menu-item index="3-1-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>全景图</span>
+                  </el-menu-item>
+                  <el-menu-item index="3-1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>停车场</span>
+                  </el-menu-item>
                 </el-submenu>
                 <el-submenu index="3-2">
-                  <template slot="title">过车记录</template>
-                  <el-menu-item index="3-2-1">所有记录</el-menu-item>
-                  <el-menu-item index="3-2-2">实时停车</el-menu-item>
-                  <el-menu-item index="3-2-1">历史记录</el-menu-item>
-                  <el-menu-item index="3-2-1">异常记录</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>过车记录</span>
+                  </template>
+                  <el-menu-item index="3-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>所有记录</span>
+                  </el-menu-item>
+                  <el-menu-item index="3-2-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>实时停车</span>
+                  </el-menu-item>
+                  <el-menu-item index="3-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>历史记录</span>
+                  </el-menu-item>
+                  <el-menu-item index="3-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>异常记录</span>
+                  </el-menu-item>
                 </el-submenu>
               </el-submenu>
               <el-submenu index="4">
@@ -84,12 +126,24 @@
                   <span>安防</span>
                 </template>
                 <el-submenu index="4-1">
-                  <template slot="title">资源管理</template>
-                  <el-menu-item index="4-1-1">视频监控</el-menu-item>
-                  <el-menu-item index="4-1-2">烟雾传感器</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>资源管理</span>
+                  </template>
+                  <el-menu-item index="4-1-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>视频监控</span>
+                  </el-menu-item>
+                  <el-menu-item index="4-1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>烟雾传感器</span>
+                  </el-menu-item>
                 </el-submenu>
-                <el-submenu index="4-2">
-                  <template slot="title">告警日志</template>
+                <el-submenu index="4-2" class="arrowIconHidden">
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>告警日志</span>
+                  </template>
                 </el-submenu>
               </el-submenu>
               <el-submenu index="5">
@@ -98,15 +152,36 @@
                   <span>能源</span>
                 </template>
                 <el-submenu index="5-1">
-                  <template slot="title">资源管理</template>
-                  <el-menu-item index="5-1-1">电表</el-menu-item>
-                  <el-menu-item index="5-1-2">水表</el-menu-item>
-                  <el-menu-item index="5-1-3">气表</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>资源管理</span>
+                  </template>
+                  <el-menu-item index="5-1-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>电表</span>
+                  </el-menu-item>
+                  <el-menu-item index="5-1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>水表</span>
+                  </el-menu-item>
+                  <el-menu-item index="5-1-3">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>气表</span>
+                  </el-menu-item>
                 </el-submenu>
                 <el-submenu index="5-2">
-                  <template slot="title">告警日志</template>
-                  <el-menu-item index="5-2-1">抄表记录</el-menu-item>
-                  <el-menu-item index="5-2-2">告警记录</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>告警日志</span>
+                  </template>
+                  <el-menu-item index="5-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>抄表记录</span>
+                  </el-menu-item>
+                  <el-menu-item index="5-2-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>告警记录</span>
+                  </el-menu-item>
                 </el-submenu>
               </el-submenu>
               <el-submenu index="6">
@@ -115,14 +190,32 @@
                   <span>环境</span>
                 </template>
                 <el-submenu index="6-1">
-                  <template slot="title">资源管理</template>
-                  <el-menu-item index="6-1-1">全景图</el-menu-item>
-                  <el-menu-item index="6-1-2">API传感器</el-menu-item>
+                  <template slot="title"
+                    ><img src="../../assets/images/zhandian.png" />
+                    <span>资源管理</span>
+                  </template>
+                  <el-menu-item index="6-1-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>全景图</span>
+                  </el-menu-item>
+                  <el-menu-item index="6-1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>AQI传感器</span>
+                  </el-menu-item>
                 </el-submenu>
                 <el-submenu index="6-2">
-                  <template slot="title">AQI记录</template>
-                  <el-menu-item index="6-2-1">实时AQI</el-menu-item>
-                  <el-menu-item index="6-2-2">历史AQI</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>AQI记录</span>
+                  </template>
+                  <el-menu-item index="6-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>实时AQI</span>
+                  </el-menu-item>
+                  <el-menu-item index="6-2-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>历史AQI</span>
+                  </el-menu-item>
                 </el-submenu>
               </el-submenu>
               <el-submenu index="7">
@@ -131,15 +224,36 @@
                   <span>缴费管理</span>
                 </template>
                 <el-submenu index="7-1">
-                  <template slot="title">收费规则</template>
-                  <el-menu-item index="7-1-1">停车费</el-menu-item>
-                  <el-menu-item index="7-1-2">物业费</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>收费规则</span>
+                  </template>
+                  <el-menu-item index="7-1-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>停车费</span>
+                  </el-menu-item>
+                  <el-menu-item index="7-1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>物业费</span>
+                  </el-menu-item>
                 </el-submenu>
                 <el-submenu index="7-2">
-                  <template slot="title">账单</template>
-                  <el-menu-item index="7-2-1">所有账单</el-menu-item>
-                  <el-menu-item index="7-2-2">物业账单</el-menu-item>
-                  <el-menu-item index="7-2-3">停车账单</el-menu-item>
+                  <template slot="title">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>账单</span>
+                  </template>
+                  <el-menu-item index="7-2-1">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>所有账单</span>
+                  </el-menu-item>
+                  <el-menu-item index="7-2-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>物业账单</span>
+                  </el-menu-item>
+                  <el-menu-item index="7-2-3">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>停车账单</span>
+                  </el-menu-item>
                 </el-submenu>
               </el-submenu>
             </el-menu>
