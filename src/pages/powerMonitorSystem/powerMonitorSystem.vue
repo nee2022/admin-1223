@@ -71,7 +71,7 @@
                   <img src="../../assets/images/jiaofeidingdan.png" />
                   <span>数据采集</span>
                 </template>
-                <router-link to="/powerMonitorSystem/meterReadRecord">
+                <router-link to="/powerMonitorSystem/meterReadingRecord">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/all.png" />
                     <span>抄表记录</span>

@@ -9,7 +9,7 @@ import videoIntercom from "../pages/powerMonitorSystem/resourceAdministrationCom
 import temperatureSensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/temperatureSensor";
 import humiditySensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/humiditySensor";
 
-import meterReadRecord from "../pages/powerMonitorSystem/dataCollectionComponent/meterReadRecord";
+import meterReadingRecord from "../pages/powerMonitorSystem/dataCollectionComponent/meterReadingRecord";
 import alarmLog from "../pages/powerMonitorSystem/dataCollectionComponent/alarmLog";
 
 Vue.use(Router);
@@ -26,7 +26,10 @@ const routes = [
     component: temperatureSensor
   },
 
-  { path: "/powerMonitorSystem/meterReadRecord", component: meterReadRecord },
+  {
+    path: "/powerMonitorSystem/meterReadingRecord",
+    component: meterReadingRecord
+  },
   { path: "/powerMonitorSystem/alarmLog", component: alarmLog },
 
   { path: "*", component: highVoltageRoom }

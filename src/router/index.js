@@ -51,6 +51,7 @@ import smartSocket from "../pages/smartSocket/smartSocket";
 import prepaidMeter from "../pages/prepaidMeter/prepaidMeter";
 import departmentAndRoleManagement from "../pages/departmentAndRoleManagement/departmentAndRoleManagement";
 import vehicleDetectSystem from "../pages/vehicleDetectSystem/vehicleDetectSystem";
+import smartPark from "../pages/smartPark/smartPark";
 import carBlac from "../components/zhandianAll/carBlac.vue";
 import carsWhite from "../components/zhandianAll/carsWhite.vue";
 import basic from "../components/zhandianAll/basic.vue";
@@ -125,8 +126,10 @@ export default new Router({
       path: "/vehicleDetectSystem/vehicle",
       component: vehicleDetectSystem
     },
-
-    // { path: "/orderForm/allOrder", component: financialManagement },
+    {
+      path: "/smartPark/park",
+      component: smartPark
+    },
     {
       path: "/System",
       name: "System",

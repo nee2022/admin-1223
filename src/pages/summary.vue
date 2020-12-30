@@ -186,10 +186,12 @@
             <img src="../assets/images/gongxiangqiche.png" alt="" />
             <span>智慧社区</span>
           </div>
-          <div class="ban">
-            <img src="../assets/images/gongxiangdanche.png" alt="" />
-            <span>智慧园区</span>
-          </div>
+          <router-link to="/smartPark/park">
+            <div class="platform-money a">
+              <img src="../assets/images/gongxiangdanche.png" alt="" />
+              <span>智慧园区</span>
+            </div>
+          </router-link>
           <div class="ban">
             <img src="../assets/images/wangyueche.png" alt="" />
             <span>智慧家庭</span>
