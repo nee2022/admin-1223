@@ -35,10 +35,12 @@
               <span>财务管理</span>
             </div>
           </router-link>
-          <div class="ban">
-            <img src="../assets/images/human.png" alt="" />
-            <span>人力资源</span>
-          </div>
+          <router-link to="/departmentAndRoleManagement/departmentManagement">
+            <div class="platform-money a">
+              <img src="../assets/images/human.png" alt="" />
+              <span>人力资源</span>
+            </div>
+          </router-link>
           <router-link to="/Promotional" class="platform-money a">
             <img src="../assets/images/discount.png" alt="" />
             <span>促销优惠</span>
