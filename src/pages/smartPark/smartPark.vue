@@ -175,12 +175,14 @@
                     </router-link>
                   </el-menu-item>
                 </el-submenu>
-                <el-submenu index="4-2" class="arrowIconHidden">
+                <el-submenu
+                  index="4-2"
+                  class="arrowIconHidden"
+                  @click.native="routerLinkToAlarmlog"
+                >
                   <template slot="title">
-                    <router-link to="/smartPark/alarmLog">
-                      <img src="../../assets/images/zhandian.png" />
-                      <span>告警日志</span>
-                    </router-link>
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>告警日志</span>
                   </template>
                 </el-submenu>
               </el-submenu>
@@ -352,12 +354,8 @@ export default {
       console.log(key, keyPath);
     },
     //路由跳转
-    routerLinkScanCodePackage() {
-      this.$router.push({ path: `/smartSocket/scanCodePackage` });
-    },
-    //路由跳转
-    routerLinkBillingRule() {
-      this.$router.push({ path: `/smartSocket/billingRule` });
+    routerLinkToAlarmlog() {
+      this.$router.push({ path: `/smartPark/alarmLog` });
     },
     //弹出框
     tcClose(done) {
