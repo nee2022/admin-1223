@@ -182,10 +182,12 @@
           <span class="font">智慧城市</span>
         </div>
         <div class="platform" v-show="change5">
-          <div class="ban">
-            <img src="../assets/images/gongxiangqiche.png" alt="" />
-            <span>智慧社区</span>
-          </div>
+          <router-link to="/smartCommunity/community">
+            <div class="platform-money a">
+              <img src="../assets/images/gongxiangqiche.png" alt="" />
+              <span>智慧社区</span>
+            </div>
+          </router-link>
           <router-link to="/smartPark/park">
             <div class="platform-money a">
               <img src="../assets/images/gongxiangdanche.png" alt="" />

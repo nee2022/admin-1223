@@ -23,7 +23,7 @@
                   <img src="../../assets/images/ziyuanguanli.png" />
                   <span>园区管理</span>
                 </template>
-                <router-link to="/smartPark/park/parkManagementPanorama">
+                <router-link to="/smartPark/park/panorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/quanjingtu.png" />
                     <span>全景图</span>
