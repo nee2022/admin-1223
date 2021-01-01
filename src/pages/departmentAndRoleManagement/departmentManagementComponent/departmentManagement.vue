@@ -39,9 +39,12 @@
       <div class="mainPart">
         <div class="wrapper">
           <div class="searchArea">
-            <el-input placeholder="请输入员工用户名或工号"> </el-input>
+            <el-input placeholder="请输入员工用户名或工号" v-model="input">
+            </el-input>
             <img src="../../../assets/images/search.png" />
-            <el-button icon="el-icon-search" @click="refresh">查询</el-button>
+            <el-button icon="el-icon-search" @click="searchHandler"
+              >查询</el-button
+            >
             <el-button
               type="primary"
               icon="el-icon-circle-plus-outline"
@@ -63,6 +66,12 @@
               stripe
             >
               <el-table-column show-overflow-tooltip type="selection">
+              </el-table-column>
+              <el-table-column
+                show-overflow-tooltip
+                prop="username"
+                label="用户名"
+              >
               </el-table-column>
               <el-table-column
                 show-overflow-tooltip
@@ -90,16 +99,31 @@
               </el-table-column>
               <el-table-column
                 show-overflow-tooltip
-                prop="employeed"
-                label="在职情况"
-              >
-              </el-table-column>
-              <el-table-column
-                show-overflow-tooltip
                 prop="address"
                 label="操作"
+                width="200"
               >
-                <template slot-scope="scope">{{ scope.row.date }}</template>
+                <template slot-scope="scope">
+                  <div class="operation">
+                    <div @click="deleteStaff(scope.row.id)">
+                      <img
+                        src="../../../assets/images/delete.png"
+                        title="删除"
+                      />
+                    </div>
+                    <div
+                      @click="
+                        modifyDialogVisible = true;
+                        modifyId = scope.row.id;
+                      "
+                    >
+                      <img
+                        src="../../../assets/images/compile.png"
+                        title="修改"
+                      />
+                    </div>
+                  </div>
+                </template>
               </el-table-column>
             </el-table>
           </template>
@@ -159,6 +183,9 @@
         ref="createStaffBodyRef"
         label-width="80px"
       >
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="createStaffBody.username"></el-input>
+        </el-form-item>
         <el-form-item label="员工名" prop="fullname">
           <el-input v-model="createStaffBody.fullname"></el-input>
         </el-form-item>
@@ -181,6 +208,30 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="createStaffDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="createStaff">
+          确 定
+        </el-button>
+      </span>
+    </el-dialog>
+    <!-- 修改员工-->
+    <el-dialog
+      title="修改员工账号"
+      :visible.sync="modifyDialogVisible"
+      width="30%"
+    >
+      <el-form :model="modifyForm" ref="modifyFormRef" label-width="80px">
+        <el-form-item label="员工名" prop="fullname">
+          <el-input v-model="modifyForm.fullname"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" prop="telephone">
+          <el-input v-model="modifyForm.telephone"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="modifyForm.password"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click.native="modifyDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="staffModified">
           确 定
         </el-button>
       </span>
@@ -223,13 +274,20 @@ export default {
       createStaffDialogVisible: false,
       createStaffBody: {
         token: "",
+        username: "",
         fullname: "",
         telephone: "",
         email: "",
         weixin: "",
         employeed: "",
-        password: ""
-      }
+        password: "",
+        modifyDialogVisible: false,
+        modifyForm: {}
+      },
+      modifyId: 0,
+      modifyForm: {},
+      modifyDialogVisible: false,
+      input: ""
     };
   },
   mounted() {
@@ -328,6 +386,102 @@ export default {
           this.createDepartmentDialogVisible = false;
         });
     },
+    //删除员工账号
+    deleteStaff(id) {
+      let enterState = true;
+      let url = "/admin/api/administrator/" + id;
+      this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$axios.delete(url, {
+            params: {
+              token: this.token
+            }
+          });
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 888);
+        })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          if (enterState || false) {
+            this.$message({
+              type: "info",
+              message: "已取消删除"
+            });
+          } else {
+            this.$message({
+              type: "info",
+              message: "删除失败"
+            });
+          }
+        });
+    },
+    //获取员工信息列表
+    getBasicInformation(id) {
+      this.$axios
+        .get(
+          "/admin/api/administrator/" + this.modifyId + "/?token=" + this.token
+        )
+        .then(res => {
+          if (res.status == 200) {
+            // this.formLabelAlign = res.data.agents;
+            this.modifyForm = res.data.admin;
+          }
+        });
+    },
+    staffModified() {
+      let url = "/admin/api/administrator/" + this.modifyId;
+      this.modifyForm.token = this.token;
+      this.modifyForm.password = md5(this.modifyForm.password);
+      this.$axios
+        .put(url, this.modifyForm)
+        .then(res => {
+          if (res.status !== 200) {
+            return this.$message.error("修改员工信息失败!");
+          }
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.$router.replace("/refresh");
+          }, 888);
+        })
+        .then(() => {
+          this.$message.success("修改员工信息成功!");
+          this.addDialogVisible = false;
+        });
+    },
+
+    // //查找员工账号
+    searchHandler() {
+      this.$axios
+        .get(
+          "/admin/api/department/" +
+            this.currentId +
+            "/administrators/?token=" +
+            this.token +
+            "&page=" +
+            this.Pagenum +
+            "&row=12&keyword=" +
+            this.input
+        )
+        .then(res => {
+          if (res.status == 200) {
+            this.tableData2 = res.data.admins;
+            this.tableData2Total = res.data.total || 0;
+          }
+        });
+    },
     //刷新页面
     refresh() {
       this.$router.push("/refresh");
@@ -367,6 +521,7 @@ export default {
     },
     handleNodeClick(data) {
       this.getDepartmentsInfoMes(data.id);
+      this.currentId = data.id;
     },
     // 监听scanCodePackage页码值改变
     handleCurrentChange(newPage) {

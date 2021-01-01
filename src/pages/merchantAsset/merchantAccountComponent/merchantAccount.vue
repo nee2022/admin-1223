@@ -405,8 +405,6 @@ export default {
       sessionStorage.setItem("merchantName", username);
       sessionStorage.setItem("merchantValid", valid);
       let merchantValid = sessionStorage.getItem("merchantValid");
-      console.log("merchantvalid");
-      console.log(merchantValid);
     }
   },
   watch: {
