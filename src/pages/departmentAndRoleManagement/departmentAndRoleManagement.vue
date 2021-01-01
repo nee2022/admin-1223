@@ -3,7 +3,7 @@
     <aside>
       <div class="logo">
         <a href="/#/summary">
-          <span><img :src="loginConfig.imgs" /></span>
+          <span><img :src="loginConfig.imgs"/></span>
         </a>
       </div>
       <nav>
@@ -28,7 +28,7 @@
                   <span slot="title">部门管理</span>
                 </template>
               </el-submenu>
-              <el-submenu
+              <!-- <el-submenu
                 index="2"
                 class="arrowIconHidden"
                 @click.native="routerLinkRoleManagement"
@@ -37,7 +37,7 @@
                   <img src="../../assets/images/Role management.png" />
                   <span slot="title">角色管理</span>
                 </template>
-              </el-submenu>
+              </el-submenu> -->
             </el-menu>
           </el-col>
         </el-row>
@@ -56,8 +56,8 @@ export default {
   router,
   data() {
     return {
-			loginConfig,
-		};
+      loginConfig
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
