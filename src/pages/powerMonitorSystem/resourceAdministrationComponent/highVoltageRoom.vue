@@ -259,6 +259,8 @@ export default {
         ret = "摄像头"; //根据自己的需求设定
       } else if (cellValue === 2) {
         ret = "电表";
+      } else if (cellValue === 7) {
+        ret = "温度传感器";
       }
       return ret;
     }

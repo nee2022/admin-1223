@@ -23,12 +23,12 @@
                   <img src="../../assets/images/ziyuanguanli.png" />
                   <span>社区管理</span>
                 </template>
-                <router-link to="/smartCommunity/communityManagementPanorama">
+                <!-- <router-link to="/smartCommunity/communityManagementPanorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/quanjingtu.png" />
                     <span>全景图</span>
                   </el-menu-item>
-                </router-link>
+                </router-link> -->
                 <router-link to="/smartCommunity/communityManagement">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/zhandian.png" />

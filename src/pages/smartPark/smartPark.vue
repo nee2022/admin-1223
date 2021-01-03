@@ -23,12 +23,12 @@
                   <img src="../../assets/images/ziyuanguanli.png" />
                   <span>园区管理</span>
                 </template>
-                <router-link to="/smartPark/park/panorama">
+                <!-- <router-link to="/smartPark/park/panorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/quanjingtu.png" />
                     <span>全景图</span>
                   </el-menu-item>
-                </router-link>
+                </router-link> -->
                 <router-link to="/smartPark/park">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/zhandian.png" />
@@ -89,12 +89,14 @@
                     </router-link>
                   </el-menu-item>
                 </el-submenu>
-                <el-submenu index="2-3" class="arrowIconHidden">
+                <el-submenu
+                  index="2-3"
+                  class="arrowIconHidden"
+                  @click.native="routerLinkToAccessRecord"
+                >
                   <template slot="title">
-                    <router-link to="/smartPark/accessRecord">
-                      <img src="../../assets/images/zhandian.png" />
-                      <span>出入记录</span>
-                    </router-link>
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>出入记录</span>
                   </template>
                 </el-submenu>
               </el-submenu>
@@ -108,12 +110,12 @@
                     <img src="../../assets/images/zhandian.png" />
                     <span>资源管理</span>
                   </template>
-                  <el-menu-item index="3-1-1">
+                  <!-- <el-menu-item index="3-1-1">
                     <router-link to="/smartPark/resourceAdministrationPanorama">
                       <img src="../../assets/images/zhandian.png" />
                       <span>全景图</span>
                     </router-link>
-                  </el-menu-item>
+                  </el-menu-item> -->
                   <el-menu-item index="3-1-2">
                     <router-link to="/smartPark/parkingLot">
                       <img src="../../assets/images/zhandian.png" />
@@ -244,12 +246,12 @@
                     ><img src="../../assets/images/zhandian.png" />
                     <span>资源管理</span>
                   </template>
-                  <el-menu-item index="6-1-1">
+                  <!-- <el-menu-item index="6-1-1">
                     <router-link to="/smartPark/environmentPanorama">
                       <img src="../../assets/images/zhandian.png" />
                       <span>全景图</span>
                     </router-link>
-                  </el-menu-item>
+                  </el-menu-item> -->
                   <el-menu-item index="6-1-2">
                     <router-link to="/smartPark/AQIsensor">
                       <img src="../../assets/images/zhandian.png" />
@@ -356,6 +358,9 @@ export default {
     //路由跳转
     routerLinkToAlarmlog() {
       this.$router.push({ path: `/smartPark/alarmLog` });
+    },
+    routerLinkToAccessRecord() {
+      this.$router.push({ path: `/smartPark/accessRecord` });
     },
     //弹出框
     tcClose(done) {
