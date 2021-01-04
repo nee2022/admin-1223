@@ -26,7 +26,8 @@
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="errmsg" label="告警信息">
+          <el-table-column show-overflow-tooltip label="告警信息">
+            水表异常
           </el-table-column>
           <el-table-column
             show-overflow-tooltip

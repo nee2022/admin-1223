@@ -27,6 +27,7 @@
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="errmsg" label="告警信息">
+            视频监控异常
           </el-table-column>
           <el-table-column
             show-overflow-tooltip

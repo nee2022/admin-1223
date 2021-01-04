@@ -120,11 +120,9 @@
               </el-table-column>
               <el-table-column show-overflow-tooltip prop="mac" label="机号">
               </el-table-column>
-              <el-table-column
-                show-overflow-tooltip
-                prop="online"
-                label="状态"
-              ></el-table-column>
+              <el-table-column show-overflow-tooltip prop="online" label="状态"
+                >在线</el-table-column
+              >
               <el-table-column
                 show-overflow-tooltip
                 prop="address"

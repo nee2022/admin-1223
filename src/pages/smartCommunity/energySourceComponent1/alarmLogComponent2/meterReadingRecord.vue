@@ -34,10 +34,23 @@
             label="抄表时间"
           >
           </el-table-column>
+
           <el-table-column
             show-overflow-tooltip
+            label="电表信息(/度)"
             prop="duration"
-            label="抄表信息"
+          >
+          </el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            label="水表信息(/吨)"
+            prop="duration"
+          >
+          </el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            label="气表信息(/方)"
+            prop="duration"
           >
           </el-table-column>
           <el-table-column

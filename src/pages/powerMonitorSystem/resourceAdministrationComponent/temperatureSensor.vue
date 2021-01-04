@@ -33,12 +33,14 @@
             prop="enabled"
             label="工作状态"
           >
+            在线
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="station" label="站点">
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="agent" label="所属商户">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="address" label="地址">
+          <el-table-column show-overflow-tooltip prop="address" label="地址"
+            >浙江省杭州市金沙大道888号
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
