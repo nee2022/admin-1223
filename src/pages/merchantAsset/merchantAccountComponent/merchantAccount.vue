@@ -261,6 +261,7 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
+            console.log(res);
             this.tableData = res.data.agentss || res.data.agents;
             this.total = res.data.total || 0;
           }

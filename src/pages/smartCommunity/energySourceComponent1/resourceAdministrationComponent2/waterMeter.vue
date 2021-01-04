@@ -108,7 +108,7 @@ export default {
     getAllInvoiceRecordMes() {
       this.$axios
         .get(
-          "/admin/api/chargers/8/?token=" +
+          "/admin/api/chargers/1/?token=" +
             this.token +
             "&page=" +
             this.pagenum +

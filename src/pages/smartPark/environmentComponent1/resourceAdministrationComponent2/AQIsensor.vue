@@ -2,7 +2,7 @@
   <div class="zyhSingleLineListMainPage">
     <header>
       <div class="infoArea">
-        <div class="pageName">气表</div>
+        <div class="pageName">AQI传感器</div>
         <div class="profile">
           <myhead></myhead>
         </div>
@@ -108,7 +108,7 @@ export default {
     getAllInvoiceRecordMes() {
       this.$axios
         .get(
-          "/admin/api/chargers/8/?token=" +
+          "/admin/api/chargers/1/?token=" +
             this.token +
             "&page=" +
             this.pagenum +

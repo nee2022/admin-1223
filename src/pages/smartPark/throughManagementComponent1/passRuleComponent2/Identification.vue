@@ -29,6 +29,7 @@
             icon="el-icon-circle-plus-outline"
             type="primary"
             @click="addDialogVisible = true"
+            disabled
           >
             添加
           </el-button>
@@ -51,11 +52,19 @@
             :formatter="formatMerchantType"
           >
           </el-table-column>
+
           <el-table-column
             show-overflow-tooltip
             prop="date_created"
             label="注册时间"
           >
+          </el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="date_created"
+            label="有效期"
+          >
+            一年
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -225,15 +234,15 @@ export default {
     formatMerchantType: function(row, column, cellValue) {
       var ret = ""; //你想在页面展示的值
       if (cellValue === 1) {
-        ret = "合伙人"; //根据自己的需求设定
+        ret = "有效"; //根据自己的需求设定
       } else if (cellValue === 2) {
-        ret = "自营型";
+        ret = "有效";
       } else if (cellValue === 3) {
-        ret = "托管型";
+        ret = "有效";
       } else if (cellValue === 255) {
-        ret = "影子账号";
+        ret = "失效";
       } else if (cellValue === 0) {
-        ret = "其他账号";
+        ret = "失效";
       }
       return ret;
     },
