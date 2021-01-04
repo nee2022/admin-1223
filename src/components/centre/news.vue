@@ -100,11 +100,11 @@ export default {
       pagepark: 16,
       newpark: 1, //分页
       tableData: [],
-      parkList: []
+      parkList: [],
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getParksMes();
   },
   methods: {
@@ -118,10 +118,10 @@ export default {
             this.newpark +
             "&row=15"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           if (res.status == 200) {
-            this.parkList = res.data.ntfy_templates;
+            this.parkList = res.data.ntfy_templates; 
             this.parkTotal = res.data.total;
           }
         });
@@ -134,14 +134,14 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped="scoped">
 .right-con-right {
-  margin-top: 5%;
+  margin-top:5%;
   width: 100%;
 }
 
@@ -224,6 +224,8 @@ export default {
   width: 30%;
   box-shadow: 10px 10px 15px #edf1f5;
 }
+
+
 
 .parkimg {
   margin: 13px 20px;

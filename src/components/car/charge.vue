@@ -50,7 +50,8 @@
               </template>
             </el-table-column>
             <el-table-column prop="amount" label="订单金额"> </el-table-column>
-            <el-table-column prop="pay" label="支付金额"> </el-table-column>
+            <el-table-column prop="pay" label="支付金额">
+            </el-table-column>
             <el-table-column prop="refund" label="退款金额"> </el-table-column>
             <el-table-column prop="address" label="操作" width="200">
               <div class="operation">
@@ -59,7 +60,7 @@
                     ><img src="../../assets/images/see.png"
                   /></el-button>
                 </div>
-              </div>
+              </div> 
             </el-table-column>
           </el-table>
         </template>
@@ -110,12 +111,12 @@ export default {
         "退款失败",
         "等待开始",
         "等待结束",
-        "充电完成"
-      ]
+        "充电完成",
+      ],
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getParksMes();
   },
   methods: {
@@ -129,7 +130,7 @@ export default {
             this.newpark +
             "&row=16"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.parkList = res.data.payments;
           this.parkTotal = res.data.total;
@@ -143,8 +144,8 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -152,11 +153,11 @@ export default {
 .UserAssets-bgcolor .el-button--primary {
   background: #1e69fe;
 }
-.ou img {
-  width: 15px;
+.ou img{
+    width: 15px;
   height: 11px;
 }
-.el-table td div {
+.el-table td div{
   margin: 0 auto;
 }
 .right-con-right {
@@ -164,7 +165,7 @@ export default {
 }
 
 .input_right {
-  margin-left: -43px;
+   margin-left: -43px;
 
   width: 65% !important;
 }
@@ -280,7 +281,7 @@ export default {
 }
 
 .right-con-top {
-  width: 600px;
+  width:600px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

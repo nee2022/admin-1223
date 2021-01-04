@@ -17,7 +17,7 @@
           <div class="textBox input_right">
             <img src="../../assets/images/search.png" class="sear-img" />
             <el-input
-              @keyup.enter.native="cha"
+            @keyup.enter.native="cha"
               v-model="abc"
               class=""
               placeholder="请输入设备信息"
@@ -91,6 +91,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -110,35 +111,35 @@ export default {
       newpark: 1, //分页
       tableData: [],
       parkList: [],
-      abc: ""
+      abc:'',
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getParksMes();
   },
 
   methods: {
-    cha() {
-      let toKen = this.token.replace(/\"/g, "");
+     cha(){
+          let toKen = this.token.replace(/\"/g, "");
       console.log(this.station_msg);
       this.$axios
         .get(
           "admin/api/chargers" +
             "?token=" +
             toKen +
-            "&page=" +
+           "&page=" +
             this.newpark +
-            "&row=16" +
-            "&keyword=" +
+            "&row=16"+
+            "&keyword="+
             this.abc
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.parkList = res.data.chargers;
           this.parkTotal = res.data.total;
         });
-    },
+  },
     getParksMes() {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
@@ -149,7 +150,7 @@ export default {
             this.newpark +
             "&row=16&online=true"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.parkList = res.data.chargers;
           this.parkTotal = res.data.total;
@@ -163,18 +164,19 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped="scoped">
-.UserAssets-bgcolor .el-button--primary {
+.UserAssets-bgcolor .el-button--primary{
   background: #1e69fe;
 }
-.el-select {
-  border: 1px solid #1e69fe !important;
-  width: 33%;
+.el-select{
+ border: 1px solid #1e69fe
+ !important;
+ width: 33%;
 }
 .el-table td div {
   overflow: hidden;

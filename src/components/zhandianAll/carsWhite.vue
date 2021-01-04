@@ -146,12 +146,12 @@ export default {
       tableData: [],
       parkList: [],
       stationsId: "",
-      types: ["", "", "黑名单", "白名单"]
+      types: ["", "", "黑名单", "白名单"],
     };
   },
   created() {
     this.stationsId = this.$store.state.id;
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getParksMes();
   },
   methods: {
@@ -161,7 +161,7 @@ export default {
         .post(
           `/admin/api/plate?token=${toKen}&type=3&plate=${this.a}&station=${this.stationsId}`
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -180,10 +180,8 @@ export default {
     getParksMes() {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
-        .get(
-          `/admin/api/station/${this.stationsId}/plates/3?token=${toKen}&page=${this.newpark}&row=8`
-        )
-        .then(res => {
+        .get(`/admin/api/station/${this.stationsId}/plates/3?token=${toKen}&page=${this.newpark}&row=8`)
+        .then((res) => {
           console.log(res);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -202,8 +200,8 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -256,7 +254,7 @@ export default {
 }
 .el-table td div {
   text-align: left;
-  margin: 0 auto;
+  margin: 0 auto
 }
 .tem-right {
   display: flex;

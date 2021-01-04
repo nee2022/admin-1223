@@ -9,6 +9,49 @@
 			<el-col :span="12">
 				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1e69fe"
 				 text-color="#fff" active-text-color="white" unique-opened v-model="option">
+					<el-submenu index="6">
+						<template slot="title">
+								<div class="menu-op">
+									<div>
+										<img src="../assets/images/The operation log.png">
+									</div>
+									<span class="menu-word">监控视图</span>
+								</div>
+						</template>
+						</router-link>
+						<el-menu-item-group>
+							<router-link to="/deviceManager">
+							<el-menu-item index="6-1">
+								<div class="menu-op">
+									<div>
+										<img src="../assets/images/The administrator.png">
+									</div>
+									系统监控
+								</div>
+							</el-menu-item>
+							</router-link>
+							<el-menu-item index="6-2">
+								<router-link to="/Microservice">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/Operator.png">
+										</div>
+										<span class="menu-word">微服务监控</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+							<el-menu-item index="6-3">
+								<router-link to="/chargeManager">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/The user.png">
+										</div>
+										<span class="menu-word">设备监控</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+						</el-menu-item-group>
+					</el-submenu>
 					<el-submenu index="1">
 						<template slot="title">
 								<div class="menu-op">
@@ -242,7 +285,7 @@
 									</div>
 								</router-link>
 							</el-menu-item> -->
-							<el-menu-item index="2-3">
+							<el-menu-item index="5-3">
 								<router-link to="/nodeEvents">
 									<div class="menu-op">
 										<div>

@@ -1,62 +1,132 @@
 .operation button {
-  border: none;
-  background: none;
+	border: none;
+	background: none;
 }
 
 .el-menu {
-  border: none;
+	border: none;
 }
 
 .menu-word-2 {
-  color: white;
-  font-size: 15px;
+	color: white;
+	font-size: 15px;
 }
 
 .UserAssets-bgcolor .el-table__body-wrapper {
-  height: 630px;
+	height: 630px;
 }
 
-.el-submenu__title i {
+.el-submenu__title i{
   color: white;
+
 }
 
 .right-con-left .el-table__body-wrapper {
-  height: 630px;
+	height: 630px;
 }
 
 .con .el-table__body-wrapper {
-  height: 630px;
+	height: 630px;
 }
 
 .right-con-right .el-table__body-wrapper {
-  height: 540px;
+	height: 540px;
 }
 
 .el-submenu .el-menu-item {
-  padding: 0px 0px;
+	padding: 0px 0px;
 }
 
 .right-con-left .el-table th {
-  padding: 0px 0px;
+	padding: 0px 0px;
 }
 
 .el-button {
-  padding: 10px 10px;
+	padding: 10px 10px;
 }
 
 body {
-  min-width: 1400px;
-  background-color: #1e69fe;
+	min-width: 1400px;
+	background-color: #1e69fe;
 }
 
 .tem-right {
-  height: 100vh;
+	height: 100vh;
 }
 
 .UserAssets-bgcolor {
-  height: 100vh;
+	height: 100vh;
 }
 
 .right-con {
-  height: calc(100vh - 600px);
+	height: calc(100vh - 600px);
+}
+
+
+
+
+
+
+
+/* zhangyihua的ElementUI全局样式 */
+.zyhSingleLineListPage>aside>nav .el-submenu__title i {
+	color: white;
+}
+
+.zyhSingleLineListPageMain>main>header>.searchArea .el-input--suffix .el-input__inner {
+	height: 30px;
+	text-indent: 10px;
+	border: none;
+}
+
+.zyhSingleLineListPageMain>main>header>.searchArea .el-input--suffix .el-input__inner {
+	height: 30px;
+	text-indent: 10px;
+	border: none;
+}
+
+.zyhSingleLineListPageMain>main>header>.searchArea .el-button--primary {
+	border-radius: 10px;
+	width: 95px;
+	height: 37px;
+	margin-left: 8px;
+	font-size: 16px;
+}
+
+.zyhSingleLineListPageMain>main>header>.searchArea .searchButton .el-button--primary {
+	background: #1e69fe;
+	color: white;
+}
+
+.zyhSingleLineListPageMain>main>header>.searchArea .addButton .el-button--primary {
+	background: white;
+	color: #1e69fe;
+}
+
+.zyhSingleLineListPageMain>main>section .el-table .el-table__header .cell {
+	text-align: center;
+	font-size: 16px;
+	height: 54px;
+	line-height: 54px;
+	font-weight: 400;
+	color: black;
+}
+
+.zyhSingleLineListPageMain>main>section .el-table .el-table__body .cell {
+	text-align: center;
+	font-size: 16px;
+
+	height: calc((100vh - 610px) / 12);
+	line-height: calc((100vh - 610px) / 12);
+
+	font-weight: 400;
+	color: #908e8e;
+}
+
+.zyhSingleLineListPageMain>main>section .operation {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 70px;
+	margin: 0 auto;
 }

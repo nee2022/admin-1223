@@ -221,7 +221,7 @@
 import myhead from "../../components/myhead.vue";
 export default {
   components: {
-    myhead
+    myhead,
   },
   data() {
     return {
@@ -253,24 +253,24 @@ export default {
       options: [
         {
           value: "选项1",
-          label: "金额"
+          label: "金额",
         },
         {
           value: "选项2",
-          label: "电能"
+          label: "电能",
         },
         {
           value: "选项3",
-          label: "时间"
-        }
+          label: "时间",
+        },
       ],
       value: "",
       huodongId: "",
-      lest_id: ""
+      lest_id: "",
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getRoadMes();
     this.getParksMe();
   },
@@ -306,7 +306,7 @@ export default {
               "&type=" +
               this.value
           )
-          .then(res => {
+          .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("修改套餐成功");
               setTimeout(() => {
@@ -338,7 +338,7 @@ export default {
               "&station=1&group=" +
               this.huodongId
           )
-          .then(res => {
+          .then((res) => {
             console.log(res);
             if (res.data.error == 0) {
               this.$message.success("添加套餐成功");
@@ -366,7 +366,7 @@ export default {
             "&keyword=" +
             this.station_msg
         )
-        .then(res => {
+        .then((res) => {
           this.station_msg = "";
           console.log(res);
           this.tancanList = res.data.package_groups;
@@ -382,15 +382,15 @@ export default {
         {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
-          type: "warning"
+          type: "warning",
         }
-      ).catch(err => err);
+      ).catch((err) => err);
       if (confirmRes !== "confirm") {
         return this.$message.info("已取消删除");
       }
       this.$axios
         .delete("/admin/api/package/" + id + "?token=" + toKen)
-        .then(res => {
+        .then((res) => {
           console.log(res);
           if (res.status == 200) {
             this.$message.success("删除成功");
@@ -414,15 +414,15 @@ export default {
         {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
-          type: "warning"
+          type: "warning",
         }
-      ).catch(err => err);
+      ).catch((err) => err);
       if (confirmRes !== "confirm") {
         return this.$message.info("已取消删除");
       }
       this.$axios
         .delete("/admin/api/package/group/" + id + "?token=" + toKen)
-        .then(res => {
+        .then((res) => {
           console.log(res);
           if (res.status == 200) {
             this.$message.success("删除成功");
@@ -464,7 +464,7 @@ export default {
               "&memo=" +
               this.b
           )
-          .then(res => {
+          .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("修改活动成功");
               setTimeout(() => {
@@ -491,7 +491,7 @@ export default {
               "&memo=" +
               this.b
           )
-          .then(res => {
+          .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("添加活动成功");
             } else {
@@ -518,7 +518,7 @@ export default {
             this.pagenum +
             "&row=16"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data.package_groups);
           this.tancanList = res.data.package_groups;
           this.total = res.data.total;
@@ -539,7 +539,7 @@ export default {
             this.newpark +
             "&row=16"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -566,7 +566,7 @@ export default {
             this.newpark +
             "&row=14"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           // console.log(res.status)//打印状态码
           if (res.status == 200) {
@@ -587,8 +587,8 @@ export default {
       } else {
         this.getParksMe();
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

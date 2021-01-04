@@ -7,12 +7,7 @@
             <img :src="loginConfig.imgs" />
           </router-link>
         </div>
-        <!-- <div class="vive">
-				<div class="set">
-					<img src="../assets/images/Big Data View.png" />
-				</div>
-				<span>大数据视图</span>
-			</div> -->
+
         <el-col :span="12">
           <el-menu
             default-active="2"
@@ -31,7 +26,18 @@
                   <span class="menu-word">资源管理</span>
                 </div>
               </template>
+              
               <el-menu-item-group>
+                                <el-menu-item index="1-1">
+                  <router-link to="/motoMap">
+                    <div class="menu-op">
+                      <div>
+                        <img src="../assets/images/Big Data View.png" />
+                      </div>
+                      <span class="menu-word">大数据视图</span>
+                    </div>
+                  </router-link>
+                </el-menu-item>
                 <el-menu-item index="1-2">
                   <router-link to="/motoAll">
                     <div class="menu-op">

@@ -265,7 +265,7 @@
 import myhead from "../../components/myhead.vue";
 export default {
   components: {
-    myhead
+    myhead,
   },
   data() {
     return {
@@ -302,7 +302,7 @@ export default {
         require("../../assets/images/comprehensive.png"),
         require("../../assets/images/comprehensive.png"),
         require("../../assets/images/comprehensive.png"),
-        require("../../assets/images/comprehensive.png")
+        require("../../assets/images/comprehensive.png"),
       ],
       typeres: ["sdf", "直流桩", "交流桩", "电摩快充桩", "电摩慢充桩"],
       station_ids: "",
@@ -312,18 +312,18 @@ export default {
       options: [
         {
           value: "选项1",
-          label: "电摩快充桩"
+          label: "电摩快充桩",
         },
         {
           value: "选项2",
-          label: "电摩慢充桩"
-        }
+          label: "电摩慢充桩",
+        },
       ],
-      value: ""
+      value: "",
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getRoadMes();
     this.getRoadChargers();
   },
@@ -342,7 +342,7 @@ export default {
             "&page=1&row=14&keyword=" +
             this.chargers_msg
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.parkList = res.data.chargers;
           this.parkTotal = res.data.total;
@@ -359,7 +359,7 @@ export default {
             "&keyword=" +
             this.station_msg
         )
-        .then(res => {
+        .then((res) => {
           console.log(res);
           this.tableData = res.data.stations;
           this.total = res.data.total;
@@ -400,7 +400,7 @@ export default {
               this.b +
               "&type=4"
           )
-          .then(res => {
+          .then((res) => {
             console.log(res);
             if (res.data.error == 0) {
               this.$message.success("修改站点成功");
@@ -425,7 +425,7 @@ export default {
               this.b +
               "&type=4"
           )
-          .then(res => {
+          .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("添加站点成功");
 
@@ -461,7 +461,7 @@ export default {
               "&type=" +
               this.value
           )
-          .then(res => {
+          .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("修改成功");
 
@@ -489,7 +489,7 @@ export default {
               "&type=" +
               this.value
           )
-          .then(res => {
+          .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("添加成功");
 
@@ -515,9 +515,9 @@ export default {
         {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
-          type: "warning"
+          type: "warning",
         }
-      ).catch(err => err);
+      ).catch((err) => err);
       console.log(confirmRes);
       if (confirmRes !== "confirm") {
         return this.$message.info("已取消删除");
@@ -526,7 +526,7 @@ export default {
         console.log("删除的是站点");
         this.$axios
           .delete("/admin/api/station/" + this.delete_id + "?token=" + toKen)
-          .then(res => {
+          .then((res) => {
             console.log(res.status);
             if (res.status == 200) {
               this.$message.success("删除站点成功");
@@ -541,7 +541,7 @@ export default {
         console.log("删除的是设备");
         this.$axios
           .delete("/admin/api/charger/" + id + "?token=" + toKen)
-          .then(res => {
+          .then((res) => {
             console.log(res.status);
             if (res.status == 200) {
               this.$message.success("删除设备成功");
@@ -564,7 +564,7 @@ export default {
             this.pagenum +
             "&row=6"
         )
-        .then(res => {
+        .then((res) => {
           if (res.status == 200) {
             this.tableData = res.data.stations;
             this.total = res.data.total;
@@ -585,7 +585,7 @@ export default {
             this.newpark +
             "&row=14"
         )
-        .then(res => {
+        .then((res) => {
           //console.log(id)
           // console.log(res.status)//打印状态码
           if (res.status == 200) {
@@ -604,7 +604,7 @@ export default {
         .get(
           "/admin/api/ebs?token=" + toKen + "&page=" + this.newpark + "&row=14"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
@@ -629,8 +629,8 @@ export default {
       }
       // this.getParksMes()
       // this.getRoadChargers()
-    }
-  }
+    },
+  },
 };
 </script>
 

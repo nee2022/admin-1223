@@ -32,6 +32,16 @@
                 </div>
               </template>
               <el-menu-item-group>
+                <el-menu-item index="1-1">
+                  <router-link to="/carMap">
+                    <div class="menu-op">
+                      <div>
+                        <img src="../assets/images/Big Data View.png" />
+                      </div>
+                      <span class="menu-word">大数据视图</span>
+                    </div>
+                  </router-link>
+                </el-menu-item>
                 <el-menu-item index="1-2">
                   <router-link to="/carAll">
                     <div class="menu-op">
@@ -42,6 +52,7 @@
                     </div>
                   </router-link>
                 </el-menu-item>
+
                 <el-menu-item index="1-3">
                   <router-link to="/DC">
                     <div class="menu-op">
@@ -184,7 +195,7 @@ import { loginConfig } from "../config.js";
 export default {
   data() {
     return {
-      loginConfig
+      loginConfig,
     };
   },
 };
@@ -194,7 +205,8 @@ body {
   background-color: #1e69fe;
   height: 100%;
 }
-.cyf{
+
+.cyf {
   .UserAssets-bgcolor .el-table td {
     padding: 0 0;
   }
@@ -234,8 +246,7 @@ body {
     margin: 0 auto;
   }
 
-  .el-table__footer-wrapper,
-  .el-table__header-wrapper {
+  .el-table__footer-wrapper, .el-table__header-wrapper {
     margin-top: 10px;
     background-color: #edf1f5;
   }
@@ -246,10 +257,9 @@ body {
     border: none;
   }
 
-  /*  .is-opened>div::nth-child(1) {
-      background-color: white !important;
-    } */
-
+  /* .is-opened>div::nth-child(1) {
+    background-color: white !important;
+  } */
   .UserAssets-bgcolor .cell {
     text-align: center;
     font-size: 16px;
@@ -440,7 +450,6 @@ body {
   }
 
   .textBox {
-   
     height: 34px;
     border-radius: 10px;
     border: solid 1px #1e69fe;

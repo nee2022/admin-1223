@@ -2,7 +2,7 @@
   <div class="zyhSingleLineListMainPage">
     <header>
       <div class="infoArea">
-        <div class="pageName">电表</div>
+        <div class="pageName">财务管理</div>
         <div class="profile">
           <myhead></myhead>
         </div>
@@ -19,26 +19,48 @@
         <div class="searchButton">
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
+        <div class="addButton">
+          <el-button type="primary" icon="el-icon-circle-plus-outline"
+            >添加</el-button
+          >
+        </div>
       </div>
     </header>
     <section>
       <template>
         <el-table :data="tableData" stripe style="width: 100%">
-          <el-table-column show-overflow-tooltip prop="id" label="ID">
+          <el-table-column show-overflow-tooltip prop="id" label="订单ID">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="dev_id" label="设备ID">
+          <el-table-column show-overflow-tooltip prop="deal_no" label="订单号">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
-            prop="enabled"
-            label="工作状态"
+            prop="service"
+            label="业务类型"
           >
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="station" label="站点">
+          <el-table-column
+            show-overflow-tooltip
+            prop="gateway"
+            label="支付网关"
+          >
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="agent" label="所属商户">
+          <el-table-column show-overflow-tooltip prop="income" label="订单收入">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="address" label="地址">
+          <el-table-column show-overflow-tooltip prop="pay" label="支付金额">
+          </el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="refund"
+            label="退款金额"
+          ></el-table-column>
+          <el-table-column
+            show-overflow-tooltip
+            prop="paid_time"
+            label="支付时间"
+          >
+          </el-table-column>
+          <el-table-column show-overflow-tooltip prop="state" label="状态">
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -48,11 +70,18 @@
           >
             <div class="operation">
               <div>
-                <img
-                  src="../../../assets/images/see.png"
-                  height="11px"
-                  title="详情"
-                />
+                <img src="../../../assets/images/delete.png" />
+              </div>
+              <div>
+                <el-button type="text" @click="dialogVisible = true"
+                  ><img src="../../../assets/images/compile.png"
+                /></el-button>
+              </div>
+              <div>
+                <img src="../../../assets/images/top-up.png" />
+              </div>
+              <div>
+                <img src="../../../assets/images/Prepaid phone password.png" />
               </div>
             </div>
           </el-table-column>
@@ -78,7 +107,6 @@
 
 <script>
 import myhead from "../../../components/myhead";
-
 export default {
   components: {
     myhead
@@ -98,23 +126,23 @@ export default {
   },
 
   mounted() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getAllInvoiceRecordMes();
+    this.token = localStorage.getItem("token");
+    this.getAllOrderMes();
   },
   methods: {
     //获取用户信息列表
-    getAllInvoiceRecordMes() {
+    getAllOrderMes() {
       this.$axios
         .get(
-          "/admin/api/chargers/8/?token=" +
-            this.token +
+          "/admin/api/payments/?token=" +
+            JSON.parse(this.token) +
             "&page=" +
             this.pagenum +
             "&row=12"
         )
         .then(res => {
           if (res.status == 200) {
-            this.tableData = res.data.chargers;
+            this.tableData = res.data.payments;
             this.total = res.data.total || 0;
             var pn = this.pagenum;
           }
@@ -123,7 +151,7 @@ export default {
     //监听页码值改变
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
-      this.getAllInvoiceRecordMes();
+      this.getAllOrderMes();
     }
   }
 };

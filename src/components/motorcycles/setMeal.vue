@@ -5,7 +5,7 @@
         <div class="top-left-word">预付费套餐</div>
       </div>
       <div class="users-right">
-        <myhead></myhead>
+<myhead></myhead>
       </div>
     </div>
     <div class="right-con">
@@ -128,13 +128,13 @@
 </template>
 
 <script>
-import myhead from "../myhead";
+import myhead from '../myhead'
 
 export default {
   components: { myhead },
-  mutations: {
-    myhead
-  },
+    mutations:{
+        myhead,
+    },
   data() {
     return {
       total: 1,
@@ -148,11 +148,11 @@ export default {
       parkList: [],
       tcID: "",
       value: true,
-      topName: "套餐列表"
+      topName: "套餐列表",
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getRoadMes();
     this.getParklist();
   },
@@ -167,7 +167,7 @@ export default {
             this.pagenum +
             "&row=16"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data.package_groups);
           this.tancanList = res.data.package_groups;
           this.total = res.data.total;
@@ -187,7 +187,7 @@ export default {
             this.newpark +
             "&row=16"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           if (res.status == 200) {
             this.parkList = res.data.packages; //用户列表数据
@@ -197,7 +197,7 @@ export default {
         });
     },
 
-    getParklist() {
+        getParklist() {
       //token去掉引号
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
@@ -208,7 +208,7 @@ export default {
             this.newpark +
             "&row=16"
         )
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           if (res.status == 200) {
             this.parkList = res.data.packages; //用户列表数据
@@ -224,18 +224,18 @@ export default {
     parksNumber(parknum) {
       this.newpark = parknum;
       this.getParksMes();
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped="scoped">
 .right-con-right {
-  margin-top: 3%;
+  margin-top:3%;
   width: 100%;
 }
 .right-con-left {
-  margin-top: 3%;
+  margin-top:3%;
   width: 100%;
 }
 .tem-right {

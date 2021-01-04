@@ -188,7 +188,7 @@ export default {
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getParksMes();
   },
   methods: {

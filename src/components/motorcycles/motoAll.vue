@@ -489,7 +489,7 @@ export default {
     };
   },
   created() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
+    this.token = localStorage.getItem("token");
     this.getRoadMes();
     // this.getRoadChargers()
     setTimeout(() => {
