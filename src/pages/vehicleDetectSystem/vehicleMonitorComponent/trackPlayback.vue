@@ -13,10 +13,21 @@
           <el-input
             class="in"
             prefix-icon="el-icon-search"
-            v-model="input"
-            placeholder="请输入内容"
+            placeholder="请输入车牌号进行查找"
           ></el-input>
         </div>
+        <template>
+          <div class="block">
+            <el-date-picker
+              v-model="value"
+              type="datetimerange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+            >
+            </el-date-picker>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -39,18 +50,83 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12
+      pagesize: 12,
+      pickerOptions: {
+        shortcuts: [
+          {
+            text: "最近一周",
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", [start, end]);
+            }
+          },
+          {
+            text: "最近一个月",
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit("pick", [start, end]);
+            }
+          },
+          {
+            text: "最近三个月",
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit("pick", [start, end]);
+            }
+          }
+        ]
+      }
     };
   },
-
+  computed: {
+    value() {
+      let start = new Date();
+      let end = new Date();
+      start.setTime(start.getTime() - 3600 * 1000);
+      return [start, end];
+    }
+  },
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
     this.getAllInvoiceRecordMes();
-    var map = new AMap.Map("container", {
-      resizeEnable: true, //是否监控地图容器尺寸变化
-      zoom: 11, //初始化地图层级
-      center: [116.397428, 39.90923] //初始化地图中心点
+    var map = new AMap.Map("container");
+    AMap.plugin(["AMap.Driving"], function() {
+      var drivingOption = {
+        policy: AMap.DrivingPolicy.LEAST_TIME,
+        map: map
+      };
+      var driving = new AMap.Driving(drivingOption); //构造驾车导航类
+      //根据起终点坐标规划驾车路线
+      driving.search(
+        [
+          { keyword: "北京站", city: "010" },
+          { keyword: "北京大学", city: "010" }
+        ],
+        function(status, result) {
+          button.onclick = function() {
+            driving.searchOnAMAP({
+              origin: result.origin,
+              destination: result.destination
+            });
+          };
+        }
+      );
     });
+    map.addControl(new AMap.ToolBar());
+
+    var button = document.getElementById("callApp");
+    if (AMap.UA.mobile) {
+      document.getElementsByClassName("info")[0].style.display = "none";
+      button.style.fontSize = "16px";
+    } else {
+      button.style.marginRight = "10px";
+    }
   },
   methods: {
     //获取用户信息列表
