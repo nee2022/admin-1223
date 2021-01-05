@@ -28,6 +28,7 @@
         <el-radio v-model="radio1" label="3" border>交流桩</el-radio>
       </div>
     </div> -->
+    <div class="quans" v-show="flag"></div>
     <div class="qq" v-show="flag">
       <div class="spans">
         <span
@@ -51,72 +52,50 @@
         <div class="zong_left">
           <div class="input">
             <span>名称</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input1"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input1" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>类型</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input2"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input2" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>机号</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input3"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input3" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>端口数</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input4"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input4" :disabled="true">
             </el-input>
           </div>
           <div class="input">
-            <span>名称</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input5"
-              :disabled="true"
-            >
+            <span>站点</span>
+            <el-input placeholder="无" v-model="input5" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>地址</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input6"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input6" :disabled="true">
             </el-input>
           </div>
         </div>
         <div class="zong_right">
           <div class="but">
-            <el-button>设备在线</el-button>
+            <el-button v-if="shebeiMsg.online == true">设备在线</el-button>
+            <el-button v-else>设备离线</el-button>
             <el-button type="primary" style="background: #2971ff"
               >重启设备</el-button
             >
           </div>
           <div>
             <div class="jw">
-              经纬度（120.29119，30.43048）<img
-                src="../../assets/images/compileg.png"
-                alt=""
-              />
+              经纬度（
+              <span> {{ lng }}</span>
+              <span> {{ lat }}</span
+              >）
+              <img src="../../assets/images/compileg.png" alt="" />
             </div>
           </div>
           <div id="containes"></div>
@@ -304,7 +283,7 @@
         <div>85105</div>
         <div>
           <img src="../../assets/images/heiding.png" alt="" />
-          <span>杭州市江干区金沙湖大道与银沙路交汇处</span>
+          <span>{{stadion}}</span>
         </div>
         <div class="fe">
           <div></div>
@@ -429,12 +408,14 @@
 
 <script>
 import myhead from "../../components/myhead";
+import axios from "axios";
 export default {
   components: {
     myhead,
   },
   data() {
     return {
+      map: "",
       radio1: "1",
       value: false,
       leftList: [
@@ -516,21 +497,27 @@ export default {
       input6: "",
       select: 1,
       selectss: 1,
+      token: JSON.parse(localStorage.getItem("token")),
+      shebeiMsg: [],
+      eMsg: [],
+      lng: 1,
+      lat: 1,
+      stadion:'',
     };
   },
   created() {},
   methods: {
-    zhi(){
-  this.$axios.get(`/map/gd/chargers/1,2`).then((res) => {
-       this.maplist = res.data.chargers;
-  })
+    zhi() {
+      this.$axios.get(`/map/gd/chargers/1,2`).then((res) => {
+        this.maplist = res.data.chargers;
+      });
     },
     close() {
       this.flag = false;
     },
     change(id) {
       this.selectss = id;
-    },                             
+    },
     dian(id) {
       this.select = id;
       console.log(this.select);
@@ -552,74 +539,125 @@ export default {
       this.$axios.get(`/map/gd/chargers/1,2`).then((res) => {
         this.maplist = res.data.chargers;
         console.log(this.maplist);
-
-        var map = new AMap.Map("container", {
-          zoom: 4,
-          center: [102.342785, 35.312316],
-          resizeEnable: true,
-        });
-
+//图片样式
         var style = [
-          {
-            url: require("../../assets/images/ACS.png"),
-            anchor: new AMap.Pixel(6, 6),
-            size: new AMap.Size(11, 11),
-          },
           {
             url: require("../../assets/images/ACS.png"),
             anchor: new AMap.Pixel(4, 4),
             size: new AMap.Size(30, 37),
           },
           {
-            url: require("../../assets/images/ACS.png"),
-            anchor: new AMap.Pixel(3, 3),
-            size: new AMap.Size(5, 5),
+            url: require("../../assets/images/DCicon.png"),
+            anchor: new AMap.Pixel(6, 6),
+            size: new AMap.Size(30, 37),
           },
         ];
+        //创建mark
         var mass = new AMap.MassMarks(this.maplist, {
           opacity: 0.8,
           zIndex: 111,
           cursor: "pointer",
           style: style,
         });
-        var marker = new AMap.Marker({ content: " ", map: map });
+        let _this = this;
+
+        var marker = new AMap.Marker({ content: " ", map: _this.map });
         mass.on("mouseover", function (e) {
           marker.setPosition(e.data.lnglat);
           marker.setLabel({ content: e.data.name });
         });
+//点击mark弹窗
+        mass.on("click", function (e) {
+          _this.eMsg = e.data;
+          _this.lng = _this.eMsg.lnglat.lng;
+          _this.lat = _this.eMsg.lnglat.lat;
+          _this.flag = !_this.flag;
 
-        mass.setMap(map);
+          AMap.plugin("AMap.Geocoder", function () {
+            var geocoder = new AMap.Geocoder({
+              // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+              city: "010",
+            });
 
+            var lnglat = [_this.lng, _this.lat];
+
+            geocoder.getAddress(lnglat, function (status, result) {
+              if (status === "complete" && result.info === "OK") {
+                _this.stadion = result.regeocode.formattedAddress
+              }
+            });
+          });
+          var map = new AMap.Map("containes", {
+            zoom: 14,
+            center: [_this.lng, _this.lat],
+            resizeEnable: true,
+          });
+          var marker = new AMap.Marker({
+            position: new AMap.LngLat(_this.lng, _this.lat),
+            icon: require("../../assets/images/hongding.png"),
+          });
+          map.add(marker);
+
+          console.log(e);
+
+          console.log(_this.eMsg.lnglat.lng);
+          axios
+            .get(`/admin/api/charger/${e.data.id}?token=${_this.token}`)
+            .then((res) => {
+              _this.shebeiMsg = res.data.charger;
+              console.log(_this.shebeiMsg);
+              if (_this.shebeiMsg.type === 1) {
+                console.log(1);
+                _this.input2 = "直流桩";
+              } else {
+                _this.input2 = "交流桩";
+                console.log(2);
+              }
+              _this.input1 = _this.shebeiMsg.name;
+              _this.input3 = _this.shebeiMsg.mac;
+              _this.input4 = _this.shebeiMsg.port;
+              _this.input5 = _this.shebeiMsg.station;
+              _this.input6 = _this.shebeiMsg.address;
+            });
+        });
+
+        mass.setMap(_this.map);
+//判断
         function setStyle(multiIcon) {
-          if (multiIcon) {
+          console.log(this.maplist);
+          if (this.maplist.style ==1) {
             mass.setStyle(style);
           } else {
             mass.setStyle(style[2]);
           }
         }
-        let _this = this;
-        AMap.event.addListener(marker, "click", function () {
-          console.log(23523);
-          _this.flag = !_this.flag;
-          console.log(_this.flag);
-          console.log(this.maplist);
-          var map = new AMap.Map("containes", {
-            zoom: 14,
-            center: [120.29119, 30.43048],
-            resizeEnable: true,
-          });
-        });
       });
     },
   },
 
   mounted() {
+    this.map = new AMap.Map("container", {
+      zoom: 4,
+      center: [102.342785, 35.312316],
+      resizeEnable: true,
+    });
     this.gaode();
   },
 };
 </script>
 
 <style scoped="scoped">
+.quans {
+  width: 100%;
+  height: 100%;
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 199;
+
+  opacity: 0.7;
+}
 .el-radio.is-bordered {
   width: 110px;
   text-align: center;
@@ -763,7 +801,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px #76746f solid;
+  border-bottom: 1px#dededd solid;
   height: 50%;
   width: 95%;
   margin: 0 auto;
@@ -901,7 +939,7 @@ export default {
   width: 115px;
   text-align: center;
   height: 54px;
-  border: 1px #bfbfbf solid;
+  border: 1px #d8d8d8 solid;
 }
 .list {
   width: 585px;
@@ -1049,7 +1087,7 @@ export default {
   display: inline-block;
 }
 .imgss {
-  width: 400px;
+  width: 100%;
 }
 .xial {
   justify-content: space-between;
@@ -1074,7 +1112,7 @@ export default {
   line-height: 27px;
   margin: 34px 0 28px 26px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #d2d5d9;
+  border-bottom: 1px dashed #d2d5d9;
   width: 86%;
 }
 .dingdan {
@@ -1230,7 +1268,7 @@ export default {
   width: 100%;
   background: #dde8ff;
   height: 42px;
-  border: 1px solid #2971ff;
+  border: 1px dashed #2971ff;
   border-radius: 10px;
 
   font-size: 18px;
@@ -1304,6 +1342,7 @@ export default {
 }
 .in >>> .el-input__icon {
   line-height: 31px !important;
+  height: 0% !important;
 }
 .in >>> .el-input__inner {
   border: 1px #1e69fe solid !important;

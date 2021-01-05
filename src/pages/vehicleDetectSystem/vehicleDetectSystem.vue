@@ -23,12 +23,12 @@
                   <img src="../../assets/images/dingdanjilu.png" />
                   <span>资源管理</span>
                 </template>
-                <router-link to="/vehicleDetectSystem/panorama">
+                <!-- <router-link to="/vehicleDetectSystem/panorama">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/all.png" />
                     <span>全景图</span>
                   </el-menu-item>
-                </router-link>
+                </router-link> -->
                 <router-link to="/vehicleDetectSystem/vehicle">
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/shishidingdan.png" />

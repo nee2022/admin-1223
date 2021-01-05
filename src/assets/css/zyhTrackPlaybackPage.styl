@@ -1,0 +1,83 @@
+// 默认样式
+.zyhTrackPlaybackPage {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  li {
+    list-style-position: inside;
+    list-style-type: none;
+  }
+
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  height: 100vh;
+
+  #container {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+
+  .pageInfoLayer {
+    width: 100%;
+    border-top-left-radius: 50px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+
+    .infoArea {
+      height: 102px;
+      display: flex;
+      flex-direction: row;
+
+      .pageName {
+        flex-grow: 1;
+        font-family: PingFangSC-Regular;
+        font-size: 24px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 1px;
+        color: #000000;
+        line-height: 102px;
+        text-indent: 38px;
+      }
+
+      .profile {
+        margin-top: 40px;
+        margin-right: 37px;
+      }
+    }
+
+    .searchArea {
+      display: flex;
+      flex-direction: row;
+      margin-left: 38px;
+
+      .inputFrame {
+        .el-input {
+          .el-input__inner {
+            text-indent: 10px;
+            width: 300px;
+            border: 1px solid #3571f5;
+          }
+        }
+      }
+    }
+  }
+}
