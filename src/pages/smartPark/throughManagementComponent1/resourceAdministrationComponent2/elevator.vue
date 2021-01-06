@@ -19,10 +19,13 @@
         <div class="searchButton">
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
+        <div class="blank"></div>
+        <div class="listButton" @click="toggleListTable">列表</div>
+        <div class="chartButton" @click="toggleChartTable">图表</div>
       </div>
     </header>
     <section>
-      <template>
+      <template v-if="!chart">
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
@@ -60,6 +63,7 @@
           </el-table-column>
         </el-table>
       </template>
+      <template v-if="chart"> </template>
     </section>
     <footer>
       <div class="total" :data="tableData">
@@ -79,56 +83,8 @@
 </template>
 
 <script>
-import myhead from "../../../../components/myhead";
-
-export default {
-  components: {
-    myhead
-  },
-  data() {
-    return {
-      tableData: [],
-      option: "",
-      total: 1,
-      isActive: true,
-      dialogVisible: false,
-      selected: "所有",
-      pagenum: 1,
-      token: "",
-      pagesize: 12
-    };
-  },
-
-  mounted() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getAllInvoiceRecordMes();
-  },
-  methods: {
-    //获取用户信息列表
-    getAllInvoiceRecordMes() {
-      this.$axios
-        .get(
-          "/admin/api/chargers/1/?token=" +
-            this.token +
-            "&page=" +
-            this.pagenum +
-            "&row=12"
-        )
-        .then(res => {
-          if (res.status == 200) {
-            this.tableData = res.data.chargers;
-            this.total = res.data.total || 0;
-            var pn = this.pagenum;
-          }
-        });
-    },
-    //监听页码值改变
-    handleCurrentChange(newPage) {
-      this.pagenum = newPage;
-      this.getAllInvoiceRecordMes();
-    }
-  }
-};
+import elevator from "./elevator.js";
+export default elevator;
 </script>
 
 <style lang="stylus" scoped></style>
