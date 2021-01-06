@@ -28,6 +28,15 @@
             </el-date-picker>
           </div>
         </template>
+        <div class="searchButton">
+          <el-button
+            type="primary"
+            icon="el-icon-search"
+            @click.native="searchHandler"
+          >
+            查找
+          </el-button>
+        </div>
       </div>
     </div>
   </div>
