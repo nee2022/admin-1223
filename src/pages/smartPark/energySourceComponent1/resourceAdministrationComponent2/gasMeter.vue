@@ -123,7 +123,6 @@
 </template>
 
 <script>
-import myhead from "../../../../components/myhead";
 import gasMeter from "./gasMeter.js";
 
 export default gasMeter;
