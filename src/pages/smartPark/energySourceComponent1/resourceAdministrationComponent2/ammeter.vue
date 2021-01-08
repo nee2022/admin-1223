@@ -81,9 +81,14 @@
                   </span>
                 </div>
                 <div class="meterInfo">
-                  <span>实用电量</span>
+                  <span>实时电量</span>
                   <span>0</span>
                   <span>KWH</span>
+                </div>
+                <div class="parameter">
+                  <p>电压<span>1</span>V</p>
+                  <p>电流<span>2</span>A</p>
+                  <p>功率<span>9005</span>W</p>
                 </div>
               </div>
               <div class="operation">
