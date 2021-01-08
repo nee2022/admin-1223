@@ -20,8 +20,14 @@
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
         <div class="blank"></div>
-        <div class="listButton" @click="toggleListTable">列表</div>
-        <div class="chartButton" @click="toggleChartTable">图表</div>
+        <div class="toggleTable">
+          <div v-if="chart" class="listButton" @click="toggleListTable">
+            <img src="../../../../assets/images/listIcon.png" alt="" />
+          </div>
+          <div v-if="!chart" class="chartButton" @click="toggleChartTable">
+            <img src="../../../../assets/images/chartIcon.png" alt="" />
+          </div>
+        </div>
       </div>
     </header>
     <section>
@@ -63,7 +69,7 @@
           </el-table-column>
         </el-table>
       </template>
-      <template v-if="chart"> </template>
+      <template v-if="chart"><div>1</div></template>
     </section>
     <footer>
       <div class="total" :data="tableData">

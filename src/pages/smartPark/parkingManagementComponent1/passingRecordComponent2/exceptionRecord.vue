@@ -41,8 +41,6 @@
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="id" label="VIN码">
-          </el-table-column>
           <el-table-column show-overflow-tooltip prop="id" label="车牌号">
           </el-table-column>
 

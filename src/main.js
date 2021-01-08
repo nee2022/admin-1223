@@ -9,8 +9,6 @@ import "layui-src/dist/layui.all.js";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import "../src/assets/css/index.css";
-import "../src/assets/css/zyhSingleLineListPage.css";
-import "../src/assets/css/zyhSingleLineListPageMain.css";
 import "../src/assets/css/index.styl";
 import store from "./store/index";
 import echarts from "echarts";

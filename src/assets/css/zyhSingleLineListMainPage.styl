@@ -30,6 +30,7 @@
       height: 102px;
       display: flex;
       flex-direction: row;
+      position: relative;
 
       .pageName {
         flex-grow: 1;
@@ -122,22 +123,26 @@
         flex-grow: 1;
       }
 
-      .listButton {
-        border: 1px solid red;
-        width: 44px;
-        height: 36px;
-        line-height: 36px;
-        margin-right: 26px;
-        text-align: center;
-      }
+      .toggleTable {
+        position: absolute;
+        top: 90px;
+        right: 0px;
 
-      .chartButton {
-        border: 1px solid red;
-        width: 44px;
-        height: 36px;
-        line-height: 36px;
-        margin-right: 65px;
-        text-align: center;
+        .listButton {
+          width: 44px;
+          height: 36px;
+          line-height: 36px;
+          text-align: center;
+          margin-right: 50px;
+        }
+
+        .chartButton {
+          width: 44px;
+          height: 36px;
+          line-height: 36px;
+          text-align: center;
+          margin-right: 50px;
+        }
       }
     }
   }
@@ -240,6 +245,63 @@
     .el-dialog__footer {
       button {
         padding: 5px;
+      }
+    }
+  }
+}
+
+.zyhSingleLineListMainPage.gasMeter {
+  section {
+    ul {
+      padding-top: 35px;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        width: calc((100vw - 238px) * 0.25);
+        height: calc((100vh - 238px) * 0.25);
+        padding-right: 38px;
+        padding-bottom: 38px;
+
+        .tableItem {
+          height: 100%;
+          // padding: 7px 14px;
+          border: 3px solid #8e96a4;
+          border-radius: 10px;
+          overflow: hidden;
+          background: #f6f7fa;
+          display: flex;
+          flex-direction: column;
+
+          .wrapper {
+            padding: 8px 15px 0 15px;
+            height: 70%;
+
+            .signBar {
+            }
+
+            .gasMeterInfo {
+              background: red;
+              height: 100%;
+            }
+          }
+
+          .operation {
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+              margin: 10px;
+              height: 15px;
+            }
+          }
+        }
+      }
+
+      li:nth-child(4n + 1) {
+        margin-left: 38px;
       }
     }
   }

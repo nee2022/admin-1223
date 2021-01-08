@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage">
+  <div class="zyhSingleLineListMainPage gasMeter">
     <header>
       <div class="infoArea">
         <div class="pageName">气表</div>
@@ -19,10 +19,18 @@
         <div class="searchButton">
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
+        <div class="toggleTable">
+          <div v-if="chart" class="listButton" @click="toggleListTable">
+            <img src="../../../../assets/images/listIcon.png" alt="" />
+          </div>
+          <div v-if="!chart" class="chartButton" @click="toggleChartTable">
+            <img src="../../../../assets/images/chartIcon.png" alt="" />
+          </div>
+        </div>
       </div>
     </header>
     <section>
-      <template>
+      <template v-if="!chart">
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
@@ -60,6 +68,32 @@
           </el-table-column>
         </el-table>
       </template>
+      <template v-if="chart">
+        <ul class="chartItems">
+          <li v-for="item in tableData" :key="item.id">
+            <div class="tableItem">
+              <div class="wrapper">
+                <div class="signBar">{{ item.id }}</div>
+                <div class="gasMeterInfo">{{ item.id }}</div>
+              </div>
+              <div class="operation">
+                <div>
+                  <img
+                    src="../../../../assets/images/delete.png"
+                    title="删除"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="../../../../assets/images/compile.png"
+                    title="修改"
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </template>
     </section>
     <footer>
       <div class="total" :data="tableData">
@@ -80,55 +114,9 @@
 
 <script>
 import myhead from "../../../../components/myhead";
+import gasMeter from "./gasMeter.js";
 
-export default {
-  components: {
-    myhead
-  },
-  data() {
-    return {
-      tableData: [],
-      option: "",
-      total: 1,
-      isActive: true,
-      dialogVisible: false,
-      selected: "所有",
-      pagenum: 1,
-      token: "",
-      pagesize: 12
-    };
-  },
-
-  mounted() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getAllInvoiceRecordMes();
-  },
-  methods: {
-    //获取用户信息列表
-    getAllInvoiceRecordMes() {
-      this.$axios
-        .get(
-          "/admin/api/chargers/1/?token=" +
-            this.token +
-            "&page=" +
-            this.pagenum +
-            "&row=12"
-        )
-        .then(res => {
-          if (res.status == 200) {
-            this.tableData = res.data.chargers;
-            this.total = res.data.total || 0;
-            var pn = this.pagenum;
-          }
-        });
-    },
-    //监听页码值改变
-    handleCurrentChange(newPage) {
-      this.pagenum = newPage;
-      this.getAllInvoiceRecordMes();
-    }
-  }
-};
+export default gasMeter;
 </script>
 
 <style lang="stylus" scoped></style>
