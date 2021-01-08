@@ -25,17 +25,17 @@ export default {
   },
   methods: {
     toggleListTable() {
-      this.chart = false;
       this.pagesize = 12;
       this.getAllInvoiceRecordMes();
+      this.chart = false;
     },
     toggleChartTable() {
-      this.chart = true;
       this.pagesize = 16;
       this.getAllInvoiceRecordMes();
+      this.chart = true;
     },
     //获取用户信息列表
-    getAllInvoiceRecordMes() {
+    getAllInvoiceRecordMes(resolve, reject) {
       this.$axios
         .get(
           "/admin/api/chargers/1/?token=" +
@@ -47,7 +47,6 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-            console.log(this.tableData);
             this.tableData = res.data.chargers;
             this.total = res.data.total || 0;
           }
