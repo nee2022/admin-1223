@@ -80,10 +80,10 @@
                     <img src="../../../../assets/images/signal4.png" alt="" />
                   </span>
                 </div>
-                <div class="gasMeterInfo">
-                  <span>使用气量</span>
+                <div class="meterInfo">
+                  <span>实用电量</span>
                   <span>0</span>
-                  <span>M³</span>
+                  <span>KWH</span>
                 </div>
               </div>
               <div class="operation">

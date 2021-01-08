@@ -25,12 +25,10 @@ export default {
   },
   methods: {
     toggleListTable() {
-      this.pagesize = 12;
       this.getAllInvoiceRecordMes();
       this.chart = false;
     },
     toggleChartTable() {
-      this.pagesize = 16;
       this.getAllInvoiceRecordMes();
       this.chart = true;
     },
