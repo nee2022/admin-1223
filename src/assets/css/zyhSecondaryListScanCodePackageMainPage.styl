@@ -1,5 +1,4 @@
-.zyhSecondaryListScanCodePackageMainPage {
-  // 初始化样式开始
+.zyhSecondaryListSiteMainPage {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -39,7 +38,7 @@
         font-size: 24px;
         letter-spacing: 1px;
         font-family: PingFangSC-Regular;
-        color: #0000 0;
+        color: #000000;
       }
 
       .profile {
@@ -62,14 +61,19 @@
         height: 100%;
         width: 361px !important;
         margin-left: 50px;
-        box-shadow: 10px 10px 15px #edf1f5;
+        box-shadow: 1px 1px 20px 10px #edf1f5;
         display: flex;
         flex-direction: column;
+        position: relative;
 
         .searchArea {
-          height: 36px;
+          position: absolute;
+          top: 13px;
+          z-index: 1;
+          // border: 1px solid red;
           display: flex;
           flex-direction: row;
+          align-items: center;
 
           // border: 1px solid red;
           .inputFrame {
@@ -117,36 +121,100 @@
           }
         }
 
+        // border: 1px solid red;
         .el-table {
           flex-grow: 1;
+          margin-top: 60px;
+          border-top: 1px solid #ddd;
 
-          // border: 1px solid red;
-          .el-table__header {
-            .cell {
-              text-align: center;
-              line-height: 43px;
-              font-size: 16px;
-              font-weight: 400;
-              color: #000000;
-              flex-direction: column;
-            }
+          .el-table__header-wrapper {
+            height: 0;
           }
 
           // border: 1px solid red;
           .el-table__body {
             tr {
-              height: calc(((100vh - 305px) / 6));
+              height: calc(((100vh - 265px) / 6));
+              margin: 0;
+              padding: 0;
 
               td {
-                .cell {
-                  text-align: center;
+                margin: 0;
+                padding: 0;
 
-                  .operation {
+                .cell {
+                  margin: 0;
+                  padding: 0;
+                  width: 100%;
+
+                  .wrapper.toggleBackgroundcolor {
+                    background: #bed3ff;
+                  }
+
+                  .wrapper {
+                    margin: 0;
+                    padding: 0;
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-between;
-                    width: 45px;
-                    margin: 0 auto;
+
+                    .siteIcon {
+                      line-height: calc(((100vh - 265px) / 6));
+
+                      img {
+                        margin: 0 15px;
+                      }
+                    }
+
+                    .siteInfo {
+                      font-size: 16px;
+                      color: #908e8e;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: flex-start;
+                      justify-content: space-around;
+
+                      .address {
+                        height: calc((100vh - 265px) / 6 - 80px);
+                        line-height: calc((100vh - 265px) / 6 - 80px);
+                      }
+
+                      .usageDetail {
+                        font-size: 13px;
+                        color: #5f6062;
+                        // height: 22px;
+                        // line-height: 22px;
+                        display: flex;
+                        flex-direction: row;
+
+                        span {
+                          background: #f2d0bd;
+                          border: 1px solid #f2d0bd;
+                          margin-right: 2px;
+                          width: 50px;
+                          border-radius: 6px;
+                        }
+                      }
+                    }
+
+                    .operation {
+                      flex-grow: 1;
+                      height: 100%;
+                      width: 100%;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+
+                      // border: 1px solid black;
+                      div {
+                        padding: 5px;
+                      }
+
+                      span {
+                        font-size: 30px;
+                        font-weight: 400;
+                        color: #908e8e;
+                      }
+                    }
                   }
                 }
               }
@@ -241,13 +309,15 @@
           flex-grow: 1;
 
           .el-table__header {
-            .cell {
-              text-align: center;
-              font-size: 16px;
-              height: 54px;
-              line-height: 54px;
-              font-weight: 400;
-              color: black;
+            tr {
+              height: 60px;
+
+              .cell {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+                color: black;
+              }
             }
           }
 
@@ -263,10 +333,15 @@
 
                 .operation {
                   display: flex;
-                  flex-direction: row;
-                  justify-content: space-between;
-                  width: 70px;
-                  margin: 0 auto;
+                  height: 100%;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  img {
+                    margin: 10px;
+                  }
                 }
               }
             }
@@ -294,7 +369,7 @@
 }
 
 // 弹出框样式
-.zyhSecondaryListScanCodePackageMainPage {
+.zyhSecondaryListSiteMainPage {
   .el-dialog {
     margin: 0 auto;
     padding: 50px;
