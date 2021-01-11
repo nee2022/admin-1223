@@ -14,7 +14,7 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12,
+      pagesize: 15,
       chart: true
     };
   },
@@ -30,7 +30,7 @@ export default {
       this.chart = false;
     },
     toggleChartTable() {
-      this.pagesize = 12;
+      this.pagesize = 15;
       this.getAllInvoiceRecordMes();
       this.chart = true;
     },
