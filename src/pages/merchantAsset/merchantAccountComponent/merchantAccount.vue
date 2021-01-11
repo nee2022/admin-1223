@@ -51,7 +51,11 @@
             :formatter="formatMerchantType"
           >
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="income" label="钱包余额">
+          <el-table-column
+            show-overflow-tooltip
+            prop="income"
+            label="钱包余额(/元)"
+          >
           </el-table-column>
           <el-table-column
             show-overflow-tooltip

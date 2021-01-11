@@ -34,7 +34,11 @@
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="account" label="账号">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="amount" label="金额">
+          <el-table-column
+            show-overflow-tooltip
+            prop="amount"
+            label="金额(/元)"
+          >
           </el-table-column>
           <el-table-column
             show-overflow-tooltip

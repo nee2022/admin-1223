@@ -40,7 +40,12 @@
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="appid" label="appid">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="gateway" label="网关">
+          <el-table-column
+            show-overflow-tooltip
+            prop="gateway"
+            label="网关"
+            :formatter="formatterGateway"
+          >
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -183,6 +188,27 @@ export default {
     this.getPaymentGatewayMes();
   },
   methods: {
+    formatterGateway: function(row, column, cellValue) {
+      var ret = ""; //你想在页面展示的值
+      if (cellValue === 0) {
+        ret = "已支付"; //根据自己的需求设定
+      } else if (cellValue === "gateway") {
+        ret = "支付网关取值";
+      } else if (cellValue === "cash") {
+        ret = "现金支付";
+      } else if (cellValue === "wechat") {
+        ret = "微信支付";
+      } else if (cellValue === "alipay") {
+        ret = "支付宝支付";
+      } else if (cellValue === "userpay") {
+        ret = "钱包支付";
+      } else if (cellValue === "heemoney") {
+        ret = "储值卡支付";
+      } else {
+        ret = "网关异常";
+      }
+      return ret;
+    },
     //获取用户信息列表
     getPaymentGatewayMes() {
       this.$axios

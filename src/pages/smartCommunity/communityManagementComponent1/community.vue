@@ -47,10 +47,16 @@
                   <div class="operation">
                     <template v-if="scope.row.id === currentStationId">
                       <div @click="xiugai(scope.row.id)">
-                        <img src="../../../assets/images/xiu.png" />
+                        <img
+                          src="../../../assets/images/xiu.png"
+                          title="修改"
+                        />
                       </div>
                       <div @click="removeUserByID1(scope.row.id)">
-                        <img src="../../../assets/images/shan2.png" />
+                        <img
+                          src="../../../assets/images/shan2.png"
+                          title="删除"
+                        />
                       </div>
                     </template>
                     <template v-else>

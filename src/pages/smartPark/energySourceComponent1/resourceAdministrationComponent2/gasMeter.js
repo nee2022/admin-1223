@@ -14,8 +14,8 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12,
-      chart: false
+      pagesize: 16,
+      chart: true
     };
   },
 

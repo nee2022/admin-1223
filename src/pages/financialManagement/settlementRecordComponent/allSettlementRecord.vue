@@ -33,7 +33,11 @@
             prop="account"
             label="账号"
           ></el-table-column>
-          <el-table-column show-overflow-tooltip prop="amount" label="金额">
+          <el-table-column
+            show-overflow-tooltip
+            prop="amount"
+            label="金额(/元)"
+          >
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -53,7 +57,12 @@
             label="分成时间"
           >
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="state" label="状态">
+          <el-table-column
+            show-overflow-tooltip
+            prop="state"
+            :formatter="formatterState"
+            label="状态"
+          >
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -114,6 +123,21 @@ export default {
     this.getAllSettlementRecordMes();
   },
   methods: {
+    formatterState: function(row, column, cellValue) {
+      var ret = ""; //你想在页面展示的值
+      if (cellValue === 0) {
+        ret = "审核中"; //根据自己的需求设定
+      } else if (cellValue === 1) {
+        ret = "已结算";
+      } else if (cellValue === 2) {
+        ret = "审核成功";
+      } else if (cellValue === 3) {
+        ret = "审核失败";
+      } else {
+        ret = "未开发票";
+      }
+      return ret;
+    },
     //获取用户信息列表
     getAllSettlementRecordMes() {
       this.$axios

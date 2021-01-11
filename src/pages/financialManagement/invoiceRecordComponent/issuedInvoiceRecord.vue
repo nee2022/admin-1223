@@ -28,9 +28,18 @@
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="dealno" label="发票单号">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="type" label="类型">
+          <el-table-column
+            show-overflow-tooltip
+            prop="type"
+            :formatter="formatterType"
+            label="类型"
+          >
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="amount" label="金额">
+          <el-table-column
+            show-overflow-tooltip
+            prop="amount"
+            label="金额(/元)"
+          >
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="rate" label="税点(%)">
           </el-table-column>
@@ -44,6 +53,7 @@
           <el-table-column
             show-overflow-tooltip
             prop="delivery_state"
+            :formatter="formatterDeliveryState"
             label="运单状态"
           >
           </el-table-column>
@@ -109,6 +119,38 @@ export default {
     this.getIssuedInvoiceRecordMesMes();
   },
   methods: {
+    formatterType: function(row, column, cellValue) {
+      var ret = ""; //你想在页面展示的值
+      if (cellValue === 0) {
+        ret = "普通发票"; //根据自己的需求设定
+      } else if (cellValue === 1) {
+        ret = "增值税发票";
+      } else if (cellValue === 2) {
+        ret = "增值税专用发票";
+      } else if (cellValue === 3) {
+        ret = "红票";
+      } else {
+        ret = "未开发票";
+      }
+      return ret;
+    },
+    formatterDeliveryState: function(row, column, cellValue) {
+      var ret = ""; //你想在页面展示的值
+      if (cellValue === 0) {
+        ret = "等待发件"; //根据自己的需求设定
+      } else if (cellValue === 1) {
+        ret = "已收件";
+      } else if (cellValue === 2) {
+        ret = "运输中";
+      } else if (cellValue === 3) {
+        ret = "已投递";
+      } else if (cellValue === 4) {
+        ret = "已取件";
+      } else {
+        ret = "等待受理";
+      }
+      return ret;
+    },
     //获取用户信息列表
     getIssuedInvoiceRecordMesMes() {
       this.$axios

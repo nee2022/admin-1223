@@ -15,7 +15,7 @@ export default {
       pagenum: 1,
       token: "",
       pagesize: 12,
-      chart: false
+      chart: true
     };
   },
 
