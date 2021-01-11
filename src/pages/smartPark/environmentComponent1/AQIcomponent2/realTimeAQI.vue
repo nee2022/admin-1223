@@ -42,20 +42,20 @@
           >
             106
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="agent" label="O³(μg/m³)">
+          <el-table-column show-overflow-tooltip prop="agent" label="O₃(μg/m³)">
             2.5
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
             prop="agent"
-            label="NO²(μg/m³)"
+            label="NO₂(μg/m³)"
           >
             80
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
             prop="agent"
-            label="SO²(μg/m³)"
+            label="SO₂(μg/m³)"
           >
             9
           </el-table-column>
