@@ -203,6 +203,10 @@ export default {
         ret = "钱包支付";
       } else if (cellValue === "heemoney") {
         ret = "储值卡支付";
+      } else if (cellValue === "aliyun") {
+        ret = "阿里云";
+      } else if (cellValue === "moredo") {
+        ret = "盟度";
       } else {
         ret = "网关异常";
       }
