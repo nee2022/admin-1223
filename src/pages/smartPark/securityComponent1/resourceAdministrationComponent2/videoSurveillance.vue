@@ -72,7 +72,7 @@
         <ul class="chartItems">
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem1" v-if="item.styleId < 11">
-              <video controls height="100%">
+              <video controls>
                 <source
                   src="../../../../assets/verticalVideo.mp4"
                   type="video/mp4"
