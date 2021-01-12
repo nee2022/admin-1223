@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage ammeter">
+  <div class="zyhSingleLineListMainPage videoSurveillance">
     <header>
       <div class="infoArea">
         <div class="pageName">视频监控</div>
@@ -72,38 +72,20 @@
         <ul class="chartItems">
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem">
-              <div class="wrapper">
-                <div class="signBar">
-                  <span class="circle"></span>
-                  <span>{{ item.id }}</span>
-                  <span>
-                    <img src="../../../../assets/images/signal4.png" alt="" />
-                  </span>
-                </div>
-                <div class="meterInfo">
-                  <span>实时电量</span>
-                  <span>0</span>
-                  <span>KWH</span>
-                </div>
-                <div class="parameter">
-                  <p>电压<span>1</span>V</p>
-                  <p>电流<span>2</span>A</p>
-                  <p>功率<span>9005</span>W</p>
-                </div>
-              </div>
-              <div class="operation">
-                <div>
-                  <img
-                    src="../../../../assets/images/Tdelete.png"
-                    title="删除"
-                  />
-                </div>
-                <div>
-                  <img
-                    src="../../../../assets/images/Teditor.png"
-                    title="修改"
-                  />
-                </div>
+              <video controls height="100%">
+                <source
+                  src="../../../../assets/verticalVideo.mp4"
+                  type="video/mp4"
+                />
+
+                Sorry, your browser doesn't support embedded videos.
+              </video>
+              <div class="signBar">
+                <span class="circle"></span>
+                <span>2021-01-12 10:35</span>
+                <span>
+                  <img src="../../../../assets/images/signal4.png" alt="" />
+                </span>
               </div>
             </div>
           </li>
