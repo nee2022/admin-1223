@@ -717,7 +717,7 @@
         padding-right: 38px;
         padding-bottom: 38px;
 
-        .tableItem {
+        .tableItem1 {
           height: 100%;
           border-radius: 10px;
           display: flex;
@@ -743,6 +743,67 @@
               width: 20px;
               border-radius: 10px;
               background: #6dc655;
+            }
+
+            span:nth-child(2) {
+              font-size: 14px;
+              font-family: PingFang SC;
+              font-weight: 400;
+              color: #fff;
+            }
+
+            span:nth-child(3) {
+              img {
+                height: 20px;
+              }
+            }
+          }
+        }
+
+        .tableItem2 {
+          height: 100%;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: #f0f2f4;
+          position: relative;
+
+          div:nth-child(1) {
+            margin: 5px;
+            font-size: 20px;
+            font-weight: 400;
+            color: #656666;
+            font-family: PingFang SC;
+          }
+
+          div:nth-child(2) {
+            font-size: 14px;
+            font-family: PingFang SC;
+            font-weight: 400;
+            color: #656666;
+          }
+
+          .signBar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20%;
+            width: 100%;
+            padding: 0 10px;
+            border-radius: 10px 10px 0 0;
+            background: #88898a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .circle {
+              border: 2px solid #717171;
+              height: 20px;
+              width: 20px;
+              border-radius: 10px;
+              background: #b5b5b5;
             }
 
             span:nth-child(2) {

@@ -47,7 +47,13 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
+            console.log(res);
             this.tableData = res.data.chargers;
+            for (let i = 0; i < this.tableData.length; i++) {
+              this.tableData[i].styleId = i;
+            }
+            console.log("1");
+            console.log(this.tableData);
             this.total = res.data.total || 0;
           }
         });

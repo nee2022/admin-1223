@@ -71,13 +71,12 @@
       <template v-if="chart">
         <ul class="chartItems">
           <li v-for="item in tableData" :key="item.id">
-            <div class="tableItem">
+            <div class="tableItem1" v-if="item.styleId < 11">
               <video controls height="100%">
                 <source
                   src="../../../../assets/verticalVideo.mp4"
                   type="video/mp4"
                 />
-
                 Sorry, your browser doesn't support embedded videos.
               </video>
               <div class="signBar">
@@ -85,6 +84,23 @@
                 <span>2021-01-12 10:35</span>
                 <span>
                   <img src="../../../../assets/images/signal4.png" alt="" />
+                </span>
+              </div>
+            </div>
+            <div class="tableItem2" v-if="item.styleId === 11">
+              <div>
+                <img
+                  src="../../../../assets/images/Exclamation point.png"
+                  alt=""
+                />
+                <span>暂无图像</span>
+              </div>
+              <div><span>设备已离线</span></div>
+              <div class="signBar">
+                <span class="circle"></span>
+                <span>2021-01-12 10:35</span>
+                <span>
+                  <img src="../../../../assets/images/signal0.png" alt="" />
                 </span>
               </div>
             </div>
