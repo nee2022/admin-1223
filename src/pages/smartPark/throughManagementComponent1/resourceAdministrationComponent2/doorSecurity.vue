@@ -126,12 +126,7 @@
                 </span>
               </div>
               <div class="info">
-                <img
-                  src="../../../../assets/images/renxingdaozha.png"
-                  height="100%"
-                  width="100%"
-                  alt=""
-                />
+                <img src="../../../../assets/images/renxingdaozha.png" alt="" />
               </div>
               <div class="operation">
                 <button>

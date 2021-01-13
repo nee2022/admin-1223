@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage doorSecurity">
+  <div class="zyhSingleLineListMainPage sidewalkGate">
     <header>
       <div class="infoArea">
         <div class="pageName">人行道闸</div>
