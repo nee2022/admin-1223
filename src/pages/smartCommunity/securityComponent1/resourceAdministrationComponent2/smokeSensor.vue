@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage">
+  <div class="zyhSingleLineListMainPage smokeSensor">
     <header>
       <div class="infoArea">
         <div class="pageName">烟雾传感器</div>
@@ -19,10 +19,18 @@
         <div class="searchButton">
           <el-button type="primary" icon="el-icon-search">搜索</el-button>
         </div>
+        <div class="toggleTable">
+          <div v-if="chart" class="listButton" @click="toggleListTable">
+            <img src="../../../../assets/images/listIcon.png" alt="" />
+          </div>
+          <div v-if="!chart" class="chartButton" @click="toggleChartTable">
+            <img src="../../../../assets/images/chartIcon.png" alt="" />
+          </div>
+        </div>
       </div>
     </header>
     <section>
-      <template>
+      <template v-if="!chart">
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
@@ -39,8 +47,8 @@
           </el-table-column>
           <el-table-column show-overflow-tooltip prop="agent" label="所属商户">
           </el-table-column>
-          <el-table-column show-overflow-tooltip prop="address" label="地址"
-            >浙江省杭州市金沙大道888号
+          <el-table-column show-overflow-tooltip prop="address" label="地址">
+            浙江省杭州市金沙大道888号
           </el-table-column>
           <el-table-column
             show-overflow-tooltip
@@ -59,6 +67,98 @@
             </div>
           </el-table-column>
         </el-table>
+      </template>
+      <template v-if="chart">
+        <ul class="chartItems">
+          <li v-for="item in tableData" :key="item.id">
+            <div class="tableItem1" v-if="item.styleId < 13">
+              <div class="signBar">
+                <span class="circle"></span>
+                <span></span>
+                <span>
+                  <img src="../../../../assets/images/signal4.png" alt="" />
+                </span>
+              </div>
+              <div class="info">
+                <span>002烟雾</span>
+                <span>{{ item.id }}</span>
+              </div>
+              <div class="operation">
+                <div>
+                  <img
+                    src="../../../../assets/images/Tdelete.png"
+                    title="删除"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="../../../../assets/images/Teditor.png"
+                    title="修改"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="tableItem2" v-if="item.styleId === 13">
+              <div class="signBar">
+                <span class="circle"></span>
+                <span></span>
+                <span>
+                  <img src="../../../../assets/images/signal0.png" alt="" />
+                </span>
+              </div>
+              <div class="info">
+                <span>002烟雾</span>
+                <span>{{ item.id }}</span>
+                <span>设备已离线</span>
+              </div>
+              <div class="operation">
+                <div>
+                  <img
+                    src="../../../../assets/images/Tdelete.png"
+                    title="删除"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="../../../../assets/images/Teditor.png"
+                    title="修改"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="tableItem3" v-if="item.styleId === 14">
+              <div class="signBar">
+                <span class="circle"></span>
+                <span></span>
+                <span>
+                  <img src="../../../../assets/images/signal3.png" alt="" />
+                </span>
+              </div>
+              <div class="info">
+                <span>002烟雾</span>
+                <span>{{ item.id }}</span>
+                <button>
+                  <img src="../../../../assets/images/Stop alarm.png" alt="" />
+                  停止报警
+                </button>
+              </div>
+              <div class="operation">
+                <div>
+                  <img
+                    src="../../../../assets/images/Tdelete.png"
+                    title="删除"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="../../../../assets/images/Teditor.png"
+                    title="修改"
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </template>
     </section>
     <footer>
@@ -79,56 +179,9 @@
 </template>
 
 <script>
-import myhead from "../../../../components/myhead";
+import smokeSensor from "./smokeSensor.js";
 
-export default {
-  components: {
-    myhead
-  },
-  data() {
-    return {
-      tableData: [],
-      option: "",
-      total: 1,
-      isActive: true,
-      dialogVisible: false,
-      selected: "所有",
-      pagenum: 1,
-      token: "",
-      pagesize: 12
-    };
-  },
-
-  mounted() {
-    this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getAllInvoiceRecordMes();
-  },
-  methods: {
-    //获取用户信息列表
-    getAllInvoiceRecordMes() {
-      this.$axios
-        .get(
-          "/admin/api/chargers/1/?token=" +
-            this.token +
-            "&page=" +
-            this.pagenum +
-            "&row=12"
-        )
-        .then(res => {
-          if (res.status == 200) {
-            this.tableData = res.data.chargers;
-            this.total = res.data.total || 0;
-            var pn = this.pagenum;
-          }
-        });
-    },
-    //监听页码值改变
-    handleCurrentChange(newPage) {
-      this.pagenum = newPage;
-      this.getAllInvoiceRecordMes();
-    }
-  }
-};
+export default smokeSensor;
 </script>
 
 <style lang="stylus" scoped></style>
