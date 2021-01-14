@@ -72,36 +72,49 @@
         <ul class="chartItems">
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem1" v-if="item.styleId < 11">
-              <video controls>
-                <source
-                  src="../../../assets/verticalVideo.mp4"
-                  type="video/mp4"
-                />
-                Sorry, your browser doesn't support embedded videos.
-              </video>
               <div class="signBar">
                 <span class="circle"></span>
-                <span>2021-01-12 10:35</span>
+                <span>2021-01-13 15:17</span>
                 <span>
                   <img src="../../../assets/images/signal4.png" alt="" />
                 </span>
               </div>
+              <div class="info">
+                <img src="../../../assets/images/shipinduijiangji.png" alt="" />
+              </div>
+              <div class="operation">
+                <button>
+                  <img
+                    src=""
+                    alt=""
+                    width="10px"
+                    height="12px"
+                    style="background:blue"
+                  />
+                  接通
+                </button>
+                <button>
+                  <img
+                    src=""
+                    alt=""
+                    width="10px"
+                    height="12px"
+                    style="background:red"
+                  />
+                  挂断
+                </button>
+              </div>
             </div>
             <div class="tableItem2" v-if="item.styleId === 11">
-              <div>
-                <img
-                  src="../../../assets/images/Exclamation point.png"
-                  alt=""
-                />
-                <span>暂无图像</span>
-              </div>
-              <div><span>设备已离线</span></div>
               <div class="signBar">
                 <span class="circle"></span>
-                <span>2021-01-12 10:35</span>
+                <span>2021-01-13 15:17</span>
                 <span>
                   <img src="../../../assets/images/signal0.png" alt="" />
                 </span>
+              </div>
+              <div class="info">
+                <span>设备已挂机</span>
               </div>
             </div>
           </li>

@@ -47,7 +47,6 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-            console.log(res);
             this.tableData = res.data.chargers;
             for (let i = 0; i < this.tableData.length; i++) {
               this.tableData[i].styleId = i;
