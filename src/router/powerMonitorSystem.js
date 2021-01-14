@@ -1,16 +1,16 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import panorama from "../pages/powerMonitorSystem/resourceAdministrationComponent/panorama";
-import highVoltageRoom from "../pages/powerMonitorSystem/resourceAdministrationComponent/highVoltageRoom";
-import ammeter from "../pages/powerMonitorSystem/resourceAdministrationComponent/ammeter";
-import camera from "../pages/powerMonitorSystem/resourceAdministrationComponent/camera";
-import videoIntercom from "../pages/powerMonitorSystem/resourceAdministrationComponent/videoIntercom";
-import temperatureSensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/temperatureSensor";
-import humiditySensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/humiditySensor";
+import panorama from "../pages/powerMonitorSystem/resourceAdministrationComponent/panorama.vue";
+import highVoltageRoom from "../pages/powerMonitorSystem/resourceAdministrationComponent/highVoltageRoom.vue";
+import ammeter from "../pages/powerMonitorSystem/resourceAdministrationComponent/ammeter.vue";
+import camera from "../pages/powerMonitorSystem/resourceAdministrationComponent/camera.vue";
+import videoIntercom from "../pages/powerMonitorSystem/resourceAdministrationComponent/videoIntercom.vue";
+import temperatureSensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/temperatureSensor.vue";
+import humiditySensor from "../pages/powerMonitorSystem/resourceAdministrationComponent/humiditySensor.vue";
 
-import meterReadingRecord from "../pages/powerMonitorSystem/dataCollectionComponent/meterReadingRecord";
-import alarmLog from "../pages/powerMonitorSystem/dataCollectionComponent/alarmLog";
+import meterReadingRecord from "../pages/powerMonitorSystem/dataCollectionComponent/meterReadingRecord.vue";
+import alarmLog from "../pages/powerMonitorSystem/dataCollectionComponent/alarmLog.vue";
 
 Vue.use(Router);
 

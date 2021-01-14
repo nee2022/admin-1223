@@ -1,16 +1,16 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import communityManagementPanorama from "../pages/smartCommunity/communityManagementComponent1/communityManagementPanorama";
-import community from "../pages/smartCommunity/communityManagementComponent1/community";
-import videoSurveillance from "../pages/smartCommunity/securityComponent1/resourceAdministrationComponent2/videoSurveillance";
-import smokeSensor from "../pages/smartCommunity/securityComponent1/resourceAdministrationComponent2/smokeSensor";
-import alarmLog from "../pages/smartCommunity/securityComponent1/alarmLog";
-import ammeter from "../pages/smartCommunity/energySourceComponent1/resourceAdministrationComponent2/ammeter";
-import gasMeter from "../pages/smartCommunity/energySourceComponent1/resourceAdministrationComponent2/gasMeter";
-import waterMeter from "../pages/smartCommunity/energySourceComponent1/resourceAdministrationComponent2/waterMeter";
-import alarmRecord from "../pages/smartCommunity/energySourceComponent1/alarmLogComponent2/alarmRecord";
-import meterReadingRecord from "../pages/smartCommunity/energySourceComponent1/alarmLogComponent2/meterReadingRecord";
+import communityManagementPanorama from "../pages/smartCommunity/communityManagementComponent1/communityManagementPanorama.vue";
+import community from "../pages/smartCommunity/communityManagementComponent1/community.vue";
+import videoSurveillance from "../pages/smartCommunity/securityComponent1/resourceAdministrationComponent2/videoSurveillance.vue";
+import smokeSensor from "../pages/smartCommunity/securityComponent1/resourceAdministrationComponent2/smokeSensor.vue";
+import alarmLog from "../pages/smartCommunity/securityComponent1/alarmLog.vue";
+import ammeter from "../pages/smartCommunity/energySourceComponent1/resourceAdministrationComponent2/ammeter.vue";
+import gasMeter from "../pages/smartCommunity/energySourceComponent1/resourceAdministrationComponent2/gasMeter.vue";
+import waterMeter from "../pages/smartCommunity/energySourceComponent1/resourceAdministrationComponent2/waterMeter.vue";
+import alarmRecord from "../pages/smartCommunity/energySourceComponent1/alarmLogComponent2/alarmRecord.vue";
+import meterReadingRecord from "../pages/smartCommunity/energySourceComponent1/alarmLogComponent2/meterReadingRecord.vue";
 
 Vue.use(Router);
 const routes = [
