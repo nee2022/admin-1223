@@ -3,7 +3,7 @@
     <aside>
       <div class="logo">
         <a href="/#/summary">
-          <span><img :src="loginConfig.imgs" /></span>
+          <span><img :src="loginConfig.imgs"/></span>
         </a>
       </div>
       <nav>
@@ -33,6 +33,12 @@
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/zhandian.png" />
                     <span>站点</span>
+                  </el-menu-item>
+                </router-link>
+                <router-link to="/smartSocket/socket">
+                  <el-menu-item index="1-3">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>插座</span>
                   </el-menu-item>
                 </router-link>
               </el-submenu>
@@ -90,8 +96,8 @@ export default {
   router,
   data() {
     return {
-			loginConfig,
-		};
+      loginConfig
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
