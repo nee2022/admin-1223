@@ -91,30 +91,8 @@
         <ul class="chartItems">
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem">
-              <div class="wrapper">
-                <div class="signBar">
-                  <span class="circle"></span>
-                  <span>{{ item.id }}</span>
-                  <span>
-                    <img src="../../../assets/images/signal4.png" alt="" />
-                  </span>
-                </div>
-                <div class="meterInfo">
-                  <div class="info">
-                    <span>当前湿度</span>
-                  </div>
-                  <div class="valueWrapper">
-                    <div class="temperature">
-                      <span>0</span>
-                      <span>℃</span>
-                    </div>
-                    <div class="humidityValue">
-                      <span>0</span>
-                      <span>％</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="topBar">123</div>
+              <div class="info">{{ item.name }}</div>
               <div class="operation">
                 <div>
                   <img src="../../../assets/images/Tdelete.png" title="删除" />

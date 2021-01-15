@@ -208,6 +208,8 @@ export default {
         ret = "阿里云";
       } else if (cellValue === "moredo") {
         ret = "盟度";
+      } else if (cellValue === "pt") {
+        ret = "票通";
       } else {
         ret = "网关异常";
       }

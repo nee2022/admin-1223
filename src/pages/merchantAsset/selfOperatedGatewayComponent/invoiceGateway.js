@@ -67,6 +67,8 @@ export default {
         ret = "阿里云";
       } else if (cellValue === "moredo") {
         ret = "盟度";
+      } else if (cellValue === "pt") {
+        ret = "票通";
       } else {
         ret = "网关异常";
       }
@@ -86,8 +88,8 @@ export default {
         .then(res => {
           if (res.status == 200) {
             this.tableData = res.data.receipt_gws;
+            console.log(this.tableData);
             this.total = res.data.total || 0;
-            var pn = this.pagenum;
           }
         });
     },
