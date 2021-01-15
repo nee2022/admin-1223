@@ -80,8 +80,8 @@
                 </span>
               </div>
               <div class="info">
-                <span class="info1">东3梯</span>
-                <span class="info2">{{ item.styleId }}/23</span>
+                <span class="info1">{{ item.name }}</span>
+                <span class="info2">0/7</span>
                 <div class="floor">
                   <span
                     v-for="childItem in item.floorArray"
@@ -109,8 +109,8 @@
                 </span>
               </div>
               <div class="info">
-                <span class="info1">东3梯</span>
-                <span class="info2">{{ item.styleId }}/23</span>
+                <span class="info1">{{ item.name }}</span>
+                <span class="info2">1/7</span>
                 <div class="floor">
                   <span
                     v-for="childItem in item.floorArray"
