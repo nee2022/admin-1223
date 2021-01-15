@@ -3,18 +3,18 @@ import Router from "vue-router";
 
 import refresh from "../pages/refresh";
 
-import merchantAccount from "../pages/merchantAsset/merchantAccountComponent/merchantAccount";
-import orderRecord from "../pages/merchantAsset/financialManagementComponent/orderRecord";
-import shareRecord from "../pages/merchantAsset/financialManagementComponent/shareRecord";
-import withdrawalRecord from "../pages/merchantAsset/financialManagementComponent/withdrawalRecord";
+import merchantAccount from "../pages/merchantAsset/merchantAccountComponent/merchantAccount.vue";
+import orderRecord from "../pages/merchantAsset/financialManagementComponent/orderRecord.vue";
+import shareRecord from "../pages/merchantAsset/financialManagementComponent/shareRecord.vue";
+import withdrawalRecord from "../pages/merchantAsset/financialManagementComponent/withdrawalRecord.vue";
 
-import paymentGateway from "../pages/merchantAsset/selfOperatedGatewayComponent/paymentGateway";
-import invoiceGateway from "../pages/merchantAsset/selfOperatedGatewayComponent/invoiceGateway";
-import smsGateway from "../pages/merchantAsset/selfOperatedGatewayComponent/smsGateway";
+import paymentGateway from "../pages/merchantAsset/selfOperatedGatewayComponent/paymentGateway.vue";
+import invoiceGateway from "../pages/merchantAsset/selfOperatedGatewayComponent/invoiceGateway.vue";
+import smsGateway from "../pages/merchantAsset/selfOperatedGatewayComponent/smsGateway.vue";
 
-import openPlatform from "../pages/merchantAsset/openPlatformComponent/openPlatform";
+import openPlatform from "../pages/merchantAsset/openPlatformComponent/openPlatform.vue";
 
-import companyInformation from "../pages/merchantAsset/companyInformationComponent/companyInformation";
+import companyInformation from "../pages/merchantAsset/companyInformationComponent/companyInformation.vue";
 
 Vue.use(Router);
 
