@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage">
+  <div class="zyhSingleLineListMainPage invoiceGateway">
     <header>
       <div class="infoArea">
         <div class="pageName">商户资产</div>
@@ -28,10 +28,18 @@
             >添加</el-button
           >
         </div>
+        <div class="toggleTable">
+          <div v-if="chart" class="listButton" @click="toggleListTable">
+            <img src="../../../assets/images/listIcon.png" alt="" />
+          </div>
+          <div v-if="!chart" class="chartButton" @click="toggleChartTable">
+            <img src="../../../assets/images/chartIcon.png" alt="" />
+          </div>
+        </div>
       </div>
     </header>
     <section>
-      <template>
+      <template v-if="!chart">
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
@@ -78,6 +86,46 @@
             </template>
           </el-table-column>
         </el-table>
+      </template>
+      <template v-if="chart">
+        <ul class="chartItems">
+          <li v-for="item in tableData" :key="item.id">
+            <div class="tableItem">
+              <div class="wrapper">
+                <div class="signBar">
+                  <span class="circle"></span>
+                  <span>{{ item.id }}</span>
+                  <span>
+                    <img src="../../../assets/images/signal4.png" alt="" />
+                  </span>
+                </div>
+                <div class="meterInfo">
+                  <div class="info">
+                    <span>当前湿度</span>
+                  </div>
+                  <div class="valueWrapper">
+                    <div class="temperature">
+                      <span>0</span>
+                      <span>℃</span>
+                    </div>
+                    <div class="humidityValue">
+                      <span>0</span>
+                      <span>％</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="operation">
+                <div>
+                  <img src="../../../assets/images/Tdelete.png" title="删除" />
+                </div>
+                <div>
+                  <img src="../../../assets/images/Teditor.png" title="修改" />
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </template>
     </section>
     <footer>
@@ -178,7 +226,8 @@ export default {
         appid: "",
         gateway: ""
       },
-      input: ""
+      input: "",
+      chart: true
     };
   },
 
@@ -187,6 +236,16 @@ export default {
     this.getInvoiceGatewayMes();
   },
   methods: {
+    toggleListTable() {
+      this.pagesize = 12;
+      this.getInvoiceGatewayMes();
+      this.chart = false;
+    },
+    toggleChartTable() {
+      this.pagesize = 16;
+      this.getInvoiceGatewayMes();
+      this.chart = true;
+    },
     formatterGateway: function(row, column, cellValue) {
       var ret = ""; //你想在页面展示的值
       if (cellValue === 0) {
@@ -220,7 +279,8 @@ export default {
             this.token +
             "&page=" +
             this.pagenum +
-            "&row=12"
+            "&row" +
+            this.pagesize
         )
         .then(res => {
           if (res.status == 200) {
