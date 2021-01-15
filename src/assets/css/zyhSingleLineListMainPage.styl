@@ -2115,8 +2115,8 @@
   }
 }
 
-// 发票网关图表样式
-.zyhSingleLineListMainPage.invoiceGateway {
+// 网关图表样式
+.zyhSingleLineListMainPage.invoiceGateway, .zyhSingleLineListMainPage.paymentGateway, .zyhSingleLineListMainPage.smsGateway {
   section {
     ul {
       padding-top: 35px;
@@ -2140,7 +2140,17 @@
           flex-direction: column;
 
           .topBar {
-            height: 20%;
+            height: 25%;
+            margin: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            img {
+              height: 30px;
+              width: 30px;
+              background: #ccc;
+            }
           }
 
           .info {

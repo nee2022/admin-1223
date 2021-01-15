@@ -91,7 +91,15 @@
         <ul class="chartItems">
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem">
-              <div class="topBar">123</div>
+              <div class="topBar">
+                <img src="" alt="" >
+                <el-switch
+                  v-model="value"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949"
+                >
+                </el-switch>
+              </div>
               <div class="info">{{ item.name }}</div>
               <div class="operation">
                 <div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage">
+  <div class="zyhSingleLineListMainPage paymentGateway">
     <header>
       <div class="infoArea">
         <div class="pageName">商户资产</div>
@@ -29,10 +29,18 @@
             添加
           </el-button>
         </div>
+        <div class="toggleTable">
+          <div v-if="chart" class="listButton" @click="toggleListTable">
+            <img src="../../../assets/images/listIcon.png" alt="" />
+          </div>
+          <div v-if="!chart" class="chartButton" @click="toggleChartTable">
+            <img src="../../../assets/images/chartIcon.png" alt="" />
+          </div>
+        </div>
       </div>
     </header>
     <section>
-      <template>
+      <template v-if="!chart">
         <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column show-overflow-tooltip prop="id" label="ID">
           </el-table-column>
@@ -79,6 +87,32 @@
             </template>
           </el-table-column>
         </el-table>
+      </template>
+      <template v-if="chart">
+        <ul class="chartItems">
+          <li v-for="item in tableData" :key="item.id">
+            <div class="tableItem">
+              <div class="topBar">
+                <img src="" alt="" />
+                <el-switch
+                  v-model="value"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949"
+                >
+                </el-switch>
+              </div>
+              <div class="info">{{ item.name }}</div>
+              <div class="operation">
+                <div>
+                  <img src="../../../assets/images/Tdelete.png" title="删除" />
+                </div>
+                <div>
+                  <img src="../../../assets/images/Teditor.png" title="修改" />
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </template>
     </section>
     <footer>
@@ -179,7 +213,9 @@ export default {
         appid: "",
         gateway: ""
       },
-      input: ""
+      input: "",
+      chart: true,
+      value: true
     };
   },
 
@@ -188,6 +224,16 @@ export default {
     this.getPaymentGatewayMes();
   },
   methods: {
+    toggleListTable() {
+      this.pagesize = 12;
+      this.getPaymentGatewayMes();
+      this.chart = false;
+    },
+    toggleChartTable() {
+      this.pagesize = 12;
+      this.getPaymentGatewayMes();
+      this.chart = true;
+    },
     formatterGateway: function(row, column, cellValue) {
       var ret = ""; //你想在页面展示的值
       if (cellValue === 0) {

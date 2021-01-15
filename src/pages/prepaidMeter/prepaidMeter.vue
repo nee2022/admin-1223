@@ -3,7 +3,7 @@
     <aside>
       <div class="logo">
         <a href="/#/summary">
-          <span><img :src="loginConfig.imgs" /></span>
+          <span><img :src="loginConfig.imgs"/></span>
         </a>
       </div>
       <nav>
@@ -33,6 +33,12 @@
                   <el-menu-item index="1-2">
                     <img src="../../assets/images/zhandian.png" />
                     <span>站点</span>
+                  </el-menu-item>
+                </router-link>
+                <router-link to="/prepaidMeter/ammeter">
+                  <el-menu-item index="1-3">
+                    <img src="../../assets/images/all.png" />
+                    <span>电表</span>
                   </el-menu-item>
                 </router-link>
                 <!-- <router-link to="/prepaidMeter/twoPhaseMeter">
@@ -110,8 +116,8 @@ export default {
   router,
   data() {
     return {
-		loginConfig,
-	};
+      loginConfig
+    };
   },
   methods: {
     handleOpen(key, keyPath) {

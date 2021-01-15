@@ -28,7 +28,8 @@ export default {
         gateway: ""
       },
       input: "",
-      chart: true
+      chart: true,
+      value: true
     };
   },
 
@@ -43,7 +44,7 @@ export default {
       this.chart = false;
     },
     toggleChartTable() {
-      this.pagesize = 16;
+      this.pagesize = 12;
       this.getInvoiceGatewayMes();
       this.chart = true;
     },
