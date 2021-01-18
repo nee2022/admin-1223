@@ -12,7 +12,7 @@
 			<div class="myhead2">
 				<div class="myhead2-left">
 					<img src="../../assets/images/timgr.png" style="width: 53px;height: 53px;" />
-					<span class="jiben-nameWord">{{jibenUsername}}用户</span>
+					<span class="jiben-nameWord">{{jibenUsername}}</span>
 					<span class="jiben-green">(运行中)</span>
 					<div class="myhead2-but-box">
 						<div class="myhead2-but" @click="back">返回上一级页面</div>
@@ -459,6 +459,13 @@
 		letter-spacing: 0px;
 		color: #000000;
 		margin-left: 10px;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		height: 30px;
+		width: 200px;
+		text-align: center;
+		line-height: 30px;
 	}
 
 	.jiben-right-top {

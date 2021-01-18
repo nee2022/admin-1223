@@ -220,11 +220,14 @@ export default {
       value: "",
       values: "",
       package: 1,
+      stationsxi:1,
     };
   },
   created() {
     this.stationsId = this.$store.state.id;
+    this.stationsxi = this.$store.state.xitong;
     this.stationsName = this.$store.state.name;
+    console.log(this.stationsxi);
     this.getParksMes();
   },
   methods: {
@@ -249,13 +252,13 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status == 200) {
-            this.$message.success("删除设备成功");
+            this.$message.success("删除成功");
             setTimeout(() => {
-              this.getParksMe();
+              this.getParksMes();
             }, 1000);
             //刷新用户数据
           } else {
-            this.$message.error("删除设备用户失败");
+            this.$message.error("删除失败");
           }
         });
 
@@ -289,8 +292,7 @@ export default {
       } else {
         this.value = 3;
       }
-      console.log(this.lest_id);
-      console.log(this.value);
+      console.log(this.stationsxi);
       if (this.lest_id) {
         console.log("输出的是id");
         this.$axios
@@ -300,8 +302,7 @@ export default {
             pay: this.b,
             amount: this.c,
             type: this.value,
-            station: this.stationsId,
-             package: 0,
+            station: this.stationsxi,
           })
           .then((res) => {
             console.log(res);
@@ -323,6 +324,8 @@ export default {
       } else {
         this.name = "添加套餐";
         console.log("输出的是添加");
+      console.log(this.stationsxi);
+
 
         this.$axios
           .post("/admin/api/package", {
@@ -331,14 +334,15 @@ export default {
             pay: this.b,
             amount: this.c,
             type: this.value,
-            station: this.stationsId,
-            package: 0,
+            station: this.stationsxi,
           })
           .then((res) => {
             console.log(res);
             if (res.data.error == 0) {
               this.$message.success("添加套餐成功");
-              this.getParksMes();
+                           setTimeout(() => {
+                this.getParksMes();
+              }, 1000);
             } else {
               this.$message.success("添加套餐失败");
             }
@@ -355,7 +359,7 @@ export default {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
         .get(
-          `admin/api/station/${this.stationsId}/packages?token=${toKen}&page=${this.newpark}&row=8&package=${this.package}`
+          `admin/api/station/${this.stationsId}/packages?token=${toKen}&page=${this.newpark}&charger=${this.package}&row=8&package=${this.package}`
         )
         .then((res) => {
           console.log(res);

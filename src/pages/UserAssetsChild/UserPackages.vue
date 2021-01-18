@@ -8,19 +8,30 @@
 				<myhead></myhead>
 			</div>
 		</div>
-		<div class="UserAssets-right-text">
-			<div class="textBox">
-				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+		<div class="conB">
+			<div class="UserAssets-right-text">
+				<div class="textBox">
+					<img src="../../assets/images/search.png" class="sear-img">
+					<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+				</div>
+				<div>
+					<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
+				</div>
+				<div>
+					<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+				</div>
 			</div>
-			<div>
-				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
-			</div>
-			<div>
-				<el-button type="success" icon="el-icon-circle-plus-outline">添加</el-button>
+			<div class="changeMode">
+				<div @click="flagT" v-if="changeList == false">
+					<img src="../../assets/images/changeList.png" alt="" style="width: 35px;height: 35px;">
+				</div>
+				<div @click="flagF" v-show="changeList == true">
+					<img src="../../assets/images/changeIcon.png" alt="" style="width: 35px;height: 35px;">
+				</div>
 			</div>
 		</div>
-		<div>
+		<div style="height: 700px">
+			<div v-if="changeList == true">
 			<template>
 				<el-table :data="tableData" stripe style="width: 100%">
 					<el-table-column prop="id" label="ID" width="130">
@@ -39,7 +50,7 @@
 					</el-table-column>
 					<el-table-column prop="amount" label="面值">
 					</el-table-column>
-					<el-table-column prop="account" label="用户">
+					<el-table-column prop="account" label="用户" show-overflow-tooltip>
 					</el-table-column>
 					<el-table-column prop="avail_from,avail_to"  label="有效期" width="200">
 						<template slot-scope="scope">
@@ -59,10 +70,39 @@
 					</el-table-column>
 				</el-table>
 			</template>
+			</div>
+			<div v-else class="tubiao">
+				<div v-for="item in tableData">
+					<div :class="item.state == 0?'imgbox':!item.state == 0?'imgbox1':''">
+						<div class="imgboxTop">
+							{{item.name}}
+						</div>
+						<div class="imgboxCon">
+							<div class="conWordBox1 ">
+								<span class="moneyW1" :class="item.state == 0?'o':!item.state == 0?'g':''">￥</span>
+								<span class="moneyW2" :class="item.state == 0?'o':!item.state == 0?'g':''">{{item.pay}}</span>
+							</div>
+							<div class="conWordBox2">
+								<img src="../../assets/images/diamond.png" alt="" v-if="item.state == 0">
+								<img src="../../assets/images/Failure of the diamond.png" alt="" v-else>
+								<span class="dateW" :class="item.state == 0?'o':!item.state == 0?'g':''">{{item.avail_to}}</span>
+								<img src="../../assets/images/diamond.png" alt="" v-if="item.state == 0">
+								<img src="../../assets/images/Failure of the diamond.png" alt="" v-else>
+							</div>
+						</div>
+						<div class="imgboxBot">
+							<div class="imgboxBotB">
+								<img src="../../assets/images/Tdelete.png" alt="">
+								<img src="../../assets/images/Teditor.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="UserAssets-bottom">
+		<div class="UserAssets-bottom" v-if="changeList == true">
 			<div class="UserAssets-bottom-left" :data="tableData">
-				<span>共{{total}}条信息</span>
+				<span>共{{total}}个套餐</span>
 			</div>
 			<div class="UserAssets-bottom-right">
 				<el-pagination background :current-page.sync.number="pagenum" @current-change="handleCurrentChange" :page-size="pagesize"
@@ -70,33 +110,16 @@
 				</el-pagination>
 			</div>
 		</div>
-		<!-- 删除弹出框 -->
-		<el-dialog title="提示" :visible.sync="dialogVisible" width="30%" class="tanchu">
-			<img src="../../assets/images/Exclamation mark.png" />
-			<span class="tanchu-text">此操作将永久删除用户，是否继续？</span>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="dialogVisible = false">取 消</el-button>
-				<el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-			</span>
-		</el-dialog>
-		<!-- 充值弹框 -->
-		<el-dialog title="充值" :visible.sync="addDialogVisible" width="30%" @close="addDialogClosed">
-			<el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="80px">
-				<el-form-item label="充值金额" prop="amount">
-					<el-input v-model="addForm.amount" class="addinput"></el-input>
-				</el-form-item>
-				<el-form-item label="实际支付" prop="pay">
-					<el-input v-model="addForm.pay" class="addinput"></el-input>
-				</el-form-item>
-				<el-form-item label="备注" prop="memo">
-					<el-input v-model="addForm.memo" class="addinput"></el-input>
-				</el-form-item>
-			</el-form>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="addDialogVisible = false">取 消</el-button>
-				<el-button type="primary" @click="Recharge">确 定</el-button>
-			</span>
-		</el-dialog>
+		<div class="UserAssets-bottom" v-else>
+			<div class="UserAssets-bottom-left" :data="tableData">
+				<span>共{{total}}个套餐</span>
+			</div>
+			<div class="UserAssets-bottom-right">
+				<el-pagination background :current-page.sync.number="pagenum2" @current-change="handleCurrentChange2" :page-size="pagesize"
+				 layout="prev, pager, next" :total="total">
+				</el-pagination>
+			</div>
+		</div>
 	</div>
 	
 </template>
@@ -115,11 +138,13 @@
 				username: '',
 				total: 1, //数据总条数
 				isActive: true,
+				changeList:false,
 				dialogVisible: false,
 				addDialogVisible: false, //添加用户对话框显示隐藏
 				add: false,
 				selected: 0, //下拉框
 				pagenum: 1, //分页
+				pagenum2: 1, //分页
 				token: '', //token令牌
 				pagesize: 14, //每次查询条数
 				type: 0,
@@ -175,15 +200,20 @@
 		},
 		created() {
 			this.token = localStorage.getItem('token')
-			this.getUserMes()
+			if (this.changeList == true) {
+				this.getUserMes()
+			} else if (this.changeList == false) {
+				this.getImg()
+			}
 		},
 		methods: {
-			handleOpen(key, keyPath) {
-				console.log(key, keyPath);
-				console.log(this.option)
+			flagF() {
+				this.changeList = false
+				this.getImg()
 			},
-			handleClose(key, keyPath) {
-				console.log(key, keyPath);
+			flagT() {
+				this.changeList = true
+				this.getUserMes()
 			},
 			//获取用户信息列表
 			getUserMes() {
@@ -198,31 +228,25 @@
 							this.tableData = res.data.user_plans //用户列表数据
 							this.total = res.data.total
 							// console.log(this.tableData)
-							var pn = this.pagenum
-
+							this.pagesize = 14
 						}
 					})
 			},
-			//套餐充值
-			Recharge(){
+			getImg() {
+				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
-				this.$refs.addFormRef.validate(valid => {
-					if (!valid) {
-						return this.$message.error("请输入正确的信息")
-					} else {
-						this.$axios.post("/admin/api/user/plan/"+ this.recharID + "/deal" + this.addForm)
-							.then(res => {
-								if (res.status !== 200) {
-									return this.$message.error('充值失败!')
-								}
-								this.$message.success('充值成功!')
-								this.addDialogVisible = false
-								console.log(res)
-								//刷新用户列表
-								this.getUserMes()
-							})
-					} 
-				})
+				// console.log(toKen)
+				this.$axios.get("/admin/api/user/plans/1?token=" + toKen + "&page=" + this.pagenum2 + "&row=10")
+					.then(res => {
+						// console.log(res.data.users)
+						// console.log(res.status)//打印状态码
+						if (res.status == 200) {
+							this.tableData = res.data.user_plans //用户列表数据
+							this.total = res.data.total
+							console.log(this.tableData)
+							this.pagesize = 12
+						}
+					})
 			},
 			
 			getID(id){
@@ -235,6 +259,11 @@
 				this.pagenum = newPage
 				this.getUserMes()
 			},
+			handleCurrentChange2(newPage) {
+				//console.log(newPage)
+				this.pagenum2 = newPage
+				this.getImg()
+			},
 			//添加用户对话框关闭事件
 			addDialogClosed() {
 				this.$refs.addFormRef.resetFields()
@@ -246,6 +275,102 @@
 <style scoped="scoped">
 	.el-table td {
 		padding: 0 0;
+	}
+	
+	.imgboxTop{
+		height: 80px;
+		width: 85%;
+		margin: 20px auto;
+		color: white;
+		font-size: 24px;
+		text-align: center;
+		line-height: 80px;
+	}
+	
+	.g{
+		color: #8c8c8c;
+	}
+	
+	.dateW{
+		font-size: 16px;
+	}
+	
+	.imgboxBotB{
+		width: 35%;
+		height: 45px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	
+	.o{
+		color: #fe924c;
+	}
+	
+	.conWordBox1{
+		margin: 0 auto;
+		
+	}
+	
+	.imgboxBot{
+		width: 80%;
+		margin: 0 auto;
+		height: 45px;
+	}
+	
+	.conWordBox2{
+		width: 80%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		
+	}
+	
+	.imgboxCon{
+		height: 150px;
+		width: 85%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.conB {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 95%;
+		margin: 0 auto;
+	}
+	
+	.moneyW1{
+		font-size: 28px;
+	}
+	
+	.moneyW2{
+		font-size: 100px;
+	}
+	.imgbox{
+		width: 250px;
+		height: 350px;
+		background: url(../../assets/images/youxiao.png);
+		background-size: 100% 100%;
+		display: flex;
+		flex-direction: column;
+		margin:10px 30px;
+	}
+	
+	.imgbox1{
+		width: 250px;
+		height: 350px;
+		background: url(../../assets/images/wuxiao.png);
+		background-size: 100% 100%;
+		display: flex;
+		flex-direction: column;
+		margin:10px 30px;
 	}
 	
 	.el-table td div{
@@ -261,6 +386,15 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+	}
+	
+	.tubiao{
+		width: 95%;
+		margin: 0 auto;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 	}
 
 	.tanchu-text {

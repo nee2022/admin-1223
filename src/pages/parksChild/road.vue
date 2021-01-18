@@ -22,59 +22,59 @@
 					</div>
 				</div>
 				<div class="leftbx">
-				<template>
-					<el-table :data="tableData" stripe style="width:100%">
-						<el-table-column>
-							<template slot-scope="scope">
-								<div class="leftBox" :class="{ BGactive:scope.row.id == isActive }" @click="changeBg(scope.row.id)">
-									<div class="parkimg">
-										<img src="../../assets/images/parking.png" />
+					<template>
+						<el-table :data="tableData" stripe style="width:100%">
+							<el-table-column>
+								<template slot-scope="scope">
+									<div class="leftBox" :class="{ BGactive:scope.row.id == isActive }" @click="changeBg(scope.row.id)">
+										<div class="parkimg">
+											<img src="../../assets/images/parking.png" />
+										</div>
+										<div class="leftBox-con" @click="getParksMes(scope.row.id),(scope.row.station)">
+											<div class="parkName">
+												{{scope.row.name}}
+											</div>
+											<div class="parkAddress">
+												<div v-if="scope.row.address == ''">地址未配置</div>
+												<div v-else>{{scope.row.address}}</div>
+											</div>
+											<div class="parkIcon">
+												<div>
+													<span class="parkIcon-word">停车场</span>
+												</div>
+												<div>
+													<span class="parkIcon-word">充电桩</span>
+												</div>
+												<div>
+													<span class="parkIcon-word">金额</span>
+												</div>
+											</div>
+										</div>
+										<template v-if="scope.row.id == isActive">
+											<div class="leftBox-right">
+												<div @click="showEditDialog1(scope.row.id)">
+													<img src="../../assets/images/xiu.png" title="修改">
+												</div>
+												<div @click="removeUserByID1(scope.row.id)">
+													<img src="../../assets/images/shan2.png" title="删除">
+												</div>
+												<router-link to="/stations">
+													<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group)">
+														<img src="../../assets/images/lan.png" title="查看">
+													</div>
+												</router-link>
+											</div>
+										</template>
+										<template v-else>
+											<div style="text-align: right;width: 20%;font-size: 30px;">
+												...
+											</div>
+										</template>
 									</div>
-									<div class="leftBox-con" @click="getParksMes(scope.row.id),(scope.row.station)">
-										<div class="parkName">
-											{{scope.row.name}}
-										</div>
-										<div class="parkAddress">
-											<div v-if="scope.row.address == ''">地址未配置</div>
-											<div v-else>{{scope.row.address}}</div>
-										</div>
-										<div class="parkIcon">
-											<div>
-												<span class="parkIcon-word">停车场</span>
-											</div>
-											<div>
-												<span class="parkIcon-word">充电桩</span>
-											</div>
-											<div>
-												<span class="parkIcon-word">金额</span>
-											</div>
-										</div>
-									</div> 
-									<template v-if="scope.row.id == isActive">
-										<div class="leftBox-right">
-											<div @click="showEditDialog1(scope.row.id)">
-												<img src="../../assets/images/xiu.png">
-											</div>
-											<div @click="removeUserByID1(scope.row.id)">
-												<img src="../../assets/images/shan2.png">
-											</div>
-											<router-link to="/stations">
-											 <div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group)">
-																							<img src="../../assets/images/lan.png">
-																						</div>
-											 </router-link>
-										</div>
-									</template>
-									<template v-else>
-										<div style="text-align: right;width: 20%;font-size: 30px;">
-											...
-										</div>
-									</template>
-								</div>
-							</template>
-						</el-table-column>
-					</el-table>
-				</template>
+								</template>
+							</el-table-column>
+						</el-table>
+					</template>
 				</div>
 				<div class="UserAssets-bottom">
 					<div class="road-bottom-left" :data="tableData">
@@ -91,8 +91,7 @@
 				<div class="sousuo">
 					<div class="textBox-right">
 						<img src="../../assets/images/search.png" class="sear-img">
-						<el-input placeholder="请输入关键字进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"
-						 ></el-input>
+						<el-input placeholder="请输入关键字进行查找" v-model="input2" class="textWord" @keyup.enter.native="getRoadChargers"></el-input>
 					</div>
 					<div class="but-weizhi">
 						<el-button type="primary" icon="el-icon-search" @click="getRoadChargers">搜索</el-button>
@@ -102,35 +101,35 @@
 					</div>
 				</div>
 				<div class="rightbx">
-				<template>
-					<el-table :data="parkList" stripe style="width:100%">
-						<el-table-column prop="id" label="设备ID">
-						</el-table-column>
-						<el-table-column prop="dev_id" label="设备编号">
-						</el-table-column>
-						<el-table-column prop="name" label="泊位">
-						</el-table-column>
-						<el-table-column prop="mac" label="机号">
-						</el-table-column>
-						<el-table-column prop="address" label="操作">
-							<template slot-scope="scope">
-								<div class="operation">
-									<div>
-										<button type="text" @click="removeUserByID(scope.row.id)"><img src="../../assets/images/delete.png" /></button>
+					<template>
+						<el-table :data="parkList" stripe style="width:100%">
+							<el-table-column prop="id" label="设备ID">
+							</el-table-column>
+							<el-table-column prop="dev_id" label="设备编号">
+							</el-table-column>
+							<el-table-column prop="name" label="泊位">
+							</el-table-column>
+							<el-table-column prop="mac" label="机号">
+							</el-table-column>
+							<el-table-column prop="address" label="操作">
+								<template slot-scope="scope">
+									<div class="operation">
+										<div>
+											<button type="text" @click="removeUserByID(scope.row.id)"><img src="../../assets/images/delete.png" /></button>
+										</div>
+										<div>
+											<el-button type="text" @click="showEditDialog(scope.row.id)"><img src="../../assets/images/compile.png" /></el-button>
+										</div>
+										<router-link to="/chargersXi">
+											<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group,kong)">
+												<img style="height:14px;width:19px" src="../../assets/images/see.png">
+											</div>
+										</router-link>
 									</div>
-									<div>
-										<el-button type="text" @click="showEditDialog(scope.row.id)"><img src="../../assets/images/compile.png" /></el-button>
-									</div>
-									<router-link to="/chargersXi">
-									<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group,kong)">
-										<img style="height:14px;width:19px" src="../../assets/images/see.png">
-									</div>
-									</router-link>
-								</div>
-							</template>
-						</el-table-column>
-					</el-table>
-				</template>
+								</template>
+							</el-table-column>
+						</el-table>
+					</template>
 				</div>
 				<div class="UserAssets-bottom">
 					<div class="road-bottom-left" :data="parkList">
@@ -238,7 +237,7 @@
 				getFristID: '',
 				input1: '',
 				input2: '',
-				kong:1,
+				kong: 1,
 				newpark2: 1,
 				editForm: {},
 				editForm1: {},
@@ -265,7 +264,7 @@
 				editFormRules: {
 					dev_id: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -275,7 +274,7 @@
 					}],
 					name: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -285,7 +284,7 @@
 					}],
 					mac: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -310,7 +309,7 @@
 				addFormRules: {
 					dev_id: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -320,7 +319,7 @@
 					}],
 					name: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -330,7 +329,7 @@
 					}],
 					mac: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -349,7 +348,7 @@
 				addFormRules1: {
 					name: [{
 						required: true,
-						message: '请输入用户名',
+						message: '请输入正确的信息',
 						trigger: 'blur'
 					}, {
 						min: 3,
@@ -387,24 +386,25 @@
 			}, 500);
 		},
 		methods: {
-			huodeid(id, name, type, address, memo, lot_rate_group, rate_group,kong) {
-			  if(kong == 1){
-			    console.log('you');
-			    console.log(kong);
-			  }if (!kong ==1){
-			    console.log('zuo');
-			    console.log(kong);
-			  }
-			  this.$store.commit("changeId", { 
-			    chanId: id,
-			    name: name,
-			    type: type,
-			    address: address,
-			    memo: memo,
-			    lot_rate_group: lot_rate_group,
-			    rate_group: rate_group,
-			    kong:kong,
-			  });
+			huodeid(id, name, type, address, memo, lot_rate_group, rate_group, kong) {
+				if (kong == 1) {
+					console.log('you');
+					console.log(kong);
+				}
+				if (!kong == 1) {
+					console.log('zuo');
+					console.log(kong);
+				}
+				this.$store.commit("changeId", {
+					chanId: id,
+					name: name,
+					type: type,
+					address: address,
+					memo: memo,
+					lot_rate_group: lot_rate_group,
+					rate_group: rate_group,
+					kong: kong,
+				});
 			},
 			getRoadMes() {
 				//token去掉引号
@@ -733,8 +733,8 @@
 	.BGactive {
 		background-color: #bed3ff;
 	}
-	
-	.parkName{
+
+	.parkName {
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
@@ -752,7 +752,7 @@
 		justify-content: space-around;
 
 	}
-	
+
 
 	.leftBox-right img {
 		margin-top: -25px;
@@ -808,7 +808,7 @@
 		display: flex;
 		flex-direction: row;
 	}
-	
+
 
 	/* 弹出对话框边框样式 */
 	.addinput {

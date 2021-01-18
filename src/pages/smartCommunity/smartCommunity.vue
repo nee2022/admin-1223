@@ -46,18 +46,18 @@
                     <img src="../../assets/images/zhandian.png" />
                     <span>资源管理</span>
                   </template>
-                  <el-menu-item index="2-1-1">
-                    <router-link to="/smartCommunity/videoSurveillance">
+                  <router-link to="/smartCommunity/videoSurveillance">
+                    <el-menu-item index="2-1-1">
                       <img src="../../assets/images/zhandian.png" />
                       <span>视频监控</span>
-                    </router-link>
-                  </el-menu-item>
-                  <el-menu-item index="2-1-2">
-                    <router-link to="/smartCommunity/smokeSensor">
+                    </el-menu-item>
+                  </router-link>
+                  <router-link to="/smartCommunity/smokeSensor">
+                    <el-menu-item index="2-1-2">
                       <img src="../../assets/images/zhandian.png" />
                       <span>烟雾传感器</span>
-                    </router-link>
-                  </el-menu-item>
+                    </el-menu-item>
+                  </router-link>
                 </el-submenu>
                 <el-submenu
                   index="2-2"
@@ -80,42 +80,42 @@
                     <img src="../../assets/images/zhandian.png" />
                     <span>资源管理</span>
                   </template>
-                  <el-menu-item index="3-1-1">
-                    <router-link to="/smartCommunity/ammeter">
+                  <router-link to="/smartCommunity/ammeter">
+                    <el-menu-item index="3-1-1">
                       <img src="../../assets/images/zhandian.png" />
                       <span>电表</span>
-                    </router-link>
-                  </el-menu-item>
-                  <el-menu-item index="3-1-2">
-                    <router-link to="/smartCommunity/waterMeter">
+                    </el-menu-item>
+                  </router-link>
+                  <router-link to="/smartCommunity/waterMeter">
+                    <el-menu-item index="3-1-2">
                       <img src="../../assets/images/zhandian.png" />
                       <span>水表</span>
-                    </router-link>
-                  </el-menu-item>
-                  <el-menu-item index="3-1-3">
-                    <router-link to="/smartCommunity/gasMeter">
+                    </el-menu-item>
+                  </router-link>
+                  <router-link to="/smartCommunity/gasMeter">
+                    <el-menu-item index="3-1-3">
                       <img src="../../assets/images/zhandian.png" />
                       <span>气表</span>
-                    </router-link>
-                  </el-menu-item>
+                    </el-menu-item>
+                  </router-link>
                 </el-submenu>
                 <el-submenu index="3-2">
                   <template slot="title">
                     <img src="../../assets/images/zhandian.png" />
                     <span>告警日志</span>
                   </template>
-                  <el-menu-item index="3-2-1">
-                    <router-link to="/smartCommunity/meterReadingRecord">
+                  <router-link to="/smartCommunity/meterReadingRecord">
+                    <el-menu-item index="3-2-1">
                       <img src="../../assets/images/zhandian.png" />
                       <span>抄表记录</span>
-                    </router-link>
-                  </el-menu-item>
-                  <el-menu-item index="3-2-2">
-                    <router-link to="/smartCommunity/alarmRecord">
+                    </el-menu-item>
+                  </router-link>
+                  <router-link to="/smartCommunity/alarmRecord">
+                    <el-menu-item index="3-2-2">
                       <img src="../../assets/images/zhandian.png" />
                       <span>告警记录</span>
-                    </router-link>
-                  </el-menu-item>
+                    </el-menu-item>
+                  </router-link>
                 </el-submenu>
               </el-submenu>
             </el-menu>

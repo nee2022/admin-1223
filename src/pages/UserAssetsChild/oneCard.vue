@@ -8,72 +8,124 @@
 				<myhead></myhead>
 			</div>
 		</div>
-		<div class="UserAssets-right-text">
-			<div class="textBox">
-				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+		<div class="conB">
+			<div class="UserAssets-right-text">
+				<div class="textBox">
+					<img src="../../assets/images/search.png" class="sear-img">
+					<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+				</div>
+				<div>
+					<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
+				</div>
+				<div>
+					<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+				</div>
 			</div>
-			<div>
-				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
-			</div>
-			<div>
-				<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+			<div class="changeMode">
+				<div @click="flagT" v-if="changeList == false">
+					<img src="../../assets/images/changeList.png" alt="" style="width: 35px;height: 35px;">
+				</div>
+				<div @click="flagF" v-show="changeList == true">
+					<img src="../../assets/images/changeIcon.png" alt="" style="width: 35px;height: 35px;">
+				</div>
 			</div>
 		</div>
-		<div>
-			<template>
-				<el-table :data="cardList" stripe style="width: 100%">
-					<el-table-column prop="id" label="ID">
-					</el-table-column>
-					<el-table-column prop="uid" label="用户ID">
-					</el-table-column>
-					<el-table-column prop="operator_name" label="用户名">
-					</el-table-column>
-					<el-table-column prop="number" label="卡号">
-					</el-table-column>
-					<el-table-column prop="valid" label="状态">
-						<template slot-scope="scope">
-							<div v-if="scope.row.valid == true">
-								已激活
-							</div>
-							<div v-else>
-								未激活
-							</div>
-						</template>
-					</el-table-column>
-					<el-table-column prop="type" label="类型">
-						<template slot-scope="scope">
-							<div v-if="scope.row.type == 1">
-								鉴权卡
-							</div>
-							<div v-else-if="scope.row.type == 2">
-								储值卡
-							</div>
-							<div v-else>
-								其他
-							</div>
-						</template>
-					</el-table-column>
-					<el-table-column prop="amount" label="余额">
-					</el-table-column>
-					<el-table-column prop="date_created" label="注册时间">
-					</el-table-column>
-					<el-table-column prop="address" label="操作" width="200">
-						<template slot-scope="scope">
-							<div class="operation">
-								<!-- @click="userMssage(scope.row.id,scope.row.operator_name) -->
-								<div>
-									<img src="../../assets/images/see.png" style="width: 15px;height: 11px;" title="详情">
+		<div style="height: 700px;">
+			<div v-if="changeList == true">
+				<template>
+					<el-table :data="cardList" stripe style="width: 100%">
+						<el-table-column prop="id" label="ID">
+						</el-table-column>
+						<el-table-column prop="uid" label="用户ID">
+						</el-table-column>
+						<el-table-column prop="operator_name" label="用户名">
+						</el-table-column>
+						<el-table-column prop="number" label="卡号">
+						</el-table-column>
+						<el-table-column prop="valid" label="状态">
+							<template slot-scope="scope">
+								<div v-if="scope.row.valid == true">
+									已激活
+								</div>
+								<div v-else>
+									未激活
+								</div>
+							</template>
+						</el-table-column>
+						<el-table-column prop="type" label="类型">
+							<template slot-scope="scope">
+								<div v-if="scope.row.type == 1">
+									鉴权卡
+								</div>
+								<div v-else-if="scope.row.type == 2">
+									储值卡
+								</div>
+								<div v-else>
+									其他
+								</div>
+							</template>
+						</el-table-column>
+						<el-table-column prop="amount" label="余额">
+						</el-table-column>
+						<el-table-column prop="date_created" label="注册时间">
+						</el-table-column>
+						<el-table-column prop="address" label="操作" width="200">
+							<template slot-scope="scope">
+								<div class="operation">
+									<!-- @click="userMssage(scope.row.id,scope.row.operator_name) -->
+									<div>
+										<img src="../../assets/images/see.png" style="width: 15px;height: 11px;" title="详情">
+									</div>
+								</div>
+							</template>
+						</el-table-column>
+					</el-table>
+				</template>
+			</div>
+			<div v-else class="tubiaobox">
+				<div v-for="item in cardList">
+					<div :class="item.type == 3?'imgBoxOff':item.valid == true?'imgBoxB':item.valid == false?'imgBoxR':''">
+						<div class="imgBoxTop">
+							<el-switch v-model="item.scope" active-color="#e9e9e9" inactive-color="#13ce66">
+							</el-switch>
+						</div>
+						<div class="imgBoxCon">
+							<div class="imgBoxConL">
+								<div :class="item.type == 3?'netImg3':item.valid == true?'netImg':item.valid == false?'netImg1':''">
+									<img src="../../assets/images/offlineCard.png" v-if="item.type == 3">
+									<img src="../../assets/images/NetworkCard.png" v-else-if="item.type == 2">
+									<img src="../../assets/images/authentication.png" v-else-if="item.type == 1">
+									<img src="../../assets/images/offlineCard.png" v-else>
+								</div>
+								<div class="netWord">
+									<div class="netWord1" v-if="item.type == 1">鉴权卡</div>
+									<div class="netWord1" v-else-if="item.type == 2">网络卡</div>
+									<div class="netWord1" v-else-if="item.type == 3">离线卡</div>
+									<div class="netWord1" v-else>其他</div>
+									<div class="netWord2">{{item.number}}</div>
 								</div>
 							</div>
-						</template>
-					</el-table-column>
-				</el-table>
-			</template>
+							<div class="imgBoxBotM">
+								<div class="money">￥{{item.amount}}</div>
+								<div class="chongzhi">充值</div>
+							</div>
+						</div>
+						<div class="imgBoxBot">
+							<div class="imgBoxBotW">
+								<div class="imgWord">有效期至2132132131</div>
+								<div class="seeBox">
+									<img src="../../assets/images/checkCard.png" style="width: 16px;height: 11px;">
+									<img src="../../assets/images/deleteCard.png" style="width: 14px;height: 15px;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="UserAssets-bottom">
+		<div class="UserAssets-bottom" v-if="changeList == true">
 			<div class="UserAssets-bottom-left" :data="cardList">
-				<span>共{{total}}条信息</span>
+				<span>共{{total}}张卡</span>
 			</div>
 			<div class="UserAssets-bottom-right">
 				<el-pagination background :current-page.sync.number="pagenum" @current-change="handleCurrentChange" :page-size="pagesize"
@@ -81,28 +133,23 @@
 				</el-pagination>
 			</div>
 		</div>
-		<!-- 添加设备 -->
-		<el-dialog title="添加设备" :visible.sync="addDialogVisible" width="30%" @close="addDialogClosed">
-			<el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="80px">
-				<el-form-item label="卡号" prop="number">
-					<el-input v-model="addForm.number" class="addinput"></el-input>
-				</el-form-item>
-				<el-form-item label="余额" prop="amount">
-					<el-input v-model="addForm.amount" class="addinput"></el-input>
-				</el-form-item>
-			</el-form>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="addDialogVisible = false">取 消</el-button>
-				<el-button type="primary" @click="chargersUser">确 定</el-button>
-			</span>
-		</el-dialog>
+		<div class="UserAssets-bottom" v-else>
+			<div class="UserAssets-bottom-left" :data="cardList">
+				<span>共{{total}}张卡</span>
+			</div>
+			<div class="UserAssets-bottom-right">
+				<el-pagination background :current-page.sync.number="pagenum2" @current-change="handleCurrentChange2" :page-size="pagesize"
+				 layout="prev, pager, next" :total="total">
+				</el-pagination>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 	import myhead from '../../components/myhead.vue'
 	export default {
-		components:{
+		components: {
 			myhead
 		},
 		data() {
@@ -116,39 +163,15 @@
 				dialogVisible: false,
 				addDialogVisible: false,
 				add: false,
+				changeList: false,
 				selected: 0, //下拉框
 				pagenum: 1, //分页
+				pagenum2: 1, //分页
 				token: '', //token令牌
-				pagesize: 14, //每次查询条数
+				pagesize: 7, //每次查询条数
 				type: 0,
 				input: '',
-				addFormRules: {
-					number: [{
-						required: true,
-						message: '请输入用户名',
-						trigger: 'blur'
-					}, {
-						min: 3,
-						max: 10,
-						message: '用户名的长度在3~10个字符之间',
-						trigger: 'blur'
-					}],
-					amount: [{
-						required: true,
-						message: '请输入用户名',
-						trigger: 'blur'
-					}, {
-						min: 3,
-						max: 10,
-						message: '用户名的长度在3~10个字符之间',
-						trigger: 'blur'
-					}]
-					},
-				addForm: {
-					token: localStorage.getItem('token').replace(/\"/g, ""),
-					number: '',
-					amount: '',
-				}, //添加设备添加数据
+				value: true,
 				typeList: [{
 						id: 0,
 						type: '所有'
@@ -168,25 +191,33 @@
 				]
 			}
 		},
+		mounted(){
+		},
 		created() {
+			console.log(this.changeList)
 			this.token = localStorage.getItem('token')
-			this.getUserMes()
+			if (this.changeList == true) {
+				this.getUserMes()
+			} else if (this.changeList == false) {
+				this.getImg()
+			}
 		},
 		methods: {
-			handleOpen(key, keyPath) {
-				console.log(key, keyPath);
-				console.log(this.option)
-			},
-			handleClose(key, keyPath) {
-				console.log(key, keyPath);
-			},
 			userMssage(id, operator_name) {
 				console.log(id)
-				sessionStorage.setItem('id',id)
+				sessionStorage.setItem('id', id)
 				sessionStorage.setItem('username', operator_name)
 				this.$router.push({
 					path: '/oneCardjiben',
 				})
+			},
+			flagF() {
+				this.changeList = false
+				this.getImg()
+			},
+			flagT() {
+				this.changeList = true
+				this.getUserMes()
 			},
 			//获取用户卡信息列表
 			getUserMes() {
@@ -195,79 +226,53 @@
 				//console.log(toKen)
 				this.$axios.get("admin/api/cards/?token=" + toKen + "&page=" + this.pagenum + "&row=14")
 					.then(res => {
-						console.log(res.data)
-						console.log(res.data.cards)
+						console.log(res)
 						// console.log(res.status)//打印状态码
 						if (res.status == 200) {
 							this.cardList = res.data.cards //用户列表数据
 							this.total = res.data.total
 							console.log(this.cardList)
-							var pn = this.pagenum
-
+							this.pagesize = 14
 						}
 					})
 			},
-			async removeUserByID(id) {
+			getImg() {
+				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
-				const confirmRes = await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
-					confirmButtonText: '确定',
-					cancelButtonText: '取消',
-					type: 'warning'
-				}).catch(err => err)
-				// console.log(confirmRes)
-				if (confirmRes !== 'confirm') {
-					return this.$message.info('已取消删除')
-				}
-				this.$axios.delete("admin/api/user/" + id + "?token=" + toKen)
+				//console.log(toKen)
+				this.$axios.get("admin/api/cards/?token=" + toKen + "&page=" + this.pagenum2 + "&row=9")
 					.then(res => {
 						if (res.status == 200) {
-							this.$message.success('删除用户成功')
-							this.getUserMes() //刷新用户数据
-						} else {
-							this.$message.error('删除用户失败')
+							this.cardList = res.data.cards //用户列表数据
+							this.total = res.data.total
+							this.pagesize = 9
+							console.log(this.cardList)
 						}
 					})
-				//删除用户提示
 			},
-			//点击确认按钮，添加新设备
-			chargersUser() {
-				let toKen = this.token.replace(/\"/g, "")
-				this.$refs.addFormRef.validate(valid => {
-					if (!valid) {
-						return this.$message.error("请输入正确的信息")
-					} else {
-						this.$axios.post("admin/api/cards", this.addForm)
-							.then(res => {
-								if (res.status !== 200) {
-									return this.$message.error('添加用户失败!')
-								}
-								this.$message.success('添加用户成功!')
-								this.addDialogVisible = false
-								console.log(this.addForm)
-								console.log(res)
-								//刷新用户列表
-								this.getUserMes()
-							})
-					} //若表单正则验证未通过，则不允许添加
-				})
-				//如果验证通过，则发起添加用户请求
+			changeIcon() {
+				this.changeList = !this.changeList
+				console.log(this.changeList)
 			},
+
 			//监听页码值改变
 			handleCurrentChange(newPage) {
-				//console.log(newPage)
+
 				this.pagenum = newPage
 				this.getUserMes()
 			},
-			//添加设备对话框关闭事件
-			addDialogClosed() {
-				this.$refs.addFormRef.resetFields()
+			handleCurrentChange2(newPage) {
+
+				this.pagenum2 = newPage
+				this.getImg()
+
 			},
 		}
 	}
 </script>
 
 <style scoped="scoped">
-	.oneCard-right{
+	.oneCard-right {
 		display: flex;
 		flex: 1;
 		flex-direction: column;
@@ -275,6 +280,205 @@
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
 	}
+
+	.imgBoxBotM {
+		display: flex;
+		flex-direction: column;
+		height: 60px;
+		justify-content: space-between;
+		color: white;
+		align-items: center;
+	}
+
+	.money {
+		font-size: 22px;
+	}
+
+	.chongzhi {
+		width: 50px;
+		height: 18px;
+		border: solid 1px white;
+		border-radius: 9px;
+		text-align: center;
+		line-height: 18px;
+	}
+
+	.netWord {
+		margin-left: 30px;
+		height: 65px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.netWord1 {
+		font-size: 18px;
+		color: white;
+	}
+
+	.netWord2 {
+		font-size: 28px;
+		color: white;
+	}
+
+	.imgBoxConL {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.netImg {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #71b7f2;
+		text-align: center;
+		line-height: 50px;
+	}
+	.netImg1 {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #eb9494;
+		text-align: center;
+		line-height: 50px;
+	}
+	
+	.netImg2 {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #8ea4be;
+		text-align: center;
+		line-height: 50px;
+	}
+	
+	.netImg3 {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #c0c0c0;
+		text-align: center;
+		line-height: 50px;
+	}
+
+	.imgWord {
+		color: #dedede;
+		font-size: 13px;
+	}
+
+	.seeBox {
+		width: 35px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.imgBoxCon {
+		width: 90%;
+		height: 90px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+
+	}
+
+	.imgBoxBotW {
+		width: 90%;
+		height: 30px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.imgBoxBot {
+		width: 100%;
+		height: 30px;
+
+		border-top: dashed 1px #dedede;
+	}
+
+	.tubiaobox {
+		width: 95%;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-top: 20px;
+	}
+
+	.tub {
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-left: -90px;
+		align-items: center;
+	}
+
+	.imgBoxTop {
+		width: 95%;
+		margin: 0 auto;
+		height: 30px;
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+		align-items: flex-end;
+		justify-content: flex-end;
+	}
+
+	.imgBoxB {
+		width: 450px;
+		height: 160px;
+		background: linear-gradient(to right, #479ae8, #3a6cd6);
+		border-radius: 20px;
+		box-shadow: 1px 1px 10px 2px #cccccc;
+		margin: 20px 30px;
+	}
+
+	.imgBoxR {
+		width: 450px;
+		height: 160px;
+		background: linear-gradient(to right, #e06e6e, #e44a4a);
+		border-radius: 20px;
+		box-shadow: 1px 1px 10px 2px #cccccc;
+		margin: 20px 30px;
+	}
+
+	.imgBoxG {
+		width: 450px;
+		height: 160px;
+		background: linear-gradient(to right, #6781a2, #567193);
+		border-radius: 20px;
+		box-shadow: 1px 1px 10px 2px #cccccc;
+		margin: 20px 30px;
+	}
+
+	.imgBoxOff {
+		width: 450px;
+		height: 160px;
+		background: linear-gradient(to right, #567193, #567193);
+		border-radius: 20px;
+		box-shadow: 1px 1px 10px 2px #cccccc;
+		margin: 20px 30px;
+	}
+
+	.conB {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 95%;
+		margin: 0 auto;
+	}
+
 	.el-table td {
 		padding: 0 0;
 	}
@@ -283,7 +487,7 @@
 		height: 30px;
 		border: none;
 	}
-	
+
 	.el-table td div {
 		margin: 0 auto;
 	}
@@ -309,12 +513,12 @@
 	.el-dialog {
 		margin-top: 30vh !important;
 	}
-	
-	.stateColor-red{
+
+	.stateColor-red {
 		color: red;
 	}
-	
-	.stateColor-green{
+
+	.stateColor-green {
 		color: #2ec23c;
 	}
 
@@ -453,7 +657,7 @@
 		width: 40px;
 	}
 
-	
+
 
 	.user-word {
 		width: 47px;
@@ -468,16 +672,16 @@
 	}
 
 	.el-button--primary {
-    color: #FFF;
-    background-color:#1e69fe;
-    border-color: #1e69fe;
-}
+		color: #FFF;
+		background-color: #1e69fe;
+		border-color: #1e69fe;
+	}
 
 	.el-button--success {
-    color: #1e69fe;
-    background-color:#fff;
-    border-color: #1e69fe;
-}
+		color: #1e69fe;
+		background-color: #fff;
+		border-color: #1e69fe;
+	}
 
 
 
@@ -485,7 +689,7 @@
 		width: 50%;
 	}
 
-	.users-right-w{
+	.users-right-w {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -521,7 +725,6 @@
 
 	.UserAssets-right-text {
 		width: 650px;
-		margin-left: 40px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;

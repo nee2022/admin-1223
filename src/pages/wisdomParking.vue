@@ -75,6 +75,16 @@
 									</div>
 								</router-link>
 							</el-menu-item>
+							<el-menu-item index="1-6">
+								<router-link to="/dici">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/Inspection car.png">
+										</div>
+										<span class="menu-word">地磁</span>
+									</div>
+								</router-link>
+							</el-menu-item>
 						</el-menu-item-group>
 					</el-submenu>
 					<el-submenu index="2">
@@ -545,7 +555,6 @@
 
 	.UserAssets-right-text {
 		width: 39%;
-		margin-left: 40px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;

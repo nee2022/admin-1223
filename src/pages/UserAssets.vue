@@ -9,6 +9,38 @@
 			<el-col :span="12">
 				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1e69fe"
 				 text-color="#fff" active-text-color="white" unique-opened v-model="option">
+					<el-submenu index="8">
+						<template slot="title">
+							<div class="menu-op">
+								<div>
+									<img src="../assets/images/user account.png">
+								</div>
+								<span class="menu-word">数据视图</span>
+							</div>
+						</template>
+						<el-menu-item-group>
+							<el-menu-item index="8-1">
+								<router-link to="/userkanban">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/all.png">
+										</div>
+										<span class="menu-word">数据看板</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+							<!-- <el-menu-item index="8-2">
+								<router-link to="/phoneUsers">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/phone.png">
+										</div>
+										<span class="menu-word">大数据</span>
+									</div>
+								</router-link>
+							</el-menu-item> -->
+						</el-menu-item-group>
+					</el-submenu>
 					<el-submenu index="1">
 						<template slot="title">
 							<div class="menu-op">
@@ -63,12 +95,12 @@
 					</el-submenu>
 					<el-submenu index="2">
 						<template slot="title">
-								<div class="menu-op">
-									<div>
-										<img src="../assets/images/One cartoon.png">
-									</div>
-									<span class="menu-word">一卡通</span>
+							<div class="menu-op">
+								<div>
+									<img src="../assets/images/One cartoon.png">
 								</div>
+								<span class="menu-word">一卡通</span>
+							</div>
 							</router-link>
 						</template>
 						<el-menu-item-group>
@@ -281,14 +313,12 @@
 					<!-- 6 -->
 					<el-submenu index="6">
 						<template slot="title">
-							<router-link to="/car">
-								<div class="menu-op">
-									<div>
-										<img src="../assets/images/Vehicle certification.png">
-									</div>
-									<span class="menu-word">车辆认证</span>
+							<div class="menu-op">
+								<div>
+									<img src="../assets/images/Vehicle certification.png">
 								</div>
-							</router-link>
+								<span class="menu-word">车牌</span>
+							</div>
 						</template>
 						</router-link>
 						<el-menu-item-group>
@@ -310,7 +340,7 @@
 										<div>
 											<img src="../assets/images/To audit.png">
 										</div>
-										<span class="menu-word">待审核</span>
+										<span class="menu-word">已认证</span>
 									</div>
 								</router-link>
 							</el-menu-item>
@@ -322,19 +352,7 @@
 										<div>
 											<img src="../assets/images/Review the success.png">
 										</div>
-										<span class="menu-word">审核成功</span>
-									</div>
-								</router-link>
-							</el-menu-item>
-						</el-menu-item-group>
-						<el-menu-item-group>
-							<el-menu-item index="6-4">
-								<router-link to="/auditFalse">
-									<div class="menu-op">
-										<div>
-											<img src="../assets/images/Review the error.png">
-										</div>
-										<span class="menu-word">审核失败</span>
+										<span class="menu-word">认证记录</span>
 									</div>
 								</router-link>
 							</el-menu-item>
@@ -375,29 +393,87 @@
 								</router-link>
 							</el-menu-item>
 						</el-menu-item-group>
+						<el-menu-item index="7-3">
+							<router-link to="/ailpay">
+								<div class="menu-op">
+									<div>
+										<img src="../assets/images/alipay.png">
+									</div>
+									<span class="menu-word">支付宝</span>
+								</div>
+							</router-link>
+						</el-menu-item>
+						<el-menu-item index="7-4">
+							<router-link to="/wechatpay">
+								<div class="menu-op">
+									<div>
+										<img src="../assets/images/wechat.png">
+									</div>
+									<span class="menu-word">微信</span>
+								</div>
+							</router-link>
+						</el-menu-item>
+					</el-submenu>
+					<el-submenu index="9">
+						<template slot="title">
+							<div class="menu-op">
+								<div>
+									<img src="../assets/images/Non-inductive pay2.png">
+								</div>
+								<span class="menu-word">统计报表</span>
+							</div>
+						</template>
 						<el-menu-item-group>
-							<el-menu-item index="7-3">
+							<el-menu-item index="9-1">
+								<router-link to="/UserStatistics">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/all.png">
+										</div>
+										<span class="menu-word">用户统计</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+							<!-- <el-menu-item index="9-2">
+								<router-link to="/pay">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/The purse to pay.png">
+										</div>
+										<span class="menu-word">一卡通统计</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+							<el-menu-item index="9-3">
 								<router-link to="/ailpay">
 									<div class="menu-op">
 										<div>
 											<img src="../assets/images/alipay.png">
 										</div>
-										<span class="menu-word">支付宝</span>
+										<span class="menu-word">优惠券统计</span>
 									</div>
 								</router-link>
 							</el-menu-item>
-						</el-menu-item-group>
-						<el-menu-item-group>
-							<el-menu-item index="7-4">
+							<el-menu-item index="9-4">
 								<router-link to="/wechatpay">
 									<div class="menu-op">
 										<div>
 											<img src="../assets/images/wechat.png">
 										</div>
-										<span class="menu-word">微信</span>
+										<span class="menu-word">套餐统计</span>
 									</div>
 								</router-link>
 							</el-menu-item>
+							<el-menu-item index="9-5">
+								<router-link to="/wechatpay">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/wechat.png">
+										</div>
+										<span class="menu-word">车牌统计</span>
+									</div>
+								</router-link>
+							</el-menu-item> -->
 						</el-menu-item-group>
 					</el-submenu>
 				</el-menu>
@@ -410,7 +486,9 @@
 </template>
 
 <script>
-	import { loginConfig } from "../config.js";
+	import {
+		loginConfig
+	} from "../config.js";
 	export default {
 		data() {
 			return {
@@ -510,8 +588,6 @@
 	.UserAssets-bgcolor .cell {
 		text-align: center;
 		font-size: 16px;
-		display: -webkit-box;
-		overflow: hidden;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 1;
 		font-weight: 400;
@@ -673,13 +749,6 @@
 		background-color: #1e69fe;
 	}
 
-	.UserAssets-right-text {
-		width: 39%;
-		margin-left: 40px;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
 
 	.select1 {
 		width: 200px;

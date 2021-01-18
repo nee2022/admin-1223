@@ -302,8 +302,6 @@
 			text-align: center;
 			font-size: 16px;
 			display: -webkit-box;
-			overflow: hidden;
-			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 1;
 			font-weight: 400;
 		}
@@ -448,11 +446,6 @@
 			width: 10%;
 		}
 		
-		.parkName{
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-		}
 		
 		.menu-word-2{
 			color: white;

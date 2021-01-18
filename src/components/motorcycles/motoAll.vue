@@ -147,7 +147,7 @@
 				</div>
 				<template>
 					<el-table :data="parkList" stripe style="width:100%">
-						<el-table-column prop="dev_id" label="设备编号">
+						<el-table-column prop="dev_id" label="设备ID">
 						</el-table-column>
 						<el-table-column prop="name" label="名称">
 						</el-table-column>
@@ -200,7 +200,7 @@
 		<!-- 添加设备 -->
 		<el-dialog title="添加设备" :visible.sync="addDialogVisible" width="30%" @close="addDialogClosed">
 			<el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="80px">
-				<el-form-item label="设备编号" prop="dev_id">
+				<el-form-item label="设备ID" prop="dev_id">
 					<el-input v-model="addForm.dev_id" class="addinput"></el-input>
 				</el-form-item>
 				<el-form-item label="泊位" prop="name">
@@ -218,7 +218,7 @@
 		<!-- 修改设备 -->
 		<el-dialog title="修改设备" :visible.sync="editDialogVisible" width="30%" @close="editDialogClosed">
 			<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="80px">
-				<el-form-item label="设备编号" prop="dev_id">
+				<el-form-item label="设备ID" prop="dev_id">
 					<el-input v-model="editForm.dev_id" class="addinput"></el-input>
 				</el-form-item>
 				<el-form-item label="泊位" prop="name">

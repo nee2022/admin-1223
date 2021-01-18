@@ -23,7 +23,7 @@
 				</div>
 				<template>
 					<el-table :data="tableData" stripe style="width:100%">
-						<el-table-column>
+						<el-table-column show-overflow-tooltip>
 							<template slot-scope="scope">
 								<div class="leftBox" :class="{ BGactive:scope.row.id == isActive }" @click="changeBg(scope.row.id)">
 									<div class="parkimg">
@@ -52,14 +52,14 @@
 									<template v-if="scope.row.id == isActive">
 										<div class="leftBox-right">
 											<div @click="showEditDialog1(scope.row.id)">
-												<img src="../../assets/images/xiu.png">
+												<img src="../../assets/images/xiu.png" title="修改">
 											</div>
 											<div @click="removeUserByID1(scope.row.id)">
-												<img src="../../assets/images/shan2.png">
+												<img src="../../assets/images/shan2.png" title="删除">
 											</div>
 											<router-link to="/stations">
 												<div @click="huodeid(scope.row.id,scope.row.name,scope.row.type,scope.row.address,scope.row.memo,scope.row.lot_rate_group,scope.row.rate_group)">
-													<img src="../../assets/images/lan.png">
+													<img src="../../assets/images/lan.png" title="查看">
 												</div>
 											</router-link>
 										</div>
@@ -785,6 +785,12 @@
 		flex-direction: row;
 		justify-content: space-between;
 		text-align: center;
+	}
+	
+	.parkAddress{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 	.parkIcon div {

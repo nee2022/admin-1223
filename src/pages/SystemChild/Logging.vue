@@ -105,8 +105,8 @@
 			this.token = localStorage.getItem('token')
       let date = new Date
       let getYear = date.getFullYear()
-      let getMonth = date.getMonth() + 1
-      let getDate = date.getDate()
+      let getMonth = (new Date().getMonth() + 1) < 10 ? '0' + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)
+      let getDate = new Date().getDate() < 10 ? '0' + new Date().getDate() : new Date().getDate()
       let tiemr = getYear + '' + getMonth + getDate
       this.value1 = tiemr
       this.getUserMes()

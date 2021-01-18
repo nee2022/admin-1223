@@ -354,6 +354,7 @@ export default new Router({
 			],
 			redirect: '/parkingChang'
 		},
+		//道路停车
 		{
 			path: '/wisdomParking',
 			name: 'wisdomParking',
@@ -370,6 +371,12 @@ export default new Router({
 					name: 'viewLow',
 					component: () =>
 						import('../pages/parksChild/viewLow.vue')
+				},
+				{
+					path: '/dici',
+					name: 'dici',
+					component: () =>
+						import('../pages/parksChild/dici.vue')
 				},
 				{
 					path: '/view',
@@ -474,6 +481,18 @@ export default new Router({
 					name: 'oneCard',
 					component: () =>
 						import('../pages/UserAssetsChild/oneCard.vue')
+				},
+				{
+					path: '/userkanban',
+					name: 'userkanban',
+					component: () =>
+						import('../pages/UserAssetsChild/userkanban.vue')
+				},
+				{
+					path: '/UserStatistics',
+					name: 'UserStatistics',
+					component: () =>
+						import('../pages/UserAssetsChild/UserStatistics.vue')
 				},
 				{
 					path: '/coupon',

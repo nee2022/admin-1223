@@ -28,6 +28,7 @@
         <el-radio v-model="radio1" label="3" border>交流桩</el-radio>
       </div>
     </div> -->
+    <div class="quans" v-show="flag"></div>
     <div class="qq" v-show="flag">
       <div class="spans">
         <span
@@ -37,110 +38,104 @@
           :class="{ blueWord: select == item.id }"
           >{{ item.name }}</span
         >
-        <img src="../../assets/images/electricity.png" alt="" />
-        <img src="../../assets/images/signal.png" alt="" />
-        <img src="../../assets/images/delete22.png" alt="" />
-        <img
-          @click="close"
-          class="shangtu"
-          src="../../assets/images/chacha.png"
-          alt=""
-        />
+        <div class="zzz">
+          <img src="../../assets/images/electricity.png" alt="" />
+          <img src="../../assets/images/signal.png" alt="" />
+          <img src="../../assets/images/delete22.png" alt="" />
+          <img
+            @click="close"
+            class="shangtu"
+            src="../../assets/images/chacha.png"
+            alt=""
+          />
+        </div>
       </div>
       <div class="zong" v-show="select == 1">
         <div class="zong_left">
           <div class="input">
             <span>名称</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input1"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input1" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>类型</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input2"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input2" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>机号</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input3"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input3" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>端口数</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input4"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input4" :disabled="true">
             </el-input>
           </div>
           <div class="input">
-            <span>名称</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input5"
-              :disabled="true"
-            >
+            <span>站点</span>
+            <el-input placeholder="无" v-model="input5" :disabled="true">
             </el-input>
           </div>
           <div class="input">
             <span>地址</span>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input6"
-              :disabled="true"
-            >
+            <el-input placeholder="无" v-model="input6" :disabled="true">
             </el-input>
           </div>
         </div>
         <div class="zong_right">
           <div class="but">
-            <el-button>设备在线</el-button>
-            <el-button type="primary" style="background: #2971ff"
+            <!-- <el-button v-if="shebeiMsg.online == true">设备在线</el-button> -->
+            <el-button @click="off">设备离线</el-button>
+            <el-button
+              @click="restart"
+              type="primary"
+              style="background: #2971ff"
               >重启设备</el-button
             >
           </div>
           <div>
             <div class="jw">
-              经纬度（120.29119，30.43048）<img
-                src="../../assets/images/compileg.png"
-                alt=""
-              />
+              经纬度（
+              <span> {{ lng }}</span>
+              <span> {{ lat }}</span
+              >）
+              <img src="../../assets/images/compileg.png" alt="" />
             </div>
           </div>
           <div id="containes"></div>
         </div>
       </div>
+      <!-- 充电状态-->
       <div class="zong" v-show="select == 2">
         <div class="chong_left test test-1">
           <div class="scrollbar">
             <el-scrollbar style="height: 100%">
               <div
-                @click="change(item.id)"
-                v-for="(item, id) in leftList"
+                v-for="(item, id) in shebeiMsg.ports"
+                @click="change(item.port, id, item.state, item)"
                 :key="id"
                 class="quan"
                 :class="{ back: selectss == item.id }"
               >
-                <span>{{ item.id }}</span
-                ><span class="wen">{{ item.name }}</span
-                ><img src="../../assets/images/smallIntng.png" alt="" />
+                <span>{{ item.port }}</span>
+                <div class="es" v-if="item.state && item.state != '0'">
+                  <span class="wen">充电中</span>
+                </div>
+                <div class="es" v-else>
+                  <span class="wen">空闲</span>
+                </div>
+                <img
+                  class="immm"
+                  src="../../assets/images/smallIntng.png"
+                  alt=""
+                />
               </div>
             </el-scrollbar>
           </div>
         </div>
-        <div class="zhuang" v-show="selectss == 3">
+        <!--充电中-->
+        <div class="zhuang" v-show="selectss > 0 && selectss < 20">
           <div class="chong_zhong">
             <div class="dian">
               <div class="dian_d">
@@ -150,7 +145,8 @@
                 <div class="wenzi">
                   <span>充电中...</span>
                   <div class="yuan">
-                    <span style="color: red">￥100</span> <span>100KW/H</span>
+                    <span style="color: red">{{ "￥" + chong.amount }}</span>
+                    <span>{{w}}</span>
                   </div>
                   <div class="jiner">
                     <span>所属金额</span><span>已充电量</span>
@@ -159,19 +155,19 @@
               </div>
               <div class="yaa">
                 <div class="ya">
-                  <div>380V</div>
+                  <div>{{ v }}</div>
                   <div>电压</div>
                 </div>
                 <div class="ya">
-                  <div>32A</div>
+                  <div>{{ i }}</div>
                   <div>电流</div>
                 </div>
                 <div class="ya">
-                  <div>380V</div>
+                  <div>{{ p }}</div>
                   <div>功率</div>
                 </div>
               </div>
-              <div class="buttt">
+              <div class="buttt" @click="stop">
                 <el-button icon="el-icon-error" class="buts" type="primary"
                   >停止充电</el-button
                 >
@@ -180,13 +176,13 @@
           </div>
           <div class="chong_right">
             <div class="dingdan">
-              <div class="ding">订单号：<span>3423454</span></div>
+              <div class="ding">
+                订单号：<span>{{ chong.dealno }}</span>
+              </div>
               <div class="xia">
                 <div class="xia_i">
                   <div>开始时间：</div>
-                  <span
-                    >2020-11-11<span style="margin-left: 12px">13：42</span>
-                  </span>
+                  <span>{{ chong.start_time }} </span>
                 </div>
                 <div class="xia_i">
                   <div>支付账号：</div>
@@ -198,17 +194,18 @@
                 </div>
                 <div class="xia_i">
                   <div>充电方式</div>
-                  <span>自动充满</span>
+                  <span>{{man}}</span>
                 </div>
                 <div class="xia_i">
                   <div>充电金额</div>
-                  <span style="color: red">￥100.00</span>
+                  <span style="color: red">{{ "￥" + chong.amount }}</span>
                 </div>
               </div>
               <img class="imgss" src="../../assets/images/picture.png" alt="" />
             </div>
           </div>
         </div>
+        <!--故障-->
         <div class="zhuang zhu" v-show="selectss == 1">
           <div class="cuowu">
             <img src="../../assets/images/Thefault.png" alt="" />
@@ -216,18 +213,20 @@
             <div>错误代码：678</div>
           </div>
         </div>
-        <div class="zhuang zhu" v-show="selectss == 2">
+        <!--空闲-->
+        <div class="zhuang zhu" v-show="selectss == 0">
           <div class="cuowu2">
             <img src="../../assets/images/free.png" alt="" />
             <div>设备空闲中...</div>
             <div class="bu2">
               <div class="bu">
                 <img src="../../assets/images/Startcharging.png" alt="" />
-                <span>启动充电</span>
+                <span @click="start">启动充电</span>
               </div>
             </div>
           </div>
         </div>
+        <!--已完成-->
         <div class="zhuang zhu" v-show="selectss == 4">
           <div class="cuowu2">
             <img src="../../assets/images/completed.png" alt="" />
@@ -241,7 +240,7 @@
           </div>
         </div>
       </div>
-      <div class="zong las" v-show="select == 3">
+      <!-- <div class="zong las" v-show="select == 3">
         <div class="lazha">
           <span> 拉闸</span>
           <span style="color: red">（再次点击开关实现合闸）</span>
@@ -304,7 +303,7 @@
         <div>85105</div>
         <div>
           <img src="../../assets/images/heiding.png" alt="" />
-          <span>杭州市江干区金沙湖大道与银沙路交汇处</span>
+          <span>{{ stadion }}</span>
         </div>
         <div class="fe">
           <div></div>
@@ -318,8 +317,8 @@
           <img src="../../assets/images/arrow.png" alt="" />
         </div>
         <div class="foot">取证中...</div>
-      </div>
-      <div class="zong lasa" v-show="select == 4">
+      </div> -->
+      <!-- <div class="zong lasa" v-show="select == 4">
         <div class="lasa_left">
           <img src="../../assets/images/tomgce.png" alt="" />
         </div>
@@ -422,21 +421,33 @@
             <div>浙江省杭州市江干区金沙湖大道与银沙路交汇处</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import myhead from "../../components/myhead";
+import axios from "axios";
+import shebeiBasicVue from "../shebeiXinxi/shebeiBasic.vue";
 export default {
   components: {
     myhead,
   },
   data() {
     return {
+      man: "",
+      v: null,
+      p: null,
+      i: null,
+      w: null,
+      chong: [],
+      state: 0,
+      ports: 1,
+      map: "",
       radio1: "1",
       value: false,
+      index: "0",
       leftList: [
         {
           id: 1,
@@ -484,26 +495,26 @@ export default {
           id: 2,
           name: "充电状态",
         },
-        {
-          id: 3,
-          name: "电表状态",
-        },
-        {
-          id: 7,
-          name: "地磁",
-        },
-        {
-          id: 4,
-          name: "低视频桩",
-        },
-        {
-          id: 5,
-          name: "高视频桩",
-        },
-        {
-          id: 6,
-          name: "停车场",
-        },
+        // {
+        //   id: 3,
+        //   name: "电表状态",
+        // },
+        // {
+        //   id: 7,
+        //   name: "地磁",
+        // },
+        // {
+        //   id: 4,
+        //   name: "低视频桩",
+        // },
+        // {
+        //   id: 5,
+        //   name: "高视频桩",
+        // },
+        // {
+        //   id: 6,
+        //   name: "停车场",
+        // },
       ],
       input: "",
       maplist: [],
@@ -515,25 +526,144 @@ export default {
       input5: "",
       input6: "",
       select: 1,
-      selectss: 1,
+      selectss: 0,
+      token: JSON.parse(localStorage.getItem("token")),
+      shebeiMsg: [],
+      eMsg: [],
+      lng: 1,
+      lat: 1,
+      stadion: "",
+      id: "",
+      time: null,
     };
   },
   created() {},
+  watch:{
+    selectss:function(newW,oldV){
+      this.selectss = newW
+      console.log(newW,oldV);
+    }
+   
+  },
   methods: {
-    zhi(){
-  this.$axios.get(`/map/gd/chargers/1,2`).then((res) => {
-       this.maplist = res.data.chargers;
-  })
+    web() {
+      this.$axios
+        .get(
+          `/admin/api/charger/${this.id}?token=${this.token}&attach=state,ports,pdr`
+        )
+        .then((res) => {
+          console.log(res);
+          this.shebeiMsg = res.data.charger;
+        });
+    },
+    stop() {
+      console.log(this);
+      clearInterval(this.time);
+      this.$axios
+        .delete(
+          `admin/api/charger/${this.id}/${this.ports}/session?token=${this.token}`
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    },
+    all() {
+      this.$axios
+        .get(
+          `/admin/api/charger/${this.id}?token=${this.token}&attach=state,ports,pdr`
+        )
+        .then((res) => {
+          console.log(res);
+          this.shebeiMsg = res.data.charger;
+        });
+    },
+    start() {
+      clearInterval(this.time);
+      this.$axios
+        .post(`admin/api/charger/${this.id}/${this.ports}/session`, {
+          token: this.token,
+          type: 3,
+          duration: 1,
+        })
+        .then((res) => {
+          console.log(res);
+          this.$set(this.shebeiMsg.ports[this.index], "state", 3);
+          this.selectss = 3;
+          console.log(this.shebeiMsg.ports[this.index].state);
+
+          this.web();
+          this.time = setInterval(() => {
+            this.web();
+          }, 36000);
+        });
+      if ((this.shebeiMsg.ports[this.index].state = 0)) {
+        clearInterval(this.time);
+      }
+      this.chong = this.shebeiMsg.ports[this.index];
+      if (this.shebeiMsg.ports[this.index].charge_type == 1) {
+        this.man = "自动充满";
+      } else if (this.shebeiMsg.ports[this.index].charge_type == 2) {
+        this.man = "按金额";
+      } else {
+        this.man = "按时间";
+      }
+      this.v = parseInt(this.shebeiMsg.ports[this.index].v) + "V";
+      this.p = parseInt(this.shebeiMsg.ports[this.index].p) + "W";
+      this.i = Math.ceil(this.shebeiMsg.ports[this.index].i ) + "A";
+      this.w = this.shebeiMsg.ports[this.index].soc + "%";
+      // console.log(man, v, p, i);
+    },
+    change(id, i, state, item) {
+      console.log(state, i);
+      this.index = i;
+      this.ports = id;
+      this.selectss = state;
+      console.log(item);
+      // console.log();
+    },
+    off() {
+      this.$axios
+        .put(`/admin/api/charger/${this.id}?token=${this.token}`, {
+          enabled: false,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("离线成功");
+            //刷新用户数据
+          } else {
+            this.$message.error("离线失败");
+          }
+        });
+    },
+    restart() {
+      this.$axios
+        .put(`/admin/api/charger/${this.id}?token=${this.token}`, {
+          enabled: true,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            this.$message.success("重启成功");
+            //刷新用户数据
+          } else {
+            this.$message.error("重启失败");
+          }
+        });
+    },
+    zhi() {
+      this.$axios.get(`/map/gd/chargers/1,2`).then((res) => {
+        this.maplist = res.data.chargers;
+      });
     },
     close() {
       this.flag = false;
     },
-    change(id) {
-      this.selectss = id;
-    },                             
+
     dian(id) {
+      this.all()
       this.select = id;
-      console.log(this.select);
+      console.log(id);
       if (this.select == 4) {
         var map = new AMap.Map("ies", {
           zoom: 14,
@@ -552,74 +682,135 @@ export default {
       this.$axios.get(`/map/gd/chargers/3,4`).then((res) => {
         this.maplist = res.data.chargers;
         console.log(this.maplist);
-
-        var map = new AMap.Map("container", {
-          zoom: 4,
-          center: [102.342785, 35.312316],
-          resizeEnable: true,
-        });
-
+        //图片样式
         var style = [
           {
-            url: require("../../assets/images/ACS.png"),
-            anchor: new AMap.Pixel(6, 6),
-           size: new AMap.Size(30, 37),
-          },
-          {
-            url: require("../../assets/images/ACS.png"),
+            url: require("../../assets/images/diandanche.png"),
             anchor: new AMap.Pixel(4, 4),
             size: new AMap.Size(30, 37),
           },
           {
-            url: require("../../assets/images/ACS.png"),
-            anchor: new AMap.Pixel(3, 3),
+            url: require("../../assets/images/diandanche.png"),
+            anchor: new AMap.Pixel(6, 6),
             size: new AMap.Size(30, 37),
           },
         ];
+        //创建mark
         var mass = new AMap.MassMarks(this.maplist, {
           opacity: 0.8,
           zIndex: 111,
           cursor: "pointer",
           style: style,
         });
-        var marker = new AMap.Marker({ content: " ", map: map });
+        let _this = this;
+
+        var marker = new AMap.Marker({ content: " ", map: _this.map });
         mass.on("mouseover", function (e) {
           marker.setPosition(e.data.lnglat);
           marker.setLabel({ content: e.data.name });
         });
+        //点击mark弹窗
+        mass.on("click", function (e) {
+          console.log(e);
+          _this.eMsg = e.data;
+          _this.id = e.data.id;
+          _this.lng = _this.eMsg.lnglat.lng;
+          _this.lat = _this.eMsg.lnglat.lat;
+          _this.flag = !_this.flag;
 
-        mass.setMap(map);
+          AMap.plugin("AMap.Geocoder", function () {
+            var geocoder = new AMap.Geocoder({
+              // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+              city: "010",
+            });
 
+            var lnglat = [_this.lng, _this.lat];
+
+            geocoder.getAddress(lnglat, function (status, result) {
+              if (status === "complete" && result.info === "OK") {
+                _this.stadion = result.regeocode.formattedAddress;
+              }
+            });
+          });
+          var map = new AMap.Map("containes", {
+            zoom: 14,
+            center: [_this.lng, _this.lat],
+            resizeEnable: true,
+          });
+          var marker = new AMap.Marker({
+            position: new AMap.LngLat(_this.lng, _this.lat),
+            icon: require("../../assets/images/hongding.png"),
+          });
+          map.add(marker);
+
+          axios
+            .get(
+              `/admin/api/charger/${e.data.id}?token=${_this.token}&attach=state,ports,pdr`
+            )
+            .then((res) => {
+              _this.shebeiMsg = res.data.charger;
+              console.log(_this.shebeiMsg);
+              if (_this.shebeiMsg.type === 1) {
+                console.log(1);
+                _this.input2 = "直流桩";
+              } else {
+                _this.input2 = "交流桩";
+                console.log(2);
+              }
+              _this.input1 = _this.shebeiMsg.name;
+              _this.input3 = _this.shebeiMsg.mac;
+              _this.input4 = _this.shebeiMsg.port;
+              _this.input5 = _this.shebeiMsg.station;
+              _this.input6 = _this.shebeiMsg.address;
+            });
+        });
+
+        mass.setMap(_this.map);
+        //判断
         function setStyle(multiIcon) {
-          if (multiIcon) {
+          console.log(this.maplist);
+          if (this.maplist.style == 1) {
             mass.setStyle(style);
           } else {
             mass.setStyle(style[2]);
           }
         }
-        let _this = this;
-        AMap.event.addListener(marker, "click", function () {
-          console.log(23523);
-          _this.flag = _this.flag=true;
-          console.log(_this.flag);
-          console.log(this.maplist);
-          var map = new AMap.Map("containes", {
-            zoom: 14,
-            center: [120.29119, 30.43048],
-            resizeEnable: true,
-          });
-        });
       });
     },
   },
 
   mounted() {
+    this.map = new AMap.Map("container", {
+      zoom: 4,
+      center: [102.342785, 35.312316],
+      resizeEnable: true,
+    });
+    // this.web();
     this.gaode();
   },
 };
 </script>
 
 <style scoped="scoped">
+.immm {
+  width: 32px;
+  height: 22px;
+}
+.zzz {
+  flex: 3;
+  text-align: right;
+}
+.quans {
+  width: 100%;
+  height: 100%;
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 199;
+
+  opacity: 0.7;
+}
 .el-radio.is-bordered {
   width: 110px;
   text-align: center;
@@ -763,7 +954,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px #76746f solid;
+  border-bottom: 1px#dededd solid;
   height: 50%;
   width: 95%;
   margin: 0 auto;
@@ -901,7 +1092,7 @@ export default {
   width: 115px;
   text-align: center;
   height: 54px;
-  border: 1px #bfbfbf solid;
+  border: 1px #d8d8d8 solid;
 }
 .list {
   width: 585px;
@@ -1049,7 +1240,7 @@ export default {
   display: inline-block;
 }
 .imgss {
-  width: 400px;
+  width: 100%;
 }
 .xial {
   justify-content: space-between;
@@ -1074,7 +1265,7 @@ export default {
   line-height: 27px;
   margin: 34px 0 28px 26px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #d2d5d9;
+  border-bottom: 1px dashed #d2d5d9;
   width: 86%;
 }
 .dingdan {
@@ -1201,13 +1392,15 @@ export default {
   margin-left: 20px;
   padding-top: 10px;
   box-shadow: 0px 0px 14px 5px rgba(0, 0, 0, 0.06);
+  height: 100%;
 }
 .quan img {
   /* margin-left: 11px; */
 }
 .quan {
+  align-items: center;
   margin-bottom: 10px;
-
+  display: flex;
   cursor: pointer;
   width: 123px;
   height: 35px;
@@ -1230,7 +1423,7 @@ export default {
   width: 100%;
   background: #dde8ff;
   height: 42px;
-  border: 1px solid #2971ff;
+  border: 1px dashed #2971ff;
   border-radius: 10px;
 
   font-size: 18px;
@@ -1285,9 +1478,9 @@ export default {
   cursor: pointer;
 }
 .spans {
+  display: flex;
   border-bottom: 1px #f0f0f0 solid;
   padding-bottom: 10px;
-  display: inline-block;
   font-size: 24px;
   line-height: 32px;
   margin: 20px 0px 32px 31px;
@@ -1304,6 +1497,7 @@ export default {
 }
 .in >>> .el-input__icon {
   line-height: 31px !important;
+  height: 0% !important;
 }
 .in >>> .el-input__inner {
   border: 1px #1e69fe solid !important;

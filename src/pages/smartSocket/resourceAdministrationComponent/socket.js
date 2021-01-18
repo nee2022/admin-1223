@@ -46,8 +46,6 @@ export default {
             this.pagesize
         )
         .then(res => {
-          console.log("res");
-          console.log(res);
           if (res.status == 200) {
             this.tableData = res.data.chargers;
             for (let i = 0; i < this.tableData.length; i++) {

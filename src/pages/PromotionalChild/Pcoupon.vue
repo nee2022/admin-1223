@@ -8,69 +8,115 @@
 				<myhead></myhead>
 			</div>
 		</div>
-		<div class="UserAssets-right-text">
-			<div class="textBox">
-				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+		<div class="conB">
+			<div class="UserAssets-right-text">
+				<div class="textBox">
+					<img src="../../assets/images/search.png" class="sear-img">
+					<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+				</div>
+				<div>
+					<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
+				</div>
+				<div>
+					<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+				</div>
 			</div>
-			<div>
-				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
-			</div>
-			<div>
-				<el-button type="success" icon="el-icon-circle-plus-outline">添加</el-button>
+			<div class="changeMode">
+				<div @click="flagT" v-if="changeList == false">
+					<img src="../../assets/images/changeList.png" alt="" style="width: 35px;height: 35px;">
+				</div>
+				<div @click="flagF" v-show="changeList == true">
+					<img src="../../assets/images/changeIcon.png" alt="" style="width: 35px;height: 35px;">
+				</div>
 			</div>
 		</div>
-		<div>
-			<template>
-				<el-table :data="menuList" stripe style="width: 100%">
-					<el-table-column prop="id" label="ID" width="130">
-					</el-table-column>
-					<el-table-column prop="name" label="名称" width="180">
-					</el-table-column>
-					<!-- <el-table-column prop="state" label="状态">
+		<div style="height: 700px;">
+			<div v-if="changeList == true">
+				<template>
+					<el-table :data="menuList" stripe style="width: 100%">
+						<el-table-column prop="id" label="ID" width="130">
+						</el-table-column>
+						<el-table-column prop="name" label="名称" width="180">
+						</el-table-column>
+						<!-- <el-table-column prop="state" label="状态">
 					</el-table-column> -->
-					<el-table-column prop="state" label="状态">
-					<template slot-scope="scope">
-						<div v-if="scope.row.state == 2">
-							过期
-						</div>
-						<div v-else-if="scope.row.state == 0">
-							有效
-						</div>
-						<div v-else-if="scope.row.state == 1">
-							已用
-						</div>
-					</template>
-					</el-table-column>
-					<el-table-column prop="amount" label="面值">
-					</el-table-column>
-					<el-table-column prop="account" label="用户">
-					</el-table-column>
-					<el-table-column prop="avail_from,avail_to" label="有效期" width="200">
-						<template slot-scope="scope">
-							{{scope.row.avail_from}}至{{scope.row.avail_to}}
-						</template>
-					</el-table-column>
-					<!-- <el-table-column prop="update_time" label="使用时间">
-					</el-table-column> -->
-					<el-table-column prop="address" label="操作" width="200">
-						<template slot-scope="scope">
-							<div class="operation">
-								<div>
-									<img src="../../assets/images/see.png" />
+						<el-table-column prop="state" label="状态">
+							<template slot-scope="scope">
+								<div v-if="scope.row.state == 2">
+									过期
 								</div>
-							</div>
-						</template>
-					</el-table-column>
-				</el-table>
-			</template>
+								<div v-else-if="scope.row.state == 0">
+									有效
+								</div>
+								<div v-else-if="scope.row.state == 1">
+									已用
+								</div>
+							</template>
+						</el-table-column>
+						<el-table-column prop="amount" label="面值">
+						</el-table-column>
+						<el-table-column prop="account" label="用户">
+						</el-table-column>
+						<el-table-column prop="avail_from,avail_to" label="有效期" width="200">
+							<template slot-scope="scope">
+								{{scope.row.avail_from}}至{{scope.row.avail_to}}
+							</template>
+						</el-table-column>
+						<!-- <el-table-column prop="update_time" label="使用时间">
+					</el-table-column> -->
+						<el-table-column prop="address" label="操作" width="200">
+							<template slot-scope="scope">
+								<div class="operation">
+									<div>
+										<img src="../../assets/images/see.png" />
+									</div>
+								</div>
+							</template>
+						</el-table-column>
+					</el-table>
+				</template>
+			</div>
+			<div v-else class="tubiaoBox">
+				<div class="tubiaoBg" v-for="item in menuList" :class="item.state == 0?'Pbg1':item.state == 2?'Pbg2':item.state == 1?'Pbg3':item.state == 3?'Pbg2':''">
+					<div class="tubiaoBgTop">
+						<div class="tubiaoBgTopTitle">
+							<img src="../../assets/images/Pdelete.png" alt="">
+							<img src="../../assets/images/Peditor.png" alt="">
+						</div>
+					</div>
+					<div class="tubiaoBgCon">
+						<div class="moneyBox">
+							<div class="moneyW1">￥</div>
+							<div class="moneyW2">{{item.pay}}</div>
+						</div>
+						<div class="moneyW3">
+							({{item.name}})
+						</div>
+					</div>
+					<div class="tubiaoBgBot">
+						<div class="moneyW4">
+							有效期:{{item.avail_from}}至{{item.avail_to}}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="UserAssets-bottom">
+		<div class="UserAssets-bottom" v-if="changeList == true ">
 			<div class="UserAssets-bottom-left" :data="menuList">
-				<span>共{{total}}条信息</span>
+				<span>共{{total}}张券</span>
 			</div>
 			<div class="UserAssets-bottom-right">
 				<el-pagination background :current-page.sync.number="pagenum" @current-change="handleCurrentChange" :page-size="pagesize"
+				 layout="prev, pager, next" :total="total">
+				</el-pagination>
+			</div>
+		</div>
+		<div class="UserAssets-bottom" v-else>
+			<div class="UserAssets-bottom-left" :data="menuList">
+				<span>共{{total}}张券</span>
+			</div>
+			<div class="UserAssets-bottom-right">
+				<el-pagination background :current-page.sync.number="pagenum2" @current-change="handleCurrentChange2" :page-size="pagesize"
 				 layout="prev, pager, next" :total="total">
 				</el-pagination>
 			</div>
@@ -100,7 +146,7 @@
 <script>
 	import myhead from '../../components/myhead.vue'
 	export default {
-		components:{
+		components: {
 			myhead
 		},
 		data() {
@@ -115,8 +161,10 @@
 				add: false,
 				selected: 0, //下拉框
 				pagenum: 1, //分页
+				pagenum2: 1, //分页
 				token: '', //token令牌
 				pagesize: 14, //每次查询条数
+				changeList: false,
 				type: 0,
 				input: '',
 				typeList: [{
@@ -140,7 +188,11 @@
 		},
 		created() {
 			this.token = localStorage.getItem('token')
-			this.getUserMes()
+			if (this.changeList == true) {
+				this.getUserMes()
+			} else if (this.changeList == false) {
+				this.getImg()
+			}
 		},
 		methods: {
 			handleOpen(key, keyPath) {
@@ -164,7 +216,25 @@
 						if (res.status == 200) {
 							this.menuList = res.data.user_plans //用户列表数据
 							this.total = res.data.total
-							var pn = this.pagenum
+							this.pagesize = 14
+						}
+					})
+			},
+			getImg() {
+				//token去掉引号
+				let toKen = this.token.replace(/\"/g, "")
+				// console.log(toKen)
+				this.$axios.get("/admin/api/user/plans?token=" + toKen + "&page=" + this.pagenum2 +
+						"&row=15")
+					.then(res => {
+						console.log(res.data)
+						console.log(res.data.user_plans)
+						// console.log(res.status)//打印状态码
+						if (res.status == 200) {
+							this.menuList = res.data.user_plans //用户列表数据
+							this.total = res.data.total
+							this.pagesize = 15
+							console.log(this.menuList)
 						}
 					})
 			},
@@ -179,7 +249,9 @@
 				if (confirmRes !== 'confirm') {
 					return this.$message.info('已取消删除')
 				}
-				this.$axios.delete("/admin/api/plan/" + id,{token:toKen})
+				this.$axios.delete("/admin/api/plan/" + id, {
+						token: toKen
+					})
 					.then(res => {
 						console.log(res.status)
 						if (res.status == 200) {
@@ -202,21 +274,22 @@
 			//监听页码值改变
 			handleCurrentChange(newPage) {
 				//console.log(newPage)
-				this.pagenum = newPage
+				this.pagenum = newPage;
+				this.getUserMes();
+			},
+			handleCurrentChange2(newPage) {
+				//console.log(newPage)
+				this.pagenum2 = newPage;
+				this.getImg()
+			},
+			flagF() {
+				this.changeList = false
+				this.getImg()
+			},
+			flagT() {
+				this.changeList = true
 				this.getUserMes()
 			},
-			// op() {
-
-			// 	for (let i in this.tableData) {
-			// 		if (this.tableData[i].type == this.selected) {
-			// 			console.log(this.tableData[i])
-			// 			this.userList.push(this.tableData[i])
-
-			// 		}
-			// 	}
-			// 	this.tableData = this.userList
-
-			// }
 
 		}
 	}
@@ -235,20 +308,110 @@
 	.el-table td {
 		padding: 0 0;
 	}
+	
+	.tubiaoBgBot{
+		height: 30px;
+		width: 95%;
+		margin: 0 auto;
+		margin-top: 10px;
+	}
+	
+	.moneyBox{
+		display: flex;
+		flex-direction: row;
+		width: 95%;
+		margin: 0 auto;
+		height: 100px;
+		text-align: center;
+		justify-content: center;
+	}
+	
+	.tubiaoBgTop{
+		width: 90%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+	
+	.moneyW1{
+		font-size:32px;
+		color: white;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+	}
+	
+	.moneyW2{
+		font-size: 100px;
+		color: white;
+	}
+	
+	.moneyW3{
+		font-size: 16px;
+		color: white;
+		text-align: center;
+	}
+	
+	.moneyW4{
+		font-size: 12px;
+		color: white;
+		text-align: center;
+	}
+	
+	.tubiaoBgTopTitle{
+		width: 50px;
+		height: 40px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.tubiaoBg{
+		width: 190px;
+		height: 210px;
+		display: flex;
+		flex-direction: column;
+		margin: 20px 65px 10px 65px;
+	}
+	
+	.Pbg1{
+		background: url(../../assets/images/Obg.png);
+		background-size: 100% 100%;
+	}
+	
+	.Pbg2{
+		background: url(../../assets/images/Gbg.png);
+		background-size: 100% 100%;
+	}
+	
+	.Pbg3{
+		background: url(../../assets/images/Gbbg.png);
+		background-size: 100% 100%;
+	}
 
 	.el-input__inner {
 		height: 30px;
 		border: none;
 	}
-	
+
 	.el-table td div {
-	   margin: 0 auto;
+		margin: 0 auto;
 	}
 
 	.tanchu {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+	}
+
+	.conB {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 95%;
+		margin: 0 auto;
 	}
 
 	.tanchu-text {
@@ -266,12 +429,12 @@
 	.el-dialog {
 		margin-top: 30vh !important;
 	}
-	
-	.stateColor-red{
+
+	.stateColor-red {
 		color: red;
 	}
-	
-	.stateColor-green{
+
+	.stateColor-green {
 		color: #2ec23c;
 	}
 
@@ -410,7 +573,7 @@
 		width: 40px;
 	}
 
-	
+
 
 	.user-word {
 		width: 47px;
@@ -425,16 +588,16 @@
 	}
 
 	.el-button--primary {
-    color: #FFF;
-    background-color:#1e69fe;
-    border-color: #1e69fe;
-}
+		color: #FFF;
+		background-color: #1e69fe;
+		border-color: #1e69fe;
+	}
 
 	.el-button--success {
-    color: #1e69fe;
-    background-color:#fff;
-    border-color: #1e69fe;
-}
+		color: #1e69fe;
+		background-color: #fff;
+		border-color: #1e69fe;
+	}
 
 
 
@@ -442,7 +605,7 @@
 		width: 50%;
 	}
 
-	.users-right-w{
+	.users-right-w {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -539,6 +702,15 @@
 
 	.select1 option {
 		text-align: center;
+	}
+	
+	.tubiaoBox{
+		width: 95%;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 	}
 
 	.sear-img {

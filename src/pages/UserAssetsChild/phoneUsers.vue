@@ -22,7 +22,7 @@
 				<el-table :data="tableData" stripe style="width: 100%">
 					<el-table-column prop="id" label="用户ID" width="130">
 					</el-table-column>
-					<el-table-column prop="username" label="账号" width="180">
+					<el-table-column prop="username" label="账号" width="180" show-overflow-tooltip>
 					</el-table-column>
 					<!-- <el-table-column v-if="telephone=''" prop="未绑定" label="手机">
 					</el-table-column> -->
@@ -56,11 +56,12 @@
 						<template slot-scope="scope">
 							<div class="operation">
 								<div>
-									<img src="../../assets/images/top-up.png" @click="(addDialogVisible = true),getID(scope.row.id)" alt="充值"
-									 title="充值">
+									<img src="../../assets/images/top-up.png" @click="(addDialogVisible = true),getID(scope.row.id)" title="充值" style="width: 15px;height: 15px;">
 								</div>
-								<div @click="userMssage(scope.row.id,scope.row.username)">
-									<img src="../../assets/images/see.png" style="width: 15px;height: 11px;" title="详情">
+								<div>
+									<div @click="userMssage(scope.row.id,scope.row.username)">
+										<img src="../../assets/images/see.png" style="width: 22px;height: 15px;" title="详情">
+									</div>
 								</div>
 							</div>
 						</template>

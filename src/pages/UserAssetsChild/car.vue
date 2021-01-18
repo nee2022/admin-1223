@@ -2,68 +2,123 @@
 	<div class="oneCard-right">
 		<div class="UserAssets-right-top">
 			<div class="user-left">
-				<span class="user-word">车辆认证</span>
+				<span class="user-word">车牌</span>
 			</div>
 			<div class="users-right">
 				<myhead></myhead>
 			</div>
 		</div>
-		<div class="UserAssets-right-text">
-			<div class="textBox">
-				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+		<div class="conB">
+			<div class="UserAssets-right-text">
+				<div class="textBox">
+					<img src="../../assets/images/search.png" class="sear-img">
+					<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+				</div>
+				<div>
+					<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
+				</div>
+				<div>
+					<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+				</div>
 			</div>
-			<div>
-				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
-			</div>
-			<div>
-				<el-button type="success" icon="el-icon-circle-plus-outline">添加</el-button>
+			<div class="changeMode">
+				<div @click="flagF" v-if="changeList == false">
+					<img src="../../assets/images/changeList.png" alt="" style="width: 35px;height: 35px;">
+				</div>
+				<div @click="flagT" v-show="changeList == true">
+					<img src="../../assets/images/changeIcon.png" alt="" style="width: 35px;height: 35px;">
+				</div>
 			</div>
 		</div>
-		<div>
-			<template>
-				<el-table :data="cardList" stripe style="width: 100%">
-					<el-table-column prop="uid" label="用户ID">
-					</el-table-column>
-					<el-table-column prop="id" label="车牌ID">
-					</el-table-column>
-					<el-table-column prop="plate" label="车牌号">
-					</el-table-column>
-					<el-table-column prop="color" label="颜色">
-					</el-table-column>
-					<el-table-column prop="created_time" label="绑定时间">
-					</el-table-column>
-					<el-table-column prop="state" label="实名认证状态">
-						<template slot-scope="scope">
-							<div v-if="scope.row.state == 0" >
-								审核中
-							</div>
-							<div v-else-if="scope.row.state == 1" class="stateColor-green">
-								<span class="stateColor-green">审核通过</span>
-							</div>
-							<div v-else>
-								<span class="stateColor-red">审核失败</span>
-							</div>
-						</template>
-					</el-table-column>
-					<el-table-column prop="address" label="操作" width="200">
-						<template slot-scope="scope">
-							<div class="operation">
-								<div>
-									<img src="../../assets/images/see.png" style="width: 15;height: 11px;" />
+		<div class="twoBox">
+			<div v-if="changeList== true">
+				<template>
+					<el-table :data="cardList" stripe style="width: 100%">
+						<el-table-column prop="uid" label="用户ID">
+						</el-table-column>
+						<el-table-column prop="id" label="车牌ID">
+						</el-table-column>
+						<el-table-column prop="plate" label="车牌号">
+						</el-table-column>
+						<el-table-column prop="color" label="颜色">
+						</el-table-column>
+						<el-table-column prop="created_time" label="绑定时间">
+						</el-table-column>
+						<el-table-column prop="audit" label="认证状态">
+							<template slot-scope="scope">
+								<div v-if="scope.row.audit == 1">
+									认证中
 								</div>
+								<div v-else-if="scope.row.audit == 2">
+									<span class="stateColor-green">已认证</span>
+								</div>
+								<div v-else-if="scope.row.audit == 0">
+									<span>未认证</span>
+								</div>
+								<div v-else-if="scope.row.audit == 3">
+									<span class="stateColor-red">认证失败</span>
+								</div>
+							</template>
+						</el-table-column>
+						<el-table-column prop="address" label="操作" width="200">
+							<template slot-scope="scope">
+								<div class="operation">
+									<div>
+										<img src="../../assets/images/see.png" style="width: 15;height: 11px;" />
+									</div>
+								</div>
+							</template>
+						</el-table-column>
+					</el-table>
+				</template>
+			</div>
+			<div v-else class="tubiaobox">
+				<div class="imgBox" v-for="item in cardList">
+					<div class="imgBoxTitle">
+						<div class="imgBoxTitleL" v-if="item.audit == 2">
+							已认证
+						</div>
+						<div class="imgBoxTitleL1" v-else>
+							未认证
+						</div>
+						<div class="imgBoxTitleR" v-if="item.audit == 2">
+							<img src="../../assets/images/Delete authenticated.png">
+							<img src="../../assets/images/View certified.png">
+						</div>
+						<div class="imgBoxTitleR" v-else>
+							<img src="../../assets/images/Delete unauthenticated.png">
+							<img src="../../assets/images/View uncertified.png">
+						</div>
+					</div>
+					<div class="imgBoxCon">
+						<div class="imgBoxConW1">
+							<div class="imgBoxConW2">
+								{{item.plate}}
 							</div>
-						</template>
-					</el-table-column>
-				</el-table>
-			</template>
+						</div>
+						<div class="imgBoxConW3">
+							{{item.created_time}} 李小萌
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="UserAssets-bottom">
+		<div class="UserAssets-bottom" v-if="changeList== true ">
 			<div class="UserAssets-bottom-left" :data="cardList">
-				<span>共{{total}}条信息</span>
+				<span>共{{total}}个车牌</span>
 			</div>
 			<div class="UserAssets-bottom-right">
 				<el-pagination background :current-page.sync.number="pagenum" @current-change="handleCurrentChange" :page-size="pagesize"
+				 layout="prev, pager, next" :total="total">
+				</el-pagination>
+			</div>
+		</div>
+		<div class="UserAssets-bottom" v-else>
+			<div class="UserAssets-bottom-left" :data="cardList">
+				<span>共{{total}}个车牌</span>
+			</div>
+			<div class="UserAssets-bottom-right">
+				<el-pagination background :current-page.sync.number="pagenum2" @current-change="handleCurrentChange2" :page-size="pagesize"
 				 layout="prev, pager, next" :total="total">
 				</el-pagination>
 			</div>
@@ -74,7 +129,7 @@
 <script>
 	import myhead from '../../components/myhead.vue'
 	export default {
-		components:{
+		components: {
 			myhead
 		},
 		data() {
@@ -89,9 +144,11 @@
 				add: false,
 				selected: 0, //下拉框
 				pagenum: 1, //分页
+				pagenum2: 1,
 				token: '', //token令牌
-				pagesize: 14, //每次查询条数
+				pagesize: 5, //每次查询条数
 				type: 0,
+				changeList: false,
 				input: '',
 				typeList: [{
 						id: 0,
@@ -114,7 +171,17 @@
 		},
 		created() {
 			this.token = localStorage.getItem('token')
-			this.getUserMes()
+			if (this.changeList == true) {
+				this.getUserMes()
+			} else if (this.changeList == false) {
+				this.getCarImg()
+			}
+
+
+		},
+		watch: {
+
+
 		},
 		methods: {
 			handleOpen(key, keyPath) {
@@ -124,39 +191,182 @@
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
 			},
+			flagT() {
+				this.changeList = false
+				this.getCarImg()
+			},
+			flagF() {
+				this.changeList = true
+				this.getUserMes()
+			},
 			//获取用户卡信息列表
 			getUserMes() {
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
 				// console.log(toKen)
-				this.$axios.get("/admin/api/plate/certificates?token=" + toKen + "&page=" + this.pagenum + "&row=14")
+				this.$axios.get("admin/api/user/plates?token=" + toKen + "&page=" + this.pagenum + "&row=14")
 					.then(res => {
 
 						// console.log(res.status)//打印状态码
 						if (res.status == 200) {
-							this.cardList = res.data.plate_certificates //用户列表数据
+							this.cardList = res.data.user_platess //用户列表数据
 							this.total = res.data.total
-							var pn = this.pagenum
-
+							this.pagesize = 14
+							console.log(this.pagesize)
 						}
 					})
 			},
+			getCarImg() {
+				//token去掉引号
+				let toKen = this.token.replace(/\"/g, "")
+				// console.log(toKen)
+				this.$axios.get("admin/api/user/plates?token=" + toKen + "&page=" + this.pagenum2 + "&row=12")
+					.then(res => {
+						console.log(res) //打印状态码
+						if (res.status == 200) {
+							this.cardList = res.data.user_platess //用户列表数据
+							this.total = res.data.total
+							this.pagesize = 12
+							console.log(this.cardList)
+						}
+					})
+			},
+			changeIcon() {
+				this.changeList = !this.changeList
+				console.log(this.changeList)
+			},
 
-		
 			//监听页码值改变
 			handleCurrentChange(newPage) {
-				//console.log(newPage)
+
 				this.pagenum = newPage
 				this.getUserMes()
 			},
-		
+			handleCurrentChange2(newPage) {
+
+				this.pagenum2 = newPage
+				this.getCarImg()
+
+			},
+
 
 		}
 	}
 </script>
 
 <style scoped="scoped">
-	.oneCard-right{
+	.tubiaobox {
+		width: 95%;
+		height: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 20px;
+	}
+
+	.imgBoxTitleL {
+		background: url(../../assets/images/certified.png);
+		background-size: 100% 100%;
+		width: 150px;
+		height: 55px;
+		color: white;
+		font-size: 18px;
+		text-align: center;
+		line-height: 40px;
+	}
+
+
+	.imgBoxTitleL1 {
+		background: url(../../assets/images/unauthorized.png);
+		background-size: 100% 100%;
+		width: 150px;
+		height: 55px;
+		color: white;
+		font-size: 18px;
+		text-align: center;
+		line-height: 40px;
+	}
+
+
+	.imgBoxCon {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.imgBoxConW1 {
+		font-size: 35px;
+		color: white;
+		width: 230px;
+		height: 60px;
+		background-color: #0b9066;
+		display: flex;
+		align-items: center;
+		border-radius: 5px;
+	}
+
+	.conB {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	.imgBoxConW2 {
+		width: 220px;
+		height: 52px;
+		margin: 0 auto;
+		background-color: #0b9066;
+		line-height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 5px;
+		border: solid 1px white;
+	}
+
+	.imgBoxConW3 {
+		font-size: 16px;
+	}
+
+	.imgBoxCon {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		height: 150px;
+	}
+
+	.imgBoxTitleR {
+		width: 75px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.imgBoxTitle {
+		width: 85%;
+		height: 60px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.imgBox {
+		width: 350px;
+		height: 210px;
+		background-color: #eff2f4;
+		border-radius: 10px;
+		box-shadow: 1px 1px 10px 2px #cccccc;
+	}
+
+	.oneCard-right {
 		display: flex;
 		flex: 1;
 		flex-direction: column;
@@ -164,8 +374,13 @@
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
 	}
+
 	.el-table td {
 		padding: 0 0;
+	}
+
+	.twoBox {
+		height: 700px;
 	}
 
 	.el-input__inner {
@@ -178,8 +393,8 @@
 		flex-direction: row;
 		align-items: center;
 	}
-	
-	.el-table td div{
+
+	.el-table td div {
 		margin: 0 auto;
 	}
 
@@ -198,12 +413,12 @@
 	.el-dialog {
 		margin-top: 30vh !important;
 	}
-	
-	.stateColor-red{
+
+	.stateColor-red {
 		color: red;
 	}
-	
-	.stateColor-green{
+
+	.stateColor-green {
 		color: #2ec23c;
 	}
 
@@ -342,7 +557,7 @@
 		width: 40px;
 	}
 
-	
+
 
 	.user-word {
 		width: 47px;
@@ -357,16 +572,16 @@
 	}
 
 	.el-button--primary {
-    color: #FFF;
-    background-color:#1e69fe;
-    border-color: #1e69fe;
-}
+		color: #FFF;
+		background-color: #1e69fe;
+		border-color: #1e69fe;
+	}
 
 	.el-button--success {
-    color: #1e69fe;
-    background-color:#fff;
-    border-color: #1e69fe;
-}
+		color: #1e69fe;
+		background-color: #fff;
+		border-color: #1e69fe;
+	}
 
 
 
@@ -374,7 +589,7 @@
 		width: 50%;
 	}
 
-	.users-right-w{
+	.users-right-w {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -410,7 +625,6 @@
 
 	.UserAssets-right-text {
 		width: 650px;
-		margin-left: 40px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -484,4 +698,3 @@
 		color: black;
 	}
 </style>
-

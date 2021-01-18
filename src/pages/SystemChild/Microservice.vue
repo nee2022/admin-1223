@@ -6,7 +6,11 @@
 				<span>{{loginConfig.deviceName}}</span>
 			</div>
 			<div class="weiTopRight">
-				<img src="../../assets/images/conputer.png" style="width: 32px;height: 32px;" />
+				<div class="btn-fullscreen" @click="handleFullScreen">
+					<el-tooltip effect="dark" :content="fullscreen ? `取消全屏`:`全屏`" placement="bottom">
+						<img src="../../assets/images/conputer.png" style="width: 32px;height: 32px;" />
+					</el-tooltip>
+				</div>
 				<router-link to="/logging">
 					<img src="../../assets/images/house.png" style="width: 32px;height: 28px;" />
 				</router-link>
@@ -138,16 +142,16 @@
 					</div>
 				</div>
 				<div class="zhexianUnder">
-						<div class="mapBot-left test test-1">
-							<div class="scrollbar">
-								<template>
-									<el-table :data="logData" stripe style="width: 100%">
-										<el-table-column prop="date" label="日志">
-										</el-table-column>
-									</el-table>
-								</template>
-							</div>
+					<div class="mapBot-left test test-1">
+						<div class="scrollbar">
+							<template>
+								<el-table :data="logData" stripe style="width: 100%">
+									<el-table-column prop="date" label="日志">
+									</el-table-column>
+								</el-table>
+							</template>
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -211,6 +215,33 @@ cpu占用率`;
 			format1(percentage) {
 				return `${percentage}%
 内存占用率`;
+			},
+			//全屏事件
+			handleFullScreen() {
+				let element = document.documentElement;
+				if (this.fullscreen) {
+					if (document.exitFullscreen) {
+						document.exitFullscreen();
+					} else if (document.webkitCancelFullScreen) {
+						document.webkitCancelFullScreen();
+					} else if (document.mozCancelFullScreen) {
+						document.mozCancelFullScreen();
+					} else if (document.msExitFullscreen) {
+						document.msExitFullscreen();
+					}
+				} else {
+					if (element.requestFullscreen) {
+						element.requestFullscreen();
+					} else if (element.webkitRequestFullScreen) {
+						element.webkitRequestFullScreen();
+					} else if (element.mozRequestFullScreen) {
+						element.mozRequestFullScreen();
+					} else if (element.msRequestFullscreen) {
+						// IE11
+						element.msRequestFullscreen();
+					}
+				}
+				this.fullscreen = !this.fullscreen;
 			},
 			drawChart() {
 				// 基于准备好的dom，初始化echarts实例
@@ -336,6 +367,7 @@ cpu占用率`;
 		margin: 5px;
 		border: none;
 	}
+
 	.wei-box {
 		width: 100%;
 		height: 100vh;
@@ -470,7 +502,7 @@ cpu占用率`;
 	.tt>>>svg path:first-child {
 		stroke: #0f132f;
 	}
-	
+
 	.tt>>>.el-progress__text {
 		transform: scale(0.7);
 		top: 30%;
@@ -708,11 +740,11 @@ cpu占用率`;
 		align-items: center;
 		border-bottom: solid 1px #202052;
 	}
-	
+
 	.jindutiao1>>>.el-progress-bar__outer {
 		background-color: #202052;
 	}
-	
+
 	.jindutiao2>>>.el-progress-bar__outer {
 		background-color: #202052;
 	}

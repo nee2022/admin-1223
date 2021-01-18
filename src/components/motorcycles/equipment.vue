@@ -4,7 +4,7 @@
       <div class="top-left">
         <div class="top-left-word">网关设备</div>
       </div>
-
+ 
       <el-dialog :title="name" :visible.sync="dialogVisible" width="30%">
         <el-form>
           <el-form-item label="名字:">
@@ -16,39 +16,36 @@
           <el-form-item label="编号:">
             <el-input v-model="c" class="addinput"></el-input>
           </el-form-item>
-            <el-form-item label="类型:">
-
-          <el-select  v-model="value" placeholder="电摩慢充桩">
-            <el-option @click.native="ee"
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
-          </el-select>
+          <el-form-item label="类型:">
+            <el-select v-model="value" placeholder="电摩慢充桩">
+              <el-option
+                @click.native="ee"
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
           </el-form-item>
-
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="flag = true">确 定</el-button>
         </span>
       </el-dialog>
-
-    </el-dialog>
-    <!-- 设备确认 -->
-    <el-dialog title="提示" :visible.sync="flag" width="30%">
-      <span>确定修改或者添加？</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="flag = false">取 消</el-button>
-        <el-button
-          type="primary"
-          @click="(flag = false), (dialogVisible = false), add()"
-          >确 定</el-button
-        >
-      </span>
-    </el-dialog>
+      <!-- 设备确认 -->
+      <el-dialog title="提示" :visible.sync="flag" width="30%">
+        <span>确定修改或者添加？</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="flag = false">取 消</el-button>
+          <el-button
+            type="primary"
+            @click="(flag = false), (dialogVisible = false), add()"
+            >确 定</el-button
+          >
+        </span>
+      </el-dialog>
 
       <div class="users-right">
         <myhead></myhead>
@@ -60,8 +57,8 @@
           <div class="textBox input_right">
             <img src="../../assets/images/search.png" class="sear-img" />
             <el-input
-            v-model="msgss"
-            @keyup.enter.native="cha"
+              v-model="msgss"
+              @keyup.enter.native="cha"
               class=""
               placeholder="请输入信息查询"
               clearable
@@ -82,58 +79,156 @@
               style="width: 100px; height: 100%"
               icon="el-icon-plus"
               class="but"
-              @click="(dialogVisible = true),names()"
+              @click="(dialogVisible = true), names()"
               >添加</el-button
             >
           </div>
         </div>
-        <template>
-          <el-table :data="parkList" stripe style="width: 100%">
-            <el-table-column prop="dev_id" label="设备编号"> </el-table-column>
-            <el-table-column prop="name" label="名称"> </el-table-column>
-            <el-table-column label="类型">
-              <template slot-scope="scope">
-                <div style="text-align: center !important">
-                  {{ typeres[scope.row.type] }}
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column prop="mac" label="机号"> </el-table-column>
-            <el-table-column label="状态" prop="online">
-              <template slot-scope="scope">
-                <span v-if="scope.row.online == true">在线</span>
-                <span v-else>离线</span>
-              </template>
-            </el-table-column>
-            <el-table-column prop="address" label="操作">
-              <template slot-scope="scope">
-                <div class="operation">
-                  <div>
-                    <el-button type="text" @click="removeUserByID(scope.row.id)"
-                      ><img src="../../assets/images/delete.png"
-                    /></el-button>
+        <div class="changeList">
+          <div @click="falgs" v-if="changeList == false">
+            <img
+              src="../../assets/images/changeList.png"
+              alt=""
+              style="width: 35px; height: 35px"
+            />
+          </div>
+          <div @click="falgss" v-show="changeList == true">
+            <img
+              src="../../assets/images/changeIcon.png"
+              alt=""
+              style="width: 35px; height: 35px"
+            />
+          </div>
+        </div>
+        <div class="tus">
+          <template v-if="changeList == false">
+            <el-table :data="parkList" stripe style="width: 100%">
+              <el-table-column prop="id" label="设备ID"> </el-table-column>
+              <el-table-column prop="name" label="名称"> </el-table-column>
+              <el-table-column label="类型">
+                <template slot-scope="scope">
+                  <div style="text-align: center !important">
+                    {{ typeres[scope.row.type] }}
                   </div>
-                  <div>
-                    <el-button
-                      type="text"
-                      @click="(dialogVisible = true), id(scope.row.id)"
-                      ><img src="../../assets/images/compile.png"
-                    /></el-button>
+                </template>
+              </el-table-column>
+              <el-table-column prop="mac" label="机号"> </el-table-column>
+              <el-table-column label="状态" prop="online">
+                <template slot-scope="scope">
+                  <span v-if="scope.row.online == true">在线</span>
+                  <span v-else>离线</span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="address" label="操作">
+                <template slot-scope="scope">
+                  <div class="operation">
+                    <div>
+                      <el-button
+                        type="text"
+                        @click="removeUserByID(scope.row.id)"
+                        ><img src="../../assets/images/delete.png"
+                      /></el-button>
+                    </div>
+                    <div>
+                      <el-button
+                        type="text"
+                        @click="(dialogVisible = true), id(scope.row.id)"
+                        ><img src="../../assets/images/compile.png"
+                      /></el-button>
+                    </div>
                   </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </template>
+          <div v-else class="quans">
+            <div class="moshi" v-for="(item, listI) in parkList" :key="listI">
+              <div class="one">
+                <div v-if="item.online == false" class="gg"></div>
+                <div
+                  v-else-if="item.online == true"
+                  :class="
+                    item.busy == true ? 'r' : item.busy == false ? 'g' : ''
+                  "
+                ></div>
+                <span>{{ item.mac }}</span>
+                <div v-if="item.online==false">
+                  <img src="../../assets/images/Nosignal.png" alt="" />
                 </div>
-              </template>
-            </el-table-column>
-          </el-table>
-        </template>
-        <div class="UserAssets-bottom aa">
+                <div v-else>
+                  <img src="../../assets/images/signal1.png" alt="" />
+                </div>
+              </div>
+              <div v-if="item.ports">
+                <div :title="item.address" class="jin" v-if="!item.address">
+                  暂无地点
+                </div>
+                <div :title="item.address" class="jin" v-else>
+                  {{ item.address }}
+                </div>
+
+                <div class="zhan" v-if="item.soc">
+                  {{ item.soc }}<span>%</span>
+                </div>
+                <div class="zhan" v-else>暂无车辆</div>
+              </div>
+              <div v-else>
+                <div class="lixian">设备已离线</div>
+              </div>
+              <!-- <div class="zhan">{{ item.signal}}</div> -->
+
+              <div class="lie">
+                <div
+                  @click="dianji(listI, i.soc)"
+                  v-for="(i, index) in item.ports"
+                  :key="index"
+                >
+                  {{ i.port || 1 }}
+                </div>
+              </div>
+              <!-- <div class="lie" v-else>
+                <div @click="dianji(listI, i.soc)"  v-for="(i, index) in item.ports"
+                  :key="index">
+                  1
+                </div>
+              </div> -->
+              <div class="ts">
+                <img
+                  style="width: 19px; height: 19px"
+                  src="../../assets/images/delete9.png"
+                  alt=""
+                />
+                <img src="../../assets/images/editor9.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="UserAssets-bottom aa" v-if="changeList == false">
           <div class="road-bottom-left" :data="parkList">
             <span>共{{ parkTotal }}条信息</span>
           </div>
-          <div class="road-bottom-right">
+          <div class="aRight">
             <el-pagination
               background
               :current-page="newpark"
               @current-change="parksNumber"
+              :page-size="pagepark"
+              layout="prev, pager, next"
+              :total="parkTotal"
+              small
+            >
+            </el-pagination>
+          </div>
+        </div>
+        <div class="UserAssets-bottom aa" v-else>
+          <div class="road-bottom-left" :data="parkList">
+            <span>共{{ parkTotal }}条信息</span>
+          </div>
+          <div class="aRight">
+            <el-pagination
+              background
+              :current-page.sync.number="newparkt"
+              @current-change="parksNumbertt"
               :page-size="pagepark"
               layout="prev, pager, next"
               :total="parkTotal"
@@ -154,6 +249,10 @@ export default {
   components: { myhead },
   data() {
     return {
+      date: {
+        id: [],
+        ban: [],
+      },
       msgss: "",
       total: 1,
       parkTotal: 0,
@@ -162,6 +261,7 @@ export default {
       pagesize: 6,
       pagepark: 16,
       newpark: 1, //分页
+      newparkt: 1,
       tableData: [],
       parkList: [],
       dialogVisible: false,
@@ -185,13 +285,31 @@ export default {
       ],
       value: "",
       lest_id: "",
+      changeList: false,
+      banfen: 0,
+      banfens: 0,
     };
   },
   created() {
     this.token = localStorage.getItem("token");
-    this.getParksMes();
+    this.getParksMesList();
   },
+
   methods: {
+    dianji(q, soc) {
+      this.$set(this.parkList[q], "soc", soc);
+      console.log(q, soc);
+    },
+    falgs() {
+      this.changeList = !this.changeList;
+      this.getParksMesTu();
+      console.log(this.date);
+    },
+
+    falgss() {
+      this.changeList = !this.changeList;
+      this.getParksMesList();
+    },
     cha() {
       console.log(232);
       let toKen = this.token.replace(/\"/g, "");
@@ -231,7 +349,7 @@ export default {
           console.log(res.status);
           if (res.status == 200) {
             this.$message.success("删除成功");
-            this.getParksMes();
+            this.getParksMesList();
             //刷新用户数据
           } else {
             this.$message.error("删除失败");
@@ -241,7 +359,7 @@ export default {
       //删除用户提示
     },
     id(id) {
-      this.name = "修改SIM卡";
+      this.name = "修改设备";
       this.lest_id = id;
       console.log(this.lest_id);
     },
@@ -273,11 +391,17 @@ export default {
           .then((res) => {
             if (res.data.error == 0) {
               this.$message.success("修改成功");
-              this.getParksMes();
+              this.getParksMesList();
             } else {
               this.$message.success("修改失败");
             }
           });
+        this.lest_id = "";
+        this.a = "";
+        this.b = "";
+        this.c = "";
+        this.d = "";
+        this.value = "电摩慢充桩";
       } else {
         this.name = "添加设备";
         console.log(this.name);
@@ -301,7 +425,7 @@ export default {
             if (res.data.error == 0) {
               this.$message.success("添加成功");
 
-              this.getParksMes();
+              this.getParksMesList();
             } else {
               this.$message.success("添加失败");
             }
@@ -315,39 +439,217 @@ export default {
       }
     },
     names() {
-      this.name = "添加SIM卡";
+      this.name = "添加设备";
     },
-    getParksMes() {
+    getParksMesList() {
       let toKen = this.token.replace(/\"/g, "");
       this.$axios
         .get(
           "/admin/api/ebs?token=" + toKen + "&page=" + this.newpark + "&row=14"
         )
         .then((res) => {
-          console.log(res);
+          console.log(res.data.chargers);
           // console.log(res.data.users)
           // console.log(res.status)//打印状态码
           if (res.status == 200) {
             this.parkList = res.data.chargers; //用户列表数据
             this.parkTotal = res.data.total;
+            this.pagepark = 14;
             //   console.log(this.parkList);
           }
         });
     },
-    handleCurrentChange(newPage) {
-      //console.log(newPage)
-      this.pagenum = newPage;
-      this.getRoadMes();
+    getParksMesTu() {
+      let toKen = this.token.replace(/\"/g, "");
+      this.$axios
+        .get(
+          "/admin/api/ebs?token=" +
+            toKen +
+            "&attach=state,ports,pdr&page=" +
+            this.newparkt +
+            "&row=18"
+        )
+        .then((res) => {
+          console.log(res.data.chargers);
+          if (res.status == 200) {
+            this.parkList = res.data.chargers; //用户列表数据
+            if (this.parkList) {
+              // console.log("2323");
+              this.parkList.forEach((item, e) => {
+                // console.log(item.ports);
+                if (item.ports) {
+                  item.ports.forEach((i) => {
+                    if (i.soc) {
+                      this.date.ban.push(i.soc);
+                      this.date.id.push(e);
+                    }
+                  });
+                } else {
+                  return;
+                }
+              });
+            }
+            console.log(this.date);
+            this.parkTotal = res.data.total;
+            this.pagepark = 18;
+          }
+        });
     },
     parksNumber(parknum) {
       this.newpark = parknum;
-      this.getParksMes();
+      this.getParksMesList();
+    },
+    parksNumbertt(parknum) {
+      this.newparkt = parknum;
+      this.getParksMesTu();
     },
   },
+  mounted() {},
 };
 </script>
 
 <style scoped="scoped">
+.gg {
+  background: #868686 !important;
+}
+.r {
+  background: red !important;
+}
+.g {
+  background: #44ca41 !important;
+}
+.lixian {
+  height: 94px;
+  font-size: 24px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #76746f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #d2d2d2;
+}
+.lie div {
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  background: #bfbfbf;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 26px;
+  margin-left: 5px;
+}
+.lie {
+  display: flex;
+  width: 100%;
+}
+.back {
+  background: red !important;
+}
+.aRight {
+}
+.el-pagination.is-background.el-pagination--small .el-pager li {
+  background: #bfbfbf !important;
+}
+.active {
+  background: #54a75c !important;
+}
+.el-pagination {
+  text-align: right;
+}
+.ts img {
+  width: 16px;
+  height: 16px;
+  margin: 2px;
+}
+.ts {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.bb {
+  margin: 10px 0 0 0 !important;
+  justify-content: center;
+  border-bottom: 1px #d2d2d2 solid;
+  height: 37px;
+}
+.zhan {
+  font-size: 24px;
+  font-family: Adobe Heiti Std;
+  font-weight: normal;
+  color: #a2a2a2;
+  line-height: 26px;
+  justify-content: center;
+  height: 42px;
+  align-items: center;
+  display: flex;
+}
+.jin {
+  font-size: 20px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #2c2c2c;
+  display: flex;
+  justify-content: center;
+  height: 42px;
+  align-items: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.one span {
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #767677;
+  line-height: 28px;
+}
+.one img {
+  width: 25px;
+  height: 20px;
+}
+.one {
+  display: flex;
+  height: 27px;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+}
+.one > div:nth-child(1) {
+  width: 21px;
+  height: 21px;
+  background: #44ca41;
+  border-radius: 50%;
+  border: 2px solid #8e8e8e;
+  box-sizing: border-box;
+}
+.moshi {
+  width: 218px;
+  height: 204px;
+  background: #eff2f4;
+  box-shadow: 0px 2px 6px 0px rgba(134, 134, 134, 0.64);
+  border-radius: 10px;
+  margin: 25px;
+}
+.quans {
+  margin-left: -25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+.tus {
+  height: 700px;
+}
+.changeList {
+  position: absolute;
+  right: 53px;
+  top: 115px;
+  z-index: 999;
+}
 .UserAssets-bgcolor .el-button--primary {
   background: #1e69fe;
 }
@@ -380,6 +682,7 @@ export default {
 }
 .aa {
   margin-top: 41px !important;
+  justify-content: space-between;
 }
 .zhandian .el-button {
   padding: 0px !important;

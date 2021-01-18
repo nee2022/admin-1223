@@ -8,52 +8,95 @@
 				<myhead></myhead>
 			</div>
 		</div>
-		<div class="UserAssets-right-text">
-			<div class="textBox">
-				<img src="../../assets/images/search.png" class="sear-img">
-				<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+		<div class="conB">
+			<div class="UserAssets-right-text">
+				<div class="textBox">
+					<img src="../../assets/images/search.png" class="sear-img">
+					<el-input v-model="input" placeholder="请输入关键字进行查找" class="textWord" clearable></el-input>
+				</div>
+				<div>
+					<el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+				</div>
+				<div>
+					<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+				</div>
 			</div>
-			<div>
-				<el-button type="primary" icon="el-icon-search" @click="getUserMes">搜索</el-button>
-			</div>
-			<div>
-				<el-button type="success" icon="el-icon-circle-plus-outline" @click="addDialogVisible = true">添加</el-button>
+			<div class="changeMode">
+				<div @click="flagT" v-if="changeList == false">
+					<img src="../../assets/images/changeList.png" alt="" style="width: 35px;height: 35px;">
+				</div>
+				<div @click="flagF" v-show="changeList == true">
+					<img src="../../assets/images/changeIcon.png" alt="" style="width: 35px;height: 35px;">
+				</div>
 			</div>
 		</div>
-		<div>
-			<template>
-				<el-table :data="cardList" stripe style="width: 100%">
-					<el-table-column prop="id" label="设备ID" width="130">
-					</el-table-column>
-					<el-table-column prop="name" label="设备名称" width="180">
-					</el-table-column>
-					<el-table-column prop="state" label="状态">
-					</el-table-column>
-					<el-table-column prop="dev_id" label="编号">
-					</el-table-column>
-					<el-table-column prop="mac" label="设备机号">
-					</el-table-column>
-					<el-table-column prop="address" label="操作" width="200">
-						<template slot-scope="scope">
-							<div class="operation">
-								<div>
-									<button type="text" @click="removeUserByID(scope.row.id)"><img src="../../assets/images/delete.png" /></button>
+		<div style="height: 700px;">
+			<div v-if="changeList == true">
+				<template>
+					<el-table :data="tableData" stripe style="width: 100%">
+						<el-table-column prop="id" label="设备ID" width="130">
+						</el-table-column>
+						<el-table-column prop="name" label="设备名称" width="180">
+						</el-table-column>
+						<el-table-column prop="state" label="状态">
+						</el-table-column>
+						<el-table-column prop="dev_id" label="编号">
+						</el-table-column>
+						<el-table-column prop="mac" label="设备机号">
+						</el-table-column>
+						<el-table-column prop="address" label="操作" width="200">
+							<template slot-scope="scope">
+								<div class="operation">
+									<div>
+										<button type="text" @click="removeUserByID(scope.row.id)"><img src="../../assets/images/delete.png" /></button>
+									</div>
+									<div>
+										<button type="text" @click="showEditDialog(scope.row.id)"><img src="../../assets/images/compile.png" /></button>
+									</div>
 								</div>
-								<div>
-									<button type="text" @click="showEditDialog(scope.row.id)"><img src="../../assets/images/compile.png" /></button>
-								</div>
-							</div>
-						</template>
-					</el-table-column>
-				</el-table>
-			</template>
+							</template>
+						</el-table-column>
+					</el-table>
+				</template>
+			</div>
+			<div class="tubiao" v-else>
+				<div class="tubiaoBox" v-for="item in tableData">
+					<div class="tubiaoBoxTop">
+						<div :class="item.online == false?'offline':item.online == true?'online':''"></div>
+						<div class="xinhao">
+							<img src="../../assets/images/No signal.png" alt="">
+						</div>
+					</div>
+					<div class="tubiaoBoxCon">
+						<div class="posWord1">{{item.name}}</div>
+						<div class="posWord2">{{item.mac}}</div>
+						<div class="posWord3" v-if="item.online == false">设备已离线</div>
+					</div>
+					<div class="tubiaoBoxBot">
+						<div class="tubiaoBoxBotImg">
+							<img src="../../assets/images/Tdelete.png" style="width: 20px;height: 20px;" @click="removeUserByID(item.id)">
+							<img src="../../assets/images/Teditor.png" style="width: 18px;height: 18px;"@click="showEditDialog(item.id)">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="UserAssets-bottom">
-			<div class="UserAssets-bottom-left" :data="cardList">
-				<span>共{{total}}条信息</span>
+		<div class="UserAssets-bottom" v-if="changeList == true">
+			<div class="UserAssets-bottom-left" :data="tableData">
+				<span>共{{total}}台机器</span>
 			</div>
 			<div class="UserAssets-bottom-right">
 				<el-pagination background :current-page.sync.number="pagenum" @current-change="handleCurrentChange" :page-size="pagesize"
+				 layout="prev, pager, next" :total="total">
+				</el-pagination>
+			</div>
+		</div>
+		<div class="UserAssets-bottom" v-else>
+			<div class="UserAssets-bottom-left" :data="tableData">
+				<span>共{{total}}台机器</span>
+			</div>
+			<div class="UserAssets-bottom-right">
+				<el-pagination background :current-page.sync.number="pagenum2" @current-change="handleCurrentChange2" :page-size="pagesize"
 				 layout="prev, pager, next" :total="total">
 				</el-pagination>
 			</div>
@@ -78,16 +121,16 @@
 		</el-dialog>
 		<!-- 修改设备 -->
 		<el-dialog title="修改设备" :visible.sync="editDialogVisible" width="30%" @close="editDialogClosed">
-			<el-form :model="editForm"  ref="editFormRef" label-width="80px">
-			 <el-form-item label="设备名称" prop="name">
-			 	<el-input v-model="editForm.name" class="addinput"></el-input>
-			 </el-form-item>
-			 <el-form-item label="编号" prop="dev_id">
-			 	<el-input v-model="editForm.dev_id" class="addinput"></el-input>
-			 </el-form-item>
-			 <el-form-item label="设备机号" prop="mac">
-			 	<el-input v-model="editForm.mac" class="addinput"></el-input>
-			 </el-form-item>
+			<el-form :model="editForm" ref="editFormRef" label-width="80px">
+				<el-form-item label="设备名称" prop="name">
+					<el-input v-model="editForm.name" class="addinput"></el-input>
+				</el-form-item>
+				<el-form-item label="编号" prop="dev_id">
+					<el-input v-model="editForm.dev_id" class="addinput"></el-input>
+				</el-form-item>
+				<el-form-item label="设备机号" prop="mac">
+					<el-input v-model="editForm.mac" class="addinput"></el-input>
+				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
 				<el-button @click="editDialogVisible = false">取 消</el-button>
@@ -100,12 +143,12 @@
 <script>
 	import myhead from '../../components/myhead.vue'
 	export default {
-		components:{
+		components: {
 			myhead
 		},
 		data() {
 			return {
-				cardList: [], //卡数据
+				tableData: [], //卡数据
 				userList: [], //这个是我新建的
 				option: '',
 				username: '',
@@ -113,12 +156,14 @@
 				isActive: true,
 				dialogVisible: false,
 				add: false,
+				changeList: false,
 				selected: 0, //下拉框
 				pagenum: 1, //分页
+				pagenum2: 1, //分页
 				token: '', //token令牌
-				editForm:{},
+				editForm: {},
 				addDialogVisible: false,
-				editDialogVisible:false,//控制修改设备对话框显示隐藏
+				editDialogVisible: false, //控制修改设备对话框显示隐藏
 				pagesize: 14, //每次查询条数
 				type: 0,
 				input: '',
@@ -144,7 +189,7 @@
 					name: '',
 					dev_id: '',
 					mac: '',
-					type:17
+					type: 17
 				}, //添加设备添加数据
 				addFormRules: {
 					name: [{
@@ -182,7 +227,11 @@
 		},
 		created() {
 			this.token = localStorage.getItem('token')
-			this.getUserMes()
+			if (this.changeList == true) {
+				this.getUserMes()
+			} else if (this.changeList == false) {
+				this.getImg()
+			}
 		},
 		methods: {
 			handleOpen(key, keyPath) {
@@ -192,20 +241,45 @@
 			handleClose(key, keyPath) {
 				console.log(key, keyPath);
 			},
+			flagF() {
+				this.changeList = false
+				this.getImg()
+			},
+			flagT() {
+				this.changeList = true
+				this.getUserMes()
+			},
 			//获取用户卡信息列表
 			getUserMes() {
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
 				//console.log(toKen)
-				this.$axios.get("admin/api/chargers/17?token=" + toKen + "&page=" + this.pagenum + "&row=14&keyword=" +this.input)
+				this.$axios.get("admin/api/chargers/17?token=" + toKen + "&page=" + this.pagenum + "&row=14&keyword=" + this.input)
 					.then(res => {
 						console.log(res.data)
 						// console.log(res.status)//打印状态码
 						if (res.status == 200) {
-							this.cardList = res.data.chargers //用户列表数据
+							this.tableData = res.data.chargers //用户列表数据
 							this.total = res.data.total
-							console.log(this.cardList)
-							var pn = this.pagenum
+							console.log(this.tableData)
+							this.pagesize = 14
+
+						}
+					})
+			},
+			getImg() {
+				//token去掉引号
+				let toKen = this.token.replace(/\"/g, "")
+				//console.log(toKen)
+				this.$axios.get("admin/api/chargers/17?token=" + toKen + "&page=" + this.pagenum + "&row=15&keyword=" + this.input)
+					.then(res => {
+						console.log(res.data)
+						// console.log(res.status)//打印状态码
+						if (res.status == 200) {
+							this.tableData = res.data.chargers //用户列表数据
+							this.total = res.data.total
+							console.log(this.tableData)
+							this.pagesize = 15
 
 						}
 					})
@@ -262,25 +336,28 @@
 				//token去掉引号
 				let toKen = this.token.replace(/\"/g, "")
 				// console.log(toKen)
-				this.$axios.get("admin/api/charger/"+ id +"?token=" + toKen)//根据id点击修改的id查询设备信息
+				this.$axios.get("admin/api/charger/" + id + "?token=" + toKen) //根据id点击修改的id查询设备信息
 					.then(res => {
 						//console.log(res.status)
-						if(res.status == 200){
+						if (res.status == 200) {
 							this.editForm = res.data.charger
 							console.log(res.data.charger)
 						}
 					})
 			},
-			editChargerInfo(){
+			editChargerInfo() {
 				let toKen = this.token.replace(/\"/g, "")
 				this.$refs.editFormRef.validate(valid => {
 					if (!valid) {
 						return this.$message.error("请输入正确的信息")
 					} else {
-						if(confirm("确认修改吗?")){
-							this.$axios.put("admin/api/charger/"+ this.editForm.id,{
-								token:toKen,name:this.editForm.name,dev_id:this.editForm.dev_id,mac:this.editForm.mac
-							})
+						if (confirm("确认修改吗?")) {
+							this.$axios.put("admin/api/charger/" + this.editForm.id, {
+									token: toKen,
+									name: this.editForm.name,
+									dev_id: this.editForm.dev_id,
+									mac: this.editForm.mac
+								})
 								.then(res => {
 									if (res.status !== 200) {
 										return this.$message.error('修改失败!')
@@ -294,10 +371,18 @@
 									this.editDialogVisible = false
 								})
 						}
-						
+
 					} //若表单正则验证未通过，则不允许添加
 				})
 				//如果验证通过，则发起添加修改设备请求
+			},
+			
+			search(){
+				if (this.changeList = true) {
+					this.getUserMes()
+				} else if (this.changeList = false) {
+					this.getImg()
+				}
 			},
 			//监听页码值改变
 			handleCurrentChange(newPage) {
@@ -305,13 +390,19 @@
 				this.pagenum = newPage
 				this.getUserMes()
 			},
+			handleCurrentChange2(newPage) {
+
+				this.pagenum2 = newPage
+				this.getImg()
+
+			},
 			//添加套餐对话框关闭事件
 			addDialogClosed() {
 				this.$refs.addFormRef.resetFields()
 			},
-			
+
 			//修改设备对话框关闭事件
-			editDialogClosed(){
+			editDialogClosed() {
 				this.$refs.editFormRef.resetFields()
 			}
 		}
@@ -319,7 +410,7 @@
 </script>
 
 <style scoped="scoped">
-	.oneCard-right{
+	.oneCard-right {
 		display: flex;
 		flex: 1;
 		flex-direction: column;
@@ -327,6 +418,69 @@
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
 	}
+	
+	.tubiaoBoxBotImg{
+		height: 50px;
+		width: 50px;
+		display: flex;
+		margin: 0 auto;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+	
+	.tubiaoBoxTop{
+		width: 90%;
+		height: 50px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.posWord1{
+		font-size: 22px;
+		font-weight: 500;
+	}
+	
+	.posWord2{
+		font-size: 15px;
+		color: #8b8b8b;
+		font-weight: 600;
+	}
+	.posWord3{
+		font-size: 22px;
+		color: #8b8b8b;
+	}
+	
+	.offline{
+		width: 28px;
+		height: 28px;
+		border-radius: 14px;
+		border: solid 3px #8e8e8e;
+		background-color: #b5b5b5;
+		box-sizing: border-box;
+	}
+	
+	.online{
+		width: 28px;
+		height: 28px;
+		border-radius: 14px;
+		border: solid 3px #8e8e8e;
+		background-color: #44ca41;
+		box-sizing: border-box;
+	}
+
+	.tubiaoBox {
+		width: 300px;
+		height: 200px;
+		background-color: #007DDB;
+		margin: 20px 11px 10px 11px;
+		border-radius: 10px;
+		background-color: #eff2f4;
+		box-shadow: 0px 2px 6px 0px rgba(134, 134, 134, 0.64);
+	}
+
 	.el-table td {
 		padding: 0 0;
 	}
@@ -336,9 +490,35 @@
 		border: none;
 	}
 
+	.tubiao {
+		width: 95%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
 	.tanchu {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+	}
+
+	.conB {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 95%;
+		margin: 0 auto;
+	}
+	
+	.tubiaoBoxCon{
+		width: 90%;
+		height: 90px;
+		margin:0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		align-items: center;
 	}
 
@@ -357,12 +537,12 @@
 	.el-dialog {
 		margin-top: 30vh !important;
 	}
-	
-	.stateColor-red{
+
+	.stateColor-red {
 		color: red;
 	}
-	
-	.stateColor-green{
+
+	.stateColor-green {
 		color: #2ec23c;
 	}
 
@@ -501,7 +681,7 @@
 		width: 40px;
 	}
 
-	
+
 
 	.user-word {
 		width: 47px;
@@ -516,16 +696,16 @@
 	}
 
 	.el-button--primary {
-    color: #FFF;
-    background-color:#1e69fe;
-    border-color: #1e69fe;
-}
+		color: #FFF;
+		background-color: #1e69fe;
+		border-color: #1e69fe;
+	}
 
 	.el-button--success {
-    color: #1e69fe;
-    background-color:#fff;
-    border-color: #1e69fe;
-}
+		color: #1e69fe;
+		background-color: #fff;
+		border-color: #1e69fe;
+	}
 
 
 
@@ -533,7 +713,7 @@
 		width: 50%;
 	}
 
-	.users-right-w{
+	.users-right-w {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -569,7 +749,6 @@
 
 	.UserAssets-right-text {
 		width: 650px;
-		margin-left: 40px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;

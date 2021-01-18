@@ -6,7 +6,11 @@
 				<span>{{loginConfig.deviceName}}</span>
 			</div>
 			<div class="mapTopRight">
-					<img src="../../assets/images/conputer.png" style="width: 32px;height: 32px;" />
+				<div class="btn-fullscreen" @click="handleFullScreen">
+					<el-tooltip effect="dark" :content="fullscreen ? `取消全屏`:`全屏`" placement="bottom">
+						<img src="../../assets/images/conputer.png" style="width: 32px;height: 32px;" />
+					</el-tooltip>
+				</div>
 				<router-link to="/logging">
 					<img src="../../assets/images/house.png" style="width: 32px;height: 28px;" />
 				</router-link>
@@ -249,8 +253,8 @@
 					}
 				],
 				chargeType: [{
-					id:1,
-					img:require('../../assets/images/dici.png')
+					id: 1,
+					img: require('../../assets/images/dici.png')
 				}],
 			};
 		},
@@ -260,6 +264,33 @@
 			this.getChargesMes()
 		},
 		methods: {
+			//全屏事件
+			handleFullScreen() {
+				let element = document.documentElement;
+				if (this.fullscreen) {
+					if (document.exitFullscreen) {
+						document.exitFullscreen();
+					} else if (document.webkitCancelFullScreen) {
+						document.webkitCancelFullScreen();
+					} else if (document.mozCancelFullScreen) {
+						document.mozCancelFullScreen();
+					} else if (document.msExitFullscreen) {
+						document.msExitFullscreen();
+					}
+				} else {
+					if (element.requestFullscreen) {
+						element.requestFullscreen();
+					} else if (element.webkitRequestFullScreen) {
+						element.webkitRequestFullScreen();
+					} else if (element.mozRequestFullScreen) {
+						element.mozRequestFullScreen();
+					} else if (element.msRequestFullscreen) {
+						// IE11
+						element.msRequestFullscreen();
+					}
+				}
+				this.fullscreen = !this.fullscreen;
+			},
 			drawChart() {
 				// 基于准备好的dom，初始化echarts实例
 				let myChart = this.$echarts.init(document.getElementById("myEcharts"));
@@ -556,6 +587,7 @@
 		background-color: #0f132f;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 	}
 
 	.el-button--danger {

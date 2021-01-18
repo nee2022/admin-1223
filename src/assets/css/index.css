@@ -1,62 +1,67 @@
 .operation button {
-  border: none;
-  background: none;
+	border: none;
+	background: none;
 }
 
 .el-menu {
-  border: none;
+	border: none;
 }
 
 .menu-word-2 {
-  color: white;
-  font-size: 15px;
+	color: white;
+	font-size: 15px;
 }
 
 .UserAssets-bgcolor .el-table__body-wrapper {
-  height: 630px;
+	height: 630px;
 }
 
-.el-submenu__title i {
+.el-submenu__title i{
   color: white;
+
 }
 
 .right-con-left .el-table__body-wrapper {
-  height: 630px;
+	height: 630px;
 }
 
 .con .el-table__body-wrapper {
-  height: 630px;
+	height: 630px;
 }
 
 .right-con-right .el-table__body-wrapper {
-  height: 540px;
+	height: 540px;
 }
 
 .el-submenu .el-menu-item {
-  padding: 0px 0px;
+	padding: 0px 0px;
 }
 
 .right-con-left .el-table th {
-  padding: 0px 0px;
+	padding: 0px 0px;
 }
 
 .el-button {
-  padding: 10px 10px;
+	padding: 10px 10px;
 }
 
 body {
-  min-width: 1400px;
-  background-color: #1e69fe;
+	min-width: 1400px;
+	background-color: #1e69fe;
 }
 
 .tem-right {
-  height: 100vh;
+	height: 100vh;
 }
 
 .UserAssets-bgcolor {
-  height: 100vh;
+	height: 100vh;
+}
+
+.oneCard-right{
+	height: 100vh;
 }
 
 .right-con {
-  height: calc(100vh - 600px);
+	height: calc(100vh - 600px);
 }

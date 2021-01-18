@@ -20,7 +20,7 @@
 						</template>
 						</router-link>
 						<el-menu-item-group>
-							<router-link to="/deviceManager">
+							<router-link tag="a" target="_blank" to="/deviceManager">
 							<el-menu-item index="6-1">
 								<div class="menu-op">
 									<div>
@@ -31,7 +31,7 @@
 							</el-menu-item>
 							</router-link>
 							<el-menu-item index="6-2">
-								<router-link to="/Microservice">
+								<router-link tag="a" target="_blank" to="/Microservice">
 									<div class="menu-op">
 										<div>
 											<img src="../assets/images/Operator.png">
@@ -41,7 +41,7 @@
 								</router-link>
 							</el-menu-item>
 							<el-menu-item index="6-3">
-								<router-link to="/chargeManager">
+								<router-link tag="a" target="_blank" to="/chargeManager">
 									<div class="menu-op">
 										<div>
 											<img src="../assets/images/The user.png">
