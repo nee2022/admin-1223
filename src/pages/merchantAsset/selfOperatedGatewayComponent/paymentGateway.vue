@@ -103,7 +103,7 @@
                 </el-switch>
               </div>
               <div class="info">
-                {{ item.name }} + {{ paymentGateway(item.gateway) }}
+                {{ item.name }}
               </div>
               <div class="operation">
                 <div>
