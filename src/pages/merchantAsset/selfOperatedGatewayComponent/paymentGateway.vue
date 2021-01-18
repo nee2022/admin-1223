@@ -93,7 +93,7 @@
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem">
               <div class="topBar">
-                <img src="" alt="" />
+                <img :src="paymentGateway(item.gateway)" alt="" height="20px" />
                 <el-switch
                   v-model="value"
                   active-color="#13ce66"
@@ -101,7 +101,9 @@
                 >
                 </el-switch>
               </div>
-              <div class="info">{{ item.name }}</div>
+              <div class="info">
+                {{ item.name }} + {{ paymentGateway(item.gateway) }}
+              </div>
               <div class="operation">
                 <div>
                   <img src="../../../assets/images/Tdelete.png" title="删除" />

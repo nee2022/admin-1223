@@ -38,6 +38,18 @@ export default {
     this.getPaymentGatewayMes();
   },
   methods: {
+    paymentGateway(gateway) {
+      if (gateway === "wechat") {
+        return "../../../assets/images/WECHAT.png";
+      } else if (gateway === "alipay") {
+        return "../../../assets/images/alipay.png";
+      } else if (gateway === "heemoney") {
+        return "../../../assets/images/Payment-l gateway.png";
+      } else if (gateway === "cash") {
+        return "../../../assets/images/China Construction Bank.png";
+      }
+      return "../../../assets/images/WECHAT.png";
+    },
     toggleListTable() {
       this.pagesize = 12;
       this.getPaymentGatewayMes();
