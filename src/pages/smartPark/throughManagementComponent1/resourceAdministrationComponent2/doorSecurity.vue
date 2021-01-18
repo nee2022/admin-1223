@@ -85,21 +85,15 @@
               <div class="operation">
                 <button>
                   <img
-                    src=""
+                    src="../../../../assets/images/Open the door.png"
                     alt=""
-                    width="10px"
-                    height="12px"
-                    style="background:blue"
                   />
                   开门
                 </button>
                 <button>
                   <img
-                    src=""
+                    src="../../../../assets/images/close the door.png"
                     alt=""
-                    width="10px"
-                    height="12px"
-                    style="background:red"
                   />
                   关门
                 </button>
@@ -131,21 +125,15 @@
               <div class="operation">
                 <button>
                   <img
-                    src=""
+                    src="../../../../assets/images/Open the door.png"
                     alt=""
-                    width="10px"
-                    height="12px"
-                    style="background:blue"
                   />
                   开门
                 </button>
                 <button>
                   <img
-                    src=""
+                    src="../../../../assets/images/close the door.png"
                     alt=""
-                    width="10px"
-                    height="12px"
-                    style="background:red"
                   />
                   关门
                 </button>

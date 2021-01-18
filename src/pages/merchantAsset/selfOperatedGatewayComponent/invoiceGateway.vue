@@ -92,7 +92,11 @@
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem">
               <div class="topBar">
-                <img src="" alt="" >
+                <img src="../../../assets/images/moredo.png" alt="" />
+                <!-- <img
+                  src="../../../assets/images/Invoice-l gateway.png"
+                  alt=""
+                /> -->
                 <el-switch
                   v-model="value"
                   active-color="#13ce66"

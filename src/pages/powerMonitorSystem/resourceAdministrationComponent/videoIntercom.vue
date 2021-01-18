@@ -84,23 +84,11 @@
               </div>
               <div class="operation">
                 <button>
-                  <img
-                    src=""
-                    alt=""
-                    width="10px"
-                    height="12px"
-                    style="background:blue"
-                  />
+                  <img src="../../../assets/images/Through.png" alt="" />
                   接通
                 </button>
                 <button>
-                  <img
-                    src=""
-                    alt=""
-                    width="10px"
-                    height="12px"
-                    style="background:red"
-                  />
+                  <img src="../../../assets/images/Hang up.png" alt="" />
                   挂断
                 </button>
               </div>
