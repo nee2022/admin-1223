@@ -93,7 +93,8 @@
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem">
               <div class="topBar">
-                <img :src="paymentGateway(item.gateway)" alt="" height="20px" />
+                <!-- 动态src与方法绑定，有bug，待解决卍 -->
+                <img :src="paymentGateway(item.gateway)" alt="" />
                 <el-switch
                   v-model="value"
                   active-color="#13ce66"
