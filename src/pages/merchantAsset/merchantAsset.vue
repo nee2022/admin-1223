@@ -26,7 +26,7 @@
                 <router-link to="/merchantAsset/dataBoard">
                   <el-menu-item index="1-1">
                     <img src="../../assets/images/all.png" />
-                    <span>数据看板</span>
+                    <span>商户资产</span>
                   </el-menu-item>
                 </router-link>
               </el-submenu>

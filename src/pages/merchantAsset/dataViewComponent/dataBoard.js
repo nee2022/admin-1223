@@ -1,4 +1,5 @@
-import myhead from "../../../components/myhead.vue";
+import myhead from "../../../components/myhead";
+
 export default {
   components: {
     myhead
