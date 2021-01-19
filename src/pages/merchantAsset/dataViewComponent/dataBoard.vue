@@ -28,7 +28,6 @@
                 <div>
                   <span>8588</span>
                   <span>.21元</span>
-                  <span></span>
                 </div>
                 <span class="amount">金额</span>
               </div>

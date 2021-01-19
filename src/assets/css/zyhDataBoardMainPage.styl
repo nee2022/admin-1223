@@ -138,13 +138,12 @@
               flex-direction: column;
               position: relative;
 
-              div:not(.noBorder) {
-                span:nth-child(3) {
-                  position: absolute;
-                  height: 40px;
-                  right: 0;
-                  border-right: 1px solid #848FB7;
-                }
+              div:not(.noBorder)::after {
+                content: '';
+                position: absolute;
+                height: 40px;
+                right: 0;
+                border-right: 1px solid #848FB7;
               }
 
               div {
