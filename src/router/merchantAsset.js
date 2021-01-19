@@ -3,6 +3,7 @@ import Router from "vue-router";
 
 import refresh from "../pages/refresh";
 
+import dataBoard from "../pages/merchantAsset/dataViewComponent/dataBoard.vue";
 import merchantAccount from "../pages/merchantAsset/merchantAccountComponent/merchantAccount.vue";
 import orderRecord from "../pages/merchantAsset/financialManagementComponent/orderRecord.vue";
 import shareRecord from "../pages/merchantAsset/financialManagementComponent/shareRecord.vue";
@@ -20,6 +21,8 @@ Vue.use(Router);
 
 const routes = [
   { path: "/refresh", component: refresh },
+
+  { path: "/merchantAsset/dataBoard", component: dataBoard },
 
   { path: "/merchantAsset/orderRecord", component: orderRecord },
   { path: "/merchantAsset/shareRecord", component: shareRecord },

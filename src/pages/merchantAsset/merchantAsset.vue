@@ -3,7 +3,7 @@
     <aside>
       <div class="logo">
         <a href="/#/summary">
-          <span><img :src="loginConfig.imgs" /></span>
+          <span><img :src="loginConfig.imgs"/></span>
         </a>
       </div>
       <nav>
@@ -18,6 +18,18 @@
               active-text-color="white"
               unique-opened
             >
+              <el-submenu index="0">
+                <template slot="title">
+                  <img src="../../assets/images/Business accounts.png" />
+                  <span>数据视图</span>
+                </template>
+                <router-link to="/merchantAsset/dataBoard">
+                  <el-menu-item index="1-1">
+                    <img src="../../assets/images/all.png" />
+                    <span>数据看板</span>
+                  </el-menu-item>
+                </router-link>
+              </el-submenu>
               <el-submenu index="1">
                 <template slot="title">
                   <img src="../../assets/images/Business accounts.png" />
@@ -134,8 +146,8 @@ export default {
   router,
   data() {
     return {
-			loginConfig,
-		};
+      loginConfig
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
