@@ -108,8 +108,11 @@
         </ul>
       </div>
       <div class="section2">
-        <div id="main" style="width: 600px;height:400px;"></div>
+        <div class="section2Top">123</div>
+        <div id="section2Echart"></div>
+        <div class="section2Bottom">123</div>
       </div>
+      <div class="gap2"></div>
     </section>
   </div>
 </template>

@@ -5,7 +5,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      var myChart = this.$echarts.init(document.getElementById("main"));
+      var data = ["笔数", "金额"];
+      var myChart = this.$echarts.init(
+        document.getElementById("section2Echart")
+      );
 
       // 指定图表的配置项和数据
       var option = {
@@ -24,8 +27,19 @@ export default {
         yAxis: {
           type: "value"
         },
+        legend: {
+          orient: "horizontal",
+          y: "bottom", //延Y轴居中
+          x: "center", //居右
+          data: data.legendData,
+          itemGap: 100, //图例间隔
+          textStyle: {
+            fontSize: 16
+          }
+        },
         series: [
           {
+            name: "金额",
             data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
             type: "line",
             smooth: true,
@@ -42,6 +56,7 @@ export default {
             }
           },
           {
+            name: "笔数",
             data: [2900, 3600, 3800, 4900, 4500, 5200, 5600],
             type: "line",
             smooth: true,

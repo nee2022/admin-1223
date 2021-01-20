@@ -73,7 +73,8 @@
     flex-grow: 1;
 
     .section1 {
-      height: 30%;
+      height: 20%;
+      border: 1px solid red;
 
       ul {
         height: 100%;
@@ -186,8 +187,30 @@
     }
 
     .section2 {
-      height: 70%;
-      // border: 1px solid black;
+      height: 75%;
+      position: relative;
+      border: 1px solid red;
+
+      .section2Top {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      #section2Echart {
+        height: 100%;
+        width: 100%;
+      }
+
+      .section2Bottom {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .gap2 {
+      height: 5%;
     }
   }
 }
