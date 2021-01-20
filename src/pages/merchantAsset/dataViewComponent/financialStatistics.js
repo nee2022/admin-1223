@@ -3,8 +3,33 @@ export default {
   components: {
     myhead
   },
-  mounted() {
-    this.$nextTick(() => {
+  data() {
+    return {
+      flag: 1
+    };
+  },
+
+  methods: {
+    toggle(flag) {
+      this.flag = flag;
+      switch (flag) {
+        case 1:
+          this.$nextTick(() => {
+            this.drawEchart2();
+          });
+          break;
+        case 2:
+          this.$nextTick(() => {
+            this.drawEchart2();
+          });
+          break;
+        default:
+          this.$nextTick(() => {
+            this.drawEchart2();
+          });
+      }
+    },
+    drawEchart2() {
       var data = ["笔数", "金额"];
       var myChart = this.$echarts.init(
         document.getElementById("section2Echart")
@@ -77,6 +102,11 @@ export default {
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.drawEchart2();
     });
   }
 };
