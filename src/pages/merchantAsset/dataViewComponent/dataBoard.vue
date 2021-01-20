@@ -107,7 +107,9 @@
           </li>
         </ul>
       </div>
-      <div class="section2">2</div>
+      <div class="section2">
+        <div id="main" style="width: 600px;height:400px;"></div>
+      </div>
     </section>
   </div>
 </template>

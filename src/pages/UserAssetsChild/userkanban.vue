@@ -91,9 +91,9 @@
           <div class="kanbanBotConR">
             <div class="kanbanBotConLTitle">
               <div class="blue"></div>
-              <span style="margin-left: 5px;font-size: 16px;" >
-								用户实名认证情况
-								</span >
+              <span style="margin-left: 5px;font-size: 16px;">
+                用户实名认证情况
+              </span>
             </div>
             <div class="kanbanConRImg" id="myEcharts"></div>
           </div>
