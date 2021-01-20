@@ -1,11 +1,7 @@
 import myhead from "../../../components/myhead";
-import FinancialStatistics from "./financialStatistics.vue";
-import MerchantsNumber from "./merchantsNumber.vue";
 export default {
   components: {
-    myhead,
-    FinancialStatistics,
-    MerchantsNumber
+    myhead
   },
   data() {
     return {

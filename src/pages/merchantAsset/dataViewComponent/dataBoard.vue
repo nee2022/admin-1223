@@ -14,6 +14,9 @@
     </header>
     <section>
       <template v-if="flag === 1">
+        <MerchantsNumber></MerchantsNumber>
+      </template>
+      <template v-if="flag === 2">
         <FinancialStatistics></FinancialStatistics>
       </template>
     </section>
