@@ -108,9 +108,36 @@
         </ul>
       </div>
       <div class="section2">
-        <div class="section2Top">123</div>
+        <div class="section2Top">
+          <div class="left">
+            <span></span>
+            <span>商户资产笔量、金额增长曲线</span>
+          </div>
+          <div class="medial">
+            <div class="medialWrapper">
+              <span class="currentActive">近一周</span>
+              <span>近一月</span>
+              <span>近一年</span>
+            </div>
+          </div>
+          <div class="right">
+            <template>
+              <div class="block">
+                <span class="demonstration"></span>
+                <el-date-picker
+                  v-model="value1"
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                >
+                </el-date-picker>
+              </div>
+            </template>
+          </div>
+        </div>
         <div id="section2Echart"></div>
-        <div class="section2Bottom">123</div>
+        <div class="section2Bottom"></div>
       </div>
       <div class="gap2"></div>
     </section>

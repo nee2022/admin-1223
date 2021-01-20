@@ -74,7 +74,6 @@
 
     .section1 {
       height: 20%;
-      border: 1px solid red;
 
       ul {
         height: 100%;
@@ -189,12 +188,70 @@
     .section2 {
       height: 75%;
       position: relative;
-      border: 1px solid red;
 
       .section2Top {
         position: absolute;
         left: 0;
         top: 0;
+        width: 100%;
+        display: flex;
+
+        .left {
+          margin-left: 100px;
+          display: flex;
+
+          span:nth-child(1) {
+            width: 5px;
+            height: 20px;
+            border-radius: 5px;
+            background: #2858f2;
+            margin-right: 5px;
+          }
+
+          span:nth-child(2) {
+            font-size: 14px;
+            font-family: PingFang SC;
+            font-weight: normal;
+            color: #000000;
+          }
+        }
+
+        .medial {
+          flex-grow: 1;
+          display: flex;
+          justify-content: flex-end;
+
+          .medialWrapper {
+            display: flex;
+            border: 1px solid #2754FB;
+            border-radius: 5px;
+
+            span {
+              padding: 7px 20px;
+              font-size: 16px;
+              font-family: PingFang SC;
+              font-weight: normal;
+              color: #2754FB;
+            }
+
+            span.currentActive {
+              background: #2858f2;
+              color: #fff;
+              border-radius: 5px;
+            }
+          }
+        }
+
+        .right {
+          // border: 1px solid green;
+          margin: 0 50px 0 10px;
+
+          .block {
+            border: 1px solid #2754FB;
+            color: #2754FB;
+            border-radius: 5px;
+          }
+        }
       }
 
       #section2Echart {
