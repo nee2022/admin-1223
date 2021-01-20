@@ -12,14 +12,11 @@
         <span @click="toggle(2)">财务统计</span>
       </div>
     </header>
-    <template v-if="flag === 1">
-      <FinancialStatistics></FinancialStatistics>
-    </template>
-    <template v-if="flag === 2">
-      <div>
-        123
-      </div>
-    </template>
+    <section>
+      <template v-if="flag === 1">
+        <FinancialStatistics></FinancialStatistics>
+      </template>
+    </section>
   </div>
 </template>
 
