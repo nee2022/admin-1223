@@ -8,8 +8,8 @@
         </div>
       </div>
       <div class="toggleBar">
-        <span @click="toggle(1)">商户数</span>
-        <span @click="toggle(2)">财务统计</span>
+        <span @click="toggle(1, $event)">商户数</span>
+        <span @click="toggle(2, $event)">财务统计</span>
       </div>
     </header>
     <section>

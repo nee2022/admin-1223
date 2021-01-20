@@ -14,7 +14,16 @@ export default {
   },
 
   methods: {
-    toggle(flag) {
+    toggle(flag, event) {
+      for (let i = 0; i < event.target.parentNode.childNodes.length; i++) {
+        if (event.target.parentNode.childNodes[i].style) {
+          event.target.parentNode.childNodes[i].removeAttribute("style");
+        }
+      }
+      event.target.setAttribute(
+        "style",
+        "color:#2d6bf5;" + "border-bottom:2px solid #2d6bf5;"
+      );
       this.flag = flag;
       switch (flag) {
         case 1:
