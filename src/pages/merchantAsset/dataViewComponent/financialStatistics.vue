@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhAssetFinancialStatisticsDataBoardSection">
+  <div class="zyhAssetMerchantsNumberDataBoardSection">
     <div class="section1">
       <ul>
         <li>
