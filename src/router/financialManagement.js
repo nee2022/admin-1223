@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+import dataBoard from "../pages/financialManagement/dataViewComponent/dataBoard.vue";
+
 import allOrder from "../pages/financialManagement/orderFormComponent/allOrder";
 import realTimeOrder from "../pages/financialManagement/orderFormComponent/realTimeOrder";
 import refundOrder from "../pages/financialManagement/orderFormComponent/refundOrder";
@@ -20,6 +22,8 @@ import issuedWithdrawalRecord from "../pages/financialManagement/withdrawalRecor
 Vue.use(Router);
 
 const routes = [
+  { path: "/financialManagement/dataBoard", component: dataBoard },
+
   { path: "/financialManagement/allOrder", component: allOrder },
   { path: "/financialManagement/realTimeOrder", component: realTimeOrder },
   { path: "/financialManagement/refundOrder", component: refundOrder },

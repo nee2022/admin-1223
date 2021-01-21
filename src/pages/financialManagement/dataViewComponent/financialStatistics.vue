@@ -22,6 +22,24 @@
         </li>
         <li>
           <div class="top">
+            <span>收入</span>
+          </div>
+          <div class="bottom">
+            <div class="p1">
+              <span>3440</span>
+              <span>笔数</span>
+            </div>
+            <div class="p2">
+              <div>
+                <span>8588</span>
+                <span>.21元</span>
+              </div>
+              <span class="amount">金额</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="top">
             <span>分成</span>
           </div>
           <div class="bottom">
