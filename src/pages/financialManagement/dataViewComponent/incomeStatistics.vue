@@ -186,9 +186,9 @@
 </template>
 
 <script>
-import merchantsNumber from "./merchantsNumber.js";
+import incomeStatistics from "./incomeStatistics.js";
 
-export default merchantsNumber;
+export default incomeStatistics;
 </script>
 
 <style lang="stylus" scoped></style>

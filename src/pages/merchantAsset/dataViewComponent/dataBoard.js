@@ -39,7 +39,8 @@ export default {
           break;
         default:
           this.$nextTick(() => {
-            this.drawEchart3();
+            this.drawMerchantsNumberEchart1();
+            this.drawMerchantsNumberEchart2();
           });
       }
     },
