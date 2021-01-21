@@ -130,9 +130,9 @@
 </template>
 
 <script>
-import financialStatistics from "./financialStatistics.js";
+import invoicingStatistics from "./invoicingStatistics.js";
 
-export default financialStatistics;
+export default invoicingStatistics;
 </script>
 
 <style lang="stylus" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhAssetDataBoardMainPage">
+  <div class="zyhDataBoardMainPage">
     <header>
       <div class="infoArea">
         <div class="pageName">财务数据</div>
@@ -22,7 +22,10 @@
         <IncomeStatistics></IncomeStatistics>
       </template>
       <template v-if="flag === 2">
-        <FinancialStatistics></FinancialStatistics>
+        <InvoicingStatistics></InvoicingStatistics>
+      </template>
+      <template v-if="flag === 3">
+        <SettlementStatistics></SettlementStatistics>
       </template>
     </section>
   </div>

@@ -1,11 +1,13 @@
 import myhead from "../../../components/myhead";
-import FinancialStatistics from "./financialStatistics.vue";
 import IncomeStatistics from "./incomeStatistics.vue";
+import InvoicingStatistics from "./invoicingStatistics.vue";
+import SettlementStatistics from "./settlementStatistics.vue";
 export default {
   components: {
     myhead,
-    FinancialStatistics,
-    IncomeStatistics
+    IncomeStatistics,
+    InvoicingStatistics,
+    SettlementStatistics
   },
   data() {
     return {
@@ -33,6 +35,10 @@ export default {
           });
           break;
         case 2:
+          this.$nextTick(() => {
+            this.drawFinancialStatisticsEchart1();
+          });
+        case 3:
           this.$nextTick(() => {
             this.drawFinancialStatisticsEchart1();
           });
