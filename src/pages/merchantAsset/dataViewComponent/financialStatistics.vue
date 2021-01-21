@@ -122,7 +122,7 @@
           </template>
         </div>
       </div>
-      <div id="section2Echart"></div>
+      <div id="financialStatisticsEchart1"></div>
       <div class="section2Bottom"></div>
     </div>
     <div class="gap2"></div>

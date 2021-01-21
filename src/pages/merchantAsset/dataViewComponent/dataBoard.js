@@ -33,7 +33,7 @@ export default {
           break;
         case 2:
           this.$nextTick(() => {
-            this.drawEchart2();
+            this.drawFinancialStatisticsEchart1();
           });
           break;
         default:
@@ -150,10 +150,10 @@ export default {
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
     },
-    drawEchart2() {
+    drawFinancialStatisticsEchart1() {
       var data = ["笔数", "金额"];
       var myChart = this.$echarts.init(
-        document.getElementById("section2Echart")
+        document.getElementById("financialStatisticsEchart1")
       );
 
       // 指定图表的配置项和数据
