@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhAssetDataBoardMainPage">
+  <div class="zyhDataBoardMainPage">
     <header>
       <div class="infoArea">
         <div class="pageName">商户资产</div>
