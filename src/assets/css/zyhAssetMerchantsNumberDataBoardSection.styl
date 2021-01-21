@@ -118,16 +118,16 @@
     border: 1px solid black;
     height: 30%;
     position: relative;
+    display: flex;
 
-    .section2Top {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      display: flex;
+    .part1 {
+      width: 50%;
+      border: 1px solid red;
 
       .left {
-        margin-left: 100px;
+        position: absolute;
+        left: 100px;
+        top: 0;
         display: flex;
 
         span:nth-child(1) {
@@ -145,11 +145,16 @@
           color: #000000;
         }
       }
+
+      #merchantsNumberEchart1 {
+        width: 100%;
+        height: 100%;
+      }
     }
 
-    #merchantsNumberEchart2 {
-      height: 100%;
-      width: 100%;
+    .part2 {
+      width: 50%;
+      border: 1px solid black;
     }
   }
 

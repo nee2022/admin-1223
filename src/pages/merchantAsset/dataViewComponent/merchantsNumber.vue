@@ -31,7 +31,7 @@
           </div>
           <div class="bottom">
             <div class="p1">
-              <span>3440</span>
+              <span>2880</span>
             </div>
           </div>
         </li>
@@ -41,7 +41,7 @@
           </div>
           <div class="bottom">
             <div class="p1">
-              <span>3440</span>
+              <span>5800</span>
             </div>
           </div>
         </li>
@@ -51,13 +51,22 @@
           </div>
           <div class="bottom">
             <div class="p1">
-              <span>3440</span>
+              <span>7220</span>
             </div>
           </div>
         </li>
       </ul>
     </div>
-    <div class="section2">123</div>
+    <div class="section2">
+      <div class="part1">
+        <div class="left">
+          <span></span>
+          <span>认证车辆占比情况</span>
+        </div>
+        <div id="merchantsNumberEchart1"></div>
+      </div>
+      <div class="part2"></div>
+    </div>
     <div class="section3">
       <div class="section3Top">
         <div class="left">

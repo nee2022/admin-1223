@@ -28,6 +28,7 @@ export default {
       switch (flag) {
         case 1:
           this.$nextTick(() => {
+            this.drawMerchantsNumberEchart1();
             this.drawMerchantsNumberEchart2();
           });
           break;
@@ -41,6 +42,53 @@ export default {
             this.drawEchart3();
           });
       }
+    },
+    drawMerchantsNumberEchart1() {
+      var myChart = this.$echarts.init(
+        document.getElementById("merchantsNumberEchart1")
+      );
+      var option = {
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          icon: "circle",
+          itemGap: 50,
+          right: 10,
+          top: "middle",
+          data: ["分润账号", "笔笔清", "自营"]
+        },
+        series: [
+          {
+            name: "访问来源",
+            type: "pie",
+            radius: ["50%", "70%"],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+              position: "center"
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: "30",
+                fontWeight: "bold"
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: [
+              { value: 2880, name: "分润账号" },
+              { value: 5800, name: "笔笔清" },
+              { value: 7220, name: "自营" }
+            ]
+          }
+        ]
+      };
+      myChart.setOption(option);
     },
     drawMerchantsNumberEchart2() {
       var data = ["商户总数", "分润账号", "笔笔清", "自营"];
@@ -227,6 +275,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      this.drawMerchantsNumberEchart1();
       this.drawMerchantsNumberEchart2();
     });
   }
