@@ -115,14 +115,12 @@
   }
 
   .section2 {
-    border: 1px solid black;
     height: 30%;
     position: relative;
     display: flex;
 
     .part1 {
       width: 50%;
-      border: 1px solid red;
 
       .left {
         position: absolute;
@@ -154,7 +152,67 @@
 
     .part2 {
       width: 50%;
-      border: 1px solid black;
+
+      .left {
+        position: absolute;
+        left: calc(50% + 42px);
+        top: 0;
+        display: flex;
+
+        span:nth-child(1) {
+          width: 5px;
+          height: 20px;
+          border-radius: 5px;
+          background: #2858f2;
+          margin-right: 5px;
+        }
+
+        span:nth-child(2) {
+          font-size: 14px;
+          font-family: PingFang SC;
+          font-weight: normal;
+          color: #000000;
+        }
+      }
+
+      ul.rank {
+        padding-top: 35px;
+        padding-bottom: 50px;
+        width: 100%;
+        height: 100%;
+
+        li {
+          height: 20%;
+          display: flex;
+          align-items: center;
+
+          .merchantName {
+            width: 20%;
+            padding-left: 42px;
+
+            span {
+              font-size: 16px;
+              font-family: PingFang SC;
+              font-weight: normal;
+            }
+
+            span:nth-child(1) {
+              margin-right: 5px;
+            }
+          }
+
+          .progressWrapper {
+            padding-right: 42px;
+            width: 80%;
+          }
+        }
+      }
+
+      .paginationWrapper {
+        position: absolute;
+        right: 42px;
+        bottom: 15px;
+      }
     }
   }
 
@@ -196,7 +254,6 @@
 
         .medialWrapper {
           display: flex;
-          border: 1px solid #2754FB;
           border-radius: 5px;
 
           span {
@@ -216,11 +273,9 @@
       }
 
       .right {
-        // border: 1px solid green;
         margin: 0 50px 0 10px;
 
         .block {
-          border: 1px solid #2754FB;
           color: #2754FB;
           border-radius: 5px;
         }

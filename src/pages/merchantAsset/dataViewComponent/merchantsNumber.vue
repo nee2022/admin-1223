@@ -65,7 +65,90 @@
         </div>
         <div id="merchantsNumberEchart1"></div>
       </div>
-      <div class="part2"></div>
+      <div class="part2">
+        <div class="left">
+          <span></span>
+          <span>排名</span>
+        </div>
+        <ul class="rank">
+          <li>
+            <div class="merchantName">
+              <span>1</span>
+              <span>商户名称1</span>
+            </div>
+            <div class="progressWrapper">
+              <el-progress
+                :text-inside="true"
+                :stroke-width="20"
+                :percentage="70"
+              ></el-progress>
+            </div>
+          </li>
+          <li>
+            <div class="merchantName">
+              <span>2</span>
+              <span>商户名称2</span>
+            </div>
+            <div class="progressWrapper">
+              <el-progress
+                :text-inside="true"
+                :stroke-width="20"
+                :percentage="70"
+              ></el-progress>
+            </div>
+          </li>
+          <li>
+            <div class="merchantName">
+              <span>3</span>
+              <span>商户名称3</span>
+            </div>
+            <div class="progressWrapper">
+              <el-progress
+                :text-inside="true"
+                :stroke-width="20"
+                :percentage="70"
+              ></el-progress>
+            </div>
+          </li>
+          <li>
+            <div class="merchantName">
+              <span>4</span>
+              <span>商户名称4</span>
+            </div>
+            <div class="progressWrapper">
+              <el-progress
+                :text-inside="true"
+                :stroke-width="20"
+                :percentage="70"
+              ></el-progress>
+            </div>
+          </li>
+          <li>
+            <div class="merchantName">
+              <span>5</span>
+              <span>商户名称5</span>
+            </div>
+            <div class="progressWrapper">
+              <el-progress
+                :text-inside="true"
+                :stroke-width="20"
+                :percentage="70"
+              ></el-progress>
+            </div>
+          </li>
+        </ul>
+        <div class="paginationWrapper">
+          <el-pagination
+            small
+            background
+            current-page.sync.number="1"
+            :page-size="5"
+            layout="prev, pager, next"
+            :total="155"
+          >
+          </el-pagination>
+        </div>
+      </div>
     </div>
     <div class="section3">
       <div class="section3Top">
