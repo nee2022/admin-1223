@@ -62,7 +62,7 @@
       <div class="section3Top">
         <div class="left">
           <span></span>
-          <span>商户资产笔量、金额增长曲线</span>
+          <span>商户数量增长曲线</span>
         </div>
         <div class="medial">
           <div class="medialWrapper">

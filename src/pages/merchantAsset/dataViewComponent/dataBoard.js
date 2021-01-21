@@ -43,7 +43,7 @@ export default {
       }
     },
     drawEchart1() {
-      var data = ["笔数", "金额"];
+      var data = ["商户总数", "分润账号", "笔笔清", "自营"];
       var myChart = this.$echarts.init(
         document.getElementById("section3Echart")
       );
@@ -77,7 +77,7 @@ export default {
         },
         series: [
           {
-            name: "金额",
+            name: "商户总数",
             data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
             type: "line",
             smooth: true,
@@ -85,29 +85,63 @@ export default {
             symbolSize: 10,
 
             lineStyle: {
-              color: "#4f4cdf",
+              color: "green",
               width: 2,
               type: "solid"
             },
             itemStyle: {
-              color: "#81f15f"
+              color: "green"
             }
           },
           {
-            name: "笔数",
-            data: [2900, 3600, 3800, 4900, 4500, 5200, 5600],
+            name: "分润账号",
+            data: [1000, 3000, 5500, 4900, 4600, 5000, 3800],
             type: "line",
             smooth: true,
             symbol: "circle",
             symbolSize: 10,
 
             lineStyle: {
-              color: "#fcfa88",
+              color: "yellow",
               width: 2,
               type: "solid"
             },
             itemStyle: {
-              color: "#2c6af5"
+              color: "yellow"
+            }
+          },
+          {
+            name: "笔笔清",
+            data: [2300, 3000, 3200, 4300, 4000, 5500, 6000],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "red",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "red"
+            }
+          },
+          {
+            name: "自营",
+            data: [2900, 2200, 3000, 3800, 3500, 4000, 5200],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "blue",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "blue"
             }
           }
         ]
@@ -159,12 +193,12 @@ export default {
             symbolSize: 10,
 
             lineStyle: {
-              color: "#4f4cdf",
+              color: "red",
               width: 2,
               type: "solid"
             },
             itemStyle: {
-              color: "#81f15f"
+              color: "red"
             }
           },
           {
@@ -176,12 +210,12 @@ export default {
             symbolSize: 10,
 
             lineStyle: {
-              color: "#fcfa88",
+              color: "green",
               width: 2,
               type: "solid"
             },
             itemStyle: {
-              color: "#2c6af5"
+              color: "green"
             }
           }
         ]
