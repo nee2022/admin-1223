@@ -57,8 +57,9 @@
         </li>
       </ul>
     </div>
-    <div class="section2">
-      <div class="section2Top">
+    <div class="section2">123</div>
+    <div class="section3">
+      <div class="section3Top">
         <div class="left">
           <span></span>
           <span>商户资产笔量、金额增长曲线</span>
@@ -85,8 +86,8 @@
           </template>
         </div>
       </div>
-      <div id="section2Echart"></div>
-      <div class="section2Bottom"></div>
+      <div id="section3Echart"></div>
+      <div class="section3Bottom"></div>
     </div>
     <div class="gap2"></div>
   </div>
