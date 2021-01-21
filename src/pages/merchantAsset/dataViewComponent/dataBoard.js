@@ -28,7 +28,7 @@ export default {
       switch (flag) {
         case 1:
           this.$nextTick(() => {
-            this.drawEchart1();
+            this.drawMerchantsNumberEchart2();
           });
           break;
         case 2:
@@ -42,10 +42,10 @@ export default {
           });
       }
     },
-    drawEchart1() {
+    drawMerchantsNumberEchart2() {
       var data = ["商户总数", "分润账号", "笔笔清", "自营"];
       var myChart = this.$echarts.init(
-        document.getElementById("section3Echart")
+        document.getElementById("merchantsNumberEchart2")
       );
 
       // 指定图表的配置项和数据
@@ -227,7 +227,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawEchart1();
+      this.drawMerchantsNumberEchart2();
     });
   }
 };

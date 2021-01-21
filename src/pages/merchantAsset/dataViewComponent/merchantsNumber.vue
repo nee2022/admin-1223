@@ -86,7 +86,7 @@
           </template>
         </div>
       </div>
-      <div id="section3Echart"></div>
+      <div id="merchantsNumberEchart2"></div>
       <div class="section3Bottom"></div>
     </div>
     <div class="gap2"></div>
