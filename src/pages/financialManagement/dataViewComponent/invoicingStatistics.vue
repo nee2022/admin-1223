@@ -4,12 +4,12 @@
       <ul>
         <li>
           <div class="top">
-            <span>收入</span>
+            <span>总量</span>
           </div>
           <div class="bottom">
             <div class="p1">
               <span>3440</span>
-              <span>笔数</span>
+              <span>总数</span>
             </div>
             <div class="p2">
               <div>
@@ -22,66 +22,12 @@
         </li>
         <li>
           <div class="top">
-            <span>收入</span>
-          </div>
-          <div class="bottom">
-            <div class="p1">
-              <span>3440</span>
-              <span>笔数</span>
-            </div>
-            <div class="p2">
-              <div>
-                <span>8588</span>
-                <span>.21元</span>
-              </div>
-              <span class="amount">金额</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <span>分成</span>
-          </div>
-          <div class="bottom">
-            <div class="p1">
-              <span>1024</span>
-              <span>笔数</span>
-            </div>
-            <div class="p2">
-              <div>
-                <span>1548</span>
-                <span>.23元</span>
-              </div>
-              <span class="amount">金额</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <span>笔笔清</span>
+            <span>出票</span>
           </div>
           <div class="bottom">
             <div class="p1">
               <span>942</span>
-              <span>笔数</span>
-            </div>
-            <div class="p2">
-              <div>
-                <span>2492</span>
-                <span>.15元</span>
-              </div>
-              <span class="amount">金额</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <span>提现</span>
-          </div>
-          <div class="bottom">
-            <div class="p1">
-              <span>942</span>
-              <span>笔数</span>
+              <span>总数</span>
             </div>
             <div class="p2">
               <div class="noBorder">
