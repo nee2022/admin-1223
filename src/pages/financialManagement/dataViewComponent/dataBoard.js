@@ -31,7 +31,7 @@ export default {
         case 1:
           this.$nextTick(() => {
             this.drawIncomeStatisticsEchart1();
-            // this.drawIncomeStatisticsEchart2();
+            this.drawIncomeStatisticsEchart2();
             this.drawIncomeStatisticsEchart3();
           });
           break;
@@ -63,7 +63,7 @@ export default {
           orient: "vertical",
           icon: "circle",
           itemGap: 50,
-          right: 10,
+          right: 120,
           top: "middle",
           data: ["钱包充值", "一卡通充值", "套餐充值"]
         },
@@ -99,7 +99,7 @@ export default {
     },
     drawIncomeStatisticsEchart2() {
       var myChart = this.$echarts.init(
-        document.getElementById("merchantsNumberEchart1")
+        document.getElementById("incomeStatisticsEchart2")
       );
       var option = {
         tooltip: {
@@ -109,10 +109,10 @@ export default {
         legend: {
           orient: "vertical",
           icon: "circle",
-          itemGap: 50,
-          right: 10,
+          itemGap: 30,
+          right: 120,
           top: "middle",
-          data: ["分润账号", "笔笔清", "自营"]
+          data: ["汽车充电", "电单车充电", "路边停车", "停车场", "充电宝"]
         },
         series: [
           {
@@ -135,9 +135,11 @@ export default {
               show: false
             },
             data: [
-              { value: 2880, name: "分润账号" },
-              { value: 5800, name: "笔笔清" },
-              { value: 7220, name: "自营" }
+              { value: 2880, name: "汽车充电" },
+              { value: 5800, name: "电单车充电" },
+              { value: 7220, name: "路边停车" },
+              { value: 2880, name: "停车场" },
+              { value: 5800, name: "充电宝" }
             ]
           }
         ]
@@ -404,7 +406,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.drawIncomeStatisticsEchart1();
-      // this.drawIncomeStatisticsEchart2();
+      this.drawIncomeStatisticsEchart2();
       this.drawIncomeStatisticsEchart3();
     });
   }
