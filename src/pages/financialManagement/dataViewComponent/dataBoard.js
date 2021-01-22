@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      flag: 2
+      flag: 1
     };
   },
 
@@ -372,7 +372,8 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawInvoicingStatisticsEchart1();
+      this.drawMerchantsNumberEchart1();
+      this.drawMerchantsNumberEchart2();
     });
   }
 };
