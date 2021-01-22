@@ -30,7 +30,8 @@ export default {
       switch (flag) {
         case 1:
           this.$nextTick(() => {
-            this.drawMerchantsNumberEchart1();
+            this.drawIncomeStatisticsEchart1();
+            // this.drawIncomeStatisticsEchart2();
             this.drawIncomeStatisticsEchart3();
           });
           break;
@@ -49,7 +50,54 @@ export default {
           });
       }
     },
-    drawMerchantsNumberEchart1() {
+    drawIncomeStatisticsEchart1() {
+      var myChart = this.$echarts.init(
+        document.getElementById("incomeStatisticsEchart1")
+      );
+      var option = {
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          icon: "circle",
+          itemGap: 50,
+          right: 10,
+          top: "middle",
+          data: ["钱包充值", "一卡通充值", "套餐充值"]
+        },
+        series: [
+          {
+            name: "访问来源",
+            type: "pie",
+            radius: ["50%", "70%"],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+              position: "center"
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: "30",
+                fontWeight: "bold"
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: [
+              { value: 2880, name: "钱包充值" },
+              { value: 5800, name: "一卡通充值" },
+              { value: 7220, name: "套餐充值" }
+            ]
+          }
+        ]
+      };
+      myChart.setOption(option);
+    },
+    drawIncomeStatisticsEchart2() {
       var myChart = this.$echarts.init(
         document.getElementById("merchantsNumberEchart1")
       );
@@ -355,7 +403,8 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawMerchantsNumberEchart1();
+      this.drawIncomeStatisticsEchart1();
+      // this.drawIncomeStatisticsEchart2();
       this.drawIncomeStatisticsEchart3();
     });
   }
