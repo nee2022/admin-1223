@@ -4,54 +4,65 @@
       <ul>
         <li>
           <div class="top">
-            <span>商户总数</span>
+            <span>收入</span>
           </div>
           <div class="bottom">
             <div class="p1">
               <span>3440</span>
+              <span>总数</span>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <span>商户余额</span>
-          </div>
-          <div class="bottom">
             <div class="p2">
               <div>
                 <span>8588</span>
                 <span>.21元</span>
               </div>
+              <span class="amount">金额</span>
             </div>
           </div>
         </li>
         <li>
           <div class="top">
-            <span>分润账户</span>
+            <span>充值</span>
           </div>
           <div class="bottom">
             <div class="p1">
-              <span>2880</span>
+              <span>9956</span>
+              <span>钱包充值</span>
+            </div>
+            <div class="p1">
+              <span>4595</span>
+              <span>一卡通充值</span>
+            </div>
+            <div class="p1 borderRightRelative">
+              <span class="borderRight">1525</span>
+              <span>套餐充值</span>
             </div>
           </div>
         </li>
         <li>
           <div class="top">
-            <span>笔笔清</span>
+            <span>消费</span>
           </div>
           <div class="bottom">
             <div class="p1">
-              <span>5800</span>
+              <span>2536</span>
+              <span>汽车充电</span>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="top">
-            <span>自营</span>
-          </div>
-          <div class="bottom">
             <div class="p1">
-              <span>7220</span>
+              <span>4595</span>
+              <span>电单车充电</span>
+            </div>
+            <div class="p1">
+              <span>1525</span>
+              <span>路边停车</span>
+            </div>
+            <div class="p1">
+              <span>1525</span>
+              <span>停车场</span>
+            </div>
+            <div class="p1">
+              <span>1525</span>
+              <span>充电宝</span>
             </div>
           </div>
         </li>
