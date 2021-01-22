@@ -40,7 +40,7 @@ export default {
           });
         case 3:
           this.$nextTick(() => {
-            this.drawFinancialStatisticsEchart1();
+            this.drawSettlementStatisticsEchart1();
           });
           break;
         default:
@@ -156,12 +156,12 @@ export default {
             symbolSize: 10,
 
             lineStyle: {
-              color: "yellow",
+              color: "blue",
               width: 2,
               type: "solid"
             },
             itemStyle: {
-              color: "yellow"
+              color: "blue"
             }
           },
           {
@@ -278,8 +278,8 @@ export default {
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
     },
-    drawFinancialStatisticsEchart1() {
-      var data = ["笔数", "金额"];
+    drawSettlementStatisticsEchart1() {
+      var data = ["分成", "笔笔清", "提现"];
       var myChart = this.$echarts.init(
         document.getElementById("settlementStatisticsEchart1")
       );
@@ -313,25 +313,8 @@ export default {
         },
         series: [
           {
-            name: "金额",
+            name: "分成",
             data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
-            type: "line",
-            smooth: true,
-            symbol: "circle",
-            symbolSize: 10,
-
-            lineStyle: {
-              color: "red",
-              width: 2,
-              type: "solid"
-            },
-            itemStyle: {
-              color: "red"
-            }
-          },
-          {
-            name: "笔数",
-            data: [2900, 3600, 3800, 4900, 4500, 5200, 5600],
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -344,6 +327,40 @@ export default {
             },
             itemStyle: {
               color: "green"
+            }
+          },
+          {
+            name: "笔笔清",
+            data: [1000, 3000, 5500, 4900, 4600, 5000, 3800],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "blue",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "blue"
+            }
+          },
+          {
+            name: "提现",
+            data: [2300, 3000, 3200, 4300, 4000, 5500, 6000],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "red",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "red"
             }
           }
         ]
