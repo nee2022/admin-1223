@@ -98,7 +98,7 @@
       <div class="section2Top">
         <div class="left">
           <span></span>
-          <span>商户资产笔量、金额增长曲线</span>
+          <span>开票统计总数、金额增长去向</span>
         </div>
         <div class="medial">
           <div class="medialWrapper">

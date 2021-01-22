@@ -205,7 +205,7 @@ export default {
       myChart.setOption(option);
     },
     drawInvoicingStatisticsEchart1() {
-      var data = ["笔数", "金额"];
+      var data = ["总量", "出票"];
       var myChart = this.$echarts.init(
         document.getElementById("invoicingStatisticsEchart1")
       );
@@ -239,7 +239,7 @@ export default {
         },
         series: [
           {
-            name: "金额",
+            name: "总量",
             data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
             type: "line",
             smooth: true,
@@ -256,7 +256,7 @@ export default {
             }
           },
           {
-            name: "笔数",
+            name: "出票",
             data: [2900, 3600, 3800, 4900, 4500, 5200, 5600],
             type: "line",
             smooth: true,
