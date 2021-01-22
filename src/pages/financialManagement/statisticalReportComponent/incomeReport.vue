@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhSingleLineListMainPage ammeter">
+  <div class="zyhIncomeReportMainPage">
     <header>
       <div class="infoArea">
         <div class="pageName">收入报表</div>
@@ -7,17 +7,22 @@
           <myhead></myhead>
         </div>
       </div>
-      <div class="searchArea">
-        <div class="inputFrame">
-          <img src="../../../assets/images/search.png" />
-          <el-input
-            placeholder="请输入账号、手机号、昵称进行查找"
-            class="inputBlank"
-            clearable
-          ></el-input>
+      <div class="functionArea">
+        <div class="tableModeBar">
+          <span>日</span>
+          <span>周</span>
+          <span>月</span>
+          <span>季</span>
+          <span>年</span>
         </div>
         <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button type="primary" icon="el-icon-search">查询</el-button>
+        </div>
+        <div class="searchButton">
+          <el-button type="primary" icon="el-icon-search">导出</el-button>
+        </div>
+        <div class="searchButton">
+          <el-button type="primary" icon="el-icon-search">打印</el-button>
         </div>
         <div class="toggleTable">
           <div v-if="chart" class="listButton" @click="toggleListTable">
