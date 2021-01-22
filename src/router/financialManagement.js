@@ -19,6 +19,9 @@ import allWithdrawalRecord from "../pages/financialManagement/withdrawalRecordCo
 import pendingWithdrawalRecord from "../pages/financialManagement/withdrawalRecordComponent/pendingWithdrawalRecord";
 import issuedWithdrawalRecord from "../pages/financialManagement/withdrawalRecordComponent/issuedWithdrawalRecord";
 
+import incomeReport from "../pages/financialManagement/statisticalReportComponent/incomeReport.vue";
+import settlementReport from "../pages/financialManagement/statisticalReportComponent/settlementReport.vue";
+
 Vue.use(Router);
 
 const routes = [
@@ -59,6 +62,14 @@ const routes = [
   {
     path: "/financialManagement/issuedWithdrawalRecord",
     component: issuedWithdrawalRecord
+  },
+  {
+    path: "/financialManagement/incomeReport",
+    component: incomeReport
+  },
+  {
+    path: "/financialManagement/settlementReport",
+    component: settlementReport
   },
 
   { path: "*", component: allOrder }

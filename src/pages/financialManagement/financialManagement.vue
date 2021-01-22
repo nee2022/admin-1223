@@ -126,6 +126,24 @@
                   </el-menu-item>
                 </router-link>
               </el-submenu>
+              <el-submenu index="5">
+                <template slot="title">
+                  <img src="../../assets/images/tixianjilu.png" />
+                  <span>统计报表</span>
+                </template>
+                <router-link to="/financialManagement/incomeReport">
+                  <el-menu-item index="1-1">
+                    <img src="../../assets/images/all.png" />
+                    <span>收入报表</span>
+                  </el-menu-item>
+                </router-link>
+                <router-link to="/financialManagement/settlementReport">
+                  <el-menu-item index="1-2">
+                    <img src="../../assets/images/all.png" />
+                    <span>结算报表</span>
+                  </el-menu-item>
+                </router-link>
+              </el-submenu>
             </el-menu>
           </el-col>
         </el-row>
