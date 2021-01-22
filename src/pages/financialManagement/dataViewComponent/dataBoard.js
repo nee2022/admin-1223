@@ -97,9 +97,9 @@ export default {
       myChart.setOption(option);
     },
     drawMerchantsNumberEchart2() {
-      var data = ["商户总数", "分润账号", "笔笔清", "自营"];
+      var data = ["收入", "充值", "消费"];
       var myChart = this.$echarts.init(
-        document.getElementById("merchantsNumberEchart2")
+        document.getElementById("incomeStatisticsEchart2")
       );
 
       // 指定图表的配置项和数据
@@ -131,7 +131,7 @@ export default {
         },
         series: [
           {
-            name: "商户总数",
+            name: "收入",
             data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
             type: "line",
             smooth: true,
@@ -148,7 +148,7 @@ export default {
             }
           },
           {
-            name: "分润账号",
+            name: "充值",
             data: [1000, 3000, 5500, 4900, 4600, 5000, 3800],
             type: "line",
             smooth: true,
@@ -165,7 +165,7 @@ export default {
             }
           },
           {
-            name: "笔笔清",
+            name: "消费",
             data: [2300, 3000, 3200, 4300, 4000, 5500, 6000],
             type: "line",
             smooth: true,
@@ -179,23 +179,6 @@ export default {
             },
             itemStyle: {
               color: "red"
-            }
-          },
-          {
-            name: "自营",
-            data: [2900, 2200, 3000, 3800, 3500, 4000, 5200],
-            type: "line",
-            smooth: true,
-            symbol: "circle",
-            symbolSize: 10,
-
-            lineStyle: {
-              color: "blue",
-              width: 2,
-              type: "solid"
-            },
-            itemStyle: {
-              color: "blue"
             }
           }
         ]

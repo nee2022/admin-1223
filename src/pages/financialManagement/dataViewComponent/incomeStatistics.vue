@@ -154,7 +154,7 @@
       <div class="section3Top">
         <div class="left">
           <span></span>
-          <span>商户数量增长曲线</span>
+          <span>收入统计增长曲线</span>
         </div>
         <div class="medial">
           <div class="medialWrapper">
@@ -178,7 +178,7 @@
           </template>
         </div>
       </div>
-      <div id="merchantsNumberEchart2"></div>
+      <div id="incomeStatisticsEchart2"></div>
       <div class="section3Bottom"></div>
     </div>
     <div class="gap2"></div>
