@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhAssetFinancialStatisticsDataBoardSection">
+  <div class="zyhInvoicingStatisticsDataBoardSection">
     <div class="section1">
       <ul>
         <li>
@@ -122,7 +122,7 @@
           </template>
         </div>
       </div>
-      <div id="financialStatisticsEchart1"></div>
+      <div id="invoicingStatisticsEchart1"></div>
       <div class="section2Bottom"></div>
     </div>
     <div class="gap2"></div>

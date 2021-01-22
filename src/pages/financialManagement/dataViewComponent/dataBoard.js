@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      flag: 1
+      flag: 2
     };
   },
 
@@ -36,7 +36,7 @@ export default {
           break;
         case 2:
           this.$nextTick(() => {
-            this.drawFinancialStatisticsEchart1();
+            this.drawInvoicingStatisticsEchart1();
           });
         case 3:
           this.$nextTick(() => {
@@ -45,7 +45,7 @@ export default {
           break;
         default:
           this.$nextTick(() => {
-            this.drawEchart3();
+            alert("返回首页");
           });
       }
     },
@@ -204,10 +204,84 @@ export default {
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
     },
+    drawInvoicingStatisticsEchart1() {
+      var data = ["笔数", "金额"];
+      var myChart = this.$echarts.init(
+        document.getElementById("invoicingStatisticsEchart1")
+      );
+
+      // 指定图表的配置项和数据
+      var option = {
+        xAxis: {
+          type: "category",
+          data: [
+            "2020-12-10",
+            "2020-12-11",
+            "2020-12-12",
+            "2020-12-13",
+            "2020-12-14",
+            "2020-12-15",
+            "2020-12-16"
+          ]
+        },
+        yAxis: {
+          type: "value"
+        },
+        legend: {
+          orient: "horizontal",
+          y: "bottom", //延Y轴居中
+          x: "center", //居右
+          data: data.legendData,
+          itemGap: 100, //图例间隔
+          textStyle: {
+            fontSize: 16
+          }
+        },
+        series: [
+          {
+            name: "金额",
+            data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "red",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "red"
+            }
+          },
+          {
+            name: "笔数",
+            data: [2900, 3600, 3800, 4900, 4500, 5200, 5600],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "green",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "green"
+            }
+          }
+        ]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    },
     drawFinancialStatisticsEchart1() {
       var data = ["笔数", "金额"];
       var myChart = this.$echarts.init(
-        document.getElementById("financialStatisticsEchart1")
+        document.getElementById("invoicingStatisticsEchart1")
       );
 
       // 指定图表的配置项和数据
@@ -281,8 +355,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.drawMerchantsNumberEchart1();
-      this.drawMerchantsNumberEchart2();
+      this.drawInvoicingStatisticsEchart1();
     });
   }
 };
