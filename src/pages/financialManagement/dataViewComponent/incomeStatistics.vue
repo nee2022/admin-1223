@@ -178,7 +178,7 @@
           </template>
         </div>
       </div>
-      <div id="incomeStatisticsEchart2"></div>
+      <div id="incomeStatisticsEchart3"></div>
       <div class="section3Bottom"></div>
     </div>
     <div class="gap2"></div>

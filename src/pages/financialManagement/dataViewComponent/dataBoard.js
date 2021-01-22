@@ -31,7 +31,7 @@ export default {
         case 1:
           this.$nextTick(() => {
             this.drawMerchantsNumberEchart1();
-            this.drawMerchantsNumberEchart2();
+            this.drawIncomeStatisticsEchart3();
           });
           break;
         case 2:
@@ -96,10 +96,10 @@ export default {
       };
       myChart.setOption(option);
     },
-    drawMerchantsNumberEchart2() {
+    drawIncomeStatisticsEchart3() {
       var data = ["收入", "充值", "消费"];
       var myChart = this.$echarts.init(
-        document.getElementById("incomeStatisticsEchart2")
+        document.getElementById("incomeStatisticsEchart3")
       );
 
       // 指定图表的配置项和数据
@@ -356,7 +356,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.drawMerchantsNumberEchart1();
-      this.drawMerchantsNumberEchart2();
+      this.drawIncomeStatisticsEchart3();
     });
   }
 };
