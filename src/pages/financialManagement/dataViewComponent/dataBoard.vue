@@ -14,7 +14,7 @@
           >收入统计</span
         > -->
         <span @click="toggle(2, $event)">开票统计</span>
-        <!-- <span @click="toggle(3, $event)">结算统计</span> -->
+        <span @click="toggle(3, $event)">结算统计</span>
       </div>
     </header>
     <section>

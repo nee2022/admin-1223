@@ -281,7 +281,7 @@ export default {
     drawFinancialStatisticsEchart1() {
       var data = ["笔数", "金额"];
       var myChart = this.$echarts.init(
-        document.getElementById("invoicingStatisticsEchart1")
+        document.getElementById("settlementStatisticsEchart1")
       );
 
       // 指定图表的配置项和数据
