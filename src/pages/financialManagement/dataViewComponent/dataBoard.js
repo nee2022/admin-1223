@@ -109,7 +109,7 @@ export default {
         legend: {
           orient: "vertical",
           icon: "circle",
-          itemGap: 30,
+          itemGap: 15,
           right: 120,
           top: "middle",
           data: ["汽车充电", "电单车充电", "路边停车", "停车场", "充电宝"]

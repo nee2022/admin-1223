@@ -61,7 +61,7 @@
       <div class="part1">
         <div class="left">
           <span></span>
-          <span>认证车辆占比情况</span>
+          <span>商户账号占比情况</span>
         </div>
         <div id="merchantsNumberEchart1"></div>
       </div>
