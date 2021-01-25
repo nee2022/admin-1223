@@ -93,7 +93,8 @@ export default {
               { value: 7220, name: "套餐充值" }
             ]
           }
-        ]
+        ],
+        color: ["#fbf673", "#eb3624", "#f1a13a", "#99ec9b", "#78bcf0"]
       };
       myChart.setOption(option);
     },
@@ -142,7 +143,8 @@ export default {
               { value: 5800, name: "充电宝" }
             ]
           }
-        ]
+        ],
+        color: ["#f1a13a", "#99ec9b", "#78bcf0", "#fbf673", "#eb3624"]
       };
       myChart.setOption(option);
     },

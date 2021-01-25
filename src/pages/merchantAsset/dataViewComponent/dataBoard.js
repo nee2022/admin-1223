@@ -87,7 +87,8 @@ export default {
               { value: 7220, name: "自营" }
             ]
           }
-        ]
+        ],
+        color: ["#f1a13a", "#99ec9b", "#78bcf0", "#fbf673", "#eb3624"]
       };
       myChart.setOption(option);
     },
