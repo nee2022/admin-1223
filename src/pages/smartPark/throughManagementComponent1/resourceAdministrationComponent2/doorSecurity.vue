@@ -69,7 +69,7 @@
         </el-table>
       </template>
       <template v-if="chart">
-        <ul class="chartItems">
+        <ul class="chartItems not-select">
           <li v-for="item in tableData" :key="item.id">
             <div class="tableItem1" v-if="item.styleId < 10">
               <div class="signBar">
