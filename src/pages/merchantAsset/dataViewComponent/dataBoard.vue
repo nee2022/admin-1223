@@ -8,11 +8,15 @@
         </div>
       </div>
       <div class="toggleBar">
-        <span @click="toggle(1, $event)" style ="color:#2d6bf5;border-bottom:2px solid #2d6bf5;">商户数</span>
+        <span
+          @click="toggle(1, $event)"
+          style="color:#2d6bf5;border-bottom:2px solid #2d6bf5;"
+          >商户数</span
+        >
         <span @click="toggle(2, $event)">财务统计</span>
       </div>
     </header>
-    <section
+    <section>
       <template v-if="flag === 1">
         <MerchantsNumber></MerchantsNumber>
       </template>

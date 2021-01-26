@@ -109,26 +109,103 @@ export default {
     },
     toggleChartTable() {
       this.chart = true;
+
+      this.$nextTick(() => {
+        this.drawIncomeReportEchart1();
+      });
     },
-    //获取用户信息列表
-    // getAllInvoiceRecordMes(resolve, reject) {
-    //   this.$axios
-    //     .get(
-    //       "/admin/api/chargers/1/?token=" +
-    //         this.token +
-    //         "&page=" +
-    //         this.pagenum +
-    //         "&row=" +
-    //         this.pagesize
-    //     )
-    //     .then(res => {
-    //       if (res.status == 200) {
-    //         this.tableData = res.data.chargers;
-    //         this.total = res.data.total || 0;
-    //       }
-    //     });
-    // },
-    //监听页码值改变
+    drawIncomeReportEchart1() {
+      var data = ["分成", "笔笔清", "提现"];
+      var myChart = this.$echarts.init(
+        document.getElementById("incomeReportEchart1")
+      );
+
+      // 指定图表的配置项和数据
+      var option = {
+        xAxis: {
+          type: "category",
+          data: [
+            "2020-12-10",
+            "2020-12-11",
+            "2020-12-12",
+            "2020-12-13",
+            "2020-12-14",
+            "2020-12-15",
+            "2020-12-16"
+          ]
+        },
+        yAxis: {
+          type: "value"
+        },
+        legend: {
+          orient: "horizontal",
+          y: "bottom", //延Y轴居中
+          x: "center", //居右
+          data: data.legendData,
+          itemGap: 100, //图例间隔
+          textStyle: {
+            fontSize: 16
+          }
+        },
+        series: [
+          {
+            name: "分成",
+            data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "green",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "green"
+            }
+          },
+          {
+            name: "笔笔清",
+            data: [1000, 3000, 5500, 4900, 4600, 5000, 3800],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "blue",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "blue"
+            }
+          },
+          {
+            name: "提现",
+            data: [2300, 3000, 3200, 4300, 4000, 5500, 6000],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "red",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "red"
+            }
+          }
+        ]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    },
+
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
     }

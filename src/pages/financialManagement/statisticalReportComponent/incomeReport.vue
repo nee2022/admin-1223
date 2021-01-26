@@ -79,7 +79,9 @@
         </template>
         <template v-if="chart">
           <ul class="chartItems not-select">
-            <li></li>
+            <li>
+              <div id="incomeReportEchart1"></div>
+            </li>
             <li></li>
             <li></li>
             <li></li>
