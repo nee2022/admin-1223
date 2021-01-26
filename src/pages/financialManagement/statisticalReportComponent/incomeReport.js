@@ -95,24 +95,19 @@ export default {
       selected: "所有",
       pagenum: 1,
       token: "",
-      pagesize: 12,
+      pagesize: 6,
       chart: false
     };
   },
 
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
-    this.getAllInvoiceRecordMes();
   },
   methods: {
     toggleListTable() {
-      this.pagesize = 12;
-      this.getAllInvoiceRecordMes();
       this.chart = false;
     },
     toggleChartTable() {
-      this.pagesize = 12;
-      this.getAllInvoiceRecordMes();
       this.chart = true;
     },
     //获取用户信息列表
@@ -136,7 +131,6 @@ export default {
     //监听页码值改变
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
-      this.getAllInvoiceRecordMes();
     }
   }
 };

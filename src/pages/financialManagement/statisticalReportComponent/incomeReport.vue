@@ -52,32 +52,44 @@
       </div>
       <div class="section2">
         <template v-if="!chart">
-          <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="date" label="日期"> </el-table-column>
-            <el-table-column prop="address" label="订单总数"> </el-table-column>
-            <el-table-column prop="name" label="订单金额"> </el-table-column>
-            <el-table-column prop="city" label="收入金额"> </el-table-column>
-            <el-table-column prop="province" label="充值金额">
-            </el-table-column>
-            <el-table-column label="收入金额分布">
-              <el-table-column prop="address" label="支付宝收入" width="120">
+          <div class="el-table-wrapper">
+            <el-table :data="tableData" style="width: 100%">
+              <el-table-column prop="date" label="日期"> </el-table-column>
+              <el-table-column prop="address" label="订单总数">
               </el-table-column>
-              <el-table-column prop="name" label="微信收入" width="120">
+              <el-table-column prop="name" label="订单金额"> </el-table-column>
+              <el-table-column prop="city" label="收入金额"> </el-table-column>
+              <el-table-column prop="province" label="充值金额">
               </el-table-column>
-            </el-table-column>
-            <el-table-column label="支出金额分布">
-              <el-table-column prop="address" label="退款金额" width="120">
+              <el-table-column label="收入金额分布">
+                <el-table-column prop="address" label="支付宝收入" width="120">
+                </el-table-column>
+                <el-table-column prop="name" label="微信收入" width="120">
+                </el-table-column>
               </el-table-column>
-              <el-table-column prop="name" label="消费金额" width="120">
+              <el-table-column label="支出金额分布">
+                <el-table-column prop="address" label="退款金额" width="120">
+                </el-table-column>
+                <el-table-column prop="name" label="消费金额" width="120">
+                </el-table-column>
               </el-table-column>
-            </el-table-column>
-            <el-table-column prop="name" label="优惠金额"> </el-table-column>
-          </el-table>
+              <el-table-column prop="name" label="优惠金额"> </el-table-column>
+            </el-table>
+          </div>
         </template>
-        <template v-if="chart">图表形式</template>
+        <template v-if="chart">
+          <ul class="chartItems not-select">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </template>
       </div>
     </section>
-    <footer>
+    <footer v-if="!chart">
       <div class="total" :data="tableData">
         <span>共{{ total }}条信息</span>
       </div>

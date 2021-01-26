@@ -139,59 +139,84 @@
     .section2 {
       padding-top: 10px;
       height: calc(100% - 46px);
-      padding: 0 38px;
 
-      .el-table {
-        border: 1px solid #d5e2fc;
-        border-radius: 10px;
+      .el-table-wrapper {
+        padding: 0 38px;
 
-        .el-table__header {
-          tr {
-            height: 60px;
+        .el-table {
+          border: 1px solid #d5e2fc;
+          border-radius: 10px;
 
-            th {
-              background: #dee8fd;
-              border: 1px solid #d5e2fc;
-            }
+          .el-table__header {
+            tr {
+              height: 60px;
 
-            .cell {
-              text-align: center;
-              font-size: 16px;
-              font-weight: 400;
-              color: black;
-            }
-          }
-        }
-
-        .el-table__body {
-          tr {
-            height: calc(((100vh - 360px) / 10));
-
-            td {
-              border: 1px solid #d5e2fc;
+              th {
+                background: #dee8fd;
+                border: 1px solid #d5e2fc;
+              }
 
               .cell {
                 text-align: center;
                 font-size: 16px;
                 font-weight: 400;
-                color: #908e8e;
+                color: black;
+              }
+            }
+          }
 
-                .operation {
-                  height: 100%;
-                  width: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
+          .el-table__body {
+            tr {
+              height: calc(((100vh - 360px) / 10));
 
-                  div {
-                    img {
-                      margin: 0 10px;
+              td {
+                border: 1px solid #d5e2fc;
+
+                .cell {
+                  text-align: center;
+                  font-size: 16px;
+                  font-weight: 400;
+                  color: #908e8e;
+
+                  .operation {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    div {
+                      img {
+                        margin: 0 10px;
+                      }
                     }
                   }
                 }
               }
             }
           }
+        }
+      }
+
+      ul {
+        padding-top: 35px;
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+          width: calc((100vw - 276px) * 0.33333);
+          height: calc((100vh - 238px) * 0.5);
+          padding-right: 38px;
+          padding-bottom: 38px;
+          border: 1px solid black;
+        }
+
+        li:nth-child(3n + 1) {
+          margin-left: 38px;
+        }
+
+        li:nth-child(3n) {
+          margin-right: 38px;
         }
       }
     }
