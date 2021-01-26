@@ -139,11 +139,20 @@
     .section2 {
       padding-top: 10px;
       height: calc(100% - 46px);
+      padding: 0 38px;
 
       .el-table {
+        border: 1px solid #d5e2fc;
+        border-radius: 10px;
+
         .el-table__header {
           tr {
             height: 60px;
+
+            th {
+              background: #dee8fd;
+              border: 1px solid #d5e2fc;
+            }
 
             .cell {
               text-align: center;
@@ -156,24 +165,28 @@
 
         .el-table__body {
           tr {
-            height: calc(((100vh - 288px) / 12));
+            height: calc(((100vh - 360px) / 10));
 
-            .cell {
-              text-align: center;
-              font-size: 16px;
-              font-weight: 400;
-              color: #908e8e;
+            td {
+              border: 1px solid #d5e2fc;
 
-              .operation {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+              .cell {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+                color: #908e8e;
 
-                div {
-                  img {
-                    margin: 0 10px;
+                .operation {
+                  height: 100%;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+
+                  div {
+                    img {
+                      margin: 0 10px;
+                    }
                   }
                 }
               }
@@ -185,7 +198,6 @@
   }
 
   footer {
-    border: 1px solid red;
     height: 100%;
     max-height: 90px;
     display: flex;
