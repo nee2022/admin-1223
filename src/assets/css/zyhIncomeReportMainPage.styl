@@ -63,7 +63,7 @@
       position: relative;
       left: 0;
       top: -20px;
-      border: 1px solid red;
+      height: 46px;
       z-index: 1;
       display: flex;
       align-items: center;
@@ -72,9 +72,12 @@
       .dateToggleBar {
         display: flex;
         border-radius: 5px;
+        border: 1px solid #6892f8;
+        border-radius: 10px;
+        margin-right: 25px;
 
         span {
-          padding: 7px 20px;
+          padding: 8px 20px;
           font-size: 16px;
           font-family: PingFang SC;
           font-weight: normal;
@@ -88,19 +91,36 @@
         }
       }
 
-      .right {
-        margin: 0 50px 0 10px;
+      .dateSelectBar {
+        .el-input__inner {
+          border: 1px solid #6892f8 !important;
+          border-radius: 10px !important;
+        }
+      }
 
-        .block {
-          color: #2754FB;
-          border-radius: 5px;
+      .searchButton {
+        .el-button {
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          padding: 2.5px 15px;
+          height: 36px;
+          margin-left: 8px;
+          font-size: 16px;
+          background: #1e69fe;
+          color: #fff;
+
+          span {
+            margin-left: 5px;
+          }
         }
       }
 
       .toggleTable {
-        border: 1px solid red;
+        flex-grow: 1;
         display: flex;
         align-items: center;
+        justify-content: flex-end;
 
         .listButton {
           width: 44px;
@@ -114,60 +134,12 @@
           margin-right: 50px;
         }
       }
-
-      .dateSelectBar {
-        border: 1px solid black;
-        height: 50%;
-        position: relative;
-      }
-
-      .inputFrame {
-        width: 442px;
-        height: 36px;
-        border-radius: 10px;
-        border: solid 1px #1e69fe;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-
-        img {
-          margin-left: 20px;
-          margin-right: 0px;
-        }
-
-        .inputBlank {
-          width: 390px;
-          height: 30px;
-
-          .el-input__inner {
-            height: 30px;
-            text-indent: 10px;
-            border: none;
-          }
-        }
-      }
-
-      .searchButton {
-        .el-button {
-          display: flex;
-          align-items: center;
-          border-radius: 10px;
-          padding: 0 15px;
-          height: 36px;
-          margin-left: 8px;
-          font-size: 16px;
-          background: #1e69fe;
-          color: #fff;
-
-          span {
-            margin-left: 5px;
-          }
-        }
-      }
     }
 
     .section2 {
+      padding-top: 10px;
+      height: calc(100% - 46px);
+
       .el-table {
         .el-table__header {
           tr {

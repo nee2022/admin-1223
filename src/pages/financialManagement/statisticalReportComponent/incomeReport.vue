@@ -11,9 +11,11 @@
     <section>
       <div class="section1">
         <div class="dateToggleBar">
-          <span class="currentActive">近一周</span>
-          <span>近一月</span>
-          <span>近一年</span>
+          <span class="currentActive">日</span>
+          <span>周</span>
+          <span>月</span>
+          <span>季</span>
+          <span>年</span>
         </div>
         <div class="dateSelectBar">
           <template>
@@ -31,7 +33,13 @@
         </div>
 
         <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">打印</el-button>
+          <el-button type="primary" icon="el-icon-search">查询</el-button>
+        </div>
+        <div class="searchButton">
+          <el-button type="primary">导出</el-button>
+        </div>
+        <div class="searchButton">
+          <el-button type="primary">打印</el-button>
         </div>
         <div class="toggleTable">
           <div v-if="chart" class="listButton" @click="toggleListTable">
