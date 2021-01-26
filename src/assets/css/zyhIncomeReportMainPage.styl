@@ -27,7 +27,6 @@
 
   header {
     position: relative;
-    border: 1px solid black;
 
     .infoArea {
       height: 102px;
@@ -54,15 +53,118 @@
     }
 
     .functionArea {
-      border: 1px solid red;
-      position: absolute;
+    }
+  }
+
+  section {
+    flex-grow: 1;
+
+    .section1 {
+      position: relative;
       left: 0;
-      top: 120px;
+      top: -20px;
+      border: 1px solid red;
       z-index: 1;
-      height: 36px;
       display: flex;
-      flex-direction: row;
+      align-items: center;
       margin-left: 38px;
+
+      .toggleTable {
+        border: 1px solid red;
+        display: flex;
+        align-items: center;
+
+        .listButton {
+          width: 44px;
+          text-align: center;
+          margin-right: 50px;
+        }
+
+        .chartButton {
+          width: 44px;
+          text-align: center;
+          margin-right: 50px;
+        }
+      }
+
+      .dateSelectBar {
+        border: 1px solid black;
+        height: 50%;
+        position: relative;
+
+        .section3Top {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          display: flex;
+
+          .left {
+            margin-left: 42px;
+            display: flex;
+
+            span:nth-child(1) {
+              width: 5px;
+              height: 20px;
+              border-radius: 5px;
+              background: #2858f2;
+              margin-right: 5px;
+            }
+
+            span:nth-child(2) {
+              font-size: 14px;
+              font-family: PingFang SC;
+              font-weight: normal;
+              color: #000000;
+            }
+          }
+
+          .medial {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
+
+            .medialWrapper {
+              display: flex;
+              border-radius: 5px;
+
+              span {
+                padding: 7px 20px;
+                font-size: 16px;
+                font-family: PingFang SC;
+                font-weight: normal;
+                color: #2754FB;
+              }
+
+              span.currentActive {
+                background: #2858f2;
+                color: #fff;
+                border-radius: 5px;
+              }
+            }
+          }
+
+          .right {
+            margin: 0 50px 0 10px;
+
+            .block {
+              color: #2754FB;
+              border-radius: 5px;
+            }
+          }
+        }
+
+        #incomeStatisticsEchart3 {
+          height: 100%;
+          width: 100%;
+        }
+
+        .section3Bottom {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
 
       .inputFrame {
         width: 442px;
@@ -108,65 +210,44 @@
           }
         }
       }
-
-      .toggleTable {
-        .listButton {
-          width: 44px;
-          height: 36px;
-          line-height: 36px;
-          text-align: center;
-          margin-right: 50px;
-        }
-
-        .chartButton {
-          width: 44px;
-          height: 36px;
-          line-height: 36px;
-          text-align: center;
-          margin-right: 50px;
-        }
-      }
     }
-  }
 
-  section {
-    border: 1px solid black;
-    flex-grow: 1;
+    .section2 {
+      .el-table {
+        .el-table__header {
+          tr {
+            height: 60px;
 
-    .el-table {
-      .el-table__header {
-        tr {
-          height: 60px;
-
-          .cell {
-            text-align: center;
-            font-size: 16px;
-            font-weight: 400;
-            color: black;
+            .cell {
+              text-align: center;
+              font-size: 16px;
+              font-weight: 400;
+              color: black;
+            }
           }
         }
-      }
 
-      .el-table__body {
-        tr {
-          height: calc(((100vh - 288px) / 12));
+        .el-table__body {
+          tr {
+            height: calc(((100vh - 288px) / 12));
 
-          .cell {
-            text-align: center;
-            font-size: 16px;
-            font-weight: 400;
-            color: #908e8e;
+            .cell {
+              text-align: center;
+              font-size: 16px;
+              font-weight: 400;
+              color: #908e8e;
 
-            .operation {
-              height: 100%;
-              width: 100%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
+              .operation {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
-              div {
-                img {
-                  margin: 0 10px;
+                div {
+                  img {
+                    margin: 0 10px;
+                  }
                 }
               }
             }

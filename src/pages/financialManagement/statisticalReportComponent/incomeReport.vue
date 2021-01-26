@@ -7,21 +7,40 @@
           <myhead></myhead>
         </div>
       </div>
-      <div class="functionArea">
-        <div class="tableModeBar">
-          <span>日</span>
-          <span>周</span>
-          <span>月</span>
-          <span>季</span>
-          <span>年</span>
+    </header>
+    <section>
+      <div class="section1">
+        <div class="section3Top">
+          <div class="left">
+            <span></span>
+            <span>收入统计增长曲线</span>
+          </div>
+          <div class="medial">
+            <div class="medialWrapper">
+              <span class="currentActive">近一周</span>
+              <span>近一月</span>
+              <span>近一年</span>
+            </div>
+          </div>
+          <div class="right">
+            <template>
+              <div class="block">
+                <span class="demonstration"></span>
+                <el-date-picker
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                >
+                </el-date-picker>
+              </div>
+            </template>
+          </div>
         </div>
-        <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">查询</el-button>
-        </div>
-        <div class="searchButton">
-          <el-button type="primary" icon="el-icon-search">导出</el-button>
-        </div>
-        <div class="searchButton">
+        <div id="incomeStatisticsEchart3"></div>
+        <div class="section3Bottom"></div>
+
+        <!-- <div class="searchButton">
           <el-button type="primary" icon="el-icon-search">打印</el-button>
         </div>
         <div class="toggleTable">
@@ -31,31 +50,31 @@
           <div v-if="!chart" class="chartButton" @click="toggleChartTable">
             <img src="../../../assets/images/chartIcon.png" alt="" />
           </div>
-        </div>
+        </div> -->
       </div>
-    </header>
-    <section>
-      <template v-if="!chart">
-        <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="date" label="日期" width="150">
-          </el-table-column>
-          <el-table-column label="配送信息">
-            <el-table-column prop="name" label="姓名" width="120">
+      <div class="section2">
+        <template v-if="!chart">
+          <el-table :data="tableData" style="width: 100%">
+            <el-table-column prop="date" label="日期" width="150">
             </el-table-column>
-            <el-table-column label="地址">
-              <el-table-column prop="province" label="省份" width="120">
+            <el-table-column label="配送信息">
+              <el-table-column prop="name" label="姓名" width="120">
               </el-table-column>
-              <el-table-column prop="city" label="市区" width="120">
-              </el-table-column>
-              <el-table-column prop="address" label="地址" width="300">
-              </el-table-column>
-              <el-table-column prop="zip" label="邮编" width="120">
+              <el-table-column label="地址">
+                <el-table-column prop="province" label="省份" width="120">
+                </el-table-column>
+                <el-table-column prop="city" label="市区" width="120">
+                </el-table-column>
+                <el-table-column prop="address" label="地址" width="300">
+                </el-table-column>
+                <el-table-column prop="zip" label="邮编" width="120">
+                </el-table-column>
               </el-table-column>
             </el-table-column>
-          </el-table-column>
-        </el-table>
-      </template>
-      <template v-if="chart">图表形式</template>
+          </el-table>
+        </template>
+        <template v-if="chart">图表形式</template>
+      </div>
     </section>
     <footer>
       <div class="total" :data="tableData">

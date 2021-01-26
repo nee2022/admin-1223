@@ -75,15 +75,39 @@ export default {
       } else if (cellValue === "userpay") {
         ret = "钱包支付";
       } else if (cellValue === "heemoney") {
-        ret = "储值卡支付";
+        ret = "洪城一卡通";
       } else if (cellValue === "aliyun") {
         ret = "阿里云";
       } else if (cellValue === "moredo") {
         ret = "盟度";
       } else if (cellValue === "pt") {
         ret = "票通";
+      } else if (cellValue === "abc") {
+        ret = "农行";
+      } else if (cellValue === "hxb") {
+        ret = "华夏银行";
+      } else if (cellValue === "cardpay") {
+        ret = "储值卡";
+      } else if (cellValue === "sgcc") {
+        ret = "国网";
+      } else if (cellValue === "uniev") {
+        ret = "联行";
+      } else if (cellValue === "plan") {
+        ret = "套餐支付";
+      } else if (cellValue === "coupon") {
+        ret = "优惠券支付";
+      } else if (cellValue === "ums") {
+        ret = "银联商务";
+      } else if (cellValue === "ckej") {
+        ret = "城客e家";
+      } else if (cellValue === "open") {
+        ret = "开放平台";
+      } else if (cellValue === "oam") {
+        ret = "运维调试";
+      } else if (cellValue === "api") {
+        ret = "内部接口";
       } else {
-        ret = "网关异常";
+        ret = cellValue;
       }
       return ret;
     },
