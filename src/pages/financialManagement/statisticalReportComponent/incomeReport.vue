@@ -10,37 +10,27 @@
     </header>
     <section>
       <div class="section1">
-        <div class="section3Top">
-          <div class="left">
-            <span></span>
-            <span>收入统计增长曲线</span>
-          </div>
-          <div class="medial">
-            <div class="medialWrapper">
-              <span class="currentActive">近一周</span>
-              <span>近一月</span>
-              <span>近一年</span>
-            </div>
-          </div>
-          <div class="right">
-            <template>
-              <div class="block">
-                <span class="demonstration"></span>
-                <el-date-picker
-                  type="daterange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                >
-                </el-date-picker>
-              </div>
-            </template>
-          </div>
+        <div class="dateToggleBar">
+          <span class="currentActive">近一周</span>
+          <span>近一月</span>
+          <span>近一年</span>
         </div>
-        <div id="incomeStatisticsEchart3"></div>
-        <div class="section3Bottom"></div>
+        <div class="dateSelectBar">
+          <template>
+            <div class="block">
+              <span class="demonstration"></span>
+              <el-date-picker
+                type="daterange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+              >
+              </el-date-picker>
+            </div>
+          </template>
+        </div>
 
-        <!-- <div class="searchButton">
+        <div class="searchButton">
           <el-button type="primary" icon="el-icon-search">打印</el-button>
         </div>
         <div class="toggleTable">
@@ -50,7 +40,7 @@
           <div v-if="!chart" class="chartButton" @click="toggleChartTable">
             <img src="../../../assets/images/chartIcon.png" alt="" />
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="section2">
         <template v-if="!chart">

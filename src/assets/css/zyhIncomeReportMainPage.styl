@@ -69,6 +69,34 @@
       align-items: center;
       margin-left: 38px;
 
+      .dateToggleBar {
+        display: flex;
+        border-radius: 5px;
+
+        span {
+          padding: 7px 20px;
+          font-size: 16px;
+          font-family: PingFang SC;
+          font-weight: normal;
+          color: #2754FB;
+        }
+
+        span.currentActive {
+          background: #2858f2;
+          color: #fff;
+          border-radius: 5px;
+        }
+      }
+
+      .right {
+        margin: 0 50px 0 10px;
+
+        .block {
+          color: #2754FB;
+          border-radius: 5px;
+        }
+      }
+
       .toggleTable {
         border: 1px solid red;
         display: flex;
@@ -91,79 +119,6 @@
         border: 1px solid black;
         height: 50%;
         position: relative;
-
-        .section3Top {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-          display: flex;
-
-          .left {
-            margin-left: 42px;
-            display: flex;
-
-            span:nth-child(1) {
-              width: 5px;
-              height: 20px;
-              border-radius: 5px;
-              background: #2858f2;
-              margin-right: 5px;
-            }
-
-            span:nth-child(2) {
-              font-size: 14px;
-              font-family: PingFang SC;
-              font-weight: normal;
-              color: #000000;
-            }
-          }
-
-          .medial {
-            flex-grow: 1;
-            display: flex;
-            justify-content: flex-end;
-
-            .medialWrapper {
-              display: flex;
-              border-radius: 5px;
-
-              span {
-                padding: 7px 20px;
-                font-size: 16px;
-                font-family: PingFang SC;
-                font-weight: normal;
-                color: #2754FB;
-              }
-
-              span.currentActive {
-                background: #2858f2;
-                color: #fff;
-                border-radius: 5px;
-              }
-            }
-          }
-
-          .right {
-            margin: 0 50px 0 10px;
-
-            .block {
-              color: #2754FB;
-              border-radius: 5px;
-            }
-          }
-        }
-
-        #incomeStatisticsEchart3 {
-          height: 100%;
-          width: 100%;
-        }
-
-        .section3Bottom {
-          position: absolute;
-          left: 0;
-          top: 0;
-        }
       }
 
       .inputFrame {
