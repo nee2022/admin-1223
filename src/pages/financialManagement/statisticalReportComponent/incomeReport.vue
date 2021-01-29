@@ -87,31 +87,31 @@
             </li>
             <li>
               <div class="echartWrapper">
-                <div id="incomeReportEchart1"></div>
+                <div id="incomeReportEchart2"></div>
                 <div class="echartBar"><span>订单金额</span></div>
               </div>
             </li>
             <li>
               <div class="echartWrapper">
-                <div id="incomeReportEchart1"></div>
+                <div id="incomeReportEchart3"></div>
                 <div class="echartBar"><span>收入金额</span></div>
               </div>
             </li>
             <li>
               <div class="echartWrapper">
-                <div id="incomeReportEchart1"></div>
+                <div id="incomeReportEchart4"></div>
                 <div class="echartBar"><span>充值金额</span></div>
               </div>
             </li>
             <li>
               <div class="echartWrapper">
-                <div id="incomeReportEchart1"></div>
+                <div id="incomeReportEchart5"></div>
                 <div class="echartBar"><span>收入金额增长趋势</span></div>
               </div>
             </li>
             <li>
               <div class="echartWrapper">
-                <div id="incomeReportEchart1"></div>
+                <div id="incomeReportEchart6"></div>
                 <div class="echartBar"><span>支出金额增长趋势</span></div>
               </div>
             </li>
