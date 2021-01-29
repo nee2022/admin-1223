@@ -80,13 +80,41 @@
         <template v-if="chart">
           <ul class="chartItems not-select">
             <li>
-              <div id="incomeReportEchart1"></div>
+              <div class="echartWrapper">
+                <div id="incomeReportEchart1"></div>
+                <div class="echartBar"><span>订单总数</span></div>
+              </div>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>
+              <div class="echartWrapper">
+                <div id="incomeReportEchart1"></div>
+                <div class="echartBar"><span>订单金额</span></div>
+              </div>
+            </li>
+            <li>
+              <div class="echartWrapper">
+                <div id="incomeReportEchart1"></div>
+                <div class="echartBar"><span>收入金额</span></div>
+              </div>
+            </li>
+            <li>
+              <div class="echartWrapper">
+                <div id="incomeReportEchart1"></div>
+                <div class="echartBar"><span>充值金额</span></div>
+              </div>
+            </li>
+            <li>
+              <div class="echartWrapper">
+                <div id="incomeReportEchart1"></div>
+                <div class="echartBar"><span>收入金额增长趋势</span></div>
+              </div>
+            </li>
+            <li>
+              <div class="echartWrapper">
+                <div id="incomeReportEchart1"></div>
+                <div class="echartBar"><span>支出金额增长趋势</span></div>
+              </div>
+            </li>
           </ul>
         </template>
       </div>

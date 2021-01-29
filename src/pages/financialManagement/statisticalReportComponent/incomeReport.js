@@ -115,13 +115,15 @@ export default {
       });
     },
     drawIncomeReportEchart1() {
-      var data = ["分成", "笔笔清", "提现"];
+      var data = ["分成"];
       var myChart = this.$echarts.init(
         document.getElementById("incomeReportEchart1")
       );
 
       // 指定图表的配置项和数据
       var option = {
+        width: "86%",
+        height: "64%",
         xAxis: {
           type: "category",
           data: [
@@ -163,40 +165,6 @@ export default {
             },
             itemStyle: {
               color: "green"
-            }
-          },
-          {
-            name: "笔笔清",
-            data: [1000, 3000, 5500, 4900, 4600, 5000, 3800],
-            type: "line",
-            smooth: true,
-            symbol: "circle",
-            symbolSize: 10,
-
-            lineStyle: {
-              color: "blue",
-              width: 2,
-              type: "solid"
-            },
-            itemStyle: {
-              color: "blue"
-            }
-          },
-          {
-            name: "提现",
-            data: [2300, 3000, 3200, 4300, 4000, 5500, 6000],
-            type: "line",
-            smooth: true,
-            symbol: "circle",
-            symbolSize: 10,
-
-            lineStyle: {
-              color: "red",
-              width: 2,
-              type: "solid"
-            },
-            itemStyle: {
-              color: "red"
             }
           }
         ]

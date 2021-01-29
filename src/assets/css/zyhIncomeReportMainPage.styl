@@ -206,13 +206,42 @@
         li {
           width: calc((100vw - 276px) * 0.33333);
           height: calc((100vh - 238px) * 0.5);
-          padding-right: 38px;
-          padding-bottom: 38px;
-          border: 1px solid black;
 
-          #incomeReportEchart1 {
-            height: 100%;
-            width: 100%;
+          // .bar {
+          // height: 10%;
+          // background: #f4f6fa;
+          // }
+          .echartWrapper {
+            position: relative;
+            height: 92%;
+            width: 94%;
+
+            #incomeReportEchart1 {
+              height: 100%;
+              width: 100%;
+              -webkit-box-shadow: 1px 1px 1px 1px rgba(170, 170, 170, 0.25), inset 1px 1px 1px 1px rgba(170, 170, 170, 0.25);
+              box-shadow: 1px 1px 1px 1px rgba(170, 170, 170, 0.25), inset 1px 1px 1px 1px rgba(170, 170, 170, 0.25);
+              border-radius: 10px;
+            }
+
+            .echartBar {
+              position: absolute;
+              height: 14%;
+              width: calc(100% - 2px);
+              background: #f4f7fb;
+              z-index: 1;
+              border-radius: 10px 10px 0 0;
+              top: 2px;
+              left: 2px;
+              display: flex;
+              align-items: center;
+              padding-left: 15px;
+
+              span {
+                font-size: 15px;
+                font-family: PingFang SC;
+              }
+            }
           }
         }
 
