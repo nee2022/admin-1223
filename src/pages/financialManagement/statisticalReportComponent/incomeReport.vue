@@ -1,5 +1,5 @@
 <template>
-  <div class="zyhIncomeReportMainPage">
+ <div class="zyhIncomeReportMainPage">
     <header>
       <div class="infoArea">
         <div class="pageName">收入报表</div>
@@ -133,7 +133,7 @@
       >
       </el-pagination>
     </footer>
-  </div>
+  </div> 
 </template>
 
 <script>
