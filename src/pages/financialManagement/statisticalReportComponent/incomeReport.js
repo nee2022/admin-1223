@@ -1,6 +1,6 @@
 import myhead from "../../../components/myhead";
 // require styles
-import "swiper/dist/css/swiper.css";
+import "swiper/swiper-bundle.css";
 
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
