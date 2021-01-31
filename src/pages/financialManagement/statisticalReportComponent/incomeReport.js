@@ -1,10 +1,22 @@
 import myhead from "../../../components/myhead";
+// require styles
+import "swiper/dist/css/swiper.css";
+
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
+  name: "carrousel",
   components: {
-    myhead
+    myhead,
+    swiper,
+    swiperSlide
   },
   data() {
     return {
+      swiperOption: {
+        // some swiper options/callbacks
+        // 所有的参数同 swiper 官方 api 参数
+        // ...
+      },
       tableData: [
         {
           date: "2016-05-03",
@@ -98,8 +110,16 @@ export default {
       chart: false
     };
   },
-
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.swiper;
+    }
+  },
   mounted() {
+    // current swiper instance
+    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
+    console.log("this is current swiper instance object", this.swiper);
+    // this.swiper.slideTo(3, 1000, false);
     this.token = localStorage.getItem("token").replace(/\"/g, "");
     var mySwiper = new Swiper(".swiper-container", {
       direction: "vertical", // 垂直切换选项
@@ -123,6 +143,14 @@ export default {
     });
   },
   methods: {
+    m1: function() {
+      this.swiper.slideTo(0, 100, false);
+      console.log(1);
+    },
+    m2: function() {
+      this.swiper.slideTo(5, 100, false);
+      console.log(2);
+    },
     toggleListTable() {
       this.chart = false;
     },
