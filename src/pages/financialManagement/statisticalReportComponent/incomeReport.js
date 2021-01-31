@@ -520,7 +520,7 @@ export default {
       myChart.setOption(option);
     },
     drawIncomeReportEchart7() {
-      var data = ["分成"];
+      var data = ["优惠金额"];
       var myChart = this.$echarts.init(
         document.getElementById("incomeReportEchart7")
       );
