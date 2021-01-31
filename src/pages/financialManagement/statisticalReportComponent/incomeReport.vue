@@ -84,13 +84,57 @@
             @someSwiperEvent="callback"
           >
             <!-- slides -->
-            <swiper-slide>I'm Slide 1</swiper-slide>
-            <swiper-slide>I'm Slide 2</swiper-slide>
-            <swiper-slide>I'm Slide 3</swiper-slide>
-            <swiper-slide>I'm Slide 4</swiper-slide>
-            <swiper-slide>I'm Slide 5</swiper-slide>
-            <swiper-slide>I'm Slide 6</swiper-slide>
-            <swiper-slide>I'm Slide 7</swiper-slide>
+            <swiper-slide>
+              <ul class="chartItems not-select">
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart1"></div>
+                    <div class="echartBar"><span>订单总数</span></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart2"></div>
+                    <div class="echartBar"><span>订单金额</span></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart3"></div>
+                    <div class="echartBar"><span>收入金额</span></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart4"></div>
+                    <div class="echartBar"><span>充值金额</span></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart5"></div>
+                    <div class="echartBar"><span>收入金额增长趋势</span></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart6"></div>
+                    <div class="echartBar"><span>支出金额增长趋势</span></div>
+                  </div>
+                </li>
+              </ul>
+            </swiper-slide>
+
+            <swiper-slide>
+              <ul class="chartItems not-select">
+                <li>
+                  <div class="echartWrapper">
+                    <div id="incomeReportEchart7"></div>
+                    <div class="echartBar"><span>优惠金额</span></div>
+                  </div>
+                </li>
+              </ul>
+            </swiper-slide>
             <!-- Optional controls -->
             <div class="swiper-pagination" slot="pagination"></div>
             <div

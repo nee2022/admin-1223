@@ -145,11 +145,9 @@ export default {
   methods: {
     m1: function() {
       this.swiper.slideTo(0, 100, false);
-      console.log(1);
     },
     m2: function() {
-      this.swiper.slideTo(5, 100, false);
-      console.log(2);
+      this.swiper.slideTo(1, 100, false);
     },
     toggleListTable() {
       this.chart = false;
@@ -164,6 +162,7 @@ export default {
         this.drawIncomeReportEchart4();
         this.drawIncomeReportEchart5();
         this.drawIncomeReportEchart6();
+        this.drawIncomeReportEchart7();
       });
     },
     drawIncomeReportEchart1() {
@@ -465,6 +464,65 @@ export default {
       var data = ["分成"];
       var myChart = this.$echarts.init(
         document.getElementById("incomeReportEchart6")
+      );
+
+      // 指定图表的配置项和数据
+      var option = {
+        width: "86%",
+        height: "64%",
+        xAxis: {
+          type: "category",
+          data: [
+            "2020-12-10",
+            "2020-12-11",
+            "2020-12-12",
+            "2020-12-13",
+            "2020-12-14",
+            "2020-12-15",
+            "2020-12-16"
+          ]
+        },
+        yAxis: {
+          type: "value"
+        },
+        legend: {
+          orient: "horizontal",
+          y: "bottom", //延Y轴居中
+          x: "center", //居右
+          data: data.legendData,
+          itemGap: 100, //图例间隔
+          textStyle: {
+            fontSize: 16
+          }
+        },
+        series: [
+          {
+            name: "分成",
+            data: [3800, 4200, 5900, 3600, 4000, 5100, 5700],
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 10,
+
+            lineStyle: {
+              color: "green",
+              width: 2,
+              type: "solid"
+            },
+            itemStyle: {
+              color: "green"
+            }
+          }
+        ]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+    },
+    drawIncomeReportEchart7() {
+      var data = ["分成"];
+      var myChart = this.$echarts.init(
+        document.getElementById("incomeReportEchart7")
       );
 
       // 指定图表的配置项和数据
