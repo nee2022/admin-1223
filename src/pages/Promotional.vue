@@ -9,6 +9,38 @@
 			<el-col :span="12">
 				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1e69fe"
 				 text-color="#fff" active-text-color="white" unique-opened v-model="option">
+				 <el-submenu index="5">
+				 	<template slot="title">
+				 		<div class="menu-op">
+				 			<div>
+				 				<img src="../assets/images/Sales promotion activity.png">
+				 			</div>
+				 			<span class="menu-word">数据视图</span>
+				 		</div>
+				 	</template>
+				 	<el-menu-item-group>
+				 		<el-menu-item index="5-1">
+				 			<router-link to="/Pkanban">
+				 				<div class="menu-op">
+				 					<div>
+				 						<img src="../assets/images/Prepaid phone plans.png">
+				 					</div>
+				 					<span class="menu-word">数据看板</span>
+				 				</div>
+				 			</router-link>
+				 		</el-menu-item>
+				 		<!-- <el-menu-item index="5-2">
+				 			<router-link to="/CouponActivity">
+				 				<div class="menu-op">
+				 					<div>
+				 						<img src="../assets/images/Send coupons activities.png">
+				 					</div>
+				 					<span class="menu-word">大数据</span>
+				 				</div>
+				 			</router-link>
+				 		</el-menu-item> -->
+				 	</el-menu-item-group>
+				 </el-submenu>
 					<el-submenu index="1">
 						<template slot="title">
 							<div class="menu-op">

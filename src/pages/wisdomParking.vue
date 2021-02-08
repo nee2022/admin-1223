@@ -15,6 +15,38 @@
 			<el-col :span="12">
 				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1e69fe"
 				 text-color="#fff" active-text-color="white" unique-opened v-model="option">
+				 <el-submenu index="6">
+				 	<template slot="title">
+				 		<div class="menu-op">
+				 			<div>
+				 				<img src="../assets/images/berth.png">
+				 			</div>
+				 			<span class="menu-word">数据视图</span>
+				 		</div>
+				 	</template>
+				 	<el-menu-item-group>
+				 		<el-menu-item index="6-1">
+				 			<router-link to="/roadKanban">
+				 				<div class="menu-op">
+				 					<div>
+				 						<img src="../assets/images/Prepaid plan.png">
+				 					</div>
+				 					<span class="menu-word">数据看板</span>
+				 				</div>
+				 			</router-link>
+				 		</el-menu-item>
+				 		<!-- <el-menu-item index="6-2">
+				 			<router-link to="/roadBaobiao">
+				 				<div class="menu-op">
+				 					<div>
+				 						<img src="../assets/images/Monthly package.png">
+				 					</div>
+				 					<span class="menu-word">全景图</span>
+				 				</div>
+				 			</router-link>
+				 		</el-menu-item> -->
+				 	</el-menu-item-group>
+				 </el-submenu>
 					<el-submenu index="1">
 						<template slot="title">
 							<div class="menu-op">
@@ -203,6 +235,38 @@
 							</router-link>
 						</template>
 					</el-menu-item>
+					<el-submenu index="5">
+						<template slot="title">
+							<div class="menu-op">
+								<div>
+									<img src="../assets/images/berth.png">
+								</div>
+								<span class="menu-word">统计报表</span>
+							</div>
+						</template>
+						<el-menu-item-group>
+						<!-- 	<el-menu-item index="5-1">
+								<router-link to="/taocan">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/Prepaid plan.png">
+										</div>
+										<span class="menu-word">资源报表</span>
+									</div>
+								</router-link>
+							</el-menu-item> -->
+							<el-menu-item index="5-2">
+								<router-link to="/roadBaobiao">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/Monthly package.png">
+										</div>
+										<span class="menu-word">停车报表</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+						</el-menu-item-group>
+					</el-submenu>
 					<!-- <el-submenu index="5">
 						<template slot="title">
 							<router-link to="/jiaofei">

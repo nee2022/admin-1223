@@ -2,7 +2,7 @@
 	<div class="oneCard-right">
 		<div class="UserAssets-right-top">
 			<div class="user-left">
-				<span class="user-word">用户统计</span>
+				<span class="user-word">停车报表</span>
 			</div>
 			<div class="users-right">
 				<myhead></myhead>
@@ -23,6 +23,10 @@
 						</div>
 					</template>
 				</div>
+				<div class="RoadSearch">
+					<img src="../../assets/images/search.png" style="width: 15px;height: 15px;">
+					<input type="text" placeholder="请输入关键字" class="searchText">
+				</div>
 				<div>
 					<el-button type="primary" icon="el-icon-search" @click="getUserMes">查询</el-button>
 				</div>
@@ -35,54 +39,39 @@
 					打印
 				</div>
 			</div>
-			<div class="changeMode">
-				<div @click="flagT" v-if="changeList == false">
-					<img src="../../assets/images/Icon button.png" alt="" style="width: 35px;height: 35px;">
-				</div>
-				<div @click="flagF" v-show="changeList == true">
-					<img src="../../assets/images/Icon button.png" alt="" style="width: 35px;height: 35px;">
-				</div>
-			</div>
 		</div>
 		<div style="height: 700px;">
-			<div v-if="changeList == true" style="height: 680px;">
+			<div style="height: 680px;">
 				<table class="tableClass">
 					<tr class="firstTr">
 						<td class="td1">日期</td>
-						<td class="td2">用户总数</td>
-						<td class="td2">活跃用户数</td>
-						<td class="td2">余额</td>
-						<td class="td2">积分</td>
-						<td class="td3">
-							<div class="tBox">
-								<div class="tbox2">用户分布</div>
-								<div class="tBox1">
-									<div>手机用户数</div>
-									<div>微信用户数</div>
-									<div>支付宝用户数</div>
-								</div>
-							</div>
-						</td>
-						<td class="td6">认证用户数</td>
+						<td class="td2">商户名</td>
+						<td class="td2">站点</td>
+						<td class="td2">订单数</td>
+						<td class="td2">停车费</td>
+						<td class="td2">已缴费</td>
+						<td class="td2">欠费</td>
+						<td class="td2">退款</td>
+						<td class="td2">优惠</td>
+						<td class="td2">图表</td>
 					</tr>
 					<tr class="dataTable" v-for="item in 10">
-						<td class="dateColor">2020-01-06</td>
+						<td>2020-01-06</td>
 						<td>1369</td>
 						<td>23123</td>
 						<td>223</td>
 						<td>123</td>
-						<td>
-							<div class="tbodyBox">
-								<div>34235</div>
-								<div>34342</div>
-								<div>12312</div>
-							</div>
-						</td>
 						<td>1321</td>
+						<td>223</td>
+						<td>123</td>
+						<td>1321</td>
+						<td>
+							<img src="../../assets/images/The chart.png" @click="dialogVisible = true,charts(e)" style="cursor: pointer;">
+						</td>
 					</tr>
 				</table>
 			</div>
-			<div v-show="changeList == false" class="tubiaobox">
+			<!-- <div v-show="changeList == false" class="tubiaobox">
 					<div class="tubBox" v-for="(item,i) in my">
 						<div class="tubBoxTitleBox">
 							<div class="tubBoxTitle">
@@ -98,81 +87,16 @@
 							</div>
 						</el-dialog>
 					</div>
-				<!-- <div class="tub1">
-					<div class="tubBox">
-						<div class="tubBoxTitleBox">
-							<div class="tubBoxTitle">
-								<div class="tubBoxTitleW">用户总增长趋势</div>
-								<div>
-									<img src="../../assets/layui/images/face/26.gif">
-								</div>
-							</div>
-						</div>
-						<div class="tubBoxConBox" id="myEcharts"></div>
-					</div>
-					<div class="tubBox">
-						<div class="tubBoxTitleBox">
-							<div class="tubBoxTitle">
-								<div class="tubBoxTitleW">用户活跃度增长趋势</div>
-								<div>
-									<img src="../../assets/layui/images/face/26.gif">
-								</div>
-							</div>
-						</div>
-						<div class="tubBoxConBox" id="myEcharts1"></div>
-					</div>
-					<div class="tubBox">
-						<div class="tubBoxTitleBox">
-							<div class="tubBoxTitle">
-								<div class="tubBoxTitleW">钱包余额增长趋势</div>
-								<div>
-									<img src="../../assets/layui/images/face/26.gif">
-								</div>
-							</div>
-						</div>
-						<div class="tubBoxConBox" id="myEcharts2"></div>
-					</div>
-				</div> -->
-				<!-- <div class="tub1">
-					<div class="tubBox">
-						<div class="tubBoxTitleBox">
-							<div class="tubBoxTitle">
-								<div class="tubBoxTitleW">积分增长趋势</div>
-								<div>
-									<img src="../../assets/layui/images/face/26.gif">
-								</div>
-							</div>
-						</div>
-						<div class="tubBoxConBox" id="myEcharts3"></div>
-					</div>
-					<div class="tubBox">
-						<div class="tubBoxTitleBox">
-							<div class="tubBoxTitle">
-								<div class="tubBoxTitleW">用户分布增长趋势</div>
-								<div>
-									<img src="../../assets/layui/images/face/26.gif">
-								</div>
-							</div>
-						</div>
-						<div class="tubBoxConBox" id="myEcharts4"></div>
-					</div>
-					<div class="tubBox">
-						<div class="tubBoxTitleBox">
-							<div class="tubBoxTitle">
-								<div class="tubBoxTitleW">认证用户增长趋势</div>
-								<div>
-									<img src="../../assets/layui/images/face/26.gif">
-								</div>
-							</div>
-						</div>
-						<div class="tubBoxConBox" id="myEcharts5"></div>
-					</div>
-				</div> -->
-			</div>
+			</div> -->
+			<el-dialog title="123" :visible.sync="dialogVisible" width="70%">
+				<div class="tanchuTubiao" id="myEcharts">
+					<!-- <div class="Ttitle"></div> -->
+				</div>
+			</el-dialog>
 		</div>
-		<div class="UserAssets-bottom" v-if="changeList == true">
+		<div class="UserAssets-bottom">
 			<div class="UserAssets-bottom-left" :data="cardList">
-				<span>共{{total}}张卡</span>
+				<span>共{{total}}条信息</span>
 			</div>
 			<div class="UserAssets-bottom-right">
 				<el-pagination background :current-page.sync.number="pagenum" @current-change="handleCurrentChange" :page-size="pagesize"
@@ -180,9 +104,6 @@
 				</el-pagination>
 			</div>
 		</div>
-		<!-- 放大弹出框 -->
-
-
 	</div>
 </template>
 
@@ -197,38 +118,7 @@
 				cardList: [], //卡数据
 				dayList: [],
 				numList: [],
-				tanchuT:'',
-				charts:'',
-				my:[{
-					name:'myEcharts0',
-					id:1,
-					title:'用户总增长趋势'
-				},
-				{
-					name:'myEcharts1',
-					id:2,
-					title:'用户活跃度增长趋势'
-				},
-				{
-					name:'myEcharts2',
-					id:3,
-					title:'钱包余额增长趋势'
-				},
-				{
-					name:'myEcharts3',
-					id:4,
-					title:'积分增长趋势'
-				},
-				{
-					name:'myEcharts4',
-					id:5,
-					title:'用户分布增长趋势'
-				},
-				{
-					name:'myEcharts5',
-					id:6,
-					title:'认证用户增长趋势'
-				}],
+				tanchuT: '',
 				userList: [{
 						day: '2021-01-07',
 						num: 1000
@@ -289,7 +179,7 @@
 				input: '',
 				value1: '',
 				value: true,
-				e:0,
+				e: 0,
 				typeList: [{
 						id: 0,
 						type: '所有'
@@ -310,18 +200,8 @@
 			}
 		},
 		created() {
-
 			this.token = localStorage.getItem('token')
 			this.getUserMes()
-			this.send()
-			this.$nextTick(() => {
-				this.drawChart();
-				this.drawChart1();
-				this.drawChart2();
-				this.drawChart3();
-				this.drawChart4();
-				this.drawChart5();
-			});
 		},
 		mounted() {
 
@@ -336,366 +216,110 @@
 				})
 				console.log(this.numList)
 			},
-			changeTitle(title,name,i){
-				this.e = i
-				var na = name
-				// let n =name+i
-				// console.log(n)
-				// this.$echarts.init(document.getElementById(na));
-				// console.log(i)
-				var hezi3 = document.getElementsByClassName("tubBoxConBox");
-				hezi3[i].id = "ee";
-				this.tanchuT = title
-				// console.log(name)
-				this.charts = name
-				if(i==0){
-					this.$nextTick(() => {
-						this.drawChart();
-					});
-				}else if(i==1){
-					this.$nextTick(() => {
-						this.drawChart1();
-					});
-				}else if(i==2){
-					this.$nextTick(() => {
-						this.drawChart2();
-					});
-				}else if(i==3){
-					this.$nextTick(() => {
-						this.drawChart3();
-					});
-				}else if(i==4){
-					this.$nextTick(() => {
-						this.drawChart4();
-					});
-				}else if(i==5){
-					this.$nextTick(() => {
-						this.drawChart5();
-					});
-				}
-
-				// this.$echarts.init(document.getElementById(na)).dispose();
+			charts(e) {
+				this.$nextTick(() => {
+					this.drawChart();
+				});
 			},
 			drawChart() {
 				// 基于准备好的dom，初始化echarts实例
-				let myChart = this.$echarts.init(document.getElementById("myEcharts0"));
+				let myChart = this.$echarts.init(document.getElementById("myEcharts"));
 				// 指定图表的配置项和数据
 				var option = {
 					tooltip: {
-						trigger: 'axis'
-					},
-					color: ['#ff7200'],
-					grid: {
-
-					},
-					legend: {
-						data: ['用户总数'],
-						orient: 'horizontal', //垂直显示
-						y: 'bottom', //延Y轴居中
-						x: 'center', //居右显示
-						textStyle: {
-							fontSize: 16
-						},
-						// show: true,
-						// borderWidth: 2,
-						// shadowColor: 'rgba(0, 0, 0, 0.5)',
-						// shadowBlur: 5,
-						// borderRadius: 10,
-						// padding: [20, 10],
-
+						show: true
 					},
 					xAxis: {
-						data: this.dayList,
-						fontSize: 18,
+						type: 'category',
+						data: ['订单总数', '订单金额', '分成金额', '比比清金额', '转账金额', '钱包分成'],
+						axisLabel: {
+							show: true,
+							textStyle: {
+								fontSize:16
+							}
+						}
 					},
 					yAxis: {
 						type: 'value',
-						name: '单位:人数'
+						name: '单位:元',
+						axisLabel: {
+							show: true,
+							textStyle: {
+								fontSize:16
+							}
+						}
 					},
 					series: [{
-						name: '用户总数',
-						type: 'line',
-						data: [5313, 1432, 4641, 2234, 3421],
-						smooth: true,
-					}, ]
-				};
-				// 使用刚指定的配置项和数据显示图表。
-				myChart.setOption(option);
-			},
-			drawChart1() {
-				// 基于准备好的dom，初始化echarts实例
-				let myChart = this.$echarts.init(document.getElementById("myEcharts1"));
-				// 指定图表的配置项和数据
-				var option = {
-					tooltip: {
-						trigger: 'axis'
-					},
-					color: ['#00cc57'],
-					grid: {
-
-					},
-					legend: {
-						data: ['用户活跃度'],
-						orient: 'horizontal', //垂直显示
-						y: 'bottom', //延Y轴居中
-						x: 'center', //居右显示
-						textStyle: {
-							fontSize: 16
+						data: [2320, 1700, 3150, 2480, 4670, 1110],
+						type: 'bar',
+						barWidth: '60',
+						itemStyle: {
+							normal: {
+								color: new this.$echarts.graphic.LinearGradient(
+									0, 0, 0, 1,
+									[{
+											offset: 1,
+											color: '#006bdf'
+										},
+										{
+											offset: 0,
+											color: '#4cbbfb'
+										}
+									]
+								)
+							},
 						},
-						// show: true,
-						// borderWidth: 2,
-						// shadowColor: 'rgba(0, 0, 0, 0.5)',
-						// shadowBlur: 5,
-						// borderRadius: 10,
-						// padding: [20, 10],
+						label: { //label要加入normal才可生效,label即为x轴对应Y轴的值
+							normal: {
+								show: true,
+								color: '#4cbbfb', //设置渐变时候控制不到颜色，只能通过全局textStyle来控制
+								position: 'top'
+							}
+						},
 
-					},
-					xAxis: {
-						data: this.dayList,
-						fontSize: 18,
-					},
-					yAxis: {
-						type: 'value',
-						name: '单位:人数'
-					},
-					series: [{
-						name: '用户活跃度',
-						type: 'line',
-						data: [6413, 432, 1541, 2434, 3321],
-						smooth: true,
 					}]
 				};
 				// 使用刚指定的配置项和数据显示图表。
 				myChart.setOption(option);
 			},
-			drawChart2() {
-				// 基于准备好的dom，初始化echarts实例
-				let myChart = this.$echarts.init(document.getElementById("myEcharts2"));
-				// 指定图表的配置项和数据
-				var option = {
-					tooltip: {
-						trigger: 'axis'
-					},
-					color: ['red'],
-					grid: {
-
-					},
-					legend: {
-						data: ['钱包余额'],
-						orient: 'horizontal', //垂直显示
-						y: 'bottom', //延Y轴居中
-						x: 'center', //居右显示
-						textStyle: {
-							fontSize: 16
-						},
-						// show: true,
-						// borderWidth: 2,
-						// shadowColor: 'rgba(0, 0, 0, 0.5)',
-						// shadowBlur: 5,
-						// borderRadius: 10,
-						// padding: [20, 10],
-
-					},
-					xAxis: {
-						data: this.dayList,
-						fontSize: 18,
-					},
-					yAxis: {
-						type: 'value',
-						name: '单位:人数'
-					},
-					series: [{
-						name: '钱包余额',
-						type: 'line',
-						data: [1313, 1432, 4641, 2434, 3421],
-						smooth: true,
-					}, ]
-				};
-				// 使用刚指定的配置项和数据显示图表。
-				myChart.setOption(option);
-			},
-			drawChart3() {
-				// 基于准备好的dom，初始化echarts实例
-				let myChart = this.$echarts.init(document.getElementById("myEcharts3"));
-				// 指定图表的配置项和数据
-				var option = {
-					tooltip: {
-						trigger: 'axis'
-					},
-					color: ['purple'],
-					grid: {
-
-					},
-					legend: {
-						data: ['积分'],
-						orient: 'horizontal', //垂直显示
-						y: 'bottom', //延Y轴居中
-						x: 'center', //居右显示
-						textStyle: {
-							fontSize: 16
-						},
-						// show: true,
-						// borderWidth: 2,
-						// shadowColor: 'rgba(0, 0, 0, 0.5)',
-						// shadowBlur: 5,
-						// borderRadius: 10,
-						// padding: [20, 10],
-
-					},
-					xAxis: {
-						data: this.dayList,
-						fontSize: 18,
-					},
-					yAxis: {
-						type: 'value',
-						name: '单位:人数'
-					},
-					series: [{
-						name: '积分',
-						type: 'line',
-						data: [2132, 1231, 4354, 4532, 7654],
-						smooth: true,
-					}, ]
-				};
-				// 使用刚指定的配置项和数据显示图表。
-				myChart.setOption(option);
-			},
-			drawChart4() {
-				// 基于准备好的dom，初始化echarts实例
-				let myChart = this.$echarts.init(document.getElementById("myEcharts4"));
-				// 指定图表的配置项和数据
-				var option = {
-					tooltip: {
-						trigger: 'axis'
-					},
-					color: ['#ff7200', '#00cc57', '#238ae1'],
-					grid: {
-
-					},
-					legend: {
-						data: ['手机用户', '微信用户', '支付宝用户'],
-						orient: 'horizontal', //垂直显示
-						y: 'bottom', //延Y轴居中
-						x: 'center', //居右显示
-						textStyle: {
-							fontSize: 16
-						},
-						// show: true,
-						// borderWidth: 2,
-						// shadowColor: 'rgba(0, 0, 0, 0.5)',
-						// shadowBlur: 5,
-						// borderRadius: 10,
-						// padding: [20, 10],
-
-					},
-					xAxis: {
-						data: this.dayList,
-						fontSize: 18,
-					},
-					yAxis: {
-						type: 'value',
-						name: '单位:人数'
-					},
-					series: [{
-							name: '手机用户',
-							type: 'line',
-							data: this.numList,
-							smooth: true,
-						},
-						{
-							name: '微信用户',
-							type: 'line',
-							data: [2313, 3432, 4641, 1234, 3421],
-							smooth: true,
-						},
-						{
-							name: '支付宝用户',
-							type: 'line',
-							data: [6413, 432, 1541, 2434, 3321],
-							smooth: true,
-						}
-					]
-				};
-				// 使用刚指定的配置项和数据显示图表。
-				myChart.setOption(option);
-			},
-			drawChart5() {
-				// 基于准备好的dom，初始化echarts实例
-				let myChart = this.$echarts.init(document.getElementById("myEcharts5"));
-				// 指定图表的配置项和数据
-				var option = {
-					tooltip: {
-						trigger: 'axis'
-					},
-					color: ['#ff7200', '#00cc57', '#238ae1'],
-					grid: {
-
-					},
-					legend: {
-						data: ['手机用户', '微信用户', '支付宝用户'],
-						orient: 'horizontal', //垂直显示
-						y: 'bottom', //延Y轴居中
-						x: 'center', //居右显示
-						textStyle: {
-							fontSize: 16
-						},
-						// show: true,
-						// borderWidth: 2,
-						// shadowColor: 'rgba(0, 0, 0, 0.5)',
-						// shadowBlur: 5,
-						// borderRadius: 10,
-						// padding: [20, 10],
-
-					},
-					xAxis: {
-						data: this.dayList,
-						fontSize: 18,
-					},
-					yAxis: {
-						type: 'value',
-						name: '单位:人数'
-					},
-					series: [{
-							name: '手机用户',
-							type: 'line',
-							data: this.numList,
-							smooth: true,
-						},
-						{
-							name: '微信用户',
-							type: 'line',
-							data: [2313, 3432, 4641, 1234, 3421],
-							smooth: true,
-						},
-						{
-							name: '支付宝用户',
-							type: 'line',
-							data: [6413, 432, 1541, 2434, 3321],
-							smooth: true,
-						}
-					]
-				};
-				// 使用刚指定的配置项和数据显示图表。
-				myChart.setOption(option);
-			},
-			userMssage(id, operator_name) {
-				console.log(id)
-				sessionStorage.setItem('id', id)
-				sessionStorage.setItem('username', operator_name)
-				this.$router.push({
-					path: '/oneCardjiben',
-				})
-			},
-			flagF() {
-				this.changeList = false
-				this.$nextTick(() => {
-					this.drawChart();
-				});
-			},
-			flagT() {
-				this.changeList = true
-				this.getUserMes()
-			},
+			// changeTitle(title,name,i){
+			// 	this.e = i
+			// 	var na = name
+			// 	// let n =name+i
+			// 	// console.log(n)
+			// 	// this.$echarts.init(document.getElementById(na));
+			// 	// console.log(i)
+			// 	var hezi3 = document.getElementsByClassName("tubBoxConBox");
+			// 	hezi3[i].id = "ee";
+			// 	this.tanchuT = title
+			// 	// console.log(name)
+			// 	this.charts = name
+			// 	if(i==0){
+			// 		this.$nextTick(() => {
+			// 			this.drawChart();
+			// 		});
+			// 	}else if(i==1){
+			// 		this.$nextTick(() => {
+			// 			this.drawChart1();
+			// 		});
+			// 	}else if(i==2){
+			// 		this.$nextTick(() => {
+			// 			this.drawChart2();
+			// 		});
+			// 	}else if(i==3){
+			// 		this.$nextTick(() => {
+			// 			this.drawChart3();
+			// 		});
+			// 	}else if(i==4){
+			// 		this.$nextTick(() => {
+			// 			this.drawChart4();
+			// 		});
+			// 	}else if(i==5){
+			// 		this.$nextTick(() => {
+			// 			this.drawChart5();
+			// 		});
+			// 	}
+			// },
 			//获取用户卡信息列表
 			getUserMes() {
 				//token去掉引号
@@ -742,8 +366,29 @@
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
 	}
-	
-	.tanchubox{
+
+	.tanchuTubiao {
+		width: 100%;
+		height: 500px;
+	}
+
+	.RoadSearch {
+		width: 200px;
+		height: 40px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		border: solid 1px #0000FF;
+		border-radius: 5px;
+		box-sizing: border-box;
+		justify-content: space-around;
+	}
+
+	.searchText {
+		border: none;
+	}
+
+	.tanchubox {
 		height: 500px;
 	}
 
@@ -1049,7 +694,7 @@
 		align-items: center;
 		margin-top: 20px;
 		justify-content: space-between;
-		
+
 	}
 
 	.tub1 {
@@ -1387,7 +1032,7 @@
 	}
 
 	.UserAssets-right-text {
-		width: 1100px;
+		width: 1300px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;

@@ -3,7 +3,7 @@
 		<div class="mapTop">
 			<div class="mapTopLeft"></div>
 			<div class="mapTopTitle">
-				<span>{{loginConfig.deviceName}}</span>
+				<span>{{loginConfig.deviceName}}系统监控</span>
 			</div>
 			<div class="mapTopRight">
 				<div class="btn-fullscreen" @click="handleFullScreen">

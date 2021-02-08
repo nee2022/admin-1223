@@ -26,7 +26,7 @@
 									<div>
 										<img src="../assets/images/The administrator.png">
 									</div>
-									系统监控
+									设备监控
 								</div>
 							</el-menu-item>
 							</router-link>
@@ -46,7 +46,7 @@
 										<div>
 											<img src="../assets/images/The user.png">
 										</div>
-										<span class="menu-word">设备监控</span>
+										<span class="menu-word">系统监控</span>
 									</div>
 								</router-link>
 							</el-menu-item>

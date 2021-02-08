@@ -218,6 +218,8 @@ export default new Router({
 			component: () =>
 				import('../pages/SystemChild/chargeManager.vue')
 		},
+		
+		//促销优惠
 		{
 			path: '/Promotional',
 			name: 'Promotional',
@@ -234,6 +236,12 @@ export default new Router({
 					name: 'Pyouxiaocoupon',
 					component: () =>
 						import('../pages/PromotionalChild/Pyouxiaocoupon.vue')
+				},
+				{
+					path: '/Pkanban',
+					name: 'Pkanban',
+					component: () =>
+						import('../pages/PromotionalChild/Pkanban.vue')
 				},
 				{
 					path: '/userTaocan',
@@ -310,6 +318,18 @@ export default new Router({
 						import('../pages/Pchild/AllparkCar.vue')
 				},
 				{
+					path: '/tccBaobiao',
+					name: 'tccBaobiao',
+					component: () =>
+						import('../pages/Pchild/tccBaobiao.vue')
+				},
+				{
+					path: '/tccKanban',
+					name: 'tccKanban',
+					component: () =>
+						import('../pages/Pchild/tccKanban.vue')
+				},
+				{
 					path: '/Pbaoyue',
 					name: 'Pbaoyue',
 					component: () =>
@@ -373,10 +393,22 @@ export default new Router({
 						import('../pages/parksChild/viewLow.vue')
 				},
 				{
+					path: '/roadBaobiao',
+					name: 'roadBaobiao',
+					component: () =>
+						import('../pages/parksChild/roadBaobiao.vue')
+				},
+				{
 					path: '/dici',
 					name: 'dici',
 					component: () =>
 						import('../pages/parksChild/dici.vue')
+				},
+				{
+					path: '/roadKanban',
+					name: 'roadKanban',
+					component: () =>
+						import('../pages/parksChild/roadKanban.vue')
 				},
 				{
 					path: '/view',
@@ -671,6 +703,18 @@ export default new Router({
 					component: motoMap
 				},
 				{
+					path: '/motoBaobiao',
+					name: 'motoBaobiao',
+					component: () =>
+					import('../components/motorcycles/motoBaobiao.vue')
+				},
+				{
+					path: '/motoKanban',
+					name: 'motoKanban',
+					component: () =>
+					import('../components/motorcycles/motoKanban.vue')
+				},
+				{
 					path: '/equipment',
 					component: equipment
 				},
@@ -721,7 +765,18 @@ export default new Router({
 					path: '/carMap',
 					component: carMap
 				},
-				
+				{
+					path: '/carBaobiao',
+					name: 'carBaobiao',
+					component: () =>
+					import('../components/car/carBaobiao.vue')
+				},
+				{
+					path: '/carKanban',
+					name: 'carKanban',
+					component: () =>
+					import('../components/car/carKanban.vue')
+				},
 				{
 					path: '/cartaocan',
 					component: cartaocan
@@ -773,7 +828,13 @@ export default new Router({
 					path: '/bind',
 					component: bind
 				},
-
+				{
+					path: '/wulianKanban',
+					name: 'wulianKanban',
+					component: () =>
+						import('../components/wulian/wulianKanban.vue')
+						
+				},
 				{
 					path: '/unbound',
 					component: unbound

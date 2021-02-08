@@ -22,21 +22,21 @@
 									<div>
 										<img src="../assets/images/Prepaid plan.png" />
 									</div>
-									<span class="menu-word">数据试图</span>
+									<span class="menu-word">数据视图</span>
 								</div>
 							</template>
 							<el-menu-item-group>
-								<!-- <el-menu-item index="3-1">
-									<router-link to="/carList">
+								<el-menu-item index="5-1">
+									<router-link to="/carKanban">
 										<div class="menu-op">
 											<div>
 												<img src="../assets/images/all.png" />
 											</div>
-											<span class="menu-word">大数据</span>
+											<span class="menu-word">数据看板</span>
 										</div>
 									</router-link>
-								</el-menu-item> -->
-								<el-menu-item index="3-2">
+								</el-menu-item>
+								<el-menu-item index="5-2">
 									<router-link to="/carMap">
 										<div class="menu-op">
 											<div>
@@ -180,6 +180,38 @@
 												<img src="../assets/images/Charge packag.png" />
 											</div>
 											<span class="menu-word">刷卡套餐</span>
+										</div>
+									</router-link>
+								</el-menu-item>
+							</el-menu-item-group>
+						</el-submenu>
+						<el-submenu index="6">
+							<template slot="title">
+								<div class="menu-op">
+									<div>
+										<img src="../assets/images/berth.png">
+									</div>
+									<span class="menu-word">统计报表</span>
+								</div>
+							</template>
+							<el-menu-item-group>
+								<!-- <el-menu-item index="6-1">
+									<router-link to="/taocan">
+										<div class="menu-op">
+											<div>
+												<img src="../assets/images/Prepaid plan.png">
+											</div>
+											<span class="menu-word">资源报表</span>
+										</div>
+									</router-link>
+								</el-menu-item> -->
+								<el-menu-item index="6-2">
+									<router-link to="/carBaobiao">
+										<div class="menu-op">
+											<div>
+												<img src="../assets/images/Monthly package.png">
+											</div>
+											<span class="menu-word">充电报表</span>
 										</div>
 									</router-link>
 								</el-menu-item>

@@ -10,6 +10,38 @@
 				<el-col :span="12">
 					<el-menu default-active="2" class="el-menu-vertical-demo" background-color="#1e69fe" text-color="#fff"
 					 active-text-color="white" unique-opened>
+					 <el-submenu index="4">
+					 	<template slot="title">
+					 		<div class="menu-op">
+					 			<div>
+					 				<img src="../assets/images/erweima.png" />
+					 			</div>
+					 			<span class="menu-word">数据视图</span>
+					 		</div>
+					 	</template>
+					 	<el-menu-item-group>
+					 		<el-menu-item index="4-1">
+					 			<router-link to="/wulianKanban">
+					 				<div class="menu-op">
+					 					<div>
+					 						<img src="../assets/images/all.png" />
+					 					</div>
+					 					<span class="menu-word">数据看板</span>
+					 				</div>
+					 			</router-link>
+					 		</el-menu-item>
+					 		<!-- <el-menu-item index="4-2">
+					 			<router-link to="/bind">
+					 				<div class="menu-op">
+					 					<div>
+					 						<img src="../assets/images/available.png" />
+					 					</div>
+					 					<span class="menu-word">大数据</span>
+					 				</div>
+					 			</router-link>
+					 		</el-menu-item> -->
+					 	</el-menu-item-group>
+					 </el-submenu>
 						<el-submenu index="1">
 							<template slot="title">
 								<div class="menu-op">
@@ -348,12 +380,6 @@
 
 		.el-submenu__title i {
 			color: white;
-		}
-
-		.user-word {
-			font-family: PingFangSC-Regular;
-			font-size: 15px;
-			color: #000000;
 		}
 
 		.user-left {

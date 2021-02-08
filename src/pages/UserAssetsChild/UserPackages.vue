@@ -72,7 +72,7 @@
 			</template>
 			</div>
 			<div v-else class="tubiao">
-				<div v-for="item in tableData">
+				<div v-for="item in tableData" >
 					<div :class="item.state == 0?'imgbox':!item.state == 0?'imgbox1':''">
 						<div class="imgboxTop">
 							{{item.name}}
@@ -92,7 +92,7 @@
 						</div>
 						<div class="imgboxBot">
 							<div class="imgboxBotB">
-								<img src="../../assets/images/Tdelete.png" alt="">
+								<img src="../../assets/images/Tdelete.png" alt="" @click="removeUserByID(item.id)">
 								<img src="../../assets/images/Teditor.png" alt="">
 							</div>
 						</div>
@@ -231,6 +231,33 @@
 							this.pagesize = 14
 						}
 					})
+			},
+			//根据ID删除套餐
+			async removeUserByID(id) {
+				console.log(id)
+				let toKen = this.token.replace(/\"/g, "")
+				const confirmRes = await this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning'
+				}).catch(err => err)
+				// console.log(confirmRes)
+				if (confirmRes !== 'confirm') {
+					return this.$message.info('已取消删除')
+				}
+				this.$axios.delete("/admin/api/plan/" + id + "?token=" + toKen)
+					.then(res => {
+						console.log(res.status)
+						if (res.status == 200) {
+							this.$message.success('删除数据成功')
+							setTimeout(() => {
+								this.getImg() //刷新设备数据
+							}, 1000);
+						} else {
+							this.$message.error('删除数据失败')
+						}
+					})
+				//删除设备提示
 			},
 			getImg() {
 				//token去掉引号

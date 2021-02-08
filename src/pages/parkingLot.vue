@@ -15,27 +15,27 @@
 			<el-col :span="12">
 				<el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" background-color="#1e69fe"
 				 text-color="#fff" active-text-color="white" unique-opened v-model="option">
-				 	<!-- <el-submenu index="1">
+				 	<el-submenu index="6">
 						<template slot="title">
 								<div class="menu-op">
 									<div>
 										<img src="../assets/images/user account.png">
 									</div>
-									<span class="menu-word">停车场</span>
+									<span class="menu-word">数据视图</span>
 								</div>
 						</template>
 						<el-menu-item-group>
 							<el-menu-item index="1-1">
-								<router-link to="/">
+								<router-link to="/tccKanban">
 								<div class="menu-op">
 									<div>
 										<img src="../assets/images/all.png">
 									</div>
-									<span class="menu-word">全景图</span>
+									<span class="menu-word">数据看板</span>
 								</div>
 								</router-link>
 							</el-menu-item>
-							<el-menu-item index="1-2">
+							<!-- <el-menu-item index="1-2">
 								<router-link to="/parkingChang">
 									<div class="menu-op">
 										<div>
@@ -44,9 +44,9 @@
 										<span class="menu-word">停车场</span>
 									</div>
 								</router-link>
-							</el-menu-item>
+							</el-menu-item> -->
 						</el-menu-item-group>
-					</el-submenu> -->
+					</el-submenu>
 					<el-menu-item index="1">
 						<template slot="title">
 							<router-link to="/parkingChang">
@@ -165,6 +165,38 @@
 							</router-link>
 						</template>
 					</el-menu-item>
+					<el-submenu index="5">
+						<template slot="title">
+							<div class="menu-op">
+								<div>
+									<img src="../assets/images/berth.png">
+								</div>
+								<span class="menu-word">统计报表</span>
+							</div>
+						</template>
+						<el-menu-item-group>
+							<!-- <el-menu-item index="5-1">
+								<router-link to="/taocan">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/Prepaid plan.png">
+										</div>
+										<span class="menu-word">资源报表</span>
+									</div>
+								</router-link>
+							</el-menu-item> -->
+							<el-menu-item index="5-2">
+								<router-link to="/tccBaobiao">
+									<div class="menu-op">
+										<div>
+											<img src="../assets/images/Monthly package.png">
+										</div>
+										<span class="menu-word">停车报表</span>
+									</div>
+								</router-link>
+							</el-menu-item>
+						</el-menu-item-group>
+					</el-submenu>
 				</el-menu>
 			</el-col>
 		</div>

@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<div class="tus">
-			<template v-if="changeList == true">
+			<template v-if="changeList == false">
 				<el-table :data="cardList" stripe style="width: 100%">
 					<el-table-column prop="id" label="设备ID"> </el-table-column>
 					<el-table-column prop="name" label="设备名称"> </el-table-column>
@@ -78,7 +78,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="UserAssets-bottom" v-if="changeList == true">
+		<div class="UserAssets-bottom" v-if="changeList == false">
 			<div class="UserAssets-bottom-left" :data="cardList">
 				<span>共{{total}}台机器</span>
 			</div>
@@ -163,7 +163,7 @@
 				editDialogVisible: false, //控制修改设备对话框显示隐藏
 				pagesize: 1, //每次查询条数
 				type: 0,
-				changeList: true,
+				changeList: false,
 				input: "",
 				typeList: [{
 						id: 0,

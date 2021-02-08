@@ -3,7 +3,7 @@
 		<div class="weiTop">
 			<div class="weiTopLeft"></div>
 			<div class="weiTopTitle">
-				<span>{{loginConfig.deviceName}}</span>
+				<span>{{loginConfig.deviceName}}微服务监控</span>
 			</div>
 			<div class="weiTopRight">
 				<div class="btn-fullscreen" @click="handleFullScreen">

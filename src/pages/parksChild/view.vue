@@ -262,7 +262,11 @@
 						console.log(res.status);
 						if (res.status == 200) {
 							this.$message.success("删除成功");
-							this.getUserMes(); //刷新用户数据
+							if (this.changeList == true) {
+								this.getUserMes()
+							} else if (this.changeList == false) {
+								this.getImg()
+							}
 						} else {
 							this.$message.error("删除失败");
 						}
