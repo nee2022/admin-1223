@@ -18,6 +18,24 @@
               active-text-color="white"
               unique-opened
             >
+              <el-submenu index="0">
+                <template slot="title">
+                  <img src="../../assets/images/ziyuanguanli.png" />
+                  <span>数据视图</span>
+                </template>
+                <router-link to="/powerMonitorSystem/dataBoard">
+                  <el-menu-item index="1-1">
+                    <img src="../../assets/images/quanjingtu.png" />
+                    <span>数据看板</span>
+                  </el-menu-item>
+                </router-link>
+                <router-link to="/powerMonitorSystem/panorama">
+                  <el-menu-item index="1-2">
+                    <img src="../../assets/images/zhandian.png" />
+                    <span>全景图</span>
+                  </el-menu-item>
+                </router-link>
+              </el-submenu>
               <el-submenu index="1">
                 <template slot="title">
                   <img src="../../assets/images/ziyuanguanli.png" />
