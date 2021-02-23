@@ -82,18 +82,18 @@
               </div>
             </div>
           </div>
-          <!-- <div class="roadBotBox">
+          <div class="roadBotBox">
             <el-pagination
               background
-              :current-page.sync.number="pagenum"
-              @current-change="handleCurrentChange"
-              :page-size="pagesize"
+              :current-page.sync.number="pagenum1"
+              @current-change="handleCurrentChange1"
+              :page-size="pagesize1"
               layout="prev, pager, next"
-              :total="total"
+              :total="total1"
               small
             >
             </el-pagination>
-          </div> -->
+          </div>
         </div>
         <!-- <div class="roadTopBox">
           <div class="wulianBotBoxT">
@@ -141,14 +141,10 @@ export default {
   },
   data() {
     return {
-      total: 0,
-
+      total1: 0,
       pagenum1: 1,
-
       pagesize1: 10,
-
       token: "",
-
       parkingLot: []
     };
   },
@@ -165,11 +161,9 @@ export default {
     format1(percentage) {
       return (percentage = "8934");
     },
-
     // handleCurrentChange(newPage) {
 
     // },
-
     getParkingLot() {
       let url =
         "admin/api/report/B2C5FC2773A547978676B2759487B921" +
@@ -191,9 +185,14 @@ export default {
             console.log(this.parkingLot[i].pdr_amount);
           }
 
-          this.total = res.data.total || 0;
+          this.total1 = res.data.total || 0;
         }
       });
+    },
+    //监听页码值改变
+    handleCurrentChange1(newPage) {
+      this.pagenum1 = newPage;
+      this.getParkingLot();
     }
   }
 
