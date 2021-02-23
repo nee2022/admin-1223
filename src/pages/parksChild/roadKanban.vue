@@ -17,18 +17,20 @@
         <div class="roadBot">
           <div class="firstBox">
             <div class="firstBoxTop">站点总量</div>
-            <div class="firstBoxBot">9548</div>
+            <div class="firstBoxBot">
+              {{ this.resourceAndRecord.station_type_3_count }}
+            </div>
           </div>
           <div class="rightBox">
             <div class="otherBoxs">
               <div>泊位数</div>
               <div class="otherBoxsBot">
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">3430</div>
+                  <div class="otherNum">0</div>
                   <div class="otherWord green">空闲</div>
                 </div>
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">8430</div>
+                  <div class="otherNum">0</div>
                   <div class="otherWord blue">占用</div>
                 </div>
               </div>
@@ -37,12 +39,16 @@
               <div>地磁</div>
               <div class="otherBoxsBot">
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">3430</div>
-                  <div class="otherWord green">空闲</div>
+                  <div class="otherNum">
+                    {{ this.resourceAndRecord.charger_type_7_count_online }}
+                  </div>
+                  <div class="otherWord green">在线</div>
                 </div>
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">8430</div>
-                  <div class="otherWord gray">离线</div>
+                  <div class="otherNum">
+                    {{ this.resourceAndRecord.charger_type_7_count }}
+                  </div>
+                  <div class="otherWord gray">总数</div>
                 </div>
               </div>
             </div>
@@ -50,12 +56,22 @@
               <div>视频桩</div>
               <div class="otherBoxsBot">
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">3430</div>
-                  <div class="otherWord green">空闲</div>
+                  <div class="otherNum">
+                    {{
+                      this.resourceAndRecord.charger_type_10_count_online +
+                        this.resourceAndRecord.charger_type_11_count_online
+                    }}
+                  </div>
+                  <div class="otherWord green">在线</div>
                 </div>
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">8430</div>
-                  <div class="otherWord gray">离线</div>
+                  <div class="otherNum">
+                    {{
+                      this.resourceAndRecord.charger_type_10_count +
+                        this.resourceAndRecord.charger_type_11_count
+                    }}
+                  </div>
+                  <div class="otherWord gray">总数</div>
                 </div>
               </div>
             </div>
@@ -63,12 +79,16 @@
               <div>巡检车</div>
               <div class="otherBoxsBot">
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">3430</div>
-                  <div class="otherWord green">空闲</div>
+                  <div class="otherNum">
+                    {{ this.resourceAndRecord.charger_type_18_count_online }}
+                  </div>
+                  <div class="otherWord green">在线</div>
                 </div>
                 <div class="otherBoxsBotBox">
-                  <div class="otherNum">8430</div>
-                  <div class="otherWord gray">离线</div>
+                  <div class="otherNum">
+                    {{ this.resourceAndRecord.charger_type_18_count }}
+                  </div>
+                  <div class="otherWord gray">总数</div>
                 </div>
               </div>
             </div>
@@ -83,27 +103,27 @@
         <div class="ziyuanBox">
           <div class="boxBoxs">
             <div class="boxWord">订单数</div>
-            <div class="boxNum">3420</div>
+            <div class="boxNum">{{ this.resourceAndRecord.pdr_count }}</div>
           </div>
           <div class="boxBoxs">
             <div class="boxWord">停车费</div>
-            <div class="boxNum1">3420</div>
+            <div class="boxNum1">{{ this.resourceAndRecord.pdr_amount }}</div>
           </div>
           <div class="boxBoxs">
             <div class="boxWord">已缴</div>
-            <div class="boxNum1">3420</div>
+            <div class="boxNum1">{{ this.resourceAndRecord.pdr_paid }}</div>
           </div>
           <div class="boxBoxs">
             <div class="boxWord">欠费</div>
-            <div class="boxNum1">3420</div>
+            <div class="boxNum1">{{ this.resourceAndRecord.pdr_debts }}</div>
           </div>
           <div class="boxBoxs">
             <div class="boxWord">退款</div>
-            <div class="boxNum1">3420</div>
+            <div class="boxNum1">{{ this.resourceAndRecord.pdr_refund }}</div>
           </div>
           <div class="boxBoxs">
             <div class="boxWord">优惠</div>
-            <div class="boxNum1">3420</div>
+            <div class="boxNum1">0</div>
           </div>
         </div>
       </div>
@@ -121,8 +141,12 @@
                 <el-progress
                   :text-inside="true"
                   :stroke-width="20"
-                  :percentage="70"
-                  :format="format1"
+                  :percentage="percentage1(item.pdr_amount)"
+                  :format="
+                    () => {
+                      return item.pdr_amount;
+                    }
+                  "
                   square
                 ></el-progress>
               </div>
@@ -141,7 +165,7 @@
             </el-pagination>
           </div>
         </div>
-        <!-- <div class="roadTopBox">
+        <div class="roadTopBox">
           <div class="wulianBotBoxT">
             <div class="T_blue"></div>
             <span class="T_span">运营商排名</span>
@@ -206,7 +230,7 @@
             >
             </el-pagination>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
@@ -220,22 +244,28 @@ export default {
   },
   data() {
     return {
+      token: "",
+      pagenum0: 1,
+      pagesize0: 10,
+      resourceAndRecord: {},
       total1: 0,
       pagenum1: 1,
       pagesize1: 10,
-      token: "",
+      maxPdrAmount: 0,
       parkingLot: []
     };
   },
 
   mounted() {
     this.token = localStorage.getItem("token").replace(/\"/g, "");
-
+    this.getResourceAndRecord();
     this.getParkingLot();
   },
 
   methods: {
-    percentage1() {},
+    percentage1(pdrAmount) {
+      return 100 * (pdrAmount / this.maxPdrAmount);
+    },
 
     format1(percentage) {
       return (percentage = "8934");
@@ -243,6 +273,22 @@ export default {
     // handleCurrentChange(newPage) {
 
     // },
+    getResourceAndRecord() {
+      let url =
+        "admin/api/report/FA201E10D5154499BA2C74FC0998F464" +
+        "/?token=" +
+        this.token +
+        "&page=" +
+        this.pagenum0 +
+        "&row=" +
+        this.pagesize0;
+
+      this.$axios.get(url).then(res => {
+        if (res.status == 200) {
+          this.resourceAndRecord = res.data.data[0];
+        }
+      });
+    },
     getParkingLot() {
       let url =
         "admin/api/report/B2C5FC2773A547978676B2759487B921" +
@@ -261,38 +307,17 @@ export default {
           for (let i = 0; i < this.pagesize1; i++) {
             this.parkingLot[i].descId =
               (this.pagenum1 - 1) * this.pagesize1 + i + 1;
-            // console.log(this.parkingLot[i].pdr_amount);
           }
-
+          if (this.pagenum1 === 1) {
+            this.maxPdrAmount = res.data.data[0].pdr_amount;
+            console.log("res");
+            console.log(this.maxPdrA);
+          }
           this.total1 = res.data.total || 0;
         }
       });
     },
-    getResourceAndRecord() {
-      let url =
-        "admin/api/report/FA201E10D5154499BA2C74FC0998F464" +
-        "/?token=" +
-        this.token +
-        "&page=" +
-        this.pagenum1 +
-        "&row=" +
-        this.pagesize1;
 
-      this.$axios.get(url).then(res => {
-        if (res.status == 200) {
-          this.resourceAndRecord = res.data.data;
-          console.log("res");
-          console.log(this.resourceAndRecord);
-          for (let i = 0; i < this.pagesize1; i++) {
-            this.parkingLot[i].descId =
-              (this.pagenum1 - 1) * this.pagesize1 + i + 1;
-            // console.log(this.parkingLot[i].pdr_amount);
-          }
-
-          this.total1 = res.data.total || 0;
-        }
-      });
-    },
     //监听页码值改变
     handleCurrentChange1(newPage) {
       this.pagenum1 = newPage;
