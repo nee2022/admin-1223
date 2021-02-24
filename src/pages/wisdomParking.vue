@@ -506,7 +506,7 @@
 		display: flex;
 		flex-direction: column;
 		min-width: 200px;
-		height: 935px;
+		/* height: 935px; */
 		background-color: #1e69fe;
 	}
 
