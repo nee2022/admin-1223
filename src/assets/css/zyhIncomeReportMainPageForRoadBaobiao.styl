@@ -1,0 +1,328 @@
+// 默认样式
+.zyhIncomeReportMainPageForRoadBaobiao {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  li {
+    list-style-position: inside;
+    list-style-type: none;
+  }
+
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+
+  .swiper-container {
+    width: 600px;
+    height: 300px;
+  }
+
+  header {
+    position: relative;
+
+    .infoArea {
+      height: 102px;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+
+      .pageName {
+        flex-grow: 1;
+        font-family: PingFangSC-Regular;
+        font-size: 24px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 1px;
+        color: #000000;
+        line-height: 102px;
+        text-indent: 38px;
+      }
+
+      .profile {
+        margin-top: 40px;
+        margin-right: 37px;
+      }
+    }
+
+    .functionArea {
+    }
+  }
+
+  section {
+    flex-grow: 1;
+
+    .section1 {
+      position: relative;
+      left: 0;
+      top: -20px;
+      height: 46px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      margin-left: 38px;
+
+      .dateToggleBar {
+        display: flex;
+        border-radius: 5px;
+        border: 1px solid #6892f8;
+        border-radius: 10px;
+        margin-right: 25px;
+
+        span {
+          padding: 8px 20px;
+          font-size: 16px;
+          font-family: PingFang SC;
+          font-weight: normal;
+          color: #2754FB;
+        }
+
+        span.currentActive {
+          background: #2858f2;
+          color: #fff;
+          border-radius: 5px;
+        }
+      }
+
+      .dateSelectBar {
+        .el-input__inner {
+          border: 1px solid #6892f8 !important;
+          border-radius: 10px !important;
+        }
+      }
+
+      .searchButton {
+        .el-button {
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          padding: 2.5px 15px;
+          height: 36px;
+          margin-left: 8px;
+          font-size: 16px;
+          background: #1e69fe;
+          color: #fff;
+
+          span {
+            margin-left: 5px;
+          }
+        }
+      }
+
+      .toggleTable {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .listButton {
+          width: 44px;
+          text-align: center;
+          margin-right: 50px;
+        }
+
+        .chartButton {
+          width: 44px;
+          text-align: center;
+          margin-right: 50px;
+        }
+      }
+    }
+
+    .section2 {
+      padding-top: 10px;
+      height: calc(100% - 46px);
+
+      .el-table-wrapper {
+        padding: 0 38px;
+
+        .el-table {
+          border: 1px solid #d5e2fc;
+          border-radius: 10px;
+
+          .el-table__header {
+            tr {
+              height: 60px;
+
+              th {
+                background: #dee8fd;
+                border: 1px solid #d5e2fc;
+              }
+
+              .cell {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+                color: black;
+              }
+            }
+          }
+
+          .el-table__body {
+            tr {
+              height: calc(((100vh - 360px) / 10));
+
+              td {
+                border: 1px solid #d5e2fc;
+
+                .cell {
+                  text-align: center;
+                  font-size: 16px;
+                  font-weight: 400;
+                  color: #908e8e;
+
+                  .operation {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    div {
+                      img {
+                        margin: 0 10px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      ul {
+        padding-top: 35px;
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+          width: calc((100vw - 276px) * 0.33333);
+          height: calc((100vh - 238px) * 0.5);
+
+          // .bar {
+          // height: 10%;
+          // background: #f4f6fa;
+          // }
+          .echartWrapper {
+            position: relative;
+            height: 92%;
+            width: 94%;
+
+            #incomeReportEchart1, #incomeReportEchart2, #incomeReportEchart3, #incomeReportEchart4, #incomeReportEchart5, #incomeReportEchart6, #incomeReportEchart7 {
+              height: 100%;
+              width: 100%;
+              -webkit-box-shadow: 1px 1px 1px 1px rgba(170, 170, 170, 0.25), inset 1px 1px 1px 1px rgba(170, 170, 170, 0.25);
+              box-shadow: 1px 1px 1px 1px rgba(170, 170, 170, 0.25), inset 1px 1px 1px 1px rgba(170, 170, 170, 0.25);
+              border-radius: 10px;
+            }
+
+            .echartBar {
+              position: absolute;
+              height: 14%;
+              width: calc(100% - 2px);
+              background: #f4f7fb;
+              z-index: 1;
+              border-radius: 10px 10px 0 0;
+              top: 2px;
+              left: 2px;
+              display: flex;
+              align-items: center;
+              padding-left: 15px;
+
+              span {
+                font-size: 15px;
+                font-family: PingFang SC;
+              }
+            }
+          }
+        }
+
+        li:nth-child(3n + 1) {
+          margin-left: 38px;
+        }
+
+        li:nth-child(3n) {
+          margin-right: 38px;
+        }
+      }
+
+      // swiper
+      .swiper-container {
+        height: 100%;
+        width: 100%;
+
+        .swiper-slide {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  footer {
+    height: 100%;
+    max-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 30px;
+
+    .total {
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333333;
+      /* border: 1px solid red; */
+    }
+  }
+}
+
+// 弹出框样式
+.zyhSingleLineListMainPage {
+  .el-dialog {
+    margin: 0 auto;
+    padding: 50px;
+
+    .el-dialog__header {
+    }
+
+    .el-dialog__body {
+      padding: 10px;
+
+      .el-form {
+        &-item {
+          margin: 10px;
+
+          &__label {
+            text-align: center;
+          }
+
+          &__content {
+            input {
+              text-indent: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .el-dialog__footer {
+      button {
+        padding: 5px;
+      }
+    }
+  }
+}
