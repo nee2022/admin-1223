@@ -310,8 +310,6 @@ export default {
           }
           if (this.pagenum1 === 1) {
             this.maxPdrAmount = res.data.data[0].pdr_amount;
-            console.log("res");
-            console.log(this.maxPdrA);
           }
           this.total1 = res.data.total || 0;
         }
